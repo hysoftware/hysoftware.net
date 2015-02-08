@@ -1,0 +1,35 @@
+{
+    "name": "hysoft",
+    "version": "0.0.0",
+    "description": "Website of hysoftware.net",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "http://github.com/hysoftware/hysoft"
+    },
+    "keywords": [
+        "Hiroaki Yamamoto",
+        "hysoftware.net"
+    ],
+    "devDependencies": {
+        "grunt": "latest",
+        "jasmine": "latest",
+        "bower": "latest",
+        "grunt-contrib-watch": "latest",
+        "grunt-autoprefixer": "latest",
+        "grunt-sass": "latest",
+        "grunt-cssmin": "latest",
+        "grunt-contrib-uglify": "latest",
+        "grunt-jslint": "latest",
+        "grunt-closure-tools": "latest",
+        "grunt-shell": "latest",
+        "grunt-karma": "latest",
+        "grunt-protractor-runner": "latest"
+    },
+    "author": "Hiroaki Yamamoto",
+    "license": "MIT",
+    "bugs": {"url": "https://github.com/hysoftware/hysoft/issues"},
+    "homepage": "https://hysoftware.net/"
+}

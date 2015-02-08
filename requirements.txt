@@ -1,0 +1,7 @@
+flake8
+pylint
+pycrypto
+requests
+requests-oauthlib
+dateutils
+django

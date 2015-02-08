@@ -1,0 +1,3 @@
+'''
+Model migrations for contact
+'''
