@@ -16,15 +16,20 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'yf41!n_)qva99a^q&*=pb&h8pyx924s%+*8y#^v_3j&u9-0a3^'
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("mode") != "production"
 
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = None
+
+if DEBUG:
+    SECRET_KEY = "q+h9wm+pfTugsEOYxnTnOzsKjTjFmMBYFHIltTaV"
+else:
+    SECRET_KEY = os.environ["SECRET"]
+
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -36,6 +41,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'contact',
+    'home'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -59,10 +67,12 @@ WSGI_APPLICATION = 'hysoft.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': ('django.db.backends.sqlite3'
-                   if DEBUG else 'django.db.backends.mysql'),
+                   if DEBUG else
+                   'django.db.backends.postgresql_psycopg2'),
         'NAME': (os.path.join(BASE_DIR, 'hysoft.db')
                  if DEBUG else "hysoft"),
-        'USER': 'hysoft',
+        'USER': os.environ.get("db_user"),
+        'PASSWORD': os.environ.get("db_pw"),
         'HOST': '127.0.0.1'
     }
 }

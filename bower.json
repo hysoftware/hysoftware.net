@@ -1,0 +1,33 @@
+{
+    "name": "hysoft",
+    "version": "0.0.0",
+    "authors": [
+        "Hiroaki Yamamoto <admin@hysoftware.net>"
+    ],
+    "description": "The website of hysoftware.net",
+    "keywords": [
+        "Hiroaki Yamamoto",
+        "hysoftware.net"
+    ],
+    "license": "MIT",
+    "homepage": "https://hysoftware.net",
+    "private": true,
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "third_party/frontend",
+        "test",
+        "tests"
+    ],
+    "devDependencies": {
+        "angular": "latest",
+        "angular-sanitize": "latest",
+        "angular-mocks": "latest",
+        "angular-resource": "latest",
+        "angular-route": "latest",
+        "angular-ui-router": "latest",
+        "bootstrap": "latest",
+        "jquery": "^1.0.0"
+    }
+}

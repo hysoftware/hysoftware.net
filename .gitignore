@@ -38,3 +38,10 @@ xcuserdata
 *.kdev4
 .kdev4
 hysoft.db
+vendor
+.bundle
+/home/static/third_party
+/home/static/assets.css
+/home/static/assets.js
+/home/static/third_party.js
+
