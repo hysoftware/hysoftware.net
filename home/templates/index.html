@@ -1,9 +1,10 @@
 <!doctype html>
 <html lang="en">
 <head>
+    {% load staticfiles %}
     <meta charset="UTF-8">
     <title>hysoft</title>
-    {% load staticfiles %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{% static "third_party/bootstrap/dist/css/bootstrap.min.css" %}">
     <link rel="stylesheet" href="{% static "third_party/angular/angular-csp.css" %}">
     <link rel="stylesheet" href="{% static "assets.css" %}">
@@ -11,8 +12,60 @@
     <script src="{% static "assets.js" %}"></script>
 </head>
 <body data-ng-app="hysoft">
-    <div class="index banner">
-        test
+    <div class="index left-area hidden-xs">
+        <div class="developer-list">
+            {% for developer in pros %}
+            <h1>- Developer:</h1>
+            <div class="data">
+                <p>Name: "{{ developer.first_name }} {{ developer.last_name }}"</p>
+                {% if developer.programming_languages %}
+                    <p>Programming Languages:</p>
+                    <div class="data programming-language">
+                        {% for language in developer.programming_languages %}
+                            - "{{ language }}" <br>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% if developer.natural_languages %}
+                    <p>Natural Languages:</p>
+                    <div class="data natural-language">
+                        {% for language in developer.natural_languages %}
+                            - "{{ language }}" <br>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% if developer.occupations %}
+                    <p>Occupations:</p>
+                    <div class="data jobs">
+                        {% for job in developer.occupations %}
+                            - "{{ job }}" <br>
+                        {% endfor %}
+                    </div>
+                {%endif%}
+            </div>
+            {% endfor %}
+        </div>
+        <div class="title text-center">
+            <h1>HYSOFT</h1>
+            <p>
+                - Agile Development {% if pros|length > 1 %} Professionals {% else %} Professional {% endif %}-
+            </p>
+        </div>
+    </div>
+    <div class="index mobile jumbotron visible-xs">
+        <div class="title text-center">
+            <h1>HYSOFT</h1>
+            <p>
+                Agile Development {% if pros|length > 1 %} Professionals {% else %} Professional {% endif %}
+            </p>
+        </div>
+    </div>
+    <div class="ui-view index right-area hidden-xs">
+        <div class="main-menu">
+            <p>Test</p>
+            <p>Test</p>
+            <p>Test</p>
+        </div>
     </div>
 </body>
 </html>

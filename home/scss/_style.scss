@@ -1,11 +1,84 @@
+@import "../../hysoft/scss/colors";
+
 div.index {
-    &.banner {
-        position:absolute;
+    &.mobile {
+        position: relative;
+        color: #2E7D32;
+        background: {
+            color: $titleBGColor;
+        }
+        .title {
+            h1 {
+                text: {
+                    shadow: $titleShadow;
+                }
+            }
+        }
+    }
+    &.left-area {
+        position: fixed;
         width: 50%;
         height: 100%;
         background: {
-            color: #C8E6C9;
-            // image: linear-gradient(to bottom, #81C784, #2E7D32);
+            color: $titleBGColor;
+        }
+        color: #2E7D32;
+        overflow: hidden;
+        .title {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+        }
+        h1 {
+            text: {
+                shadow: $titleShadow;
+            }
+        }
+        .developer-list {
+            & {
+                left: 0;
+                top: 0;
+                z-index: -1;
+                color: #9E9E9E;
+            }
+            h1 {
+                font: {
+                    size: 1.1em;
+                }
+                text: {
+                    shadow: none;
+                }
+                margin: 5px 0 0 5px;
+            }
+            p {
+                font: {
+                    size: 1em;
+                }
+                margin: {
+                    bottom: 0;
+                }
+            }
+            .data {
+                margin: 0px 0 0 20px;
+            }
+        }
+    }
+    &.right-area {
+        & {
+            position: fixed;
+            left: 50%;
+            width: 50%;
+            height: 100%
+        }
+        .main-menu {
+            position: relative;
+            color: #616161;
+            margin: {
+                left: 5px;
+            }
+            top: 50%;
+            transform: translateY(-50%);
         }
     }
 }

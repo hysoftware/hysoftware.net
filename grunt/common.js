@@ -3,6 +3,7 @@
     "use strict";
     var join = r("path").join;
     exp.hysoft_modules = [
+        "about",
         "contact",
         "home",
         "hysoft"
