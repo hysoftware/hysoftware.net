@@ -11,7 +11,8 @@
             "closureCompiler": r("./grunt/closure.js").closureCompiler,
             "karma": r("./grunt/frontend_unit_test.js").karma,
             "sass": r("./grunt/scss.js").sass,
-            "autoprefixer": r("./grunt/cssprefix.js").autoprefixer
+            "autoprefixer": r("./grunt/cssprefix.js").autoprefixer,
+            "protractor": r("./grunt/e2e.js").protractor
         });
 
         /* Write tasks for development */
