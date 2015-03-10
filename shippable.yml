@@ -20,6 +20,7 @@ before_install:
 install:
     - "pip install -r requirements.txt"
     - "sudo npm install"
+    - "sudo npm run postinstall"
     - "bundle install"
     - "grunt third_party"
 
