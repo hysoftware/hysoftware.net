@@ -55,8 +55,13 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware'
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'dj_ajax_redirect.middleware.AjaxRedirectionMiddleware'
 )
+
+DISABLE_REDIRECT = [
+    r"^manager"
+]
 
 ROOT_URLCONF = 'hysoft.urls'
 
