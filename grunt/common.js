@@ -47,19 +47,20 @@
         "common": {
             "frontend": [
                 "jslint:frontend"
-            ],
-            "backend": [
-                "shell:backend-syntax-check"
             ]
         }
     };
     exp.tasks.dev = {
         "frontend": exp.tasks.common.frontend,
-        "backend": exp.tasks.common.backend
+        "backend": [
+            "shell:backend-syntax-check-dev"
+        ]
     };
     exp.tasks.production = {
         "frontend": exp.tasks.common.frontend,
-        "backend": exp.tasks.common.backend
+        "backend": [
+            "shell:backend-syntax-check-ci"
+        ]
     };
     exp.tasks.dev.frontend = exp.tasks.dev.frontend.concat([
         "karma:dev:run",
