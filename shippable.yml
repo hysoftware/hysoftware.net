@@ -1,0 +1,29 @@
+language: python
+
+python:
+    - "3.4"
+
+node_js:
+    - "0.10"
+
+rvm:
+    - "2.2.1"
+
+jdk:
+    - "openjdk7"
+
+before_install:
+    - "sudo npm install -g grunt-cli"
+    - "sudo rm -rf .npm"
+    - "sudo gem install bundler --pre"
+
+install:
+    - "pip install -r requirements.txt"
+    - "sudo npm install"
+    - "bundle install"
+    - "grunt third_party"
+
+script:
+    - "echo \"Python version: $(python --version)\""
+    - "echo \"NodeJS version: $(node --version)\""
+    - "npm test"
