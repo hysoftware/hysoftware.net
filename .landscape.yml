@@ -1,2 +1,4 @@
-ignore-patterns:
-    - migrations/.*\.py$
+uses:
+    - django
+# ignore-patterns:
+    # - migrations/.*\.py$
