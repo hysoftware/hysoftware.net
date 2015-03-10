@@ -1,2 +1,2 @@
-ignore-paths:
+ignore-patterns:
     - migrations/*.py$
