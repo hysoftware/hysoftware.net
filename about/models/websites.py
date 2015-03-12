@@ -19,7 +19,7 @@ class ExternalWebsite(models.Model):
         ("BB", "Bitbucket"),
         ("OT", "Other")
     )
-    choice = models.CharField(
+    website_type = models.CharField(
         max_length=4,
         choices=CHOICE,
         db_index=True
@@ -43,7 +43,7 @@ class ExternalWebsite(models.Model):
             self.user,
             self.title,
             self.url,
-            self.choice
+            self.website_type
         )
 
     __unicode__ = __str__
