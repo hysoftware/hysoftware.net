@@ -47,10 +47,17 @@ def index(request):
         del developer["id"]
 
     # pylint: enable=no-member
+    links = [
+        {
+            "name": "About",
+            "sref": "about"
+        }
+    ]
     return render(
         request,
         "index.html",
         {
-            "pros": developers
+            "pros": developers,
+            "links": links
         }
     )

@@ -60,11 +60,19 @@
             </p>
         </div>
     </div>
-    <div class="ui-view index right-area hidden-xs">
+    <div class="index right-area hidden-xs ui-view">
         <div class="main-menu">
-            <p>Test</p>
-            <p>Test</p>
-            <p>Test</p>
+            {% for link in links %}
+                <div>
+                {% if link.sref %}
+                    <a href="javascript:void(0)" data-ui-sref="{{ link.sref }}">
+                {% else %}
+                    <a href="{{ link.href }}">
+                {% endif %}
+                    {{ link.name }}
+                    </a>
+                </div>
+            {% endfor %}
         </div>
     </div>
 </body>
