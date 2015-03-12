@@ -22,6 +22,8 @@ class VerifiedEmails(models.Model):
             "Verified Email: {} (hash)"
         ).format(self.email_hash)
 
+    __unicode__ = __str__
+
 
 class PendingVerification(models.Model):
     '''
@@ -50,3 +52,5 @@ class PendingVerification(models.Model):
             self.expires,
             self.message
         )
+
+    __unicode__ = __str__

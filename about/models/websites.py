@@ -45,3 +45,5 @@ class ExternalWebsite(models.Model):
             self.url,
             self.choice
         )
+
+    __unicode__ = __str__

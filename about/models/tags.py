@@ -20,3 +20,5 @@ class Tag(models.Model):
         return (
             "User tag of {}: {}"
         ).format(self.user, self.tag_name)
+
+    __unicode__ = __str__

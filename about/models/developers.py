@@ -21,3 +21,5 @@ class Developer(models.Model):
         return (
             "Developer: {} {} <{}>"
         ).format(self.first_name, self.last_name, self.email)
+
+    __unicode__ = __str__

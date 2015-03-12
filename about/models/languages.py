@@ -21,6 +21,8 @@ class ProgrammingLanguage(models.Model):
             "Programming Language of {}: {}"
         ).format(self.user, self.language)
 
+    __unicode__ = __str__
+
 
 class NaturalLanguage(models.Model):
     '''
@@ -37,3 +39,5 @@ class NaturalLanguage(models.Model):
         return (
             "Natural Language of {}: {}"
         ).format(self.user, self.language)
+
+    __unicode__ = __str__

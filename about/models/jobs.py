@@ -39,6 +39,8 @@ class Occupation(models.Model):
                 self.start_year
             )
 
+    __unicode__ = __str__
+
 
 class JobTable(models.Model):
     '''
@@ -73,3 +75,5 @@ class JobTable(models.Model):
             self.name,
             self.agent
         )
+
+    __unicode__ = __str__
