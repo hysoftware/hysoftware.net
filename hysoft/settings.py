@@ -10,6 +10,8 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import random
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -23,7 +25,16 @@ DEBUG = os.environ.get("mode") != "production"
 SECRET_KEY = None
 
 if DEBUG:
-    SECRET_KEY = "q+h9wm+pfTugsEOYxnTnOzsKjTjFmMBYFHIltTaV"
+    SECRET_KEY = ("").join(
+        [
+            random.choice(
+                "abcdefghijklmnopqrstuvwxyz"
+                "ABCDEVGHIJKLMNOPQRSTUVWXYZ"
+                "0123456789"
+                "`~!@#$%^&*()-_=+[{]}\\|\"';:/?.>,<"
+            )
+        ]
+    )
 else:
     SECRET_KEY = os.environ["SECRET"]
 
