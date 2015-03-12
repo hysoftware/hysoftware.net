@@ -14,6 +14,14 @@ class VerifiedEmails(models.Model):
     '''
     email_hash = models.CharField(max_length=40, primary_key=True)
 
+    def __str__(self):
+        '''
+        Represent the class
+        '''
+        return (
+            "Verified Email: {} (hash)"
+        ).format(self.email_hash)
+
 
 class PendingVerification(models.Model):
     '''
@@ -27,3 +35,18 @@ class PendingVerification(models.Model):
     token = models.CharField(max_length=40)
     message = models.TextField(default="")
     expires = models.DateTimeField()
+
+    def __str__(self):
+        '''
+        Represent the class
+        '''
+        return (
+            "Email Verification Token of {} (hash): {} (hash), "
+            "Expires: {}, "
+            "Message: \n {}"
+        ).format(
+            self.email_hash,
+            self.token,
+            self.expires,
+            self.message
+        )

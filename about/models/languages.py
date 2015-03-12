@@ -13,6 +13,14 @@ class ProgrammingLanguage(models.Model):
     language = models.CharField(max_length=40, db_index=True)
     user = models.ForeignKey("Developer")
 
+    def __str__(self):
+        '''
+        Represent class
+        '''
+        return (
+            "Programming Language of {}: {}"
+        ).format(self.user, self.language)
+
 
 class NaturalLanguage(models.Model):
     '''
@@ -21,3 +29,11 @@ class NaturalLanguage(models.Model):
     # pylint: disable=too-few-public-methods
     language = models.CharField(max_length=40, db_index=True)
     user = models.ForeignKey("Developer")
+
+    def __str__(self):
+        '''
+        Represent class
+        '''
+        return (
+            "Natural Language of {}: {}"
+        ).format(self.user, self.language)

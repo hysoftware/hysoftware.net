@@ -32,3 +32,16 @@ class ExternalWebsite(models.Model):
     )
     url = models.URLField()
     user = models.ForeignKey("Developer")
+
+    def __str__(self):
+        '''
+        Represent the class
+        '''
+        return (
+            "External Website of {}: {} ({}) at {}"
+        ).format(
+            self.user,
+            self.title,
+            self.url,
+            self.choice
+        )

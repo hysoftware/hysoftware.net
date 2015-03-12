@@ -17,6 +17,28 @@ class Occupation(models.Model):
     end_year = models.DateField(null=True, blank=True)
     user = models.ForeignKey("Developer")
 
+    def __str__(self):
+        '''
+        Represent class
+        '''
+        if self.end_year:
+            return (
+                "Occupation of {}: {} {} - {}"
+            ).format(
+                self.user,
+                self.job_name,
+                self.start_year,
+                self.end_year
+            )
+        else:
+            return (
+                "Occupation of {}: {} {} - present"
+            ).format(
+                self.user,
+                self.job_name,
+                self.start_year
+            )
+
 
 class JobTable(models.Model):
     '''
@@ -38,3 +60,16 @@ class JobTable(models.Model):
     name = models.CharField(max_length=30, db_index=True)
     url = models.URLField(null=True, blank=True)
     user = models.ForeignKey("Developer")
+
+    def __str__(self):
+        '''
+        Represent the class
+        '''
+        return (
+            "Job table of {}: {} named {} at {}"
+        ).format(
+            self.user,
+            self.url,
+            self.name,
+            self.agent
+        )
