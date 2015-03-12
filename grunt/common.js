@@ -29,17 +29,17 @@
     exp.tests = {
         "unit": {
             "frontend": exp.hysoft_modules.map(function (hy_module) {
-                return join(hy_module, "frontend_tests/unit/**/*.js");
+                return join(hy_module, "tests/frontend/unit/**/*.js");
             })
         },
         "e2e": {
             "frontend": exp.hysoft_modules.map(function (hy_module) {
-                return join(hy_module, "frontend_tests/e2e/**/*.js");
+                return join(hy_module, "tests/frontend/e2e/**/*.js");
             })
         },
         "all": {
             "frontend": exp.hysoft_modules.map(function (hy_module) {
-                return join(hy_module, "frontend_tests/**/*.js");
+                return join(hy_module, "tests/frontend/**/*.js");
             })
         }
     };

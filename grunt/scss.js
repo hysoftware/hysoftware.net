@@ -1,4 +1,4 @@
-/*global exports, require*/
+/*global exports*/
 (function (e) {
     "use strict";
     e.output_path = "./home/static/assets.css";
