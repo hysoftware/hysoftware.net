@@ -6,7 +6,7 @@
             browser.get("#/");
         });
         it("The URL should be /.", function () {
-            expect(browser.getAbsoluteUrl()).toMatch(
+            expect(browser.getLocationAbsUrl()).toMatch(
                 /^\/$/
             );
         });
