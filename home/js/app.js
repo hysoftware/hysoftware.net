@@ -21,5 +21,11 @@
             });
             httpProvider.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
         }
+    ]).run([
+        "$rootScope",
+        "$state",
+        function (rootScope, state) {
+            rootScope.state = state;
+        }
     ]);
 }(angular));

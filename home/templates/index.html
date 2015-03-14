@@ -11,8 +11,9 @@
     <script src="{% static "third_party.js" %}"></script>
     <script src="{% static "assets.js" %}"></script>
 </head>
-<body data-ng-app="hysoft">
-    <div class="index left-area hidden-xs">
+<body data-ng-app="hysoft" data-ng-cloak>
+
+    <div class="index left-area hidden-xs" data-ng-if="state.is('home')">
         <div class="developer-list">
             {% for developer in pros %}
             <h1>- Developer:</h1>
@@ -52,7 +53,40 @@
             </p>
         </div>
     </div>
-    <div class="index mobile jumbotron visible-xs">
+
+    <nav class="navbar navbar-default navbar-fixed-top hysoft-header" data-ng-hide="state.is('home')">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button"
+                        class="navbar-toggle collapsed"
+                        data-toggle="collapse"
+                        data-target="#top-menu">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" data-ui-sref="home" href="javascript:void(0)">HYSOFT</a>
+            </div>
+            <div class="collapse navbar-collapse" id="top-menu">
+                <ul class="nav navbar-nav">
+                    {% for link in links %}
+                        <li>
+                        {% if link.sref %}
+                            <a href="javascript:void(0)" data-ui-sref="{{ link.sref }}">
+                        {% else %}
+                            <a href="{{ link.href }}">
+                        {% endif %}
+                                {{ link.name }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="index mobile jumbotron visible-xs" data-ng-if="state.is('home')">
         <div class="title text-center">
             <h1>HYSOFT</h1>
             <p>
@@ -60,8 +94,10 @@
             </p>
         </div>
     </div>
-    <div class="index right-area hidden-xs ui-view">
-        <div class="main-menu">
+
+    <div class="index ui-view hidden-xs"
+         data-ng-class="{'main container': !state.is('home'), 'right-area': state.is('home')}">
+        <nav class="main-menu">
             {% for link in links %}
                 <div>
                 {% if link.sref %}
@@ -73,7 +109,24 @@
                     </a>
                 </div>
             {% endfor %}
-        </div>
+        </nav>
     </div>
+    <nav class="visible-xs main-menu navbar navbar-default hysoft-header mobile" data-ng-if="state.is('home')">
+        <div class="text-center">
+            <ul class="nav navbar-nav">
+                {% for link in links %}
+                    <li>
+                    {% if link.sref %}
+                        <a href="javascript:void(0)" data-ui-sref="{{ link.sref }}">
+                    {% else %}
+                        <a href="{{ link.href }}">
+                    {% endif %}
+                            {{ link.name }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </nav>
 </body>
 </html>
