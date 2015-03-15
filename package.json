@@ -32,8 +32,8 @@
         "karma-junit-reporter": "latest",
         "karma-chrome-launcher": "latest",
         "karma-firefox-launcher": "latest",
-        "karma-jasmine": "latest",
         "karma-phantomjs-launcher": "latest",
+        "karma-jasmine": "latest",
         "karma-ng-html2js-preprocessor": "latest"
     },
     "author": "Hiroaki Yamamoto",

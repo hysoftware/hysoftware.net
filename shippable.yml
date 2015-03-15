@@ -12,7 +12,19 @@ rvm:
 jdk:
     - "openjdk7"
 
+addons:
+    selenium: "2.44"
+    firefox: "30.0"
+
+services:
+    - "selenium"
+
+env:
+    - "CHROME_BIN=\"/usr/bin/google-chrome-stable\""
+    - "DISPLAY=:99.0"
+
 before_install:
+    - "sudo apt-get install -y google-chrome-stable"
     - "sudo npm install -g grunt-cli"
     - "sudo rm -rf .npm"
     - "sudo gem install bundler --pre"
@@ -24,7 +36,16 @@ install:
     - "bundle install"
     - "grunt third_party"
 
+before_script:
+    - "/etc/init.d/xvfb start"
+    - "python manage.py runserver 50000 > /dev/null 2>&1 &"
+
 script:
     - "echo \"Python version: $(python --version)\""
     - "echo \"NodeJS version: $(node --version)\""
     - "npm test"
+    - "grunt protractor:chrome"
+    - "grunt protractor:firefox"
+
+after_script:
+    - "killall python"
