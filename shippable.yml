@@ -16,9 +16,6 @@ addons:
     selenium: "2.44"
     firefox: "30.0"
 
-services:
-    - "selenium"
-
 env:
     - "CHROME_BIN=\"/usr/bin/google-chrome-stable\""
     - "DISPLAY=:99.0"
