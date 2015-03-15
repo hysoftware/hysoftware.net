@@ -20,6 +20,11 @@ div.index {
             }
         }
     }
+    &.main.container {
+        padding: {
+            top: 70px;
+        }
+    }
     &.left-area {
         position: fixed;
         width: 50%;
@@ -51,6 +56,7 @@ div.index {
                 top: 0;
                 z-index: -1;
                 color: #9E9E9E;
+                font-family: 'Indie Flower', cursive;
             }
             h1 {
                 font: {
