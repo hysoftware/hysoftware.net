@@ -21,7 +21,6 @@ env:
     - "DISPLAY=:99.0"
 
 before_install:
-    - "sudo apt-get install -y google-chrome-stable"
     - "sudo npm install -g grunt-cli"
     - "sudo rm -rf .npm"
     - "sudo gem install bundler --pre"
@@ -41,7 +40,6 @@ script:
     - "echo \"Python version: $(python --version)\""
     - "echo \"NodeJS version: $(node --version)\""
     - "npm test"
-    - "grunt protractor:chrome"
     - "grunt protractor:firefox"
 
 after_script:
