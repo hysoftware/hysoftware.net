@@ -26,8 +26,7 @@ before_install:
     - "sudo apt-get -y upgrade"
 
 install:
-    - "sudo apt-get -y install libappindicator1"
-    - "sudo apt-get -y install google-chrome-stable"
+    - "sudo apt-get -y -f install google-chrome-stable"
     - "pip install -r requirements.txt"
     - "sudo npm install"
     - "npm run postinstall"
