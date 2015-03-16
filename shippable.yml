@@ -20,7 +20,7 @@ before_install:
     - "sudo npm install -g grunt-cli"
     - "sudo rm -rf .npm"
     - "sudo gem install bundler --pre"
-    - "sudo deb http://dl.google.com/linux/deb/ stable non-free main"
+    - "echo 'deb http://dl.google.com/linux/deb/ stable non-free main'|sudo tee /etc/apt/sources.list"
     - "curl https://dl-ssl.google.com/linux/linux_signing_key.pub|sudo apt-key add -"
     - "sudo apt-get -y update"
 
@@ -42,6 +42,3 @@ script:
     - "echo \"NodeJS version: $(node --version)\""
     - "npm test"
     - "grunt protractor:chrome"
-
-after_script:
-    - "killall python"
