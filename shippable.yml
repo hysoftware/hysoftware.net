@@ -12,19 +12,36 @@ rvm:
 jdk:
     - "openjdk7"
 
+env:
+    - "DISPLAY=:99.0"
+    - "CHROME_BIN='/usr/bin/google-chrome-stable'"
+
 before_install:
     - "sudo npm install -g grunt-cli"
     - "sudo rm -rf .npm"
     - "sudo gem install bundler --pre"
+    - "sudo deb http://dl.google.com/linux/deb/ stable non-free main"
+    - "curl https://dl-ssl.google.com/linux/linux_signing_key.pub|sudo apt-key add -"
+    - "sudo apt-get -y update"
 
 install:
+    - "sudo apt-get -y install google-chrome-stable"
     - "pip install -r requirements.txt"
     - "sudo npm install"
     - "npm run postinstall"
     - "bundle install"
     - "grunt third_party"
 
+before_script:
+    - "/etc/init.d/xvfb start"
+    - "python manage.py migrate"
+    - "python manage.py runserver > /dev/null 2>&1 &"
+
 script:
     - "echo \"Python version: $(python --version)\""
     - "echo \"NodeJS version: $(node --version)\""
     - "npm test"
+    - "grunt protractor:chrome"
+
+after_script:
+    - "killall python"
