@@ -23,6 +23,7 @@ before_install:
     - "echo 'deb http://dl.google.com/linux/deb/ stable main'|sudo tee /etc/apt/sources.list"
     - "curl https://dl-ssl.google.com/linux/linux_signing_key.pub|sudo apt-key add -"
     - "sudo apt-get -y update"
+    - "sudo apt-get -y upgrade"
 
 install:
     - "sudo apt-get -y install libappindicator1"
