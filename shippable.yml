@@ -20,17 +20,18 @@ before_install:
     - "sudo npm install -g grunt-cli"
     - "sudo rm -rf .npm"
     - "sudo gem install bundler --pre"
-    - "echo 'deb http://dl.google.com/linux/deb/ stable main'|sudo tee /etc/apt/sources.list"
-    - "curl https://dl-ssl.google.com/linux/linux_signing_key.pub|sudo apt-key add -"
-    - "sudo apt-get -y update"
+    - "curl -o 'google-chrome-stable_current_amd64.deb' 'https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb'"
 
 install:
-    - "sudo apt-get -y install libappindicator google-chrome-stable"
+    - "sudo dpkg -i google-chrome-stable_current_amd64.deb"
     - "pip install -r requirements.txt"
     - "sudo npm install"
     - "npm run postinstall"
     - "bundle install"
     - "grunt third_party"
+
+after_install:
+    - "rm google-chrome-stable_current_amd64.deb"
 
 before_script:
     - "/etc/init.d/xvfb start"
