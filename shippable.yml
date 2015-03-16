@@ -1,5 +1,8 @@
 language: python
 
+addons:
+    selenium: "2.44"
+
 python:
     - "3.4"
 
@@ -12,6 +15,9 @@ rvm:
 jdk:
     - "openjdk7"
 
+services:
+    - "selenium"
+
 env:
     - "DISPLAY=:99.0"
     - "CHROME_BIN='/usr/bin/google-chrome-stable'"
@@ -20,13 +26,8 @@ before_install:
     - "sudo npm install -g grunt-cli"
     - "sudo rm -rf .npm"
     - "sudo gem install bundler --pre"
-    - "echo 'deb http://dl.google.com/linux/deb/ stable main'|sudo tee /etc/apt/sources.list"
-    - "curl https://dl-ssl.google.com/linux/linux_signing_key.pub|sudo apt-key add -"
-    - "sudo apt-get -y update"
-    - "sudo apt-get -y upgrade"
 
 install:
-    - "sudo apt-get -y -f install google-chrome-stable"
     - "pip install -r requirements.txt"
     - "sudo npm install"
     - "npm run postinstall"
@@ -36,7 +37,7 @@ install:
 before_script:
     - "/etc/init.d/xvfb start"
     - "python manage.py migrate"
-    - "python manage.py runserver > /dev/null 2>&1 &"
+    - "python manage.py runserver 50000> /dev/null 2>&1 &"
 
 script:
     - "echo \"Python version: $(python --version)\""
