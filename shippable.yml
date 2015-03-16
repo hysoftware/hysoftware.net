@@ -1,8 +1,5 @@
 language: python
 
-addons:
-    selenium: "2.44"
-
 python:
     - "3.4"
 
@@ -14,12 +11,6 @@ rvm:
 
 jdk:
     - "openjdk7"
-
-services:
-    - "selenium"
-
-env:
-    - "DISPLAY=:99.0"
 
 before_install:
     - "sudo npm install -g grunt-cli"
@@ -33,13 +24,7 @@ install:
     - "bundle install"
     - "grunt third_party"
 
-before_script:
-    - "/etc/init.d/xvfb start"
-    - "python manage.py migrate"
-    - "python manage.py runserver 50000> /dev/null 2>&1 &"
-
 script:
     - "echo \"Python version: $(python --version)\""
     - "echo \"NodeJS version: $(node --version)\""
     - "npm test"
-    - "grunt protractor:chrome"
