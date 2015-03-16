@@ -20,7 +20,6 @@ services:
 
 env:
     - "DISPLAY=:99.0"
-    - "CHROME_BIN='/usr/bin/google-chrome-stable'"
 
 before_install:
     - "sudo npm install -g grunt-cli"
