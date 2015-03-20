@@ -28,6 +28,7 @@
         "angular-route": "latest",
         "angular-ui-router": "latest",
         "bootstrap": "latest",
+        "ionicons": "latest",
         "jquery": "^1.0.0"
     }
 }

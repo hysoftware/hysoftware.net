@@ -84,4 +84,11 @@ def about_view(request):
             }
         )
     # pylint: enable=no-member
-    return render(request, "about.html", {"people": people})
+    return render(
+        request,
+        "about.html",
+        {
+            "people": people,
+            "years": 10
+        }
+    )
