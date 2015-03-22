@@ -21,6 +21,7 @@
         "tests"
     ],
     "devDependencies": {
+        "detectizr": "latest",
         "angular": "latest",
         "angular-sanitize": "latest",
         "angular-mocks": "latest",

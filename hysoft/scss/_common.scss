@@ -1,17 +1,21 @@
+html.firefox {
+    body {
+        text-shadow: 0 0 1px rgba(0,0,0,0.3);
+    }
+}
 body {
     background: {
         color: $backgroundColor;
     }
 }
 article {
-    h1 {
-        font: {
-            family: 'Open Sans', sans-serif;
-            weight: 300;
+    section {
+        margin: {
+            left: 3%;
+            right: 3%;
         }
-        color: #212122;
     }
-    h2 {
+    h1, h2, h3 {
         font: {
             family: 'Open Sans', sans-serif;
             weight: 300;

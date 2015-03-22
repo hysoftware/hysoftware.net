@@ -6,6 +6,8 @@
         build_order = [
             "jquery/dist/jquery.js",
             "bootstrap/dist/js/bootstrap.js",
+            "modernizr/modernizr.js",
+            "detectizr/dist/detectizr.js",
             "angular/angular.js",
             "angular-mocks/angular-mocks.js",
             "angular-resource/angular-resource.js",

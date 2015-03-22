@@ -84,11 +84,39 @@ def about_view(request):
             }
         )
     # pylint: enable=no-member
+    render_args = {
+        "people": people,
+    }
+    if len(people) > 1:
+        render_args.update(
+            {
+                "i": "we",
+                "I": "We",
+                "iam": "we are",
+                "Iam": "We are",
+                "Ami": "Are we",
+                "ami": "are we",
+                "my": "our",
+                "My": "Our",
+                "me": "us"
+            }
+        )
+    else:
+        render_args.update(
+            {
+                "i": "I",
+                "I": "I",
+                "iam": "I am",
+                "Iam": "I am",
+                "Ami": "Am I",
+                "ami": "am I",
+                "my": "my",
+                "My": "My",
+                "me": "me"
+            }
+        )
     return render(
         request,
         "about.html",
-        {
-            "people": people,
-            "years": 10
-        }
+        render_args
     )

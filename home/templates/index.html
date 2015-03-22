@@ -8,16 +8,15 @@
     <link rel="stylesheet" href="{% static "third_party/bootstrap/dist/css/bootstrap.min.css" %}">
     <link rel="stylesheet" href="{% static "third_party/angular/angular-csp.css" %}">
 
-    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Indie+Flower'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400' rel='stylesheet' type='text/css'>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Indie+Flower'>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:300,400'>
 
     <link rel="stylesheet" href="{% static "assets.css" %}">
     <script src="{% static "third_party.js" %}"></script>
     <script src="{% static "assets.js" %}"></script>
 </head>
 <body data-ng-app="hysoft" data-ng-cloak>
-
-    <div class="index left-area hidden-sm" data-ng-if="state.is('home')">
+    <div class="index left-area hidden-xs hidden-sm" data-ng-if="state.is('home')">
         <div class="developer-list">
             {% for developer in pros %}
             <h1>- Developer:</h1>
@@ -90,16 +89,7 @@
         </div>
     </nav>
 
-    <div class="index mobile jumbotron visible-sm" data-ng-if="state.is('home')">
-        <div class="title text-center">
-            <h1>HYSOFT</h1>
-            <p>
-                Agile Development {% if pros|length > 1 %} Professionals {% else %} Professional {% endif %}
-            </p>
-        </div>
-    </div>
-
-    <div class="index ui-view hidden-sm"
+    <div class="index ui-view hidden-sm hidden-xs"
          data-ng-class="{'main container': !state.is('home'), 'right-area': state.is('home')}">
         <nav class="main-menu">
             {% for link in links %}
@@ -115,24 +105,36 @@
             {% endfor %}
         </nav>
     </div>
-    <div class="index ui-view visible-sm" data-ng-class="{'main container': !state.is('home')}">
-        <nav class="main-menu navbar navbar-default hysoft-header" data-ng-if="state.is('home')">
-            <div class="text-center">
-                <ul class="nav navbar-nav">
-                    {% for link in links %}
-                        <li>
-                        {% if link.sref %}
-                            <a href="javascript:void(0)" data-ui-sref="{{ link.sref }}">
-                        {% else %}
-                            <a href="{{ link.href }}">
-                        {% endif %}
-                                {{ link.name }}
-                            </a>
-                        </li>
-                    {% endfor %}
-                </ul>
+
+    <div class="visible-xs visible-sm">
+        <div class="index mobile jumbotron" data-ng-if="state.is('home')">
+            <div class="title text-center">
+                <h1>HYSOFT</h1>
+                <p>
+                    Agile Development {% if pros|length > 1 %} Professionals {% else %} Professional {% endif %}
+                </p>
             </div>
-        </nav>
+        </div>
+
+        <div class="index ui-view" data-ng-class="{'main container': !state.is('home')}">
+            <nav class="main-menu navbar navbar-default hysoft-header" data-ng-if="state.is('home')">
+                <div class="text-center">
+                    <ul class="nav navbar-nav">
+                        {% for link in links %}
+                            <li>
+                            {% if link.sref %}
+                                <a href="javascript:void(0)" data-ui-sref="{{ link.sref }}">
+                            {% else %}
+                                <a href="{{ link.href }}">
+                            {% endif %}
+                                    {{ link.name }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </nav>
+        </div>
     </div>
 </body>
 </html>
