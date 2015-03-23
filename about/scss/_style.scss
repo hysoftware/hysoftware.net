@@ -1,0 +1,39 @@
+.dev_process {
+    .text {
+        font: {
+            size: 200%;
+        }
+    }
+    .vcenter_container {
+        position: relative;
+        .text {
+            padding: {
+                top: 50%;
+            }
+            transform: translate(0, -50%);
+        }
+    }
+    @keyframes rotate {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+    .circle {
+        font: {
+            size: 1000%;
+        }
+        .ion-ios-loop-strong:before {
+            transform: translate(-50%, -50%);
+            transform: rotate(180deg);
+            animation: {
+                name: rotate;
+                duration: 2s;
+                timing-function: linear;
+                iteration-count: infinite;
+            }
+        }
+    }
+}
