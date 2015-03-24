@@ -1,0 +1,83 @@
+- fields: {first_name: Hiroaki, last_name: Yamamoto, title: Main Developer at hysoft}
+  model: about.developer
+  pk: admin@hysoftware.net
+- fields: {agent: OD, name: Hiroaki Yamamoto, url: 'https://www.odesk.com/o/profiles/users/_~01f335a1c147aa9d33/',
+    user: admin@hysoftware.net}
+  model: about.jobtable
+  pk: 1
+- fields: {agent: EL, name: Hiroaki Yamamoto, url: 'https://www.elance.com/s/hyamamoto/',
+    user: admin@hysoftware.net}
+  model: about.jobtable
+  pk: 2
+- fields: {agent: DR, name: Hiroaki Yamamoto, url: '', user: admin@hysoftware.net}
+  model: about.jobtable
+  pk: 3
+- fields: {agent: AS, name: Hiroaki Yamamoto, url: 'https://assembly.com/users/hyamamoto',
+    user: admin@hysoftware.net}
+  model: about.jobtable
+  pk: 4
+- fields: {language: Python 2.x, user: admin@hysoftware.net}
+  model: about.programminglanguage
+  pk: 1
+- fields: {language: Python 3.x, user: admin@hysoftware.net}
+  model: about.programminglanguage
+  pk: 2
+- fields: {language: Javascript, user: admin@hysoftware.net}
+  model: about.programminglanguage
+  pk: 3
+- fields: {language: HTML 5, user: admin@hysoftware.net}
+  model: about.programminglanguage
+  pk: 4
+- fields: {language: SCSS, user: admin@hysoftware.net}
+  model: about.programminglanguage
+  pk: 5
+- fields: {language: C, user: admin@hysoftware.net}
+  model: about.programminglanguage
+  pk: 6
+- fields: {language: C++, user: admin@hysoftware.net}
+  model: about.programminglanguage
+  pk: 7
+- fields: {language: English, user: admin@hysoftware.net}
+  model: about.naturallanguage
+  pk: 1
+- fields: {language: Japanese, user: admin@hysoftware.net}
+  model: about.naturallanguage
+  pk: 2
+- fields: {name: Software Developer, user: admin@hysoftware.net}
+  model: about.tag
+  pk: 1
+- fields: {name: Author of here, user: admin@hysoftware.net}
+  model: about.tag
+  pk: 2
+- fields: {title: Google Plus, url: 'https://plus.google.com/111845905230975008160',
+    user: admin@hysoftware.net, website_type: G+}
+  model: about.externalwebsite
+  pk: 1
+- fields: {title: Linkedin, url: 'https://jp.linkedin.com/in/hiroakiyamamoto', user: admin@hysoftware.net,
+    website_type: LI}
+  model: about.externalwebsite
+  pk: 2
+- fields: {title: Facebook, url: 'https://facebook.com/', user: admin@hysoftware.net,
+    website_type: FB}
+  model: about.externalwebsite
+  pk: 3
+- fields: {title: Twitter, url: 'https://twitter.com/', user: admin@hysoftware.net,
+    website_type: TW}
+  model: about.externalwebsite
+  pk: 4
+- fields: {title: Coderwall, url: 'https://coderwall.com/hysoftware', user: admin@hysoftware.net,
+    website_type: CW}
+  model: about.externalwebsite
+  pk: 5
+- fields: {title: Github, url: 'https://github.com/hiroaki-yamamoto', user: admin@hysoftware.net,
+    website_type: GH}
+  model: about.externalwebsite
+  pk: 6
+- fields: {title: Bitbucket, url: 'https://bitbucket.org/hiroaki_yamamoto', user: admin@hysoftware.net,
+    website_type: BB}
+  model: about.externalwebsite
+  pk: 7
+- fields: {title: Hysoft, url: 'https://hysoftware.net/', user: admin@hysoftware.net,
+    website_type: OT}
+  model: about.externalwebsite
+  pk: 8

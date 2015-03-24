@@ -1,3 +1,4 @@
+{% load webdesign %}
 <article class="about">
     <header>
         <h1>About</h1>
@@ -70,7 +71,7 @@
         </header>
         <p>
             Software development is hard to estimate the deliver date. Hence,
-            {{ my }} strategy is just iterating implementing small parts. Finally,
+            {{ my }} strategy is just iterating implementing small parts. Therefore,
             the software is created like "snow man" (snow man is made from a lot of
             small "snow balls", isn't it?).
         </p>
@@ -110,9 +111,11 @@
             Except code that {{ i }} made for commercial use, the most code is open-sourced.
             For normal use (no-redistribution, no-modification, just use), you can use freely.
             However, if you want to re-distribute or modify {{ my }} code, you will need to
-            check the license. In the most cases, there is license in a file named "LICENSE",
+            check the license. In the most cases, The license exists a file named "LICENSE",
             however, if you couldn't find the file, please check "about" window or "--version";
-            you can check the license.
+            you can check the license. If you couldn't find what license is used though doing
+            them, you should assume the software is licensed under the terms of the latest version
+            of GPL.
         </p>
         <p>
             In the most cases, {{ my }} free code is distributed under the terms of GPLv3 or
@@ -120,9 +123,67 @@
             licenses. (e.g. MIT License, LGPv3, Creative Commons, etc...)
         </p>
     </section>
+
     <section>
         <header>
             <h2>Who {{ami}}?</h2>
         </header>
+        {% for person in people %}
+            <section class="developer">
+                <header>
+                    <h3>{{ person.firstname }} {{ person.lastname }} - {{ person.title }}</h3>
+                </header>
+                <div class="row">
+                    <div class="col-sm-3 text-right">
+                        Programming Languages
+                    </div>
+                    <div class="col-sm-9 text-left">
+                        <ul>
+                        {% for language in person.programming_languages %}
+                            <li>{{ language.name }}</li>
+                        {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3 text-right">
+                        Natural Languages
+                    </div>
+                    <div class="col-sm-9 text-left">
+                        <ul>
+                        {% for language in person.natural_languages %}
+                            <li>{{ language.name }}</li>
+                        {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3 text-right">
+                        Websites
+                    </div>
+                    <div class="col-sm-9 text-left">
+                        {% for website in person.websites %}
+                            <div class="social">
+                                {% if website.type == "G+" %}
+                                    <div class="gplus">
+                                {% else %}
+                                    <div>
+                                {% endif %}
+                                        <a href="{{ website.url }}" target="_blank">
+                                            {% if website.type == "G+" %}
+                                                <span class="ion-social-googleplus-outline"></span>
+                                            {% elif website.type == "LI" %}
+                                                <span class="ion-social-linkedin"></span>
+                                            {% endif %}
+                                        </a>
+                                    </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+        {% endfor %}
     </section>
 </article>

@@ -8,13 +8,13 @@ from django.shortcuts import render
 
 from .models import (
     Developer,
-    Occupation,
     JobTable,
     ProgrammingLanguage,
     NaturalLanguage,
     Tag,
     ExternalWebsite
 )
+from .noum_generator import generate_first_person
 
 
 def about_view(request):
@@ -31,6 +31,7 @@ def about_view(request):
             {
                 "firstname": developer.first_name,
                 "lastname": developer.last_name,
+                "title": developer.title,
                 "programming_languages": [
                     {
                         "name": pg_lang.language
@@ -42,17 +43,6 @@ def about_view(request):
                     {
                         "name": nt_lang.language
                     } for nt_lang in NaturalLanguage.objects.filter(
-                        user=developer.email
-                    )
-                ],
-                "occupations": [
-                    {
-                        "name": occupation.job_name,
-                        "where": occupation.where,
-                        "start": occupation.start_year,
-                        "end": occupation.end_year or "present",
-                        "description": occupation.description
-                    } for occupation in Occupation.objects.filter(
                         user=developer.email
                     )
                 ],
@@ -87,34 +77,7 @@ def about_view(request):
     render_args = {
         "people": people,
     }
-    if len(people) > 1:
-        render_args.update(
-            {
-                "i": "we",
-                "I": "We",
-                "iam": "we are",
-                "Iam": "We are",
-                "Ami": "Are we",
-                "ami": "are we",
-                "my": "our",
-                "My": "Our",
-                "me": "us"
-            }
-        )
-    else:
-        render_args.update(
-            {
-                "i": "I",
-                "I": "I",
-                "iam": "I am",
-                "Iam": "I am",
-                "Ami": "Am I",
-                "ami": "am I",
-                "my": "my",
-                "My": "My",
-                "me": "me"
-            }
-        )
+    render_args.update(generate_first_person(people))
     return render(
         request,
         "about.html",

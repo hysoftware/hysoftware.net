@@ -11,7 +11,6 @@ from .models import (
     ProgrammingLanguage,
     NaturalLanguage,
     Tag,
-    Occupation,
     JobTable,
     ExternalWebsite,
     Developer
@@ -42,15 +41,8 @@ class DeveloperAdmin(admin.ModelAdmin):
                 "fields": [
                     "first_name",
                     "last_name",
+                    "title",
                     "email"
-                ]
-            }
-        ),
-        (
-            "Xero integrations", {
-                "fields": [
-                    "xero_key",
-                    "xero_secret"
                 ]
             }
         )
@@ -60,7 +52,6 @@ class DeveloperAdmin(admin.ModelAdmin):
         inline(Tag, admin.TabularInline),
         inline(ProgrammingLanguage, admin.TabularInline),
         inline(NaturalLanguage, admin.TabularInline),
-        inline(Occupation),
         inline(JobTable, admin.TabularInline),
         inline(ExternalWebsite, admin.TabularInline)
     ]

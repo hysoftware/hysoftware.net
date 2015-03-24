@@ -6,8 +6,7 @@ from django.shortcuts import render
 from about.models import (
     Developer,
     ProgrammingLanguage,
-    NaturalLanguage,
-    Occupation
+    NaturalLanguage
 )
 
 # Create your views here.
@@ -35,12 +34,6 @@ def index(request):
         developer["natural_languages"] = [
             language.language
             for language in NaturalLanguage.objects.filter(
-                user=developer["id"]
-            )
-        ]
-        developer["occupations"] = [
-            job.job_name
-            for job in Occupation.objects.filter(
                 user=developer["id"]
             )
         ]

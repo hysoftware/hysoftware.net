@@ -39,14 +39,6 @@
                         {% endfor %}
                     </div>
                 {% endif %}
-                {% if developer.occupations %}
-                    <p>Occupations:</p>
-                    <div class="data jobs">
-                        {% for job in developer.occupations %}
-                            - "{{ job }}" <br>
-                        {% endfor %}
-                    </div>
-                {%endif%}
             </div>
             {% endfor %}
         </div>
