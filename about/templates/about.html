@@ -167,15 +167,19 @@
                         {% for website in person.websites %}
                             <div class="social">
                                 {% if website.type == "G+" %}
-                                    <div class="gplus">
+                                    <div class="background gplus text-center">
+                                {% elif website.type == "FB" %}
+                                    <div class="background fbook text-right">
                                 {% else %}
-                                    <div>
+                                    <div class="social">
                                 {% endif %}
                                         <a href="{{ website.url }}" target="_blank">
                                             {% if website.type == "G+" %}
                                                 <span class="ion-social-googleplus-outline"></span>
                                             {% elif website.type == "LI" %}
                                                 <span class="ion-social-linkedin"></span>
+                                            {% elif website.type == "FB" %}
+                                                <span class="ion-social-facebook"></span>
                                             {% endif %}
                                         </a>
                                     </div>

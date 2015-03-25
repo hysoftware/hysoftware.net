@@ -10,7 +10,9 @@
                 " " + files,
             "pylint --disable=locally-disabled,locally-enabled --ignore=migrations " + files,
             "python manage.py migrate",
-            "python manage.py loaddata about/fixtures/hiroaki.yaml",
+            "python manage.py loaddata " + [
+                "about/fixtures/hiroaki.yaml"
+            ].join(" "),
             "python manage.py test"
         ];
     e.shell = {
