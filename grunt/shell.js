@@ -31,7 +31,7 @@
         },
         "backend-syntax-check-ci": {
             "command": [].concat(
-                "source " + pathJoin(venv, "/bin/activate"),
+                "source " + pathJoin(venv, "bin/activate"),
                 backend_test_commands,
                 "deactivate"
             ).join("&&")
