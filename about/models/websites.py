@@ -15,6 +15,7 @@ class ExternalWebsite(models.Model):
         ("FB", "Facebook"),
         ("TW", "Twitter"),
         ("CW", "Coderwalll"),
+        ("AS", "Assembly"),
         ("GH", "Github"),
         ("BB", "Bitbucket"),
         ("OT", "Other")

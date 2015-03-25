@@ -1,5 +1,4 @@
 psycopg2
-pyYAML
 flake8
 pylint
 pycrypto

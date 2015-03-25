@@ -14,7 +14,6 @@ class JobTable(models.Model):
     AGENTS = (
         ("OD", "oDesk"),
         ("EL", "Elance"),
-        ("AS", "Assembly"),
         ("DR", "Direct Contract"),
         ("OT", "Other")
     )

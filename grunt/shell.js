@@ -11,7 +11,7 @@
             "pylint --disable=locally-disabled,locally-enabled --ignore=migrations " + files,
             "python manage.py migrate",
             "python manage.py loaddata " + [
-                "about/fixtures/hiroaki.yaml"
+                "about/fixtures/hiroaki.json"
             ].join(" "),
             "python manage.py test"
         ];
