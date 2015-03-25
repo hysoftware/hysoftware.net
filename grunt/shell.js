@@ -1,7 +1,8 @@
-/*global exports, require*/
-(function (e, r) {
+/*global exports, require, process*/
+(function (e, r, venv) {
     "use strict";
     var common = r("./common.js"),
+        pathJoin = r("path").join,
         files = [
             "manage.py"
         ].concat(common.hysoft_modules).join(" "),
@@ -29,7 +30,11 @@
             ).join("&&")
         },
         "backend-syntax-check-ci": {
-            "command": backend_test_commands.join("&&")
+            "command": [].concat(
+                "source " + pathJoin(venv, "/bin/activate"),
+                backend_test_commands,
+                "deactivate"
+            ).join("&&")
         }
     };
-}(exports, require));
+}(exports, require, process.env.SHIPPABLE_VE_DIR));
