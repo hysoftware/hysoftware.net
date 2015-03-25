@@ -95,6 +95,17 @@ article.about {
                 }
                 transition: color 0.5s ease;
             }
+            .ion-social-github {
+                font: {
+                    size: 36px;
+                }
+                $color: #212122;
+                color: lighten($color, 10%);
+                transition: color 0.5s ease;
+                &:hover {
+                    color: $color;
+                }
+            }
             .ion-social-googleplus-outline {
                 color: white;
                 font: {
@@ -116,7 +127,9 @@ article.about {
                 }
                 transition: color 0.5s ease;
             }
-            .coderwall-icon {
+            .coderwall-icon,
+            .bitbucket-icon,
+            .other-icon {
                 color: #FAFAFB;
                 font: {
                     size: 12px;
@@ -126,10 +139,7 @@ article.about {
                     right: 6px;
                 }
             }
-            .assembly-icon {
-                color: transparent;
-                content: $assembly_icon;
-            }
+            .assembly-icon {content: $assembly_icon;}
             div {
                 transition: background-color 0.5s ease;
             }
@@ -145,31 +155,27 @@ article.about {
                         radius: 10%;
                     }
                 }
-                &.gplus {
-                    position: relative;
-                    $backColor: #dd4b39;
+                @mixin socialBackGround($bgColor) {
                     background: {
-                        color: $backColor;
+                        color: $bgColor;
                     }
                     &:hover {
                         background: {
-                            color: darken($backColor, 10%);
+                            color: darken($bgColor, 10%);
                         }
                     }
+                }
+                &.gplus {
+                    @include socialBackGround(#dd4b39);
                 }
                 &.fbook {
-                    $backColor: #3a5795;
-                    background: {
-                        color: $backColor;
-                    }
-                    &:hover {
-                        background: {
-                            color: darken($backColor, 10%);
-                        }
-                    }
+                    @include socialBackGround(#3a5795);
                 }
-                &.cwall {
-                    $backColor: #343131;
+                &.assembly {
+                    width: $rect_sidesize;
+                    height: $rect_sidesize;
+                }
+                @mixin socialBackGroundHasText($backColor) {
                     width: initial;
                     height: initial;
                     background: {
@@ -184,11 +190,14 @@ article.about {
                         }
                     }
                 }
-                &.assembly {
-                    width: $rect_sidesize;
-                    height: $rect_sidesize;
-                    &:hover {
-                    }
+                &.cwall {
+                    @include socialBackGroundHasText(#343131);
+                }
+                &.bitbucket {
+                    @include socialBackGroundHasText(#205081);
+                }
+                &.other {
+                    @include socialBackGroundHasText(#558B2F);
                 }
             }
         }
