@@ -27,6 +27,8 @@ install:
     - "deactivate"
 
 script:
+    - "source ${SHIPPABLE_VE_DIR}/bin/activate"
     - "echo \"Python version: $(python --version)\""
     - "echo \"NodeJS version: $(node --version)\""
     - "npm test"
+    - "deactivate"
