@@ -6,28 +6,30 @@
         files = [
             "manage.py"
         ].concat(common.hysoft_modules).join(" "),
-        backend_test_commands = [
+        backend_syntax_test_commands = [
             "flake8 -j auto --exclude=" + common.exclude.backend.join(",") +
                 " " + files,
-            "pylint --disable=locally-disabled,locally-enabled --ignore=migrations " + files,
+            "pylint --disable=locally-disabled,locally-enabled --ignore=migrations " + files
+        ],
+        backend_test_commands = [
             "python manage.py migrate",
             "python manage.py loaddata " + [
                 "about/fixtures/hiroaki.json"
             ].join(" "),
-            "echo python manage.py test",
             "python manage.py test"
         ];
     e.shell = {
         "backend-syntax-check-dev": {
             "command": [].concat(
                 "source ../bin/activate",
+                backend_syntax_test_commands,
                 backend_test_commands,
                 "deactivate"
             ).join("&&")
         },
         "backend-syntax-check-ci": {
             "command": [].concat(
-                backend_test_commands
+                backend_syntax_test_commands
             ).join("&&")
         }
     };

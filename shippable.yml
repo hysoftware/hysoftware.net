@@ -19,7 +19,7 @@ before_install:
 
 install:
     - "source ${SHIPPABLE_VE_DIR}/bin/activate"
-    - "pip install -r requirements.txt --index-url --extra-index-url"
+    - "pip install -r requirements.txt"
     - "sudo npm install"
     - "npm run postinstall"
     - "bundle install"
@@ -31,4 +31,7 @@ script:
     - "echo \"Python version: $(python --version)\""
     - "echo \"NodeJS version: $(node --version)\""
     - "npm test"
+    - "python manage.py migrate"
+    - "python manage.py loaddata about/fixtures/hiroaki.json"
+    - "python manage.py test"
     - "deactivate"
