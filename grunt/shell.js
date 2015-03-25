@@ -8,7 +8,10 @@
         backend_syntax_commands = [
             "flake8 -j auto --exclude=" + common.exclude.backend.join(",") +
                 " " + files,
-            "pylint --disable=locally-disabled,locally-enabled --ignore=migrations " + files
+            "pylint --disable=locally-disabled,locally-enabled --ignore=migrations " + files,
+            "python manage.py migrate",
+            "python manage.py loaddata about/fixtures/hiroaki.yaml",
+            "python manage.py test"
         ];
     e.shell = {
         "backend-syntax-check-dev": {
