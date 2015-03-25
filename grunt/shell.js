@@ -2,7 +2,6 @@
 (function (e, r) {
     "use strict";
     var common = r("./common.js"),
-        pathJoin = r("path").join,
         files = [
             "manage.py"
         ].concat(common.hysoft_modules).join(" "),
