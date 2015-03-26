@@ -14,8 +14,7 @@ class JobTable(models.Model):
     AGENTS = (
         ("OD", "oDesk"),
         ("EL", "Elance"),
-        ("DR", "Direct Contract"),
-        ("OT", "Other")
+        ("DR", "Direct Contract")
     )
     agent = models.CharField(
         max_length=4,
