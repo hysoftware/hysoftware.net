@@ -46,7 +46,7 @@ def about_view(request):
                         user=developer.email
                     )
                 ],
-                "where_to_post_jobs": [
+                "acceptable_vms": [
                     {
                         "agent": table.agent,
                         "name": table.name,

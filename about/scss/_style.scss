@@ -1,4 +1,3 @@
-@import "./assembly";
 article.about {
     .dev_process {
         .text {
@@ -53,6 +52,14 @@ article.about {
                 bottom: 30px;
             }
         }
+        a {
+            &:hover,
+            &:active,
+            &:link,
+            &:visited {
+                text-decoration: none;
+            }
+        }
         .row {
             padding: {
                 left: $internal_padding;
@@ -79,127 +86,7 @@ article.about {
                 }
             }
         }
-        .social {
-            $rect_sidesize: 27px;
-            & {
-                padding: {
-                    left: 5px;
-                    right: 5px;
-                }
-                display: table-cell;
-            }
-
-            .ion-social-linkedin {
-                font: {
-                    size: 36px;
-                }
-                transition: color 0.5s ease;
-            }
-            .ion-social-github {
-                font: {
-                    size: 36px;
-                }
-                $color: #212122;
-                color: lighten($color, 10%);
-                transition: color 0.5s ease;
-                &:hover {
-                    color: $color;
-                }
-            }
-            .ion-social-googleplus-outline {
-                color: white;
-                font: {
-                    size: 24px;
-                }
-            }
-            .ion-social-facebook {
-                color: white;
-                font: {
-                    size: 24px;
-                }
-                margin: {
-                    right: 5px;
-                }
-            }
-            .ion-social-twitter {
-                font: {
-                    size: 28px;
-                }
-                transition: color 0.5s ease;
-            }
-            .coderwall-icon,
-            .bitbucket-icon,
-            .other-icon {
-                color: #FAFAFB;
-                font: {
-                    size: 12px;
-                }
-                padding: {
-                    left: 6px;
-                    right: 6px;
-                }
-            }
-            .assembly-icon {content: $assembly_icon;}
-            div {
-                transition: background-color 0.5s ease;
-            }
-            a:hover {
-                text-decoration: none;
-            }
-            .background {
-                & {
-                    transform: translate(0, -10%);
-                    width: $rect_sidesize;
-                    height: $rect_sidesize;
-                    border: {
-                        radius: 10%;
-                    }
-                }
-                @mixin socialBackGround($bgColor) {
-                    background: {
-                        color: $bgColor;
-                    }
-                    &:hover {
-                        background: {
-                            color: darken($bgColor, 10%);
-                        }
-                    }
-                }
-                &.gplus {
-                    @include socialBackGround(#dd4b39);
-                }
-                &.fbook {
-                    @include socialBackGround(#3a5795);
-                }
-                &.assembly {
-                    width: $rect_sidesize;
-                    height: $rect_sidesize;
-                }
-                @mixin socialBackGroundHasText($backColor) {
-                    width: initial;
-                    height: initial;
-                    background: {
-                        color: lighten($backColor, 10%);
-                    }
-                    border: {
-                        radius: 2px;
-                    }
-                    &:hover {
-                        background: {
-                            color: $backColor;
-                        }
-                    }
-                }
-                &.cwall {
-                    @include socialBackGroundHasText(#343131);
-                }
-                &.bitbucket {
-                    @include socialBackGroundHasText(#205081);
-                }
-                &.other {
-                    @include socialBackGroundHasText(#558B2F);
-                }
-            }
-        }
+        @import "./social";
+        @import "./jobs";
     }
 }

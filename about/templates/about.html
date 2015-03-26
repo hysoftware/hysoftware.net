@@ -110,8 +110,8 @@
         <p>
             Except code that {{ i }} made for commercial use, the most code is open-sourced.
             For normal use (no-redistribution, no-modification, just use), you can use freely.
-            However, if you want to re-distribute or modify {{ my }} code, you will need to
-            check the license. In the most cases, The license exists a file named "LICENSE",
+            However, if you want to re-distribute and/or modify {{ my }} code, you will need to
+            be careful about the license. In the most cases, The license exists a file named "LICENSE",
             however, if you couldn't find the file, please check "about" window or "--version";
             you can check the license. If you couldn't find what license is used though doing
             them, you should assume the software is licensed under the terms of the latest version
@@ -206,6 +206,16 @@
                                         </a>
                                     </div>
                             </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3 text-right">
+                        Acceptable Vendor Management System
+                    </div>
+                    <div class="jobs">
+                        {% for vms in person.acceptable_vms %}
                         {% endfor %}
                     </div>
                 </div>
