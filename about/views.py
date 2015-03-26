@@ -11,7 +11,6 @@ from .models import (
     JobTable,
     ProgrammingLanguage,
     NaturalLanguage,
-    Tag,
     ExternalWebsite
 )
 from .noum_generator import generate_first_person
@@ -62,13 +61,6 @@ def about_view(request):
                         "title": website.title,
                         "url": website.url
                     } for website in ExternalWebsite.objects.filter(
-                        user=developer.email
-                    )
-                ],
-                "tags": [
-                    {
-                        "name": tag.name
-                    } for tag in Tag.objects.filter(
                         user=developer.email
                     )
                 ]

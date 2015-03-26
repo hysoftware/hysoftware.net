@@ -10,7 +10,6 @@ from .languages import (
     ProgrammingLanguage,
     NaturalLanguage
 )
-from .tags import Tag
 from .websites import ExternalWebsite
 
 __all__ = [
@@ -18,6 +17,5 @@ __all__ = [
     "JobTable",
     "ProgrammingLanguage",
     "NaturalLanguage",
-    "Tag",
     "ExternalWebsite"
 ]

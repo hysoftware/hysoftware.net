@@ -10,7 +10,6 @@ from django.contrib import admin
 from .models import (
     ProgrammingLanguage,
     NaturalLanguage,
-    Tag,
     JobTable,
     ExternalWebsite,
     Developer
@@ -49,7 +48,6 @@ class DeveloperAdmin(admin.ModelAdmin):
     ]
     list_display = ("first_name", "last_name", "email")
     inlines = [
-        inline(Tag, admin.TabularInline),
         inline(ProgrammingLanguage, admin.TabularInline),
         inline(NaturalLanguage, admin.TabularInline),
         inline(JobTable, admin.TabularInline),
