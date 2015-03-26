@@ -38,4 +38,17 @@ class JobTable(models.Model):
             self.agent
         )
 
+    def agent_name(self):
+        '''
+        Returns agent name
+        '''
+        filtered_agents = [
+            search for search in self.AGENTS if search[0] == self.agent
+        ]
+        if len(filtered_agents) != 1:
+            raise ValueError(
+                ("Awww!! agant name {} is invalid!!").format(self.agent)
+            )
+        return filtered_agents[0][1]
+
     __unicode__ = __str__

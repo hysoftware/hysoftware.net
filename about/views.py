@@ -49,6 +49,7 @@ def about_view(request):
                 "acceptable_vms": [
                     {
                         "agent": table.agent,
+                        "agent_name": table.agent_name(),
                         "name": table.name,
                         "url": table.url
                     } for table in JobTable.objects.filter(

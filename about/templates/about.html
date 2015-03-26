@@ -58,7 +58,7 @@
                 <h3>Being better for each other through contributing</h3>
             </header>
             <p>
-                Thie is the most important thing. The code has profitable stuff, but it
+                This is the most important thing. The code has profitable stuff, but it
                 isn't always "nice". In this case, it doesn't only mean "high-quality"; it
                 means "better solution", "something better", or "entierly the best". {{Iam}}
                 always trying to be "the best" through development.
@@ -216,6 +216,26 @@
                     </div>
                     <div class="jobs">
                         {% for vms in person.acceptable_vms %}
+                            {% if vms.agent != "DR" %}
+                                <div>
+                                    <a href="{{ vms.url }}" target="_blank">
+                                        <span class="{{ vms.agent }}">
+                                            {{ vms.name }} at {{ vms.agent_name }}
+                                        </span>
+                                    </a>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3 text-right">
+                        Tag
+                    </div>
+                    <div class="col-sm-9">
+                        {% for tag in person.tags %}
+                            <div class="tag"><span>{{ tag.name }}</span></div>
                         {% endfor %}
                     </div>
                 </div>
