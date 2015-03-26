@@ -15,6 +15,18 @@ class Developer(models.Model):
     email = models.EmailField(max_length=40, primary_key=True)
     title = models.CharField(max_length=40, db_index=True)
 
+    def to_dict(self):
+        '''
+        Convert to dict
+        '''
+        result = {
+            "firstname": self.first_name,
+            "lastname": self.last_name,
+            "email": self.last_name,
+            "title": self.title
+        }
+        return result
+
     def __str__(self):
         '''
         Represents class
