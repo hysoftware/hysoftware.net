@@ -95,6 +95,40 @@ div.index {
             }
             top: 50%;
             transform: translateY(-50%);
+            a {
+                $color: #424243;
+                $animationDuration: 0.5s;
+                padding: {
+                    left: 5px;
+                    right: 5px;
+                }
+                text-decoration: none;
+                border: {
+                    radius: 2px;
+                }
+                transition:
+                    background-color $animationDuration,
+                    color $animationDuration;
+
+                &, &:link, &:visited {
+                    color: $color;
+                }
+                &:hover {
+                    color: $backgroundColor;
+                    background: {
+                        color: lighten($color, 10%);
+                    }
+                }
+                &:active {
+                    color: $backgroundColor;
+                    transition:
+                        background-color $animationDuration / 2,
+                        color $animationDuration / 2;
+                    background: {
+                        color: $color;
+                    }
+                }
+            }
         }
     }
 }

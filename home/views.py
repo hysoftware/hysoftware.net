@@ -20,8 +20,8 @@ def index(request):
     developers = [
         {
             "id": developer.email,
-            "first_name": developer.first_name,
-            "last_name": developer.last_name
+            "firstname": developer.first_name,
+            "lastname": developer.last_name
         } for developer in Developer.objects.all()
     ]
     for developer in developers:
