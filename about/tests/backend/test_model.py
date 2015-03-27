@@ -1,9 +1,10 @@
 '''
 About page unit test
 '''
+# pylint: disable=too-few-public-methods
 
-from unittest import skip
 from django.test import TestCase
+from django.core.management import call_command
 from ...models import Developer
 
 
@@ -12,13 +13,20 @@ class ModelTest(TestCase):
     Model test
     '''
 
-    @skip("Not completed yet")
+    def setUp(self):
+        '''
+        Setup fixture
+        '''
+        call_command(
+            "loaddata",
+            "about/fixtures/hiroaki.json"
+        )
+
     def test_to_dict_basic(self):
         '''
         Calling Developer().to_dict(), returns basic information
         '''
         # pylint: disable=no-member
-        print(Developer.objects.all())
         developer = Developer.objects.get(
             email="admin@hysoftware.net"
         )

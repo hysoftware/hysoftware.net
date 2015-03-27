@@ -31,7 +31,5 @@ script:
     - "echo \"Python version: $(python --version)\""
     - "echo \"NodeJS version: $(node --version)\""
     - "npm test"
-    - "python manage.py migrate"
-    - "python manage.py loaddata about/fixtures/hiroaki.json"
     - "python manage.py test"
     - "deactivate"

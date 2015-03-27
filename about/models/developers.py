@@ -22,7 +22,7 @@ class Developer(models.Model):
         result = {
             "firstname": self.first_name,
             "lastname": self.last_name,
-            "email": self.last_name,
+            "email": self.email,
             "title": self.title
         }
         return result
