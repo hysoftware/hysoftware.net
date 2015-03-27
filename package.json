@@ -4,6 +4,7 @@
     "description": "Website of hysoftware.net",
     "scripts": {
         "postinstall": "./node_modules/bower/bin/bower install&&./node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update",
+        "postinstall_CI": "./node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update",
         "test": "grunt CIBack && grunt CIFront"
     },
     "repository": {
