@@ -45,11 +45,7 @@
             @include jobBack(#7bd454);
         }
         .DR {
-            $color: #424242;
-            border: {
-                color: $color;
-            }
-            color: $color;
+            @include jobBack(#424242);
         }
     }
 }

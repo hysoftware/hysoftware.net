@@ -224,9 +224,11 @@
                                     </span>
                                 </a>
                             {% elif vms.type == "DR" %}
-                                <span class="{{ vms.type }}">
-                                    {{ vms.type_name }} is also avaliable!
-                                </span>
+                                <a href="javascript:void(0)" data-sref="contact">
+                                    <span class="{{ vms.type }}">
+                                        {{ vms.type_name }} is also avaliable!
+                                    </span>
+                                </a>
                             {% endif %}
                             </div>
                         {% endfor %}
