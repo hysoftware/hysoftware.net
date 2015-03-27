@@ -8,15 +8,6 @@ from .views import contact
 # pylint: disable=invalid-name
 urlpatterns = patterns(
     "",
-    url(
-        r"^$",
-        contact,
-        name='contact_view_without_hash'
-    ),
-    url(
-        r"^(?P<developer_hash>[0-9,a-f]{40})$",
-        contact,
-        name='contact_view_with_hash'
-    )
+    url(r"^$", contact, name='contact_view')
 )
 # pylint: enable=invalid-name

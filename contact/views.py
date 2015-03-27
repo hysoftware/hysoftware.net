@@ -6,23 +6,18 @@ from django.shortcuts import render
 from about.models import Developer
 
 
-def contact(request, developer_hash=None):
+def contact(request):
     '''
     Returns contact view
     '''
-
-    # pylint: disable=no-member
+    # pylint: disable=unused-argument, no-member
     developers = [
-        developer.to_dict()
-        for developer in Developer.objects.all()
+        developer.to_dict() for developer in Developer.objects.all()
     ]
     # pylint: enable=no-member
 
     return render(
         request,
         "contact.html",
-        {
-            "developers": developers,
-            "selected_hash": developer_hash
-        }
+        {"developers": developers}
     )
