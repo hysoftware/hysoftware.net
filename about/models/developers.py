@@ -2,8 +2,8 @@
 Developer profiles
 '''
 
-import hashlib
 from django.db import models
+from common import gen_hash
 from .languages import (
     ProgrammingLanguage,
     NaturalLanguage
@@ -14,15 +14,6 @@ from .jobs import (
 from .websites import (
     ExternalWebsite
 )
-
-
-def gen_hash(text):
-    '''
-    Generate RIPEMD-160 Hash
-    '''
-    rmd160 = hashlib.new("ripemd160")
-    rmd160.update(text.encode())
-    return rmd160.hexdigest()
 
 
 class Developer(models.Model):

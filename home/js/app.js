@@ -6,7 +6,8 @@
         "ui.router",
         "ngRoute",
         "hysoft.home.routes",
-        "hysoft.about.routes"
+        "hysoft.about.routes",
+        "hysoft.contact.route"
     ]).config([
         "$routeProvider",
         "$locationProvider",

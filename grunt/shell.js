@@ -8,7 +8,7 @@
         backend_syntax_test_commands = [
             "flake8 -j auto --exclude=" + common.exclude.backend.join(",") +
                 " " + files,
-            "pylint --disable=locally-disabled,locally-enabled --ignore=migrations " + files
+            "pylint -r n --disable=locally-disabled,locally-enabled --ignore=migrations " + files
         ],
         backend_test_commands = [
             "python manage.py test"

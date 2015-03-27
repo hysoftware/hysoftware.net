@@ -17,7 +17,7 @@
             it("The page should have about article", function () {
                 var article;
                 browser.get("/about");
-                article = element(by.css("article.about"));
+                article = element.all(by.css("article.about"));
                 expect(article.isDisplayed()).toBeTruthy();
             });
         });
