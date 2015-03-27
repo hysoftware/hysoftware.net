@@ -2,6 +2,7 @@
 Developer profiles
 '''
 
+import hashlib
 from django.db import models
 from .languages import (
     ProgrammingLanguage,
@@ -13,6 +14,15 @@ from .jobs import (
 from .websites import (
     ExternalWebsite
 )
+
+
+def gen_hash(text):
+    '''
+    Generate RIPEMD-160 Hash
+    '''
+    rmd160 = hashlib.new("ripemd160")
+    rmd160.update(text.encode())
+    return rmd160.hexdigest()
 
 
 class Developer(models.Model):
@@ -41,7 +51,8 @@ class Developer(models.Model):
         result = {
             "firstname": self.first_name,
             "lastname": self.last_name,
-            "title": self.title
+            "title": self.title,
+            "hash": gen_hash(self.email)
         }
 
         # pylint: disable=no-member
@@ -95,6 +106,21 @@ class Developer(models.Model):
         )
 
         return result
+
+    @classmethod
+    def by_hash(cls, rmd160_hash):
+        '''
+        Search Develoeprs by hash
+        '''
+        # pylint: disable=no-member
+        developers = [
+            developer for developer in cls.objects.all()
+            if gen_hash(developer.email) == rmd160_hash
+        ]
+        # pylint: enable=no-member
+        if len(developers) < 1:
+            return None
+        return developers[0]
 
     def __str__(self):
         '''

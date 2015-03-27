@@ -6,6 +6,11 @@ About page unit test
 from django.test import TestCase
 from django.core.management import call_command
 from ...models import Developer
+import hashlib
+
+# pylint: disable=invalid-name
+ripemd160 = hashlib.new("ripemd160")
+# pylint: enable=invalid-name
 
 
 class ModelTest(TestCase):
@@ -14,10 +19,13 @@ class ModelTest(TestCase):
     '''
 
     developer = None
+    TARGET_EMAIL = "admin@hysoftware.net"
+    ripemd160.update(TARGET_EMAIL.encode())
     BASIC_INFO = {
         "firstname": "Hiroaki",
         "lastname": "Yamamoto",
-        "title": "Main Developer at hysoft"
+        "title": "Main Developer at hysoft",
+        "hash": ripemd160.hexdigest()
     }
 
     def setUp(self):
@@ -31,7 +39,7 @@ class ModelTest(TestCase):
         self.basic_data = self.BASIC_INFO.copy()
         # pylint: disable=no-member
         self.developer = Developer.objects.get(
-            email="admin@hysoftware.net"
+            email=self.TARGET_EMAIL
         )
         # pylint: enable=no-member
 
@@ -110,3 +118,16 @@ class ModelTest(TestCase):
             self.assertIsInstance(website["type_name"], str)
             self.assertIsInstance(website["name"], str)
             self.assertIsInstance(website["url"], str)
+
+    def test_by_hash(self):
+        '''
+        Calling Developer.by_hash should be matched with basic data
+        '''
+        hiroaki = Developer.by_hash(self.basic_data["hash"])
+        self.assertDictEqual(self.basic_data, hiroaki.to_dict())
+
+    def test_by_hash_non_match(self):
+        '''
+        Calling Developer.by_hash should be None
+        '''
+        self.assertIsNone(Developer.by_hash("zxvmnpop"))
