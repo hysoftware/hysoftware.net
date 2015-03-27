@@ -216,15 +216,19 @@
                     </div>
                     <div class="jobs">
                         {% for vms in person.acceptable_vms %}
+                            <div>
                             {% if vms.type != "DR" %}
-                                <div>
-                                    <a href="{{ vms.url }}" target="_blank">
-                                        <span class="{{ vms.type }}">
-                                            {{ vms.name }} at {{ vms.type_name }}
-                                        </span>
-                                    </a>
-                                </div>
+                                <a href="{{ vms.url }}" target="_blank">
+                                    <span class="{{ vms.type }}">
+                                        {{ vms.name }} at {{ vms.type_name }}
+                                    </span>
+                                </a>
+                            {% elif vms.type == "DR" %}
+                                <span class="{{ vms.type }}">
+                                    {{ vms.type_name }} is also avaliable!
+                                </span>
                             {% endif %}
+                            </div>
                         {% endfor %}
                     </div>
                 </div>
