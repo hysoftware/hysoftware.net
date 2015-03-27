@@ -25,7 +25,7 @@ class ExternalWebsite(models.Model):
         choices=CHOICE,
         db_index=True
     )
-    title = models.CharField(
+    name = models.CharField(
         max_length=30,
         db_index=True,
         null=True,
@@ -33,6 +33,21 @@ class ExternalWebsite(models.Model):
     )
     url = models.URLField()
     user = models.ForeignKey("Developer")
+
+    def website_type_name(self):
+        '''
+        Returns long name of the website type
+        '''
+        filtered = [
+            choice for choice in self.CHOICE if choice[0] == self.website_type
+        ]
+        if len(filtered) != 1:
+            raise ValueError(
+                (
+                    "Awwww! website type name {} is invalid!"
+                ).format(self.website_type)
+            )
+        return filtered[0][1]
 
     def __str__(self):
         '''
@@ -42,7 +57,7 @@ class ExternalWebsite(models.Model):
             "External Website of {}: {} ({}) at {}"
         ).format(
             self.user,
-            self.title,
+            self.name,
             self.url,
             self.website_type
         )

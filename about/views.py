@@ -6,13 +6,7 @@ from django.shortcuts import render
 
 from django.shortcuts import render
 
-from .models import (
-    Developer,
-    JobTable,
-    ProgrammingLanguage,
-    NaturalLanguage,
-    ExternalWebsite
-)
+from .models import Developer
 from .noum_generator import generate_first_person
 
 
@@ -24,48 +18,14 @@ def about_view(request):
     '''
     # pylint: disable=no-member
     developers = Developer.objects.all()
-    people = []
-    for developer in developers:
-        people.append(
-            {
-                "firstname": developer.first_name,
-                "lastname": developer.last_name,
-                "title": developer.title,
-                "programming_languages": [
-                    {
-                        "name": pg_lang.language
-                    } for pg_lang in ProgrammingLanguage.objects.filter(
-                        user=developer.email
-                    )
-                ],
-                "natural_languages": [
-                    {
-                        "name": nt_lang.language
-                    } for nt_lang in NaturalLanguage.objects.filter(
-                        user=developer.email
-                    )
-                ],
-                "acceptable_vms": [
-                    {
-                        "agent": table.agent,
-                        "agent_name": table.agent_name(),
-                        "name": table.name,
-                        "url": table.url
-                    } for table in JobTable.objects.filter(
-                        user=developer.email
-                    )
-                ],
-                "websites": [
-                    {
-                        "type": website.website_type,
-                        "title": website.title,
-                        "url": website.url
-                    } for website in ExternalWebsite.objects.filter(
-                        user=developer.email
-                    )
-                ]
-            }
-        )
+    people = [
+        developer.to_dict(
+            programming_langs=True,
+            natural_langs=True,
+            acceptable_vms=True,
+            websites=True
+        ) for developer in developers
+    ]
     # pylint: enable=no-member
     render_args = {
         "people": people,

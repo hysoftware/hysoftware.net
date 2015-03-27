@@ -11,15 +11,15 @@ class JobTable(models.Model):
     '''
     # pylint: disable=too-few-public-methods
 
-    AGENTS = (
+    TYPES = (
         ("OD", "oDesk"),
         ("EL", "Elance"),
         ("DR", "Direct Contract")
     )
-    agent = models.CharField(
+    website_type = models.CharField(
         max_length=4,
         db_index=True,
-        choices=AGENTS
+        choices=TYPES
     )
     name = models.CharField(max_length=30, db_index=True)
     url = models.URLField(null=True, blank=True)
@@ -35,19 +35,21 @@ class JobTable(models.Model):
             self.user,
             self.url,
             self.name,
-            self.agent
+            self.website_type
         )
 
-    def agent_name(self):
+    def website_type_name(self):
         '''
         Returns agent name
         '''
         filtered_agents = [
-            search for search in self.AGENTS if search[0] == self.agent
+            search for search in self.TYPES if search[0] == self.website_type
         ]
         if len(filtered_agents) != 1:
             raise ValueError(
-                ("Awww!! agant name {} is invalid!!").format(self.agent)
+                (
+                    "Awww!! website type {} is invalid!!"
+                ).format(self.website_type)
             )
         return filtered_agents[0][1]
 

@@ -27,7 +27,7 @@
                     <p>Programming Languages:</p>
                     <div class="data programming-language">
                         {% for language in developer.programming_languages %}
-                            - "{{ language }}" <br>
+                            - "{{ language.name }}" <br>
                         {% endfor %}
                     </div>
                 {% endif %}
@@ -35,7 +35,7 @@
                     <p>Natural Languages:</p>
                     <div class="data natural-language">
                         {% for language in developer.natural_languages %}
-                            - "{{ language }}" <br>
+                            - "{{ language.name }}" <br>
                         {% endfor %}
                     </div>
                 {% endif %}

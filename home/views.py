@@ -4,9 +4,7 @@ home page view
 
 from django.shortcuts import render
 from about.models import (
-    Developer,
-    ProgrammingLanguage,
-    NaturalLanguage
+    Developer
 )
 
 # Create your views here.
@@ -18,26 +16,11 @@ def index(request):
     '''
     # pylint: disable=no-member
     developers = [
-        {
-            "id": developer.email,
-            "firstname": developer.first_name,
-            "lastname": developer.last_name
-        } for developer in Developer.objects.all()
+        developer.to_dict(
+            programming_langs=True,
+            natural_langs=True
+        ) for developer in Developer.objects.all()
     ]
-    for developer in developers:
-        developer["programming_languages"] = [
-            language.language
-            for language in ProgrammingLanguage.objects.filter(
-                user=developer["id"]
-            )
-        ]
-        developer["natural_languages"] = [
-            language.language
-            for language in NaturalLanguage.objects.filter(
-                user=developer["id"]
-            )
-        ]
-        del developer["id"]
 
     # pylint: enable=no-member
     links = [

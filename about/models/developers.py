@@ -3,6 +3,16 @@ Developer profiles
 '''
 
 from django.db import models
+from .languages import (
+    ProgrammingLanguage,
+    NaturalLanguage
+)
+from .jobs import (
+    JobTable
+)
+from .websites import (
+    ExternalWebsite
+)
 
 
 class Developer(models.Model):
@@ -15,16 +25,75 @@ class Developer(models.Model):
     email = models.EmailField(max_length=40, primary_key=True)
     title = models.CharField(max_length=40, db_index=True)
 
-    def to_dict(self):
+    def to_dict(self, **kwargs):
         '''
         Convert to dict
         '''
+        optional = {
+            "email": False,
+            "programming_langs": False,
+            "natural_langs": False,
+            "acceptable_vms": False,
+            "websites": False
+        }
+        optional.update(kwargs)
+
         result = {
             "firstname": self.first_name,
             "lastname": self.last_name,
-            "email": self.email,
             "title": self.title
         }
+
+        # pylint: disable=no-member
+        def __language__(language_class, name, visible):
+            if visible:
+                result[name] = [
+                    {
+                        "name": lang.language
+                    } for lang in language_class.objects.filter(
+                        user=self.email
+                    )
+                ]
+
+        def __website__(website_class, name, visible):
+            if visible:
+                result[name] = [
+                    {
+                        "type": website.website_type,
+                        "type_name": website.website_type_name(),
+                        "name": website.name,
+                        "url": website.url
+                    } for website in website_class.objects.filter(
+                        user=self.email
+                    )
+                ]
+        # pylint: enable=no-member
+
+        if optional["email"]:
+            result["email"] = self.email
+
+        __language__(
+            ProgrammingLanguage,
+            "programming_languages",
+            optional["programming_langs"]
+        )
+        __language__(
+            NaturalLanguage,
+            "natural_languages",
+            optional["natural_langs"]
+        )
+
+        __website__(
+            JobTable,
+            "acceptable_vms",
+            optional["acceptable_vms"]
+        )
+        __website__(
+            ExternalWebsite,
+            "websites",
+            optional["websites"]
+        )
+
         return result
 
     def __str__(self):

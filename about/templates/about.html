@@ -201,7 +201,7 @@
                                             {% elif website.type == "BB" %}
                                                 <span class="bitbucket-icon">Bitbucket</span>
                                             {% elif website.type == "OT" %}
-                                                <span class="other-icon">{{ website.title }}</span>
+                                                <span class="other-icon">{{ website.name }}</span>
                                             {% endif %}
                                         </a>
                                     </div>
@@ -216,11 +216,11 @@
                     </div>
                     <div class="jobs">
                         {% for vms in person.acceptable_vms %}
-                            {% if vms.agent != "DR" %}
+                            {% if vms.type != "DR" %}
                                 <div>
                                     <a href="{{ vms.url }}" target="_blank">
-                                        <span class="{{ vms.agent }}">
-                                            {{ vms.name }} at {{ vms.agent_name }}
+                                        <span class="{{ vms.type }}">
+                                            {{ vms.name }} at {{ vms.type_name }}
                                         </span>
                                     </a>
                                 </div>
