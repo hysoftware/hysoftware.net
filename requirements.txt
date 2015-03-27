@@ -7,4 +7,4 @@ dateutils
 django
 uwsgi
 radon
-https://github.com/hysoftware/django-ajax-redirection/archive/master.zip
+django-ajax-redirection
