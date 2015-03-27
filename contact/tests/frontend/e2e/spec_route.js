@@ -3,18 +3,17 @@
     "use strict";
     describe("Contact E2E tests (Route)", function () {
         beforeEach(function () {
-            browser.get("/#/contact");
+            browser.get("/contact");
         });
         it("The route should be matched with /contact", function () {
-            /*jslint regexp: true*/
             expect(
                 browser.getLocationAbsUrl()
             ).toMatch(/\/contact$/);
         });
         it("The page should be contact page", function () {
-            var title = element(
-                by.className("contact")
-            ).element(by.tagName("h1"));
+            var title = element.all(
+                by.css("article.contact")
+            );
             expect(title.isDisplayed()).toBeTruthy();
         });
     });

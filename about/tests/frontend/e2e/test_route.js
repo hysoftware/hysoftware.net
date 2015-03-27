@@ -1,5 +1,6 @@
-/*global describe, it, expect, browser, element, by, beforeEach*/
-(function (describe, it, expect, browser, element, by, beforeEach) {
+/*global describe, beforeEach, it, expect, browser, element, by, angular*/
+(function (describe, beforeEach, it, expect,
+            browser, element, by) {
     "use strict";
     describe("About route test", function () {
         it("The route named about should exist", function () {
@@ -15,11 +16,9 @@
                 browser.get("/about");
             });
             it("The page should have about article", function () {
-                var article;
-                browser.get("/about");
-                article = element.all(by.css("article.about"));
+                var article = element.all(by.css("article.about"));
                 expect(article.isDisplayed()).toBeTruthy();
             });
         });
     });
-}(describe, it, expect, browser, element, by, beforeEach));
+}(describe, beforeEach, it, expect, browser, element, by));
