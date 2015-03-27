@@ -21,8 +21,9 @@ install:
     - "source ${SHIPPABLE_VE_DIR}/bin/activate"
     - "pip install -r requirements.txt"
     - "sudo npm install"
-    - "npm run postinstall_CI"
+    - "npm run postinstall"
     - "bundle install"
+    - "grunt third_party"
     - "deactivate"
 
 script:
