@@ -34,7 +34,7 @@ class ModelTest(TestCase):
         '''
         call_command(
             "loaddata",
-            "about/fixtures/hiroaki.json"
+            "about/fixtures/testdata.json"
         )
         self.basic_data = self.BASIC_INFO.copy()
         # pylint: disable=no-member
