@@ -6,7 +6,7 @@ from django.shortcuts import render
 from about.models import Developer
 
 
-def contact(request):
+def contact(request, dev_hash=None):
     '''
     Returns contact view
     '''
@@ -19,5 +19,8 @@ def contact(request):
     return render(
         request,
         "contact.html",
-        {"developers": developers}
+        {
+            "developers": developers,
+            "dev_hash": dev_hash
+        }
     )

@@ -1,0 +1,15 @@
+article.contact {
+    div.form-group {
+        div.alert {
+            div {
+                padding: {
+                    left: 5px;
+                    right: 5px;
+                }
+            }
+            div.icon, div.text {
+                display: table-cell;
+            }
+        }
+    }
+}

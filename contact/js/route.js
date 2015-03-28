@@ -9,8 +9,24 @@
             "contact",
             {
                 "url": "/contact",
-                "templateUrl": "contact",
+                "templateUrl": "/contact",
                 "controller": "ContactController"
+            }
+        ).state(
+            "contact_slash",
+            {
+                "url": "/contact/",
+                "templateUrl": "/contact",
+                "controller": "ContactController"
+            }
+        ).state(
+            "contact_specific",
+            {
+                "url": "/contact/{dev:[a-f,0-9]{40}}",
+                "templateUrl": function (params) {
+                    /*jslint sub: true*/
+                    return "/contact/" + params["dev"];
+                }
             }
         );
     }]);

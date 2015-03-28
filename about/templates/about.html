@@ -223,7 +223,7 @@
                                     </span>
                                 </a>
                             {% elif vms.type == "DR" %}
-                                <a href="javascript:void(0)" data-sref="contact({'hash': '{{ person.hash }}'})">
+                                <a href="javascript:void(0)" data-ui-sref="contact_specific({'dev': '{{ person.hash }}'})">
                                     <span class="{{ vms.type }}">
                                         {{ vms.type_name }} is also avaliable!
                                     </span>

@@ -28,6 +28,7 @@
         "angular-resource": "latest",
         "angular-route": "latest",
         "angular-ui-router": "latest",
+        "angular-cookies": "latest",
         "bootstrap": "latest",
         "ionicons": "latest",
         "jquery": "^1.0.0"

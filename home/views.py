@@ -27,6 +27,9 @@ def index(request):
         {
             "name": "About",
             "sref": "about"
+        }, {
+            "name": "Contact",
+            "sref": "contact"
         }
     ]
     return render(

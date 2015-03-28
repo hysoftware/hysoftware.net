@@ -3,9 +3,14 @@
     "use strict";
     ng.module("hysoft.contact.resource", [
         "ngResource"
-    ]).factory("DeveloperAddress", ["$resource", function (res) {
-        return res("contact/address", {}, {
-            "get": {"method": "GET", "isArray": true}
+    ]).factory("Contact", ["$resource", function (res) {
+        return res("contact/:hash", {
+            "hash": ""
+        }, {
+            "checkList": {
+                "url": "/contact/check/:hash",
+                "method": "GET"
+            }
         });
     }]);
 }(angular));

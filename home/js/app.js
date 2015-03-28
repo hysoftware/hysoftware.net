@@ -9,17 +9,14 @@
         "hysoft.about.routes",
         "hysoft.contact.route"
     ]).config([
-        "$routeProvider",
+        "$urlRouterProvider",
         "$locationProvider",
         "$compileProvider",
         "$httpProvider",
-        function (routeProvider, locationProvider, compileProvider, httpProvider) {
+        function (urlRouterProvider, locationProvider, compileProvider, httpProvider) {
             compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|data):/);
-            routeProvider.otherwise("/404");
-            locationProvider.html5Mode({
-                "enabled": true,
-                "requireBase": false
-            });
+            urlRouterProvider.otherwise("/");
+            locationProvider.html5Mode(true);
             httpProvider.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
         }
     ]).run([
