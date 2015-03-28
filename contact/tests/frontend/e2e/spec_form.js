@@ -108,17 +108,17 @@
                     angular.module("checkMock", [
                         "ngMockE2E"
                     ]).run(function ($httpBackend) {
-                        $httpBackend.whenGET(
-                            /\/contact\/check\/[0-9,a-f]{40}/
-                        ).respond(code);
                         /*jslint regexp: true*/
+                        $httpBackend.whenGET(
+                            /\/contact\/check\/[0-9,a-f]{40}\?sender\=.+/
+                        ).respond(code);
                         $httpBackend.whenGET(
                             /.*/
                         ).passThrough();
                     });
                 },
                 manupulate = function () {
-                    email.sendKeys("test@eample.com");
+                    email.sendKeys("test@example.com");
                     select.click();
                     select.all(by.tagName("option")).get(1).click();
                     email.click();

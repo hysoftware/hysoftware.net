@@ -35,7 +35,8 @@
                     scope.form.sender_email = "test@example.com";
                     scope.form.recipient_address = "test";
                     $httpBackend.expectGET(
-                        "/contact/check/" + scope.form.recipient_address
+                        "/contact/check/" + scope.form.recipient_address +
+                            "?sender=" + scope.form.sender_email
                     ).respond(200);
                     scope.checkMailIsInList();
                     $httpBackend.flush();
@@ -47,7 +48,8 @@
                     scope.form.sender_email = "test@example.com";
                     scope.form.recipient_address = "test";
                     $httpBackend.expectGET(
-                        "/contact/check/" + scope.form.recipient_address
+                        "/contact/check/" + scope.form.recipient_address +
+                            "?sender=" + scope.form.sender_email
                     ).respond(404);
                     scope.checkMailIsInList();
                     $httpBackend.flush();

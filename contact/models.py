@@ -8,13 +8,30 @@ from django.db import models
 # pylint: disable=too-few-public-methods
 
 
-class VerifiedEmails(models.Model):
+class VerifiedEmail(models.Model):
     '''
     Verified email list.
     Note that email field should be RIPEMD160 to prevent leak.
     '''
     email_hash = models.CharField(max_length=40, primary_key=True)
     assignee = models.ForeignKey("about.Developer")
+
+    @classmethod
+    def find_by_email(cls, email, assignee=None):
+        '''
+        Find the instance by email
+        '''
+        # pylint: disable=no-member
+        if assignee:
+            return cls.objects.filter(
+                email_hash=gen_hash(email),
+                assignee=assignee
+            )
+        else:
+            return cls.objects.filter(
+                email_hash=gen_hash(email)
+            )
+        # pylint: enable=no-member
 
     def __str__(self):
         '''
@@ -39,6 +56,23 @@ class PendingVerification(models.Model):
     assignee = models.ForeignKey("about.Developer")
     message = models.TextField(default="")
     expires = models.DateTimeField()
+
+    @classmethod
+    def find_by_email(cls, email, assignee=None):
+        '''
+        Find the instance by email
+        '''
+        # pylint: disable=no-member
+        if assignee:
+            return cls.objects.filter(
+                email_hash=gen_hash(email),
+                assignee=assignee
+            )
+        else:
+            return cls.objects.filter(
+                email_hash=gen_hash(email)
+            )
+        # pylint: enable=no-member
 
     @classmethod
     def by_email(cls, email):

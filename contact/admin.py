@@ -5,11 +5,11 @@ Contact form admin model
 # pylint: disable=too-few-public-methods
 
 from django.contrib import admin
-from .models import (VerifiedEmails,
+from .models import (VerifiedEmail,
                      PendingVerification)
 
 
-admin.site.register(VerifiedEmails)
+admin.site.register(VerifiedEmail)
 
 
 @admin.register(PendingVerification)

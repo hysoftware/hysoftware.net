@@ -1,0 +1,9 @@
+[
+{
+  "pk": "73a6f47f12414b6aaeb3ee9fbb0e19c79a13da5d",
+  "fields": {
+    "assignee": "admin@hysoftware.net"
+  },
+  "model": "contact.verifiedemail"
+}
+]

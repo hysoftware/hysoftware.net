@@ -18,7 +18,10 @@
             scope["checkMailIsInList"] = function () {
                 if (scope["form"]["sender_email"] && scope["form"]["recipient_address"]) {
                     scope["form"]["$checkList"](
-                        {"hash": scope["form"]["recipient_address"]}
+                        {
+                            "hash": scope["form"]["recipient_address"],
+                            "sender": scope["form"]["sender_email"]
+                        }
                     ).then(function () {
                         scope["heIsInList"] = true;
                     }, function () {
