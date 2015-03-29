@@ -10,7 +10,6 @@ from django.http import HttpResponse, JsonResponse
 from django.utils.datastructures import MultiValueDictKeyError
 from django.utils import timezone
 from django.views.generic import View
-from django.forms import ValidationError
 from django.conf import settings
 from django.template import Context, loader
 from django.core.urlresolvers import reverse
@@ -59,7 +58,7 @@ class Contact(View):
         '''
         Validate form fields
         '''
-        payload = json.loads(request.body)
+        payload = json.loads(request.body.decode("utf-8"))
         if not isinstance(dev_hash, str):
             return JsonResponse(
                 {
@@ -82,24 +81,24 @@ class Contact(View):
             )
         payload = self.form(payload)
 
-        try:
-            payload.clean()
-        except ValidationError:
-            errors = self.form.errors
+        if not payload.is_valid():
+            errors = dict(payload.errors)
             errors.update(
                 {
                     "error": 417
                 }
             )
             return JsonResponse(errors, status=417)
+        payload = payload.clean()
+        print(payload)
 
         verified_email = request.session.get("verified_email")
         if not verified_email:
             return (False, payload)
         elif gen_hash(verified_email["recipient_email"]) == \
-                payload.cleaned_data["recipient_address"] and \
+                payload["recipient_address"] and \
                 verified_email["sender_email"] == \
-                payload.cleaned_data["sender_email"]:
+                payload["sender_email"]:
             return (True, payload)
 
         request.session["verified_email"] = None
@@ -130,7 +129,7 @@ class Contact(View):
                 ),
                 self.mail_text.render(context),
                 data["sender_email"],
-                session["verified_email"]["recipient_email"]
+                [session["verified_email"]["recipient_email"]]
             )
         except SMTPException:
             return JsonResponse(
@@ -140,7 +139,7 @@ class Contact(View):
                 }, status=500
             )
         success_params = {
-            "success": "You message has been successfully sent!"
+            "success": "Your message has been successfully sent!"
         }
         if settings.DEBUG:
             from django.core.mail import outbox
@@ -157,20 +156,30 @@ class Contact(View):
             )
         return JsonResponse(success_params)
 
-    def __send_verification_mail(self, data):
+    def __send_verification_mail(self, session, data):
         '''
         Send Verification Mail
         '''
         mail_hash = gen_hash(data["sender_email"])
         expire = timezone.now() +\
             settings.CONTACT_VIRIFICATION_EXPIRES
-        PendingVerification(
-            email_hash=mail_hash,
-            name=data["sender_name"],
-            assignee=data["recipient_address"],
-            message=data["message"],
-            expires=expire
-        ).save()
+        # pylint: disable=no-member
+        try:
+            PendingVerification(
+                email_hash=mail_hash,
+                name=data["sender_name"],
+                assignee=Developer(email=session["recipient_email"]),
+                message=data["message"],
+                expires=expire
+            ).save()
+        except TypeError:
+            return JsonResponse(
+                {
+                    "error": 404,
+                    "message": "Recipient not found"
+                }, status=404
+            )
+        # pylint: enable=no-member
         verification_context = Context(
             {
                 "name": data["sender_name"],
@@ -184,7 +193,7 @@ class Contact(View):
                     verification_context
                 ),
                 "noreply@hysoftware.net",
-                data["sender_email"],
+                [data["sender_email"]],
                 html_message=self.verification_mail_html.render(
                     verification_context
                 )
@@ -224,9 +233,9 @@ class Contact(View):
             return data
         else:
             if data[0] is False:
-                return self.__send_verification_mail(data[1].cleaned_data)
+                return self.__send_verification_mail(request.session, data[1])
             else:
-                return self.send_mail(request.session, data[1].cleaned_data)
+                return self.send_mail(request.session, data[1])
 
 
 def check_email_in_list(request, dev_hash):
@@ -235,6 +244,7 @@ def check_email_in_list(request, dev_hash):
     '''
     developer = Developer.by_hash(dev_hash)
     request.session["verified_email"] = None
+    request.session["recipient_email"] = developer.email
 
     if not developer:
         # We don't know such developer!

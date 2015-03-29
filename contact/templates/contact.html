@@ -10,21 +10,21 @@
         <div id="sender_name_form" class="form-group has-feedback" data-ng-class="{'has-success': contactForm.sender_name.$valid, 'has-error': contactForm.sender_name.$invalid&amp;&amp;contactForm.sender_name.$dirty}">
             <label for="sender_name" class="col-sm-2 control-label">Your Name</label>
             <div class="col-sm-5">
-                <input type="text" id="sender_name" name="sender_name" data-ng-model="form.sender_name" class="form-control" required>
+                <input type="text" id="sender_name" name="sender_name" data-ng-model="form.sender_name"  data-ng-disabled="contactForm.$submitted" class="form-control" required>
                 <span id="sender_name_mark" class="glyphicon form-control-feedback" aria-hidden="true" data-ng-if="contactForm.sender_name.$valid||(contactForm.sender_name.$invalid&amp;&amp;contactForm.sender_name.$dirty)" data-ng-class="{'glyphicon-ok': contactForm.sender_name.$valid, 'glyphicon-warning-sign': contactForm.sender_name.$invalid&amp;&amp;contactForm.sender_name.$dirty}"></span>
             </div>
         </div>
         <div id="sender_email_form" class="form-group has-feedback" data-ng-class="{'has-success': contactForm.sender_email.$valid, 'has-error': contactForm.sender_email.$invalid&amp;&amp;contactForm.sender_email.$dirty}">
             <label for="sender_email" class="col-sm-2 control-label">Your Email Address</label>
             <div class="col-sm-5">
-                <input type="email" id="sender_email" name="sender_email" data-ng-blur="checkMailIsInList()" data-ng-change="clearMailIsInList()" data-ng-model="form.sender_email" class="form-control" required>
+                <input type="email" id="sender_email" name="sender_email" data-ng-blur="checkMailIsInList()" data-ng-change="clearMailIsInList()" data-ng-model="form.sender_email" data-ng-disabled="contactForm.$submitted" class="form-control" required>
                 <span id="sender_email_mark" class="glyphicon form-control-feedback" aria-hidden="true" data-ng-if="contactForm.sender_email.$valid||(contactForm.sender_email.$invalid&amp;&amp;contactForm.sender_email.$dirty)" data-ng-class="{'glyphicon-ok': contactForm.sender_email.$valid, 'glyphicon-warning-sign': contactForm.sender_email.$invalid&amp;&amp;contactForm.sender_email.$dirty}"></span>
             </div>
         </div>
         <div class="form-group">
             <label for="recipient_address" class="col-sm-2 control-label">To</label>
             <div class="col-sm-5">
-                <select id="recipient_address" class="form-control" data-ng-blur="checkMailIsInList()" data-ng-change="clearMailIsInList()" data-ng-model="form.recipient_address" required>
+                <select id="recipient_address" class="form-control" data-ng-blur="checkMailIsInList()" data-ng-change="clearMailIsInList()" data-ng-model="form.recipient_address" data-ng-disabled="contactForm.$submitted" required>
                     <option value="" selected disabled>- Please Choose -</option>
                     {% for developer in developers %}
                         {% if dev_hash and dev_hash == developer.hash %}
@@ -49,13 +49,13 @@
         <div class="form-group" id="message_form" data-ng-class="{'has-success': contactForm.message.$valid, 'has-error': contactForm.message.$invalid&amp;&amp;contactForm.message.$dirty}">
             <label for="message" class="col-sm-2 control-label">Message</label>
             <div class="col-sm-5">
-                <textarea name="message" id="message" class="form-control" rows="10" data-ng-model="form.message" required></textarea>
+                <textarea name="message" id="message" class="form-control" rows="10" data-ng-model="form.message" data-ng-disabled="contactForm.$submitted" required></textarea>
             </div>
         </div>
         <div class="form-group text-right">
             <div class="col-sm-7">
-                <button type="reset" class="btn btn-danger">Reset</button>
-                <button type="submit" class="btn btn-success" data-ng-disabled="contactForm.$invalid">Send!</button>
+                <button type="reset" class="btn btn-danger" data-ng-disabled="contactForm.$submitted">Reset</button>
+                <button type="submit" class="btn btn-success" data-ng-disabled="contactForm.$invalid||contactForm.$submitted">Send!</button>
             </div>
         </div>
     </form>

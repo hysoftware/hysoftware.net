@@ -1,7 +1,7 @@
 /*global describe, beforeEach, afterEach,
-    it, expect, inject, module, JSON, spyOn*/
+    it, expect, inject, module, spyOn*/
 (function (describe, beforeEach, afterEach,
-            it, expect, inject, module, JSON, spyOn) {
+            it, expect, inject, module, spyOn) {
     "use strict";
     describe("Contact Controller unit tests", function () {
         var controller, scope;
@@ -60,16 +60,9 @@
             ));
         });
         describe("sendForm check", function () {
-            var postResponse = function (code, status, data) {
-                return function () {
-                    var parsed = JSON.parse(data);
-                    expect(parsed.csrftoken).toBeTruthy();
-                    return [code, data, {}, status];
-                };
-            };
             /*global xit*/
 
-            xit("scope.form.$save should be called", function () {
+            it("scope.form.$save should be called", function () {
                 spyOn(scope.form, "$save");
                 scope.form.recipient_address = "test";
                 scope.sendForm();
@@ -77,23 +70,25 @@
                     scope.form.$save
                 ).toHaveBeenCalled();
             });
-            xit("POST request should be generated", inject(
+            it("POST request should be generated", inject(
                 function ($httpBackend) {
-                    scope.recipient_address = "test";
+                    scope.form.recipient_address = "test";
+                    scope.form.csrftoken = "hello";
                     $httpBackend.expectPOST(
-                        "/contact/" + scope.recipient_address
-                    ).respond(
-                        postResponse(200, "OK", "")
-                    );
+                        "/contact/" + scope.form.recipient_address
+                    ).respond(200, {
+                        "success": "Your message has been successfully sent!"
+                    });
                     scope.sendForm();
                     $httpBackend.flush();
                     expect(scope.form.sender_name).toBeFalsy();
                     expect(scope.form.sender_email).toBeFalsy();
                     expect(scope.form.recipient_address).toBeFalsy();
                     expect(scope.form.message).toBeFalsy();
+                    expect(scope.form.success).toBeTruthy();
                 }
             ));
         });
     });
 }(describe, beforeEach, afterEach,
-    it, expect, inject, module, JSON, spyOn));
+    it, expect, inject, module, spyOn));

@@ -18,7 +18,15 @@ class PendingVerificationAdmin(admin.ModelAdmin):
     Verification Pending Administration Form
     '''
     fieldsets = [
-        ("Email and Token", {"fields": ["email_hash", "token"]}),
+        (
+            "Email, recipient",
+            {
+                "fields": [
+                    "email_hash",
+                    "assignee"
+                ]
+            }
+        ),
         ("Body", {"fields": ["message"]}),
         ("Expiration Date", {"fields": ["expires"]}),
     ]

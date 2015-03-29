@@ -6,14 +6,14 @@
         "hysoft.contact.resource"
     ]).controller("ContactController", [
         "$scope",
-        "$cookies",
+        "Contact",
         "ListChecker",
-        function (scope, cookies, ListChecker) {
+        function (scope, Contact, ListChecker) {
             /*jslint sub: true*/
 
             // This trick is needed to avoid demangle
             // compression from closure compiler.
-            scope["form"] = {};
+            scope["form"] = new Contact();
             scope["clearMailIsInList"] = function () {
                 scope["heIsInList"] = undefined;
             };
@@ -30,14 +30,7 @@
                 }
             };
             scope["sendForm"] = function () {
-                if (ng.version["major"] >= 1 && ng.version["minor"] > 3) {
-                    scope["form"]["csrfmiddlewaretoken"] =  cookies["get"]("csrftoken");
-                } else {
-                    scope["form"]["csrfmiddlewaretoken"] =  cookies["csrftoken"];
-                }
-                // WIP
-                /*global console*/
-                console.log(scope["form"]["csrfmiddlewaretoken"]);
+                scope["form"]["$save"]();
             };
         }
     ]);
