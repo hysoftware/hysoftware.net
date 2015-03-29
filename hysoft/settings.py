@@ -114,3 +114,16 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.environ.get("STATIC_ROOT", None)
+
+# Session settings
+SESSION_COOKIE_SECURE = False
+SESSION_ENGINE = "django.contrib.sessions.backends.cached_db"
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+# Email settings
+EMAIL_BACKEND = None
+
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

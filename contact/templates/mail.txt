@@ -1,0 +1,7 @@
+{{ sender_name }} wants you to contact.
+
+Message:
+{{ message }}
+
+--
+hysoftware.net mail system
