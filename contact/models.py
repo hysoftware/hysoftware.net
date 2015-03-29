@@ -54,6 +54,7 @@ class PendingVerification(models.Model):
         primary_key=True
     )
     assignee = models.ForeignKey("about.Developer")
+    name = models.TextField()
     message = models.TextField(default="")
     expires = models.DateTimeField()
 

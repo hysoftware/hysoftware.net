@@ -3,6 +3,7 @@ Conctact form views
 '''
 
 import json
+from datetime import datetime
 from smtplib import SMTPException
 from django.shortcuts import render
 from django.core.mail import send_mail
@@ -12,11 +13,12 @@ from django.views.generic import View
 from django.forms import ValidationError
 from django.conf import settings
 from django.template import Context, loader
+from django.core.urlresolvers import reverse
 
 from about.models import Developer
 from common import gen_hash
 
-from .models import VerifiedEmail
+from .models import VerifiedEmail, PendingVerification
 from .forms import ContactForm
 
 
@@ -30,6 +32,8 @@ class Contact(View):
     template_name = "contact.html"
     form = ContactForm
     mail_text = loader.get_template("mail.txt")
+    verification_mail_text = loader.get_template("verification_mail.txt")
+    verification_mail_html = loader.get_template("verification_mail.html")
 
     def get(self, request, dev_hash=None):
         '''
@@ -90,12 +94,12 @@ class Contact(View):
 
         verified_email = request.session.get("verified_email")
         if not verified_email:
-            return False
+            return (False, payload)
         elif gen_hash(verified_email["recipient_email"]) == \
                 payload.cleaned_data["recipient_address"] and \
                 verified_email["sender_email"] == \
                 payload.cleaned_data["sender_email"]:
-            return payload
+            return (True, payload)
 
         request.session["verified_email"] = None
         return JsonResponse(
@@ -106,6 +110,109 @@ class Contact(View):
             status=404
         )
 
+    def send_mail(self, session, data):
+        '''
+        Contact to hysoftware person
+        '''
+        try:
+            context = Context(
+                {
+                    "sender_name": data["sender_name"],
+                    "message": data["message"]
+                }
+            )
+            send_mail(
+                (
+                    "Mail from hysoftware.net contact form -- {}"
+                ).format(
+                    data["sender_name"]
+                ),
+                self.mail_text.render(context),
+                data["sender_email"],
+                session["verified_email"]["recipient_email"]
+            )
+        except SMTPException:
+            return JsonResponse(
+                {
+                    "error": 500,
+                    "message": "SMTP Server seems to be down!!"
+                }, status=500
+            )
+        success_params = {
+            "success": "You message has been successfully sent!"
+        }
+        if settings.DEBUG:
+            from django.core.mail import outbox
+            message = outbox.pop()
+            success_params.update(
+                {
+                    "additional_info": {
+                        "subject": message.subject,
+                        "body": message.body,
+                        "from": message.from_email,
+                        "to": message.to
+                    }
+                }
+            )
+        return JsonResponse(success_params)
+
+    def __send_verification_mail(self, data):
+        '''
+        Send Verification Mail
+        '''
+        mail_hash = gen_hash(data["sender_email"])
+        expire = datetime.utcnow() +\
+            settings.CONTACT_VIRIFICATION_EXPIRES
+        PendingVerification(
+            mail_hash=mail_hash,
+            name=data["sender_name"],
+            assignee=data["recipient_address"],
+            message=data["message"],
+            expires=expire
+        ).save()
+        verification_context = Context(
+            {
+                "name": data["sender_name"],
+                "url": reverse("verify_address", args=[mail_hash])
+            }
+        )
+        try:
+            send_mail(
+                "Thanks for contacting hysoftware.net person! but...",
+                self.verification_mail_text.render(
+                    verification_context
+                ),
+                "noreply@hysoftware.net",
+                data["sender_email"],
+                html_message=self.verification_mail_html.render(
+                    verification_context
+                )
+            )
+        except SMTPException:
+            return JsonResponse(
+                {
+                    "error": 500,
+                    "message": "SMTP Server seems to be down!!"
+                }, status=500
+            )
+        success_params = {
+            "success": "Verification mail has been sent!"
+        }
+        if settings.DEBUG:
+            from django.core.mail import outbox
+            message = outbox.pop()
+            success_params.update(
+                {
+                    "additional_info": {
+                        "subject": message.subject,
+                        "body": message.body,
+                        "from": message.from_email,
+                        "to": message.to
+                    }
+                }
+            )
+        return JsonResponse(success_params)
+
     def post(self, request, dev_hash=None):
         '''
         Send mail to the corresponding contact
@@ -114,50 +221,10 @@ class Contact(View):
         if isinstance(data, HttpResponse):
             return data
         else:
-            if data is False:
-                raise NotImplementedError()
+            if data[0] is False:
+                return self.__send_verification_mail(data[1].cleaned_data)
             else:
-                context = Context(
-                    {
-                        "sender_name": data.cleaned_data["sender_name"],
-                        "message": data.cleaned_data["message"]
-                    }
-                )
-                try:
-                    send_mail(
-                        (
-                            "Mail from hysoftware.net contact form -- {}"
-                        ).format(
-                            data.cleaned_data["sender_name"]
-                        ),
-                        self.mail_text.render(context),
-                        data.cleaned_data["sender_email"],
-                        request.session["verified_email"]["recipient_email"]
-                    )
-                except SMTPException:
-                    return JsonResponse(
-                        {
-                            "error": 500,
-                            "message": "SMTP Server seems to be down!!"
-                        }, status=500
-                    )
-                success_params = {
-                    "success": "You message has been successfully sent!"
-                }
-                if settings.DEBUG:
-                    from django.core.mail import outbox
-                    message = outbox.pop()
-                    success_params.update(
-                        {
-                            "additional_info": {
-                                "subject": message.subject,
-                                "body": message.body,
-                                "from": message.from_email,
-                                "to": message.to
-                            }
-                        }
-                    )
-                return JsonResponse(success_params)
+                return self.send_mail(request.session, data[1].cleaned_data)
 
 
 def check_email_in_list(request, dev_hash):
@@ -190,3 +257,11 @@ def check_email_in_list(request, dev_hash):
         }
         return HttpResponse(status=200)
     return HttpResponse(status=404)
+
+
+def verify_address(request, mail_hash):
+    '''
+    Verify address
+    '''
+    # pylint: disable=unused-argument
+    raise NotImplementedError()
