@@ -273,9 +273,15 @@ class AddressVerification(View):
         '''
         Return verification view if the mail hash is found.
         Otherwise returns 404.
+
+        Note: shows view even if the hash is not found, when
+            DEBUG mode
         '''
 
         PendingVerification.remove_expired()
+        if settings.DEBUG:
+            return render(request, self.template_file)
+
         get_object_or_404(
             PendingVerification,
             email_hash=mail_hash
