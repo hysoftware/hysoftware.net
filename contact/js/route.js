@@ -26,6 +26,16 @@
                 "templateUrl": function (params) {
                     /*jslint sub: true*/
                     return "/contact/" + params["dev"];
+                },
+                "controller": "ContactController"
+            }
+        ).state(
+            "mail_verification",
+            {
+                "url": "/contact/verify/{mail_hash:[a-f,0-9]{40}}",
+                "templateUrl": function (params) {
+                    /*jslint sub: true*/
+                    return "/contact/verify/" + params["mail_hash"];
                 }
             }
         );

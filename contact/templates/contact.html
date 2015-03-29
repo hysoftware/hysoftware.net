@@ -5,7 +5,7 @@
     <p>
         To contact someone at hysoft, you can use this form:
     </p>
-    <form class="form-horizontal" name="contactForm" novalidate>
+    <form class="form-horizontal" name="contactForm" data-ng-submit="sendForm()" novalidate>
         {% csrf_token %}
         <div id="sender_name_form" class="form-group has-feedback" data-ng-class="{'has-success': contactForm.sender_name.$valid, 'has-error': contactForm.sender_name.$invalid&amp;&amp;contactForm.sender_name.$dirty}">
             <label for="sender_name" class="col-sm-2 control-label">Your Name</label>
