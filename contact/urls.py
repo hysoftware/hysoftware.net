@@ -6,7 +6,7 @@ from django.conf.urls import patterns, url
 from .views import (
     Contact,
     check_email_in_list,
-    verify_address
+    AddressVerification
 )
 
 # pylint: disable=invalid-name
@@ -25,7 +25,7 @@ urlpatterns = patterns(
     ),
     url(
         r"^/verify/(?P<mail_hash>[0-9,a-f]{40})",
-        verify_address,
+        AddressVerification.as_view(),
         name="verify_address"
     )
 )

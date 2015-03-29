@@ -1,0 +1,21 @@
+<article class="mail-verification text-center">
+    <header>
+        <h1>Verify your mail</h1>
+    </header>
+    <p>
+        Thanks for contacting me.<br>
+        To finish verification, please type the same email address input "Your Email Address" on contact form.
+    </p>
+    <form name="emailForm" class="form-horizontal" data-ng-submit="send()" novalidate>
+        <div class="form-group">
+            <div class="col-sm-7">
+                <input type="email" class="form-control" required data-ng-model="form.email">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-7">
+                <button type="send" class="btn btn-success" data-ng-disabled="emailForm.$invalid">Send!</button>
+            </div>
+        </div>
+    </form>
+</article>

@@ -3,12 +3,12 @@ Conctact form views
 '''
 
 import json
-from datetime import datetime
 from smtplib import SMTPException
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.core.mail import send_mail
 from django.http import HttpResponse, JsonResponse
 from django.utils.datastructures import MultiValueDictKeyError
+from django.utils import timezone
 from django.views.generic import View
 from django.forms import ValidationError
 from django.conf import settings
@@ -39,6 +39,7 @@ class Contact(View):
         '''
         Returns contact view
         '''
+        PendingVerification.remove_expired()
         # pylint: disable=unused-argument, no-member
         developers = [
             developer.to_dict() for developer in Developer.objects.all()
@@ -161,10 +162,10 @@ class Contact(View):
         Send Verification Mail
         '''
         mail_hash = gen_hash(data["sender_email"])
-        expire = datetime.utcnow() +\
+        expire = timezone.now() +\
             settings.CONTACT_VIRIFICATION_EXPIRES
         PendingVerification(
-            mail_hash=mail_hash,
+            email_hash=mail_hash,
             name=data["sender_name"],
             assignee=data["recipient_address"],
             message=data["message"],
@@ -217,6 +218,7 @@ class Contact(View):
         '''
         Send mail to the corresponding contact
         '''
+        PendingVerification.remove_expired()
         data = self.__verify_mail_field(request, dev_hash)
         if isinstance(data, HttpResponse):
             return data
@@ -259,9 +261,23 @@ def check_email_in_list(request, dev_hash):
     return HttpResponse(status=404)
 
 
-def verify_address(request, mail_hash):
+class AddressVerification(View):
     '''
-    Verify address
+    AddressVerification views
     '''
-    # pylint: disable=unused-argument
-    raise NotImplementedError()
+    # pylint: disable=too-few-public-methods
+
+    template_file = "verify_mail.html"
+
+    def get(self, request, mail_hash):
+        '''
+        Return verification view if the mail hash is found.
+        Otherwise returns 404.
+        '''
+
+        PendingVerification.remove_expired()
+        get_object_or_404(
+            PendingVerification,
+            email_hash=mail_hash
+        )
+        return render(request, self.template_file)
