@@ -2,8 +2,8 @@
 (function (exports) {
     "use strict";
     exports.config = {
-        baseUrl: 'http://localhost:8000/',
-        framework: 'jasmine',
+        baseUrl: 'http://localhost:50000/',
+        framework: 'jasmine2',
         jasmineNodeOpts: {
             defaultTimeoutInterval: 600000
         }

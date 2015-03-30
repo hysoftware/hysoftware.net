@@ -15,7 +15,7 @@
                 "configFile": "./protractor/conf.js",
                 "args": {
                     "baseUrl": "http://localhost:50000",
-                    "framework": "jasmine",
+                    "framework": "jasmine2",
                     "capabilities": {
                         "browserName": browser
                     },
@@ -23,5 +23,8 @@
                 }
             }
         };
+        if (browser === "chrome" || browser === "firefox") {
+            e.protractor[browser].options.args.directConnect = true;
+        }
     });
 }(exports, require));
