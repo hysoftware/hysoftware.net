@@ -30,7 +30,12 @@
                 }
             };
             scope["sendForm"] = function () {
-                scope["form"]["$save"]();
+                scope["form"]["$save"]().then(function () {
+                    scope["contactForm"]["$setPristine"]();
+                    scope["contactForm"]["$setSubmitted"]();
+                }, function (data) {
+                    scope["form"]["error"] = data["data"];
+                });
             };
         }
     ]);

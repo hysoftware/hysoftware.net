@@ -60,10 +60,15 @@
             ));
         });
         describe("sendForm check", function () {
-            /*global xit*/
-
             it("scope.form.$save should be called", function () {
-                spyOn(scope.form, "$save");
+                scope.form.$save = function () {
+                    return {
+                        "then": function () {
+                            return undefined;
+                        }
+                    };
+                };
+                spyOn(scope.form, "$save").and.callThrough();
                 scope.form.recipient_address = "test";
                 scope.sendForm();
                 expect(
@@ -72,6 +77,14 @@
             });
             it("POST request should be generated", inject(
                 function ($httpBackend) {
+                    scope.contactForm = {
+                        "$setPristine": function () {
+                            return undefined;
+                        },
+                        "$setSubmitted": function () {
+                            return undefined;
+                        }
+                    };
                     scope.form.recipient_address = "test";
                     scope.form.csrftoken = "hello";
                     $httpBackend.expectPOST(

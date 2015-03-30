@@ -17,7 +17,7 @@
         <div id="sender_email_form" class="form-group has-feedback" data-ng-class="{'has-success': contactForm.sender_email.$valid, 'has-error': contactForm.sender_email.$invalid&amp;&amp;contactForm.sender_email.$dirty}">
             <label for="sender_email" class="col-sm-2 control-label">Your Email Address</label>
             <div class="col-sm-5">
-                <input type="email" id="sender_email" name="sender_email" data-ng-blur="checkMailIsInList()" data-ng-change="clearMailIsInList()" data-ng-model="form.sender_email" data-ng-disabled="contactForm.$submitted" class="form-control" required>
+                <input type="email" id="sender_email" name="sender_email" data-ng-blur="checkMailIsInList()" data-ng-change="clearMailIsInList()" data-ng-model="form.sender_email" data-ng-pattern="/.+\@.+\..+/" data-ng-disabled="contactForm.$submitted" class="form-control" required>
                 <span id="sender_email_mark" class="glyphicon form-control-feedback" aria-hidden="true" data-ng-if="contactForm.sender_email.$valid||(contactForm.sender_email.$invalid&amp;&amp;contactForm.sender_email.$dirty)" data-ng-class="{'glyphicon-ok': contactForm.sender_email.$valid, 'glyphicon-warning-sign': contactForm.sender_email.$invalid&amp;&amp;contactForm.sender_email.$dirty}"></span>
             </div>
         </div>
