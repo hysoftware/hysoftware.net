@@ -90,7 +90,6 @@ class Contact(View):
             )
             return JsonResponse(errors, status=417)
         payload = payload.clean()
-        print(payload)
 
         verified_email = request.session.get("verified_email")
         if not verified_email:
