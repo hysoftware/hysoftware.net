@@ -50,7 +50,10 @@ class Contact(View):
             self.template_name,
             {
                 "developers": developers,
-                "dev_hash": dev_hash
+                "dev_hash": dev_hash,
+                "issues_tracker": (
+                    "https://github.com/hysoftware/hysoftware.net/issues"
+                )
             }
         )
 

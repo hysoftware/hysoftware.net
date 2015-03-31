@@ -1,4 +1,24 @@
 article.contact {
+    div.icon, div.text {
+        display: table-cell;
+    }
+    div.icon {
+        padding: {
+            right: 5px;
+        }
+    }
+    div.text {
+        padding: {
+            left: 5px;
+        }
+        width: 100%;
+        div {
+            margin: {
+                top: 0.5em;
+                bottom: 0.5em;
+            }
+        }
+    }
     div.form-group {
         div.alert {
             div {
@@ -6,9 +26,6 @@ article.contact {
                     left: 5px;
                     right: 5px;
                 }
-            }
-            div.icon, div.text {
-                display: table-cell;
             }
         }
     }

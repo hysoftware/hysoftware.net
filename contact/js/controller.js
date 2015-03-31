@@ -4,7 +4,18 @@
     ng.module("hysoft.contact.controller", [
         "ngCookies",
         "hysoft.contact.resource"
-    ]).controller("ContactController", [
+    ]).filter("errorConversion", [function () {
+        return function (input) {
+            var conversionMap = {
+                "sender_name": "Your Name",
+                "sender_email": "Your Email Address",
+                "recipient_address": "Hysoft person",
+                "message": "Your message",
+                "backend": "Backend Program"
+            };
+            return conversionMap[input] || input;
+        };
+    }]).controller("ContactController", [
         "$scope",
         "Contact",
         "ListChecker",
@@ -17,6 +28,7 @@
             scope["clearMailIsInList"] = function () {
                 scope["heIsInList"] = undefined;
             };
+            scope["error"] = {};
             scope["checkMailIsInList"] = function () {
                 if (scope["form"]["sender_email"] && scope["form"]["recipient_address"]) {
                     ListChecker["get"]({
@@ -34,7 +46,14 @@
                     scope["contactForm"]["$setPristine"]();
                     scope["contactForm"]["$setSubmitted"]();
                 }, function (data) {
-                    scope["form"]["error"] = data["data"];
+                    if (!data["data"]) {
+                        scope["error"] = {
+                            "error": 500,
+                            "backend": "Backend seems to be down"
+                        };
+                    } else {
+                        scope["error"] = data["data"];
+                    }
                 });
             };
         }

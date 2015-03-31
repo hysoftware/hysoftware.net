@@ -8,7 +8,7 @@
     [
         "chrome",
         "firefox",
-        "phantomjs"
+        "phantomJS"
     ].forEach(function (browser) {
         e.protractor[browser] = {
             "options": {

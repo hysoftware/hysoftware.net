@@ -52,6 +52,55 @@
                 <textarea name="message" id="message" class="form-control" rows="10" data-ng-model="form.message" data-ng-disabled="contactForm.$submitted" required></textarea>
             </div>
         </div>
+        <div class="row">
+            <div id="status"
+                 class="alert col-sm-7"
+                 data-ng-if="contactForm.$submitted"
+                 data-ng-class="{'alert-success': form.success, 'alert-warning': error.error &lt; 500, 'alert-danger': error.error &gt; 499}">
+                <div id="success-message" data-ng-if="form.success">
+                    <div class="icon">
+                        <span class="glyphicon glyphicon-thumbs-up"></span>
+                    </div>
+                    <div class="text">
+                        {{"{"}}{{"{"}}form.success{{"}"}}{{"}"}}
+                        <div id="success-devel-message" data-ng-if="form.additional_info">{{"{"}}{{"{"}}form.additional_info | json{{"}"}}{{"}"}}</div>
+                    </div>
+                </div>
+                <div id="failure-message" data-ng-if="error.error">
+                    <div class="icon">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </div>
+                    <div class="text">
+                        <div>
+                            Oops! There's {{"{"}}{{"{"}} error.error &gt; 499 ? "critical" : "" {{"}"}}{{"}"}} error. See below
+                        </div>
+                        <div data-ng-if="error.error &gt; 499">
+                            <strong>CAUTION</strong> This is a critical error. So, as far as possible,
+                            please report it to <a href="{{issues_tracker}}" target="_blank">Issues Tracker</a>
+                        </div>
+                        <div class="row" data-ng-repeat="(key, value) in error" data-ng-if="key !== 'error'">
+                            <div class="col-sm-4 problem-key">
+                                {{"{"}}{{"{"}}key | errorConversion{{"}"}}{{"}"}}
+                            </div>
+                            <div class="col-sm-8 problem-value">
+                                <ul>
+                                    <li data-ng-repeat="value_item in value">
+                                        {{"{"}}{{"{"}}value_item{{"}"}}{{"}"}}
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div data-ng-if="error.error &gt; 499">
+                            Again, because the error is critical, when you report the problem,
+                            please attach below code if possible. <br>
+                            Note that <strong>it includes form data you tried to post and
+                            the data will be public because this website is open-sourced.</strong>
+                            <textarea id="critical-form-code" class="form-control" cols="30" rows="10" readonly>{{"{"}}{{"{"}}{"error": error, "form": form}|json: 2{{"}"}}{{"}"}}</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="form-group text-right">
             <div class="col-sm-7">
                 <button type="reset" class="btn btn-danger" data-ng-disabled="contactForm.$submitted">Reset</button>
