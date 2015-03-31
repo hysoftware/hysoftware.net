@@ -24,7 +24,7 @@ urlpatterns = patterns(
         name="check_email_in_list"
     ),
     url(
-        r"^/verify/(?P<mail_hash>[0-9,a-f]{40})",
+        r"^/verify/(?P<token_hash>[0-9,a-f]{40})",
         AddressVerification.as_view(),
         name="verify_address"
     )

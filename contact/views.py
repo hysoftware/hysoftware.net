@@ -3,6 +3,7 @@ Conctact form views
 '''
 
 import json
+import random
 from smtplib import SMTPException
 from django.shortcuts import render, get_object_or_404
 from django.core.mail import send_mail
@@ -165,6 +166,9 @@ class Contact(View):
         mail_hash = gen_hash(data["sender_email"])
         expire = timezone.now() +\
             settings.CONTACT_VIRIFICATION_EXPIRES
+        token = ("").join(
+            [random.choice("abcdef0123456789") for counter in range(40)]
+        )
         # pylint: disable=no-member
         try:
             PendingVerification(
@@ -173,7 +177,7 @@ class Contact(View):
                 assignee=Developer(email=session["recipient_email"]),
                 message=data["message"],
                 expires=expire
-            ).save()
+            ).set_token(token).save()
         except TypeError:
             return JsonResponse(
                 {
@@ -185,12 +189,12 @@ class Contact(View):
         verification_context = Context(
             {
                 "name": data["sender_name"],
-                "url": reverse("verify_address", args=[mail_hash])
+                "url": reverse("verify_address", args=[token])
             }
         )
         try:
             send_mail(
-                "Thanks for contacting hysoftware.net person! but...",
+                "Thanks for contacting hysoftware.net! but...",
                 self.verification_mail_text.render(
                     verification_context
                 ),
@@ -281,7 +285,7 @@ class AddressVerification(View):
 
     template_file = "verify_mail.html"
 
-    def get(self, request, mail_hash):
+    def get(self, request, token_hash):
         '''
         Return verification view if the mail hash is found.
         Otherwise returns 404.
@@ -296,6 +300,6 @@ class AddressVerification(View):
 
         get_object_or_404(
             PendingVerification,
-            email_hash=mail_hash
+            token_hash=gen_hash(token_hash)
         )
         return render(request, self.template_file)

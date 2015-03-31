@@ -5,6 +5,7 @@ Contact form model
 from common import gen_hash
 from django.db import models
 from django.conf import settings
+from django.core.exceptions import ObjectDoesNotExist
 
 # pylint: disable=too-few-public-methods
 
@@ -54,10 +55,21 @@ class PendingVerification(models.Model):
         max_length=40,
         primary_key=True
     )
+    token_hash = models.CharField(
+        max_length=40,
+        unique=True
+    )
     assignee = models.ForeignKey("about.Developer")
     name = models.TextField()
     message = models.TextField(default="")
     expires = models.DateTimeField()
+
+    def set_token(self, token):
+        '''
+        Set token
+        '''
+        self.token_hash = gen_hash(token)
+        return self
 
     @classmethod
     def find_by_email(cls, email, assignee=None):
@@ -77,13 +89,16 @@ class PendingVerification(models.Model):
         # pylint: enable=no-member
 
     @classmethod
-    def by_email(cls, email):
+    def find_by_token(cls, token):
         '''
-        Return verification pending object by email
+        Find by token
         '''
-        # pylint: disable=no-member
-        return cls.objects.get(email_hash=gen_hash(email))
-        # pylint: enable=no-member
+        try:
+            # pylint: disable=no-member
+            return cls.objects.get(gen_hash(token))
+            # pylint: enable=no-member
+        except ObjectDoesNotExist:
+            return None
 
     @classmethod
     def remove_expired(cls):

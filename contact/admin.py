@@ -19,10 +19,11 @@ class PendingVerificationAdmin(admin.ModelAdmin):
     '''
     fieldsets = [
         (
-            "Email, recipient",
+            "Email, Token hash, and recipient",
             {
                 "fields": [
                     "email_hash",
+                    "token_hash",
                     "assignee"
                 ]
             }
