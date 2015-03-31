@@ -285,7 +285,7 @@ class AddressVerification(View):
 
     template_file = "verify_mail.html"
 
-    def get(self, request, token_hash):
+    def get(self, request, token):
         '''
         Return verification view if the mail hash is found.
         Otherwise returns 404.
@@ -300,6 +300,6 @@ class AddressVerification(View):
 
         get_object_or_404(
             PendingVerification,
-            token_hash=gen_hash(token_hash)
+            token_hash=gen_hash(token)
         )
         return render(request, self.template_file)
