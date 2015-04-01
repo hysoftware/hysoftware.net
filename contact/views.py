@@ -9,7 +9,6 @@ from django.shortcuts import render, get_object_or_404
 from django.core.mail import send_mail
 from django.http import HttpResponse, JsonResponse
 from django.utils.datastructures import MultiValueDictKeyError
-from django.utils import timezone
 from django.views.generic import View
 from django.conf import settings
 from django.template import Context, loader
@@ -67,7 +66,7 @@ class Contact(View):
             return JsonResponse(
                 {
                     "error": 404,
-                    "message": "Which person you want to send message??"
+                    "backend": ["Which person you want to send message??"]
                 },
                 status=404
             )
@@ -76,10 +75,10 @@ class Contact(View):
             return JsonResponse(
                 {
                     "error": 404,
-                    "message": (
+                    "backend": [(
                         "Payload address must be "
                         "the same as URL address"
-                    )
+                    )]
                 },
                 status=404
             )
@@ -108,7 +107,7 @@ class Contact(View):
         return JsonResponse(
             {
                 "error": 417,
-                "message": "Your verification is invalid."
+                "backend": ["Your verification is invalid."]
             },
             status=404
         )
@@ -138,7 +137,7 @@ class Contact(View):
             return JsonResponse(
                 {
                     "error": 500,
-                    "message": "SMTP Server seems to be down!!"
+                    "backend": ["SMTP Server seems to be down!!"]
                 }, status=500
             )
         success_params = {
@@ -159,37 +158,39 @@ class Contact(View):
             )
         return JsonResponse(success_params)
 
-    def __send_verification_mail(self, session, data):
+    def __send_verification_mail(self, request, data):
         '''
         Send Verification Mail
         '''
-        mail_hash = gen_hash(data["sender_email"])
-        expire = timezone.now() +\
-            settings.CONTACT_VIRIFICATION_EXPIRES
         token = ("").join(
             [random.choice("abcdef0123456789") for counter in range(40)]
         )
+        session = request.session
         # pylint: disable=no-member
         try:
             PendingVerification(
-                email_hash=mail_hash,
+                email_hash=gen_hash(data["sender_email"]),
                 name=data["sender_name"],
                 assignee=Developer(email=session["recipient_email"]),
-                message=data["message"],
-                expires=expire
-            ).set_token(token).save()
+                message=data["message"]
+            ).set_token(token).set_expiration().save()
         except TypeError:
             return JsonResponse(
                 {
                     "error": 404,
-                    "message": "Recipient not found"
+                    "backend": ["Recipient not found"]
                 }, status=404
             )
         # pylint: enable=no-member
         verification_context = Context(
             {
                 "name": data["sender_name"],
-                "url": reverse("verify_address", args=[token])
+                "expire": int(
+                    settings.CONTACT_VIRIFICATION_EXPIRES.seconds / 3600
+                ),
+                "url": request.build_absolute_uri(
+                    reverse("verify_address", args=[token])
+                )
             }
         )
         try:
@@ -208,7 +209,7 @@ class Contact(View):
             return JsonResponse(
                 {
                     "error": 500,
-                    "message": "SMTP Server seems to be down!!"
+                    "backend": ["SMTP Server seems to be down!!"]
                 }, status=500
             )
         success_params = {
@@ -239,7 +240,7 @@ class Contact(View):
             return data
         else:
             if data[0] is False:
-                return self.__send_verification_mail(request.session, data[1])
+                return self.__send_verification_mail(request, data[1])
             else:
                 return self.send_mail(request.session, data[1])
 

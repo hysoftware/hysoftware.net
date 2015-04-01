@@ -5,6 +5,8 @@ Contact form model
 from common import gen_hash
 from django.db import models
 from django.core.exceptions import ObjectDoesNotExist
+from django.utils import timezone
+from django.conf import settings
 
 # pylint: disable=too-few-public-methods
 
@@ -70,6 +72,15 @@ class PendingVerification(models.Model):
         self.token_hash = gen_hash(token)
         return self
 
+    def set_expiration(self, expires=None):
+        '''
+        Set expiration datetime
+        '''
+        expires =\
+            expires or timezone.now() + settings.CONTACT_VIRIFICATION_EXPIRES
+        self.expires = expires
+        return self
+
     @classmethod
     def find_by_email(cls, email, assignee=None):
         '''
@@ -104,7 +115,6 @@ class PendingVerification(models.Model):
         '''
         Remove expired verifications
         '''
-        from django.utils import timezone
 
         # pylint: disable=no-member
         cls.objects.filter(expires__lt=timezone.now()).delete()
