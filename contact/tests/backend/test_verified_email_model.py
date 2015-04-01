@@ -5,7 +5,7 @@ Contact form tests.
 from django.test import TestCase
 from django.core.management import call_command
 from common import gen_hash
-from .models import VerifiedEmail
+from ...models import VerifiedEmail
 
 
 class VerifiedEmailTests(TestCase):
