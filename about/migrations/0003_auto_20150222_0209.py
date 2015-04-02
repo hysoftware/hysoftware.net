@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('choice', models.CharField(max_length=4, db_index=True, choices=[('G+', 'Google Plus'), ('LI', 'Linkedin'), ('FB', 'Facebook'), ('TW', 'Twitter'), ('CW', 'Coderwalll'), ('GH', 'Github'), ('BB', 'Bitbucket')])),
                 ('url', models.URLField()),
-                ('user', models.ForeignKey(to='about.Developers')),
+                ('user', models.ForeignKey(to='about.Developer')),
             ],
             options={
             },
@@ -29,7 +29,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=30, db_index=True)),
                 ('url', models.URLField(null=True, blank=True)),
-                ('user', models.ForeignKey(to='about.Developers')),
+                ('user', models.ForeignKey(to='about.Developer')),
             ],
             options={
             },
@@ -40,7 +40,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('language', models.CharField(max_length=40, db_index=True)),
-                ('user', models.ForeignKey(to='about.Developers')),
+                ('user', models.ForeignKey(to='about.Developer')),
             ],
             options={
             },
@@ -51,7 +51,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('job_name', models.CharField(max_length=30, db_index=True)),
-                ('user', models.ForeignKey(to='about.Developers')),
+                ('user', models.ForeignKey(to='about.Developer')),
             ],
             options={
             },
@@ -62,7 +62,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('language', models.CharField(max_length=40, db_index=True)),
-                ('user', models.ForeignKey(to='about.Developers')),
+                ('user', models.ForeignKey(to='about.Developer')),
             ],
             options={
             },
@@ -73,32 +73,32 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('tag_name', models.CharField(max_length=20, db_index=True)),
-                ('user', models.ForeignKey(to='about.Developers')),
+                ('user', models.ForeignKey(to='about.Developer')),
             ],
             options={
             },
             bases=(models.Model,),
         ),
         migrations.AlterField(
-            model_name='developers',
+            model_name='developer',
             name='first_name',
             field=models.CharField(max_length=20, db_index=True),
             preserve_default=True,
         ),
         migrations.AlterField(
-            model_name='developers',
+            model_name='developer',
             name='last_name',
             field=models.CharField(max_length=20, db_index=True),
             preserve_default=True,
         ),
         migrations.AlterField(
-            model_name='developers',
+            model_name='developer',
             name='xero_key',
             field=models.CharField(max_length=40, blank=True),
             preserve_default=True,
         ),
         migrations.AlterField(
-            model_name='developers',
+            model_name='developer',
             name='xero_secret',
             field=models.TextField(default='', blank=True),
             preserve_default=True,

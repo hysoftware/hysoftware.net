@@ -1,10 +1,12 @@
-/*global describe, beforeEach, afterEach, it, expect, browser, element, by*/
-(function (describe, beforeEach, afterEach, it, expect, browser, element, by) {
+/*global describe, beforeEach, afterEach, it,
+    expect, browser, element, by, require*/
+(function (describe, beforeEach, afterEach, it,
+            expect, browser, element, by, require) {
     "use strict";
     describe("Contact Form validation test", function () {
-        var parseClassName = function (str) {
-            return str.split(" ");
-        }, requiredFields = [
+        var parseClassName = require(
+            "./class_parser.js"
+        ).parseClassName, requiredFields = [
             {
                 "name": "sender_name",
                 "checMark": true
@@ -428,4 +430,5 @@
             });
         });
     });
-}(describe, beforeEach, afterEach, it, expect, browser, element, by));
+}(describe, beforeEach, afterEach, it,
+    expect, browser, element, by, require));

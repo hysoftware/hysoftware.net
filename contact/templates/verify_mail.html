@@ -7,14 +7,14 @@
         To finish verification, please type the same email address input "Your Email Address" to contact form.
     </p>
     <form name="emailForm" class="form-horizontal" data-ng-submit="send()" novalidate>
-        <div class="form-group">
+        <div id="email-form-group" class="form-group" data-ng-class="{'has-success':emailForm.sender_email.$valid, 'has-error': emailForm.sender_email.$invalid&&emailForm.sender_email.$dirty}">
             <div class="col-sm-offset-2 col-sm-8">
-                <input type="email" class="form-control text-center" required data-ng-model="form.email">
+                <input name="sender_email" type="email" class="form-control text-center" required data-ng-model="form.email" data-ng-pattern="/.+\@.+\..+/" data-ng-disabled="emailForm.$submitted">
             </div>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-8">
-                <button type="send" class="btn btn-success" data-ng-disabled="emailForm.$invalid">Send!</button>
+                <button type="send" class="btn btn-success" data-ng-disabled="emailForm.$invalid||emailForm.$submitted">Send!</button>
             </div>
         </div>
     </form>

@@ -11,14 +11,14 @@ from django.http import HttpResponse, JsonResponse
 from django.utils.datastructures import MultiValueDictKeyError
 from django.views.generic import View
 from django.conf import settings
-from django.template import Context, loader
+from django.template import loader
 from django.core.urlresolvers import reverse
 
 from about.models import Developer
 from common import gen_hash
 
 from .models import VerifiedEmail, PendingVerification
-from .forms import ContactForm
+from .forms import ContactForm, VerificationForm
 
 
 class Contact(View):
@@ -117,19 +117,16 @@ class Contact(View):
         Contact to hysoftware person
         '''
         try:
-            context = Context(
-                {
-                    "sender_name": data["sender_name"],
-                    "message": data["message"]
-                }
-            )
             send_mail(
                 (
                     "Mail from hysoftware.net contact form -- {}"
                 ).format(
                     data["sender_name"]
                 ),
-                self.mail_text.render(context),
+                self.mail_text.render({
+                    "sender_name": data["sender_name"],
+                    "message": data["message"]
+                }),
                 data["sender_email"],
                 [session["verified_email"]["recipient_email"]]
             )
@@ -182,8 +179,8 @@ class Contact(View):
                 }, status=404
             )
         # pylint: enable=no-member
-        verification_context = Context(
-            {
+        try:
+            verification_context = {
                 "name": data["sender_name"],
                 "expire": int(
                     settings.CONTACT_VIRIFICATION_EXPIRES.seconds / 3600
@@ -192,13 +189,9 @@ class Contact(View):
                     reverse("verify_address", args=[token])
                 )
             }
-        )
-        try:
             send_mail(
                 "Thanks for contacting hysoftware.net! but...",
-                self.verification_mail_text.render(
-                    verification_context
-                ),
+                self.verification_mail_text.render(verification_context),
                 "noreply@hysoftware.net",
                 [data["sender_email"]],
                 html_message=self.verification_mail_html.render(
@@ -285,13 +278,14 @@ class AddressVerification(View):
     # pylint: disable=too-few-public-methods
 
     template_file = "verify_mail.html"
+    form = VerificationForm
 
     def get(self, request, token):
         '''
         Return verification view if the mail hash is found.
         Otherwise returns 404.
 
-        Note: shows view even if the hash is not found, when
+        Note: shows view even if the hash is not found when
             DEBUG mode
         '''
 
@@ -304,3 +298,34 @@ class AddressVerification(View):
             token_hash=gen_hash(token)
         )
         return render(request, self.template_file)
+
+    def post(self, request, token):
+        '''
+        Verify Email
+        '''
+        pend = get_object_or_404(
+            PendingVerification,
+            token_hash=gen_hash(token)
+        )
+        payload = self.form(json.loads(request.body))
+
+        if not payload.is_valid():
+            errors = dict(payload.errors)
+            errors.update({"error": 417})
+            return JsonResponse(errors, status=417)
+
+        payload = payload.clean()
+        verified_model = VerifiedEmail(
+            email_hash=pend.email_hash,
+            assignee=pend.assignee
+        )
+        verified_model.save()
+        result = Contact().send_mail(
+            {"verified_email": {"recipient_email": pend.assignee.email}},
+            {
+                "sender_name": pend.name,
+                "message": pend.message
+            }
+        )
+        pend.delete()
+        return result

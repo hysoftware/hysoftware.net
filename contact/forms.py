@@ -27,4 +27,18 @@ class ContactForm(forms.Form):
         )
 
     __unicode__ = __str__
+
+
+class VerificationForm(forms.Form):
+    '''
+    Verification Form
+    '''
+    email = forms.EmailField(required=True)
+
+    def __str__(self):
+        return (
+            "VerificationForm <{}>"
+        ).format(self.email)
+
+    __unicode__ = __str__
 # pylint: enable=too-few-public-methods

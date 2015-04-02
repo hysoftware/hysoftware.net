@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Developers',
+            name='Developer',
             fields=[
                 ('firstname', models.CharField(max_length=20)),
                 ('lastname', models.CharField(max_length=20)),

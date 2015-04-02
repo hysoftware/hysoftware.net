@@ -127,3 +127,6 @@ class Developer(models.Model):
         )
 
     __unicode__ = __str__
+
+
+Developers = Developer

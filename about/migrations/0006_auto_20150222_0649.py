@@ -12,10 +12,6 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.RenameModel(
-            old_name='Developers',
-            new_name='Developer',
-        ),
-        migrations.RenameModel(
             old_name='ProgrammingLanguages',
             new_name='NaturalLanguage',
         ),
