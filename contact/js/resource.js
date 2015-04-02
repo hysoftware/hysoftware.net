@@ -11,5 +11,9 @@
         return res("/contact/check/:hash", {
             "hash": "@recipient_address"
         });
+    }]).factory("Verify", ["$resource", function (res) {
+        return res("/contact/verify/:token", {
+            "token": "@token"
+        });
     }]);
 }(angular));

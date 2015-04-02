@@ -12,6 +12,13 @@
                 <input name="sender_email" type="email" class="form-control text-center" required data-ng-model="form.email" data-ng-pattern="/.+\@.+\..+/" data-ng-disabled="emailForm.$submitted">
             </div>
         </div>
+        <div class="row" data-ng-if="emailForm.$submitted">
+            <div class="col-sm-offset-2 col-sm-8">
+                <div id="status" class="alert" data-ng-class="{'alert-success': form.success}">
+                    {{"{"}}{{"{"}} form.success {{"}"}}{{"}"}}
+                </div>
+            </div>
+        </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-8">
                 <button type="send" class="btn btn-success" data-ng-disabled="emailForm.$invalid||emailForm.$submitted">Send!</button>

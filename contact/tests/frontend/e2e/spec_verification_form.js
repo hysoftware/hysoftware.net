@@ -46,10 +46,18 @@
                 expect(className).not.toContain("has-success");
             });
         });
+        it("Status shouldn't be generated", function () {
+            browser.get(
+                "/contact/verify/50f1395980150811371f5adb2955ed8505a424b4"
+            );
+            var status = element(by.id("status"));
+            expect(status.isPresent()).toBeFalsy();
+        });
         describe("Incorrect Input", function () {
             var inputGroup,
                 submitBtn,
                 input,
+                status,
                 expectError = function () {
                     inputGroup.getAttribute("class").then(function (value) {
                         var className = parseClassName(value);
@@ -77,16 +85,53 @@
                 input.sendKeys("test@example");
                 expectError();
             });
+            it("Status shouldn't be generated", function () {
+                status = element(by.id("status"));
+                expect(status.isPresent()).toBeFalsy();
+            });
         });
         describe("Correct Input", function () {
-            var input, inputGroup, sendBtn;
-            describe("Success return without debug", function () {
+            var input, inputGroup, sendBtn, status, additional;
+            describe("Form check", function () {
                 beforeEach(function () {
+                    browser.get(
+                        "/contact/verify/50f1395980150811371f5adb2955ed8505a424b4"
+                    );
+                    inputGroup = element.all(by.id("email-form-group")).first();
+                    input = element.all(by.model("form.email")).first();
+                    input.sendKeys("test@example.com");
+                    sendBtn = element.all(by.buttonText("Send!")).first();
+                    status = element(by.id("status"));
+                    additional = element(by.id("additional"));
+                });
+                it("Email input should be success state", function () {
+                    inputGroup.getAttribute("class").then(function (value) {
+                        var className = parseClassName(value);
+                        expect(className).not.toContain("has-error");
+                        expect(className).toContain("has-success");
+                    });
+                });
+                it("Button should be enabled", function () {
+                    expect(sendBtn.isEnabled()).toBeTruthy();
+                });
+                it("Status should't be generated", function () {
+                    expect(status.isPresent()).toBeFalsy();
+                });
+            });
+            describe("Success return", function () {
+                var start = function (additionalInfo) {
+                    /*jslint nomen: true*/
+                    var successObj = {
+                        "success": "Your message has been successfully sent!"
+                    };
+                    if (additionalInfo) {
+                        successObj.additional_info = additionalInfo;
+                    }
                     browser.addMockModule(
                         "backendMock",
                         backendMock,
                         200,
-                        {"success": "Your message has been successfully sent!"}
+                        successObj
                     );
                     browser.get(
                         "/contact/verify/50f1395980150811371f5adb2955ed8505a424b4"
@@ -97,16 +142,11 @@
                     sendBtn = element.all(
                         by.buttonText("Send!")
                     ).first();
-                });
-                it("Email input should be success state", function () {
-                    inputGroup.getAttribute("class").then(function (value) {
-                        var className = parseClassName(value);
-                        expect(className).not.toContain("has-error");
-                        expect(className).toContain("has-success");
-                    });
-                });
-                describe("After transaction", function () {
+                    status = element(by.id("status"));
+                };
+                describe("without debug info", function () {
                     beforeEach(function () {
+                        start();
                         sendBtn.click();
                     });
                     it("sendBtn should be disabled", function () {
@@ -116,6 +156,23 @@
                     it("input should be disabled", function () {
                         expect(input.isDisplayed()).toBeTruthy();
                         expect(input.isEnabled()).toBeFalsy();
+                    });
+                    it("Status should be Displayed", function () {
+                        expect(status.isDisplayed()).toBeTruthy();
+                        status.getAttribute("class").then(function (value) {
+                            expect(
+                                parseClassName(value)
+                            ).toContain("alert-success");
+                        });
+                    });
+                    it("Status text and success text should be the same",
+                        function () {
+                            expect(status.getText()).toEqual(
+                                "Your message has been successfully sent!"
+                            );
+                        });
+                    it("additional shouldn't be provided", function () {
+                        expect(additional.isPresent()).toBeFalsy();
                     });
                 });
             });
