@@ -297,7 +297,14 @@ class AddressVerification(View):
             PendingVerification,
             token_hash=gen_hash(token)
         )
-        return render(request, self.template_file)
+        return render(
+            request,
+            self.template_file, {
+                "issues_tracker": (
+                    "https://github.com/hysoftware/hysoftware.net/issues"
+                )
+            }
+        )
 
     def post(self, request, token):
         '''
@@ -307,7 +314,7 @@ class AddressVerification(View):
             PendingVerification,
             token_hash=gen_hash(token)
         )
-        payload = self.form(json.loads(request.body))
+        payload = self.form(json.loads(request.body.decode("utf-8")))
 
         if not payload.is_valid():
             errors = dict(payload.errors)
@@ -324,6 +331,7 @@ class AddressVerification(View):
             {"verified_email": {"recipient_email": pend.assignee.email}},
             {
                 "sender_name": pend.name,
+                "sender_email": payload["email"],
                 "message": pend.message
             }
         )

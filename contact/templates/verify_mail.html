@@ -12,10 +12,45 @@
                 <input name="sender_email" type="email" class="form-control text-center" required data-ng-model="form.email" data-ng-pattern="/.+\@.+\..+/" data-ng-disabled="emailForm.$submitted">
             </div>
         </div>
-        <div class="row" data-ng-if="emailForm.$submitted">
+        <div class="row" data-ng-if="emailForm.$submitted||error">
             <div class="col-sm-offset-2 col-sm-8">
-                <div id="status" class="alert" data-ng-class="{'alert-success': form.success}">
-                    {{"{"}}{{"{"}} form.success {{"}"}}{{"}"}}
+                <div id="status" class="alert" data-ng-class="{'alert-success': form.success, 'alert-warning': error.error &lt; 500, 'alert-danger': error.error &gt; 499}">
+                    <div data-ng-if="form.success">
+                        {{"{"}}{{"{"}} form.success {{"}"}}{{"}"}}
+                    </div>
+                    <div data-ng-if="error.error &lt; 500" class="text-left">
+                        <div><strong>Oops! There is an error</strong></div>
+                        <div class="row" data-ng-repeat="(key, values) in error" data-ng-if="key !== 'error'">
+                            <div class="col-sm-4">
+                                {{"{"}}{{"{"}} key | verificationErrorFilter {{"}"}}{{"}"}}
+                            </div>
+                            <div class="col-sm-8">
+                                <ul>
+                                    <li data-ng-repeat="item in values">{{"{"}}{{"{"}} item {{"}"}}{{"}"}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-ng-if="error.error &gt; 500" class="text-left">
+                        <div>
+                            <string>Awww!! Critical Error</string>
+                        </div>
+                        <div>
+                            If possible, please report this issue <a href="{{issues_tracker}}" target="_blank">here</a> with addtional info below.<br>
+                            But, note that the information includes what you sent and will be published because this app is open-sourced.
+                        </div>
+                    </div>
+                </div>
+                <div id="additional" class="alert alert-info" data-ng-if="(form.success&&form.additional_info)||error.error &gt; 499">
+                    <div>
+                        <strong>Additioal Info</strong>
+                    </div>
+                    <textarea id="additional_info_text" cols="30" rows="10" class="form-control" data-ng-if="form.additional_info">
+{{"{"}}{{"{"}}form.additional_info | json:2 {{"}"}}{{"}"}}
+                    </textarea>
+                    <textarea id="additional_info_text_critical" cols="30" rows="10" class="form-control" data-ng-if="error.error &gt; 499">
+{{"{"}}{{"{"}}{"form": form, "err": error} | json:2 {{"}"}}{{"}"}}
+                    </textarea>
                 </div>
             </div>
         </div>

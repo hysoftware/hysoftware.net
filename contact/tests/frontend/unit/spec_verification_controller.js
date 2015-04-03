@@ -8,6 +8,11 @@
         });
         beforeEach(inject(function ($rootScope, $controller) {
             scope = $rootScope.$new();
+            scope.emailForm = {
+                "$setPristine": function () {
+                    return undefined;
+                }
+            };
             controller = $controller("VerificationController", {
                 "$scope": scope,
                 "$stateParams": {

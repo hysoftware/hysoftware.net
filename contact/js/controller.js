@@ -58,7 +58,16 @@
                 });
             };
         }
-    ]).controller("VerificationController", [
+    ]).filter("verificationErrorFilter", function () {
+        return function (input) {
+            var map = {
+                "frontend": "Frontend (Probably, your email)",
+                "backend": "Backend",
+                "email": "Your email"
+            };
+            return map[input];
+        };
+    }).controller("VerificationController", [
         "$scope",
         "$stateParams",
         "Verify",
@@ -66,26 +75,48 @@
             /*jslint sub: true*/
             scope["form"] = new Verify({"token": params["token"]});
             scope["send"] = function () {
+                scope["error"] = {};
                 scope["form"]["$save"]()["catch"](function (errData) {
+                    var addErrorWithoutData = function () {
+                        if (errData["status"] < 500) {
+                            scope["error"] = {
+                                "error": errData["status"],
+                                "frontend": [
+                                    "Not critical, but please re-type email address used contact form..."
+                                ]
+                            };
+                        } else {
+                            scope["error"] = {
+                                "error": errData["status"] || 500,
+                                "backend": "Backend doesn't seem to be working"
+                            };
+                        }
+                    }, key;
+                    if (errData["status"] < 500) {
+                        scope["form"] = new Verify(
+                            {"token": params["token"]}
+                        );
+                        scope["emailForm"]["$setPristine"]();
+                    }
                     if (errData["data"]) {
-                        var key;
-                        if (errData["data"]["error"]) {
+                        if (errData["data"]["error"] !== undefined) {
                             scope["error"] = errData["data"];
                         } else {
                             scope["error"] = {
                                 "error": errData["status"]
                             };
-                            for (key in errData["data"]) {
-                                if (errData["data"].hasOwnProperty(key)) {
-                                    scope["error"][key] = errData["data"][key];
+                            if (typeof errData["data"] === "object") {
+                                for (key in errData["data"]) {
+                                    if (errData["data"].hasOwnProperty(key)) {
+                                        scope["error"][key] = errData["data"][key];
+                                    }
                                 }
+                            } else {
+                                addErrorWithoutData();
                             }
                         }
                     } else {
-                        scope["error"] = {
-                            "error": errData["status"] || 500,
-                            "backend": "Backend doesn't seem to be working"
-                        };
+                        addErrorWithoutData();
                     }
                 });
             };
