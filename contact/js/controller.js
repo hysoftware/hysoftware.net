@@ -18,14 +18,18 @@
         };
     }]).controller("ContactController", [
         "$scope",
+        "$stateParams",
         "Contact",
         "ListChecker",
-        function (scope, Contact, ListChecker) {
+        function (scope, stateParams, Contact, ListChecker) {
             /*jslint sub: true*/
 
             // This trick is needed to avoid demangle
             // compression from closure compiler.
             scope["form"] = new Contact();
+            if (stateParams["dev"]) {
+                scope["form"]["recipient_address"] = stateParams["dev"];
+            }
             scope["clearMailIsInList"] = function () {
                 scope["heIsInList"] = undefined;
             };

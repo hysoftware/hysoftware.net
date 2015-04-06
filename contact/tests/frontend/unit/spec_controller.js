@@ -4,24 +4,29 @@
             it, expect, inject, module, spyOn) {
     "use strict";
     describe("Contact Controller unit tests", function () {
-        var controller, scope;
+        var controller, scope,
+            generate = function (stateParams) {
+                inject(function ($rootScope, $controller) {
+                    scope = $rootScope.$new();
+                    controller = $controller(
+                        "ContactController",
+                        {
+                            "$scope": scope,
+                            "$stateParams": stateParams || {}
+                        }
+                    );
+                });
+            },
+            destroy = function () {
+                scope.$destroy();
+                scope = null;
+                controller = null;
+            };
         beforeEach(function () {
             module("hysoft.contact.controller");
         });
-        beforeEach(inject(function ($rootScope, $controller) {
-            scope = $rootScope.$new();
-            controller = $controller(
-                "ContactController",
-                {
-                    "$scope": scope
-                }
-            );
-        }));
-        afterEach(function () {
-            scope.$destroy();
-            scope = null;
-            controller = null;
-        });
+        beforeEach(generate());
+        afterEach(destroy());
         afterEach(inject(
             function ($httpBackend) {
                 $httpBackend.verifyNoOutstandingExpectation();
@@ -30,6 +35,19 @@
         ));
         it("Controller should be defined", function () {
             expect(controller).toBeDefined();
+        });
+        describe("Recipient address is initially specified", function () {
+            var stateParams = {"dev": "5e52fee47e6b070565f74372468cdc699de89107"};
+            beforeEach(function () {
+                destroy();
+                generate(stateParams);
+            });
+            it("form.recipient_address and stateParams.dev should be the same",
+                function () {
+                    expect(
+                        scope.form.recipient_address
+                    ).toEqual(stateParams.dev);
+                });
         });
         describe("checkMailIsInList check", function () {
             it("GET request should be thrown and success", inject(
