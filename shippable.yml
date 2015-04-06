@@ -23,7 +23,7 @@ install:
     - "sudo npm install"
     - "npm run postinstall"
     - "bundle install"
-    - "grunt third_party"
+    - "grunt third_party-dev"
     - "deactivate"
 
 script:
@@ -33,3 +33,7 @@ script:
     - "npm test"
     - "python manage.py test"
     - "deactivate"
+
+after_success:
+    - "rm -rf home/static/assets.css.map home/static/assets.js.map third_party.js.map"
+    - "grunt third_party"
