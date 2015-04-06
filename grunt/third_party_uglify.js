@@ -15,6 +15,9 @@
             "angular-sanitize/angular-sanitize.js",
             "angular-cookies/angular-cookies.js",
             "angular-ui-router/release/angular-ui-router.js"
+        ],
+        production_blacklist = [
+            "angular-mocks/angular-mocks.js"
         ];
     e.third_party_files = build_order.map(function (file) {
         return path.join(third_party_path, file);
@@ -44,11 +47,11 @@
                 "sourceMap": false
             },
             "files": {
-                "home/static/third_party.js": build_order.map(
-                    function (file) {
-                        return path.join(third_party_path, file);
-                    }
-                )
+                "home/static/third_party.js": build_order.filter(function (file) {
+                    return production_blacklist.indexOf(file) < 0;
+                }).map(function (file) {
+                    return path.join(third_party_path, file);
+                })
             }
         }
     };
