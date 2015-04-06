@@ -59,9 +59,6 @@
         @import "./assembly";
         content: $assembly_icon;
     }
-    div {
-        transition: background-color 0.5s ease;
-    }
     .background {
         & {
             transform: translate(0, -10%);
@@ -70,6 +67,8 @@
             border: {
                 radius: 10%;
             }
+            display: inline-block;
+            transition: background-color 0.5s ease;
         }
         @mixin socialBackGround($bgColor) {
             background: {

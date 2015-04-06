@@ -164,45 +164,27 @@
                     <div class="col-sm-9 text-left">
                         {% for website in person.websites %}
                             <div class="social">
-                                {% if website.type == "G+" %}
-                                    <div class="background gplus text-center">
-                                {% elif website.type == "FB" %}
-                                    <div class="background fbook text-right">
-                                {% elif website.type == "CW" %}
-                                    <div class="background cwall">
-                                {% elif website.type == "AS" %}
-                                    <div class="background assembly">
-                                {% elif website.type == "BB" %}
-                                    <div class="background bitbucket">
-                                {% elif website.type == "OT" %}
-                                    <div class="background other">
-                                {% else %}
-                                    <div>
-                                {% endif %}
-                                        <a href="{{ website.url }}" target="_blank">
-                                            {% if website.type == "G+" %}
-                                                <span class="ion-social-googleplus-outline"></span>
-                                            {% elif website.type == "LI" %}
-                                                <span class="ion-social-linkedin"></span>
-                                            {% elif website.type == "FB" %}
-                                                <span class="ion-social-facebook"></span>
-                                            {% elif website.type == "TW" %}
-                                                <span class="ion-social-twitter"></span>
-                                            {% elif website.type == "CW" %}
-                                                <span class="coderwall-icon">Coderwall</span>
-                                            {% elif website.type == "AS" %}
-                                                <img src="data:text/plain,dummy"
-                                                     alt="assembly"
-                                                     class="assembly-icon">
-                                            {% elif website.type == "GH" %}
-                                                <span class="ion-social-github"></span>
-                                            {% elif website.type == "BB" %}
-                                                <span class="bitbucket-icon">Bitbucket</span>
-                                            {% elif website.type == "OT" %}
-                                                <span class="other-icon">{{ website.name }}</span>
-                                            {% endif %}
-                                        </a>
-                                    </div>
+                                <a href="{{ website.url }}" target="_blank">
+                                    {% if website.type == "G+" %} <span class="background gplus text-center">
+                                    {% elif website.type == "FB" %} <span class="background fbook text-right">
+                                    {% elif website.type == "CW" %} <span class="background cwall">
+                                    {% elif website.type == "AS" %} <span class="background assembly">
+                                    {% elif website.type == "BB" %} <span class="background bitbucket">
+                                    {% elif website.type == "OT" %} <span class="background other">
+                                    {% else %} <span>
+                                    {% endif %}
+                                    {% if website.type == "G+" %} <span class="ion-social-googleplus-outline"></span>
+                                    {% elif website.type == "LI" %} <span class="ion-social-linkedin"></span>
+                                    {% elif website.type == "FB" %} <span class="ion-social-facebook"></span>
+                                    {% elif website.type == "TW" %} <span class="ion-social-twitter"></span>
+                                    {% elif website.type == "CW" %} <span class="coderwall-icon">Coderwall</span>
+                                    {% elif website.type == "AS" %} <img src="data:text/plain,dummy" alt="assembly" class="assembly-icon">
+                                    {% elif website.type == "GH" %} <span class="ion-social-github"></span>
+                                    {% elif website.type == "BB" %} <span class="bitbucket-icon">Bitbucket</span>
+                                    {% elif website.type == "OT" %} <span class="other-icon">{{ website.name }}</span>
+                                    {% endif %}
+                                    </span>
+                                </a>
                             </div>
                         {% endfor %}
                     </div>
