@@ -3,9 +3,7 @@ home page view
 '''
 
 from django.shortcuts import render
-from about.models import (
-    Developer
-)
+from about.models import Developer
 
 # Create your views here.
 

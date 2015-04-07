@@ -1,0 +1,10 @@
+@media (max-width: 767px) {
+    .text-right-sm {
+        text-align: left;
+    }
+}
+@media (min-width: 768px) {
+    .text-right-sm {
+        text-align: right;
+    }
+}

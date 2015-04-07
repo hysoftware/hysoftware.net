@@ -244,11 +244,12 @@ def check_email_in_list(request, dev_hash):
     '''
     developer = Developer.by_hash(dev_hash)
     request.session["verified_email"] = None
-    request.session["recipient_email"] = developer.email
 
     if not developer:
         # We don't know such developer!
         return HttpResponse(status=404)
+
+    request.session["recipient_email"] = developer.email
 
     # Check developer's list
     his_list = None

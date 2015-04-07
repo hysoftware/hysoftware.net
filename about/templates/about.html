@@ -132,10 +132,10 @@
                     <h3>{{ person.firstname }} {{ person.lastname }} - {{ person.title }}</h3>
                 </header>
                 <div class="row">
-                    <div class="col-sm-3 text-right">
+                    <div class="col-sm-3 text-right-sm">
                         Programming Languages
                     </div>
-                    <div class="col-sm-9 text-left">
+                    <div class="col-sm-9 col-xs-12 text-left">
                         <ul>
                         {% for language in person.programming_languages %}
                             <li>{{ language.name }}</li>
@@ -145,10 +145,10 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-sm-3 text-right">
+                    <div class="col-sm-3 text-right-sm">
                         Natural Languages
                     </div>
-                    <div class="col-sm-9 text-left">
+                    <div class="col-sm-9 col-xs-12 text-left">
                         <ul>
                         {% for language in person.natural_languages %}
                             <li>{{ language.name }}</li>
@@ -158,10 +158,10 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-sm-3 text-right">
+                    <div class="col-sm-3 text-right-sm">
                         Websites
                     </div>
-                    <div class="col-sm-9 text-left">
+                    <div class="col-sm-9 col-xs-12 text-left">
                         {% for website in person.websites %}
                             <div class="social">
                                 <a href="{{ website.url }}" target="_blank">
@@ -191,25 +191,23 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-sm-3 text-right">
+                    <div class="col-sm-3 text-right-sm">
                         Acceptable Vendor Management System
                     </div>
-                    <div class="jobs">
+                    <div class="jobs col-sm-9 col-xs-12">
                         {% for vms in person.acceptable_vms %}
                             <div>
                             {% if vms.type != "DR" %}
                                 <a href="{{ vms.url }}" target="_blank">
-                                    <span class="{{ vms.type }}">
-                                        {{ vms.name }} at {{ vms.type_name }}
-                                    </span>
-                                </a>
                             {% elif vms.type == "DR" %}
                                 <a href="javascript:void(0)" data-ui-sref="contact_specific({'dev': '{{ person.hash }}'})">
+                            {% endif %}
                                     <span class="{{ vms.type }}">
-                                        {{ vms.type_name }} is also avaliable!
+                                        {% if vms.type_name %} {{ vms.type_name }}
+                                        {% else %} {{ vms.name }}
+                                        {% endif %}
                                     </span>
                                 </a>
-                            {% endif %}
                             </div>
                         {% endfor %}
                     </div>

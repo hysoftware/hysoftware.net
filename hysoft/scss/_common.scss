@@ -8,6 +8,18 @@ body {
         color: $backgroundColor;
     }
 }
+div.main.container {
+    padding: {
+        top: 50px;
+    }
+}
+h1, h2, h3 {
+    font: {
+        family: 'Open Sans', sans-serif;
+        weight: 300;
+    }
+    color: $titleColor;
+}
 article {
     section {
         margin: {
@@ -15,14 +27,12 @@ article {
             right: 3%;
         }
     }
-    h1, h2, h3 {
-        font: {
-            family: 'Open Sans', sans-serif;
-            weight: 300;
-        }
-        color: #212122;
-    }
     p {
-        color: #616162;
+        color: $articleParagraphColor;
     }
+}
+.vcenter {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 }
