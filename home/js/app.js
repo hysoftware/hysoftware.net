@@ -5,7 +5,6 @@
     a.module("hysoft", [
         "ui.router",
         "ngRoute",
-        "ngCookies",
         "hysoft.home.routes",
         "hysoft.about.routes",
         "hysoft.contact.route"
@@ -23,16 +22,11 @@
     ]).run([
         "$rootScope",
         "$state",
-        "$cookies",
         "$http",
-        function (rootScope, state, cookies, httpProvider) {
+        function (rootScope, state, httpProvider) {
             /*jslint sub:true*/
-            rootScope.state = state;
-            if (a.version.major >= 1 && a.version.minor > 3) {
-                httpProvider.defaults.headers.common["X-CSRFToken"] =  cookies.get("csrftoken");
-            } else {
-                httpProvider.defaults.headers.common["X-CSRFToken"] =  cookies["csrftoken"];
-            }
+            rootScope["state"] = state;
+            httpProvider["defaults"]["xsrfHeaderName"] = "X-CSRFToken";
         }
     ]);
 }(angular));

@@ -148,6 +148,9 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 # Email settings
 EMAIL_BACKEND = None
 
+# CSRF settings
+CSRF_COOKIE_NAME = "XSRF-TOKEN"
+
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
 else:
