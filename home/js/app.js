@@ -15,7 +15,7 @@
         "$httpProvider",
         function (urlRouterProvider, locationProvider, compileProvider, httpProvider) {
             compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|data):/);
-            urlRouterProvider.otherwise("/");
+            urlRouterProvider.otherwise("/oops");
             locationProvider.html5Mode(true);
             httpProvider.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
         }

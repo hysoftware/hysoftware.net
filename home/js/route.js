@@ -14,6 +14,13 @@
                     "templateUrl": "/home",
                     "controller": "homeController"
                 }
+            ).state(
+                "oops",
+                {
+                    "url": "/oops",
+                    "templateUrl": "/oops",
+                    "controller": "homeController"
+                }
             );
         }
     ]);
