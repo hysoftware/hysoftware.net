@@ -11,6 +11,7 @@
                 "home",
                 {
                     "url": "/",
+                    "templateUrl": "/home",
                     "controller": "homeController"
                 }
             );

@@ -1,0 +1,23 @@
+<article class="index row">
+    <header class="text-center col-sm-12 col-md-6">
+        <div id="header-text" class="vcenter">
+            <h1>hysoft</h1>
+            <h2>Agile Development {% if pros|length > 1 %}Professionals{% else %}Professional{% endif %}</h2>
+        </div>
+    </header>
+    <div id="menu-index" class="col-sm-12 col-md-6">
+        <ul class="vcenter">
+            {% for link in links %}
+            <li>
+                {% if link.sref %}
+                <a href="javascript:void(0)" data-ui-sref="{{ link.sref }}">
+                    {% elif link.href %}
+                    <a href="{{ link.href }}">
+                        {% endif %}
+                        {{ link.name }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+    </div>
+</article>

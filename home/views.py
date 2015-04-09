@@ -8,9 +8,31 @@ from about.models import Developer
 # Create your views here.
 
 
+LINKS = [
+    {
+        "name": "About",
+        "sref": "about"
+    }, {
+        "name": "Contact",
+        "sref": "contact"
+    }
+]
+
+
 def index(request):
     '''
     Returns index page
+    '''
+    return render(
+        request,
+        "index.html",
+        {"links": LINKS}
+    )
+
+
+def home(request):
+    '''
+    Returns home page
     '''
     # pylint: disable=no-member
     developers = [
@@ -19,22 +41,12 @@ def index(request):
             natural_langs=True
         ) for developer in Developer.objects.all()
     ]
-
     # pylint: enable=no-member
-    links = [
-        {
-            "name": "About",
-            "sref": "about"
-        }, {
-            "name": "Contact",
-            "sref": "contact"
-        }
-    ]
     return render(
         request,
-        "index.html",
+        "home.html",
         {
             "pros": developers,
-            "links": links
+            "links": LINKS
         }
     )

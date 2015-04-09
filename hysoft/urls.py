@@ -11,7 +11,7 @@ from django.contrib import admin
 # pylint: disable=invalid-name
 urlpatterns = patterns(
     '',
-    url(r"^$", include("home.urls")),
+    url(r"^", include("home.urls")),
     url(r"^about", include("about.urls")),
     url(r"^contact", include("contact.urls")),
     url(r'^manager/', include(admin.site.urls))

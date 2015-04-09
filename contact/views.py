@@ -291,6 +291,7 @@ class AddressVerification(View):
         '''
 
         PendingVerification.remove_expired()
+
         if settings.DEBUG:
             return render(request, self.template_file)
 
