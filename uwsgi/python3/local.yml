@@ -1,0 +1,15 @@
+uwsgi:
+    http-socket: 127.0.0.1:50000
+    http-socket: [::1]:50000
+    plugins: python
+    chdir: ../../
+    virtualenv: ../
+    chmod: 666
+    master: 4
+    processes: 8
+    callable: application
+    mount: /=hysoft/wsgi.py
+    check-static: /tmp/hysoft
+    static-map: /static=/tmp/hysoft
+    vacuum: ""
+    env: mode=production

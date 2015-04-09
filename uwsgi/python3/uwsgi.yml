@@ -1,0 +1,14 @@
+uwsgi:
+    socket: /tmp/hysoft.sock
+    plugins: python
+    chdir: ../../
+    virtualenv: ../
+    chmod: 666
+    master: 4
+    processes: 8
+    callable: application
+    mount: /=hysoft/wsgi.py
+    check-static: /tmp/hysoft
+    static-map: /static=/tmp/hysoft
+    vacuum: ""
+    env: mode=production

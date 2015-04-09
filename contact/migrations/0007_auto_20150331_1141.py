@@ -14,13 +14,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='pendingverification',
             name='token_hash',
-            field=models.CharField(serialize=False, primary_key=True, default='', max_length=40),
+            field=models.CharField(serialize=False, unique=True, default='', max_length=40),
             preserve_default=False,
-        ),
-        migrations.AlterField(
-            model_name='pendingverification',
-            name='email_hash',
-            field=models.CharField(unique=True, max_length=40),
-            preserve_default=True,
-        ),
+        )
     ]
