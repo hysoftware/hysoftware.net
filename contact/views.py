@@ -311,10 +311,6 @@ class AddressVerification(View):
         '''
         Verify Email
         '''
-        pend = get_object_or_404(
-            PendingVerification,
-            token_hash=gen_hash(token)
-        )
         payload = self.form(json.loads(request.body.decode("utf-8")))
 
         if not payload.is_valid():
@@ -323,6 +319,11 @@ class AddressVerification(View):
             return JsonResponse(errors, status=417)
 
         payload = payload.clean()
+        pend = get_object_or_404(
+            PendingVerification,
+            token_hash=gen_hash(token),
+            email_hash=gen_hash(payload["email"])
+        )
         verified_model = VerifiedEmail(
             email_hash=pend.email_hash,
             assignee=pend.assignee
