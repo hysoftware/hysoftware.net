@@ -25,6 +25,9 @@ def index(request):
             "name": "About",
             "sref": "about"
         }, {
+            "name": "Github",
+            "href": "https://github.com/hysoftware/hysoftware.net"
+        }, {
             "name": "Contact",
             "sref": "contact"
         }

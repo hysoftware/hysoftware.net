@@ -3,7 +3,7 @@
 <head>
     {% load staticfiles %}
     <meta charset="UTF-8">
-    <title>hysoft</title>
+    <title>hysoftware</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{% static "third_party/bootstrap/dist/css/bootstrap.min.css" %}">
     <link rel="stylesheet" href="{% static "third_party/ionicons/css/ionicons.min.css" %}">
@@ -19,7 +19,7 @@
         <article class="index row">
             <header class="text-center col-sm-12 col-md-6">
                 <div id="header-text" class="vcenter">
-                    <h1>hysoft</h1>
+                    <h1>hysoftware</h1>
                     <h2>Agile Development {% if pros|length > 1 %}Professionals{% else %}Professional{% endif %}</h2>
                 </div>
             </header>
@@ -30,7 +30,7 @@
                         {% if link.sref %}
                         <a href="javascript:void(0)" data-ui-sref="{{ link.sref }}">
                             {% elif link.href %}
-                            <a href="{{ link.href }}">
+                            <a href="{{ link.href }}" target="_blank">
                                 {% endif %}
                                 {{ link.name }}
                             </a>
@@ -63,7 +63,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" data-ui-sref="home" href="javascript:void(0)">HYSOFT</a>
+                <a class="navbar-brand" data-ui-sref="home" href="javascript:void(0)">hysoftware</a>
             </div>
             <div class="collapse navbar-collapse" id="top-menu">
                 <ul class="nav navbar-nav">
@@ -72,7 +72,7 @@
                         {% if link.sref %}
                             <a href="javascript:void(0)" data-ui-sref="{{ link.sref }}">
                         {% else %}
-                            <a href="{{ link.href }}">
+                            <a href="{{ link.href }}" target="_blank">
                         {% endif %}
                                 {{ link.name }}
                             </a>
