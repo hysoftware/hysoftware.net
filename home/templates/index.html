@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="{% static "third_party/ionicons/css/ionicons.min.css" %}">
     <link rel="stylesheet" href="{% static "third_party/angular/angular-csp.css" %}">
 
-    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Indie+Flower'>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:300,400'>
 
     <link rel="stylesheet" href="{% static "assets.css" %}">
@@ -83,6 +82,15 @@
         </div>
     </nav>
     <div class="ui-view" data-ng-class="{'container-fluid': state.is('home'), 'main container': !state.is('home')}">
+        <article class="error text-center">
+            <header>
+                <h1>Oops! Page Not Found</h1>
+            </header>
+            <p>
+                You will see this error when the page you need is not found.<br>
+                But... It doesn't mean the route is undefined.
+            </p>
+        </article>
     </div>
 </body>
 </html>
