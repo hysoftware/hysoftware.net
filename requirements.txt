@@ -8,3 +8,4 @@ django
 uwsgi
 radon
 django-ajax-redirection
+whitenoise

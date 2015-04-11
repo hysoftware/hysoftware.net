@@ -40,8 +40,9 @@ xcuserdata
 hysoft.db
 vendor
 .bundle
-/home/static/third_party
-/home/static/assets.css
-/home/static/assets.js
-/home/static/third_party.js
+home/static/third_party
+home/static/assets.css
+home/static/assets.js
+home/static/third_party.js
+statictiles/
 
