@@ -9,5 +9,5 @@ uwsgi:
     mount: /=hysoft/wsgi.py
     check-static: staticfiles
     static-map: /static=staticfiles
-    die-on-term: ""
+    die-on-term: true
     vacuum: ""
