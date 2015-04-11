@@ -89,7 +89,7 @@ DATABASES = {
                    if DEBUG else
                    'django.db.backends.postgresql_psycopg2'),
         'NAME': (os.path.join(BASE_DIR, 'hysoft.db')
-                 if DEBUG else "hysoft"),
+                 if DEBUG else os.environ.get("db_name", "hysoft")),
         'USER': os.environ.get("db_user"),
         'PASSWORD': os.environ.get("db_pw"),
         'HOST': os.environ.get("db_host", "127.0.0.1")
