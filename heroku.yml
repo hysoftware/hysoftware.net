@@ -2,10 +2,12 @@ uwsgi:
     http-socket: [::0]:80
     plugins: python
     chmod: 666
-    master: 1
+    master: true
+    process: 1
     env: DJANGO_SETTINGS_MODULE=hysoft.settings
     callable: application
     mount: /=hysoft/wsgi.py
     check-static: staticfiles
     static-map: /static=staticfiles
+    die-on-term: ""
     vacuum: ""
