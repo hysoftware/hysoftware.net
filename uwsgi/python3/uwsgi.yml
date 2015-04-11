@@ -11,4 +11,3 @@ uwsgi:
     check-static: /tmp/hysoft
     static-map: /static=/tmp/hysoft
     vacuum: ""
-    env: DEBUG=False
