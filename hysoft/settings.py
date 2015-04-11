@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("mode") != "production"
+DEBUG = os.environ.get("DEBUG", False)
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = None
@@ -92,7 +92,7 @@ DATABASES = {
                  if DEBUG else "hysoft"),
         'USER': os.environ.get("db_user"),
         'PASSWORD': os.environ.get("db_pw"),
-        'HOST': '127.0.0.1'
+        'HOST': os.environ.get("db_host", "127.0.0.1")
     }
 }
 
