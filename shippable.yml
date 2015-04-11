@@ -13,6 +13,9 @@ rvm:
 jdk:
     - "openjdk7"
 
+env:
+    - "DEBUG=True"
+
 before_install:
     - "sudo npm install -g grunt-cli"
     - "sudo rm -rf .npm"
