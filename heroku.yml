@@ -1,5 +1,5 @@
 uwsgi:
-    http-socket: [::0]:80
+    http-socket: :$(PORT)
     plugins: python
     chmod: 666
     master: true
@@ -10,4 +10,4 @@ uwsgi:
     check-static: staticfiles
     static-map: /static=staticfiles
     die-on-term: true
-    vacuum: ""
+    vacuum: true
