@@ -14,8 +14,6 @@ jdk:
 
 env:
     - "DEBUG=True"
-    - "NOW=$(date)"
-    - "NOW_EPOCH=$(date +%s -d \"${NOW}\")"
 
 before_install:
     - "sudo npm install -g grunt-cli"
@@ -40,6 +38,8 @@ script:
     - "deactivate"
 
 after_success:
+    - "export NOW=$(date)"
+    - "export NOW_EPOCH=$(date +%s -d \"${NOW}\")"
     - "rm -rf home/static/assets.css.map home/static/assets.js.map third_party.js.map"
     - "grunt third_party"
     - "sed -i -e \"/home\\\/static\\\/third_party/D\" -e \"/home\\\/static\\\/assets/D\" .gitignore"
