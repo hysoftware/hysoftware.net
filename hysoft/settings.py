@@ -146,6 +146,9 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 SESSION_COOKIE_SECURE = False
 SESSION_ENGINE = "django.contrib.sessions.backends.cached_db"
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_COOKIE_SECUR = os.envirion.get("SSL_MODE", False)
+CSRF_COOKIE_SECURE = SESSION_COOKIE_SECUR
+
 
 # Email settings
 EMAIL_BACKEND = None
