@@ -40,6 +40,7 @@ script:
 after_success:
     - "export NOW=$(date)"
     - "export NOW_EPOCH=$(date +%s -d \"${NOW}\")"
+    - "git push git@github.com:hysoftware/hysoftware.net-deploy.git master"
     - "rm -rf home/static/assets.css.map home/static/assets.js.map third_party.js.map"
     - "grunt third_party"
     - "sed -i -e \"/home\\\/static\\\/third_party/D\" -e \"/home\\\/static\\\/assets/D\" .gitignore"
