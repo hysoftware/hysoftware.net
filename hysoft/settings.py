@@ -61,6 +61,7 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    'django.middleware.gzip.GZipMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -68,8 +69,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'dj_ajax_redirect.middleware.AjaxRedirectionMiddleware',
-    'django.middleware.gzip.GZipMiddleware'
+    'dj_ajax_redirect.middleware.AjaxRedirectionMiddleware'
 )
 
 DISABLE_REDIRECT = [
