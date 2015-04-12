@@ -22,11 +22,14 @@ application = DjangoWhiteNoise(get_wsgi_application())
 
 # 1800 secs = 30 minutes
 @timer(1800)
-def ping():
+def ping(pingnum):
     '''
     According to heroku document (See below), single dyno sleeps when
     there is no action in 1 hour. This ping function prevents this sleep:
     https://devcenter.heroku.com/articles/dynos#dyno-sleeping
     '''
+    # pylint: disable=unused-argument
     destination = os.environ.get("PING_DEST", "http://localhost:50000/")
     requests.get(destination)
+
+# pylint: enable=unused-argument
