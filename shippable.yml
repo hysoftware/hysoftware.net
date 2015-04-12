@@ -46,4 +46,4 @@ after_success:
     - "git add ."
     - "git commit -m \"Shippable deploy resullt at ${NOW}\""
     - "git branch deploy-${NOW_EPOCH}"
-    - "git push git@github.com:hysoftware/hysoftware.net.git deploy-${NOW_EPOCH}"
+    - "git push -f git@github.com:hysoftware/hysoftware.net-deploy.git deploy-${NOW_EPOCH}"
