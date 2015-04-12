@@ -7,8 +7,5 @@ uwsgi:
     callable: application
     mount: /=hysoft/wsgi.py
     manage-script-name: true
-    check-static: staticfiles
-    static-gzip-all: true
-    static-map: /static=staticfiles
     die-on-term: true
     vacuum: true

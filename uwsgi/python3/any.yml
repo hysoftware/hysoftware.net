@@ -9,7 +9,4 @@ uwsgi:
     env: DJANGO_SETTINGS_MODULE=hysoft.settings
     callable: application
     mount: /=hysoft/wsgi.py
-    static-gzip-all: true
-    check-static: /tmp/hysoft
-    static-map: /static=/tmp/hysoft
     vacuum: ""
