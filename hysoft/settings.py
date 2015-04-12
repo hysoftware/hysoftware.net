@@ -148,12 +148,16 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 # Email settings
 EMAIL_BACKEND = None
 
-# CSRF settings
-CSRF_COOKIE_NAME = "XSRF-TOKEN"
-
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
 else:
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
+EMAIL_HOST = os.environ.get("EMAIL_HOST", "localhost")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PW", "")
+EMAIL_HOST_USER = os.environ.get("EMAIL_USER", "")
+EMAIL_PORT = int(os.environ.get("EMAIL_PORT", "25"))
+
+# CSRF settings
+CSRF_COOKIE_NAME = "XSRF-TOKEN"
 CONTACT_VIRIFICATION_EXPIRES = timedelta(hours=2)
