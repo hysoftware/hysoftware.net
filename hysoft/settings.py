@@ -68,7 +68,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'dj_ajax_redirect.middleware.AjaxRedirectionMiddleware'
+    'dj_ajax_redirect.middleware.AjaxRedirectionMiddleware',
+    'django.middleware.gzip.GZipMiddleware'
 )
 
 DISABLE_REDIRECT = [
