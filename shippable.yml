@@ -42,7 +42,7 @@ script:
 after_success:
     - "rm -rf home/static/assets.css.map home/static/assets.js.map third_party.js.map"
     - "grunt third_party"
-    - "sed -i -e \"/home\/static\/third_party/D\" -e \"/home\/static\/assets/D\" .gitignore"
+    - "sed -i -e \"/home\\\/static\\\/third_party/D\" -e \"/home\\\/static\\\/assets/D\" .gitignore"
     - "git add ."
     - "git commit -m \"Shippable deploy resullt at ${NOW}\""
     - "git branch deploy-${NOW_EPOCH}"
