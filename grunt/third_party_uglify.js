@@ -13,7 +13,6 @@
             "angular-resource/angular-resource.js",
             "angular-route/angular-route.js",
             "angular-sanitize/angular-sanitize.js",
-            "angular-cookies/angular-cookies.js",
             "angular-ui-router/release/angular-ui-router.js"
         ],
         production_blacklist = [

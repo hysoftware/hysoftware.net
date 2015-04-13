@@ -3,7 +3,6 @@
     "use strict";
     ng.module("hysoft.contact.controller", [
         "ui.router",
-        "ngCookies",
         "hysoft.contact.resource"
     ]).filter("errorConversion", [function () {
         return function (input) {
