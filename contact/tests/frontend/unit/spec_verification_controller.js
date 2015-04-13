@@ -35,8 +35,9 @@
             if (scope.form.$save) {
                 scope.form.$save = function () {
                     return {
-                        "catch": function (fn) {
-                            return fn({
+                        "then": function (fn1, fn2) {
+                            /*jslint unparam: true*/
+                            return fn1({
                                 "error": 404,
                                 "data": "not found"
                             });
