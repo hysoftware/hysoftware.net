@@ -61,6 +61,10 @@
                     }
                 });
             };
+            scope["clear"] = function () {
+                scope["form"] = new Contact();
+                scope["contactForm"]["$setPristine"]();
+            };
         }
     ]).filter("verificationErrorFilter", function () {
         return function (input) {
