@@ -84,7 +84,9 @@
             scope["form"] = new Verify({"token": params["token"]});
             scope["send"] = function () {
                 scope["error"] = {};
-                scope["form"]["$save"]()["catch"](function (errData) {
+                scope["form"]["$save"]()["then"](function () {
+                    scope["emailForm"]["$setPristine"]();
+                }, function (errData) {
                     var addErrorWithoutData = function () {
                         if (errData["status"] < 500) {
                             scope["error"] = {
