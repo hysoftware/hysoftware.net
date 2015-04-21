@@ -11,6 +11,8 @@ This is a web-app of hysoftware.net
 ### Requirements
 * Python3
 * virtualenv
+* nodejs
+* grunt (install it thru ```npm install -g grunt-cli``` after nodejs is installed)
 * bundler (hint: ruby gem...)
 
 ### How to (Assume that you already opened prompt)
