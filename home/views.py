@@ -38,7 +38,9 @@ def index(request):
         {
             "links": links,
             "pros": developers,
-            "home_snapshot": request.META['REMOTE_HOST'].endswith(
+            "home_snapshot": request.META.get(
+                'REMOTE_HOST', request.META.get("REMOTE_ADDR", "UNKNOWN")
+            ).endswith(
                 "googlebot.com"
             )
         }
