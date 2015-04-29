@@ -20,10 +20,36 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG", False)
+DEBUG = False
+if os.environ.get("DEBUG", "False").lower() == "true":
+    DEBUG = True
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = None
+
+TEMPLATE_DEBUG = DEBUG
+
+ALLOWED_HOSTS = [
+    "hysoftware.net",
+    "www.hysoftware.net",
+    "localhost"
+]
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['console'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+    },
+}
 
 if DEBUG:
     SECRET_KEY = ("").join(
@@ -36,12 +62,9 @@ if DEBUG:
             )
         ]
     )
+    ALLOWED_HOSTS = ["*"]
 else:
     SECRET_KEY = os.environ["SECRET"]
-
-TEMPLATE_DEBUG = DEBUG
-
-ALLOWED_HOSTS = ["*"]
 
 
 # Application definition

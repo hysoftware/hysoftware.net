@@ -32,7 +32,6 @@ def index(request):
             "sref": "contact"
         }
     ]
-
     return render(
         request,
         "index.html",
