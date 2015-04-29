@@ -32,11 +32,15 @@ def index(request):
             "sref": "contact"
         }
     ]
+
     return render(
         request,
         "index.html",
         {
             "links": links,
             "pros": developers,
+            "home_snapshot": request.META['REMOTE_HOST'].endswith(
+                "googlebot.com"
+            )
         }
     )

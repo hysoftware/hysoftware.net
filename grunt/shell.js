@@ -11,7 +11,7 @@
             "pylint -r n --disable=locally-disabled,locally-enabled --ignore=migrations " + files
         ],
         backend_test_commands = [
-            "python manage.py test"
+            "DEBUG=True python manage.py test"
         ];
     e.shell = {
         "backend-syntax-check-dev": {
