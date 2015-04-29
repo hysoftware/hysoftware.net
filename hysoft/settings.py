@@ -30,6 +30,7 @@ SECRET_KEY = None
 TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = [
+    "hysoftware.herokuapp.com",
     "hysoftware.net",
     "www.hysoftware.net",
     "localhost"
