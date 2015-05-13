@@ -12,7 +12,7 @@ class JobTable(models.Model):
     # pylint: disable=too-few-public-methods
 
     TYPES = (
-        ("OD", "oDesk"),
+        ("UP", "upwork"),
         ("EL", "Elance"),
         ("DR", "Direct Contract")
     )
