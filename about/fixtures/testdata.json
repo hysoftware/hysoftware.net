@@ -91,9 +91,9 @@
   "model": "about.jobtable",
   "fields": {
     "user": "admin@hysoftware.net",
-    "url": "https://www.odesk.com/o/profiles/users/_~01f335a1c147aa9d33/",
+    "url": "https://www.upwork.com/o/profiles/users/_~01f335a1c147aa9d33/",
     "name": "Hiroaki Yamamoto",
-    "website_type": "OD"
+    "website_type": "UP"
   },
   "pk": 1
 },
