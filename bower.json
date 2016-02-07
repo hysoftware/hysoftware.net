@@ -1,0 +1,23 @@
+{
+  "name": "hysoft",
+  "description": "Hysoftware webapp package",
+  "main": "app.coffee",
+  "authors": [
+    "Hiroaki Yamamoto"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "hysoft"
+  ],
+  "homepage": "https://hysoftware.net",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "home/static/third_party",
+    "src/third_party",
+    "test",
+    "tests"
+  ]
+}

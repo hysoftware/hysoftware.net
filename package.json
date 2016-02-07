@@ -1,0 +1,48 @@
+{
+  "name": "hysoft",
+  "version": "1.0.0",
+  "description": "Hysoftware webapp package",
+  "main": "app.coffee",
+  "scripts": {
+    "install": "npm run webdriverUpdate && npm run bowerInstall",
+    "postversion": "npm run webdriverUpdate && npm run bowerUpdate",
+    "gulp": "$(npm bin)/gulp",
+    "webdriverUpdate": "$(npm bin)/webdriver-manager update",
+    "bowerInstall": "$(npm bin)/bower install",
+    "bowerUpdate": "$(npm bin)/bower update"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hysoftware/hysoftware.net.git"
+  },
+  "keywords": [
+    "hysoft"
+  ],
+  "author": "Hiroaki Yamamoto",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hysoftware/hysoftware.net/issues"
+  },
+  "homepage": "https://github.com/hysoftware/hysoftware.net#readme",
+  "devDependencies": {
+    "bower": "^1.7.7",
+    "chai": "^3.5.0",
+    "coffee-script": "^1.10.0",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-karma-runner": "^1.1.8",
+    "gulp-less": "^3.0.5",
+    "gulp-protractor": "github:forumouth/gulp-protractor",
+    "karma": "^0.13.19",
+    "karma-chai-plugins": "^0.6.1",
+    "karma-chrome-launcher": "^0.2.2",
+    "karma-coffee-preprocessor": "^0.3.0",
+    "karma-firefox-launcher": "^0.1.7",
+    "karma-mocha": "^0.2.1",
+    "karma-sinon": "^1.0.4",
+    "less-plugin-clean-css": "^1.5.1",
+    "mocha": "^2.4.5",
+    "protractor": "^3.0.0",
+    "sinon": "^1.17.3"
+  }
+}
