@@ -47,4 +47,5 @@ g.task "check.backend", ->
     defer.resolve()
   defer.promise
 
-g.watch "app/**/*.py", ["check.backend"]
+g.task "default", ->
+  g.watch "app/**/*.py", ["check.backend"]
