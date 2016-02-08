@@ -32,7 +32,11 @@
     "gulp-autoprefixer": "^3.1.0",
     "gulp-karma-runner": "^1.1.8",
     "gulp-less": "^3.0.5",
+    "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^1.0.1",
     "gulp-protractor": "github:forumouth/gulp-protractor",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.5.2",
     "karma": "^0.13.19",
     "karma-chai-plugins": "^0.6.1",
     "karma-chrome-launcher": "^0.2.2",
@@ -43,6 +47,7 @@
     "less-plugin-clean-css": "^1.5.1",
     "mocha": "^2.4.5",
     "protractor": "^3.0.0",
+    "q": "^1.4.1",
     "sinon": "^1.17.3"
   }
 }
