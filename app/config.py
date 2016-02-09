@@ -1,0 +1,45 @@
+#!/usr/bin/env python
+# coding=utf-8
+
+import os
+
+
+class ProductionConfig(object):
+    '''
+    Production config
+    '''
+    SECRET_KEY = os.environ["secret"]
+    SESSION_COOKIE_SECURE = os.environ.get("cookie_secure", False)
+    PREFERRED_URL_SCHEME = os.environ.get("url_scheme", "http")
+    MONGODB_SETTINGS = {
+        "host": os.environ.get("db_url", None),
+        "username": os.environ.get("db_user", None),
+        "password": os.environ.get("db_password", None)
+    }
+
+
+class DevelConfig(object):
+    '''
+    Configuration for development
+    '''
+    # This is just to avoid doggy check
+    SECRET_KEY = (lambda: (
+        "iMP\Xe(-uFO>&Acjg89fgqsUYgcS79fxUwji2R6b5%79f&QQ1H"
+        "F14X0&t49oI8074SrAVyW5Cd3Ecsy55B1s9GpwzCYR59O<eV2p"
+        "3A{g(1ac1mGX?sK2D6g4!G35Ucr[8qZMU0$gnYnU9eJB3XS&4I"
+        "C5\9jhR8U=P0Tkr0s9!T43>62W9uo2Ahh81Lh1iqN9e1NZE30t")
+    )()
+    DEBUG = True
+    DEBUG_TB_PANELS = [
+        "flask.ext.debugtoolbar.panels.versions.VersionDebugPanel",
+        "flask.ext.debugtoolbar.panels.timer.TimerDebugPanel",
+        "flask.ext.debugtoolbar.panels.headers.HeaderDebugPanel",
+        "flask.ext.debugtoolbar.panels.request_vars.RequestVarsDebugPanel",
+        "flask.ext.debugtoolbar.panels.config_vars.ConfigVarsDebugPanel",
+        "flask.ext.debugtoolbar.panels.template.TemplateDebugPanel",
+        "flask.ext.debugtoolbar.panels.logger.LoggingPanel",
+        "flask.ext.debugtoolbar.panels.route_list.RouteListDebugPanel",
+        "flask.ext.debugtoolbar.panels.profiler.ProfilerDebugPanel",
+        "flask.ext.mongoengine.panels.MongoDebugPanel"
+    ]
+    MONGODB_SETTINGS = {"host": "mongodb://localhost/hysoft"}

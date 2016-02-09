@@ -39,6 +39,7 @@ xcuserdata
 hysoft.db
 vendor
 .bundle
+.coverage
 src/third_party
 src/home/static/third_party.js
 src/home/static/third_party.js.map

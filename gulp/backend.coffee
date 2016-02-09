@@ -19,7 +19,9 @@ g.task "check.backend", ->
     "echo 'Maintenancibility...'"
     "radon mi -nc app"
     "echo 'Unit testing...'"
+    "export secret=\"test\""
     testCommand.join " "
+    "unset secret"
   ]
   if not process.env.CI
     commands.splice 0, 0, ". ../bin/activate"
