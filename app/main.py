@@ -16,3 +16,10 @@ app = Flask(__name__)
 app.config.from_object(
     cfgmap.get(os.environ.get("mode", "devel"), DevelConfig)
 )
+
+if __name__ == '__main__':
+    app.run(
+        host=os.environ.get("host", None),
+        port=os.environ.get("port", None),
+        threaded=True
+    )

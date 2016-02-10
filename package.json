@@ -4,12 +4,13 @@
   "description": "Hysoftware webapp package",
   "main": "app.coffee",
   "scripts": {
-    "install": "npm run webdriverUpdate && npm run bowerInstall",
-    "postversion": "npm run webdriverUpdate && npm run bowerUpdate",
+    "install": "npm run webdriverUpdate && npm run bowerInstall && npm run buildModernizr",
+    "postversion": "npm run webdriverUpdate && npm run bowerUpdate && npm run buildModernizr",
     "gulp": "$(npm bin)/gulp",
     "webdriverUpdate": "$(npm bin)/webdriver-manager update",
     "bowerInstall": "$(npm bin)/bower install",
-    "bowerUpdate": "$(npm bin)/bower update"
+    "bowerUpdate": "$(npm bin)/bower update",
+    "buildModernizr": "$(npm bin)/modernizr -quc node_modules/modernizr/lib/config-all.json -d app/static/modernizr.js"
   },
   "repository": {
     "type": "git",
@@ -49,8 +50,10 @@
     "karma-sinon": "^1.0.4",
     "less-plugin-clean-css": "^1.5.1",
     "mocha": "^2.4.5",
+    "modernizr": "^3.3.1",
     "protractor": "^3.0.0",
     "q": "^1.4.1",
     "sinon": "^1.17.3"
-  }
+  },
+  "dependencies": {}
 }
