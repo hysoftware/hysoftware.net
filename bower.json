@@ -23,6 +23,9 @@
   "dependencies": {
     "angular": "^1.5.0",
     "bootstrap": "^3.3.6",
-    "detectizr": "^2.2.0"
+    "detectizr": "^2.2.0",
+    "angular-ui-router": "ui-router#~0.2.18",
+    "angular-resource": "~1.5.0",
+    "angular-mocks": "~1.5.0"
   }
 }
