@@ -9,7 +9,7 @@ g.task "check.backend", ->
     "--with-coverage"
     "--cover-erase"
     "--cover-package=app"
-    "--all"
+    "--all tests"
   ]
   commands = [
     "echo 'PEP8 Syntax...'"
