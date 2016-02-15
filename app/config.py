@@ -8,7 +8,7 @@ class ProductionConfig(object):
     '''
     Production config
     '''
-    SECRET_KEY = os.environ["secret"]
+    SECRET_KEY = os.environ.get("secret")
     SESSION_COOKIE_SECURE = os.environ.get("cookie_secure", False)
     PREFERRED_URL_SCHEME = os.environ.get("url_scheme", "http")
     MONGODB_SETTINGS = {
