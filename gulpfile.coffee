@@ -16,3 +16,4 @@ g.task "default", default_dependencies, ->
   else if process.env.mode not in ["production", "init"]
     g.watch ["tests/**/*.py", "app/**/*.py"], ["check.backend"]
     g.watch ["./gulpfile.coffee", "./gulp/**/*.coffee"], ["selfcheck"]
+    g.watch ["./gulp/third_party.coffee"], ["third_party"]
