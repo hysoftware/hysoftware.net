@@ -10,12 +10,15 @@ class IndexRendering(TestCase):
     Index rendering test case
     '''
 
-    @patch("flask.render_template", return_value="")
-    def setUp(self, mock):
+    @patch("flask.render_template", return_value="<body></body>")
+    def setUp(self, render_template):
         from app import app
         app.testing = True
         self.client = app.test_client()
-        self.render_template = mock
+        self.render_template = render_template
+
+    def tearDown(self):
+        self.render_template.reset_mock()
 
     def test_index_access(self):
         '''
@@ -23,5 +26,4 @@ class IndexRendering(TestCase):
         '''
         with self.client as cli:
             cli.get("/")
-        print(self.render_template)
         self.render_template.assert_called_with("index.html")
