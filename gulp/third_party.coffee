@@ -19,8 +19,9 @@ g.task "third_party", ->
   ]
   if process.env.mode isnt "production"
     thirdPartyPackages.splice(
-      thirdPartyPackages.indexOf("#{thirdPartyPrefix}/angular/angular.js"),
-      0, "#{thirdPartyPrefix}/angular-mocks/angular-mocks.js"
+      thirdPartyPackages.indexOf(
+        "#{thirdPartyPrefix}/angular/angular.js"
+      ) + 1, 0, "#{thirdPartyPrefix}/angular-mocks/angular-mocks.js"
     )
   g.src(thirdPartyPackages).pipe(
     plumber "errorHandler": notify.onError '<%= error.message %>'
