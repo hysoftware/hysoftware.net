@@ -19,8 +19,8 @@ app = Flask(__name__)
 app.config.from_object(
     cfgmap[os.environ.get("mode", "devel")]
 )
-DebugToolbarExtension(app)
 CsrfProtect(app)
+DebugToolbarExtension(app)
 
 app.register_blueprint(home_bp)
 
