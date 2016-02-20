@@ -3,8 +3,8 @@
 
 from random import choice
 
-from flask.ext.classy import FlaskView
 from flask import render_template
+from flask.ext.classy import FlaskView
 
 
 class IndexView(FlaskView):

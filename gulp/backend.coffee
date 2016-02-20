@@ -13,7 +13,7 @@ g.task "check.backend", ->
   ]
   commands = [
     "echo 'PEP8 Syntax...'"
-    "flake8 app"
+    "flake8 app tests"
     "echo 'Code Metrics...'"
     "radon cc -nc app"
     "echo 'Maintenancibility...'"

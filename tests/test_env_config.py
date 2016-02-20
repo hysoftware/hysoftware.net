@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 # coding=utf-8
 
+import sys
 import os
 
 from unittest import TestCase
+
 
 class EnvironmentTestBase(TestCase):
     '''
@@ -21,7 +23,9 @@ class EnvironmentTestBase(TestCase):
             os.environ["mode"] = self.env_backup
         else:
             os.environ.pop("mode", None)
-        print(os.environ.get("mode", None))
+
+        sys.modules.pop("app.config", None)
+
 
 class DevelopmentTestClass(EnvironmentTestBase):
     '''
@@ -44,4 +48,31 @@ class DevelopmentTestClass(EnvironmentTestBase):
         Production config should raise an error
         '''
         with self.assertRaises(ImportError):
-            from app.config import Production
+            from app.config import ProductionConfig
+            self.assertIsNone(ProductionConfig)
+
+
+class ProductionTestClass(EnvironmentTestBase):
+    '''
+    Test Development Mode
+    '''
+
+    def setUp(self):
+        super().setUp()
+        os.environ["mode"] = "production"
+        os.environ["secret"] = "test"
+
+    def test_production_mode(self):
+        '''
+        Production Config should be read
+        '''
+        from app.config import ProductionConfig
+        self.assertIsNotNone(ProductionConfig)
+
+    def test_devel_mode(self):
+        '''
+        Devel config should raise an error
+        '''
+        with self.assertRaises(ImportError):
+            from app.config import DevelConfig
+            self.assertIsNone(DevelConfig)

@@ -5,9 +5,9 @@ from flask import Blueprint
 from .controller import IndexView
 
 
-home = Blueprint(
+route = Blueprint(
     "home", __name__,
     static_folder="static",
     template_folder="templates"
 )
-IndexView.register(home)
+IndexView.register(route)

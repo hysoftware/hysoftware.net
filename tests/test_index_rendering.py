@@ -4,28 +4,30 @@
 
 from unittest import TestCase
 from unittest.mock import patch
+from app import app
+
 
 class IndexRendering(TestCase):
     '''
     Index rendering test case
     '''
 
-    @patch("random.choice", return_value="Test tagline")
-    @patch("flask.render_template", return_value="")
-    def setUp(self, render_template, random_choice):
-        from app import app
+    def setUp(self):
         app.testing = True
         self.client = app.test_client()
-        self.render_template = render_template
-        self.random_choice = random_choice
 
-    def test_index_access(self):
+    @patch("app.home.controller.choice", return_value="Test tagline")
+    @patch(
+        "app.home.controller.render_template",
+        return_value="<body></body>"
+    )
+    def test_index_access(self, render_template, choice):
         '''
         self.render_template should be called with index.html
         '''
         with self.client as cli:
             cli.get("/")
-        self.render_template.assert_called_with(
+        render_template.assert_called_with(
             "index.html", tagline="Test tagline"
         )
-        assert self.random_choice.called
+        self.assertTrue(choice.called)

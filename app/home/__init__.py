@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # coding=utf-8
 
-from .bp import home
+from .bp import route
 
-__all__ = ["home"]
+__all__ = ["route"]

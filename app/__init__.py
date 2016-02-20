@@ -8,7 +8,7 @@ from flask import Flask
 from flask.ext.wtf.csrf import CsrfProtect, generate_csrf
 from flask.ext.debugtoolbar import DebugToolbarExtension
 
-from .home import home
+from .home import route as home_bp
 
 cfgmap = {
     "production": "app.config.ProductionConfig",
@@ -22,7 +22,7 @@ app.config.from_object(
 DebugToolbarExtension(app)
 CsrfProtect(app)
 
-app.register_blueprint(home)
+app.register_blueprint(home_bp)
 
 
 @app.after_request
