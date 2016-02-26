@@ -10,7 +10,7 @@
     "webdriverUpdate": "$(npm bin)/webdriver-manager update",
     "bowerInstall": "$(npm bin)/bower install",
     "bowerUpdate": "$(npm bin)/bower update",
-    "buildModernizr": "$(npm bin)/modernizr -quc node_modules/modernizr/lib/config-all.json -d app/static/modernizr.js"
+    "buildModernizr": "$(npm bin)/modernizr -quc ./modernizr.conf.json -d app/static/modernizr.js"
   },
   "repository": {
     "type": "git",
