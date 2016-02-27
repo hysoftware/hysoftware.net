@@ -1,15 +1,17 @@
+@import "./color.less";
 .jumbotron.main-title {
-  @baseColor: #43A047;
-  @txtColor: lighten(@baseColor, 30%);
-  @bgcolor: darken(@baseColor, 10%);
+  margin: 0;
   height: 100%;
-  background-color: @bgcolor;
+  background-color: @titleBgColor;
   .title-content {
-    color: @txtColor;
+    color: @titleTxtColor;
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
   }
-  .title-bottom {
-    top: 100%;
+  .bottom {
+    position: absolute;
+    width: 100%;
+    font-size: 36px;
+    bottom: 0;
   }
 }

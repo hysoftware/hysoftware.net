@@ -14,10 +14,14 @@
   <link rel="stylesheet"
     href="{{ url_for('static', filename='bootstrap/dist/css/bootstrap.min.css') }}"
     media="screen" title="Bootstrap" charset="utf-8">
+  {% if config.DEBUG -%}
+  <link rel="stylesheet" href="{{ url_for('static', filename='fonts/opensans/fontface.css') }}">
+  {% else %}
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+  {%- endif %}
   <link rel="stylesheet" href="{{ url_for('static', filename='Ionicons/css/ionicons.min.css') }}">
   <link rel="stylesheet" href="{{ url_for('.static', filename='assets.css') }}">
   <script src="{{ url_for('static', filename='third_party.js') }}"></script>
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
   <title>HYSOFT</title>
 </head>
 <body>
@@ -27,6 +31,10 @@
       <h1>HYSOFT</h1>
       <p>{{ tagline }}</p>
     </div>
+    <div class="title-content bottom text-center">
+      <span class="ion-ios-arrow-down"></span>
+    </div>
   </section>
+  <h1>What is this website?</h1>
 </body>
 </html>

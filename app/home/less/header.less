@@ -1,4 +1,15 @@
+@import "./color.less";
+
 nav.main-menu {
   background-color: transparent;
+  border: none;
   margin: 0;
+  .navbar-brand {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    color: @titleTxtColor;
+    &:hover {
+      color: @titleTxtColor;
+    }
+  }
 }

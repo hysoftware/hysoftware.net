@@ -56,7 +56,8 @@
     "modernizr": "^3.3.1",
     "protractor": "^3.0.0",
     "q": "^1.4.1",
-    "sinon": "^1.17.3"
+    "sinon": "^1.17.3",
+    "ttf2woff2": "^2.0.3"
   },
   "dependencies": {}
 }
