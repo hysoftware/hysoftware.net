@@ -7,7 +7,7 @@ from .controller import IndexView
 
 route = Blueprint(
     "home", __name__,
-    static_folder="static",
+    static_folder="assets",
     template_folder="templates"
 )
 IndexView.register(route)

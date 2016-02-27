@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
   <meta name="Keywords" content="hysoftware,agile,development,software">
   <meta name="Description" content="Agile software development Professional">
   <meta property="og:type" content="website">
@@ -12,14 +12,21 @@
   <meta property="og:url" content="https://hysoftware.net">
   <meta property="og:description" content="{{ tagline }}">
   <link rel="stylesheet"
-    href="{{ url_for('.static', filename='bootstrap/dist/css/bootstrap.min.css') }}"
+    href="{{ url_for('static', filename='bootstrap/dist/css/bootstrap.min.css') }}"
     media="screen" title="Bootstrap" charset="utf-8">
-  <script src="{{ url_for('.static', filename='third_party.js') }}"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='Ionicons/css/ionicons.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('.static', filename='assets.css') }}">
+  <script src="{{ url_for('static', filename='third_party.js') }}"></script>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
   <title>HYSOFT</title>
 </head>
 <body>
   {{ navbar.header() }}
-  <h1>It's Working</h1>
+  <section class="jumbotron main-title">
+    <div class="title-content vertical-center text-center">
+      <h1>HYSOFT</h1>
+      <p>{{ tagline }}</p>
+    </div>
+  </section>
 </body>
 </html>

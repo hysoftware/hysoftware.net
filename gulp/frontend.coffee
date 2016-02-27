@@ -17,9 +17,13 @@ g.task "frontend.less", ->
   if process.env.node_mode isnt "production"
     pipe = pipe.pipe sourcemaps.init()
   pipe = pipe.pipe(
-    less(new LessCleanCss advanced: true)
+    less(
+      "plugins": [
+        new LessCleanCss(advanced: true)
+      ]
+    )
   ).pipe(
     prefixer()
   ).pipe(
     rename "assets.css"
-  ).pipe(sourcemaps.write()).pipe(g.dest("./app/home/static"))
+  ).pipe(sourcemaps.write()).pipe(g.dest("./app/home/assets"))
