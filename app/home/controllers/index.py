@@ -2,10 +2,11 @@
 # coding=utf-8
 
 from random import choice
-from flask import current_app
 
 from flask import render_template
 from flask.ext.classy import FlaskView
+
+from ...common import minify_html
 
 
 class IndexView(FlaskView):
@@ -18,7 +19,10 @@ class IndexView(FlaskView):
     ]
 
     def index(self):
-        print(current_app.debug)
+        '''
+        Main page resource
+        '''
         return render_template(
-            "index.html", tagline=choice(self.website_taglines)
+            "index.html", tagline=choice(self.website_taglines),
+            minify=minify_html
         )

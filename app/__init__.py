@@ -2,12 +2,12 @@
 # coding=utf-8
 
 import os
-import htmlmin
 
 from flask import Flask
 from flask.ext.wtf.csrf import CsrfProtect, generate_csrf
 from flask.ext.debugtoolbar import DebugToolbarExtension
 
+from .common import minify_html
 from .home import route as home_bp
 
 cfgmap = {
@@ -31,12 +31,7 @@ def html_minification(resp):
     Minify HTML when response mimetype is text/html
     '''
     if resp.mimetype == "text/html":
-        resp.data = htmlmin.minify(
-            resp.data.decode("utf-8"),
-            remove_comments=True,
-            remove_empty_space=True,
-            remove_optional_attribute_quotes=False
-        )
+        resp.data = minify_html(resp.data.decode("utf-8"))
     return resp
 
 

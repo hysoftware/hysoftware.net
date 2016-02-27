@@ -19,3 +19,9 @@ g.task "default", default_dependencies or [], ->
     g.watch ["./gulpfile.coffee", "./gulp/**/*.coffee"], ["selfcheck"]
     g.watch ["./gulp/third_party.coffee"], ["third_party"]
     g.watch ["app/**/less/**/*.less", "app/main.less"], ["frontend.less"]
+    g.watch [
+      "app/**/coffee/**/*.coffee"
+      "app/main.coffee"
+    ], [
+      "frontend.coffee"
+    ]

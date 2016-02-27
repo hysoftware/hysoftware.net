@@ -2,7 +2,7 @@
 # coding=utf-8
 
 from flask import Blueprint
-from .controller import IndexView
+from .controllers import IndexView
 
 
 route = Blueprint(

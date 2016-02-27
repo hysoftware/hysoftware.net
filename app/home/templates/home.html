@@ -1,0 +1,14 @@
+{% macro home(tagline) %}
+<section class="jumbotron main-title">
+  <div class="title-content vertical-center text-center">
+    <h1>HYSOFT</h1>
+    <p>{{ tagline }}</p>
+  </div>
+  <div class="title-content bottom text-center">
+    <span class="ion-ios-arrow-down"></span>
+  </div>
+</section>
+<h1>Working</h1>
+{% endmacro %}
+
+{{ home(tagline) }}
