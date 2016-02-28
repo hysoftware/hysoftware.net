@@ -9,6 +9,7 @@ from flask.ext.debugtoolbar import DebugToolbarExtension
 
 from .common import minify_html
 from .home import route as home_bp
+from .fonts import route as fonts_bp
 
 cfgmap = {
     "production": "app.config.ProductionConfig",
@@ -23,6 +24,8 @@ CsrfProtect(app)
 DebugToolbarExtension(app)
 
 app.register_blueprint(home_bp)
+if app.debug:
+    app.register_blueprint(fonts_bp, url_prefix="/fonts")
 
 
 @app.after_request
