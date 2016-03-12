@@ -2,6 +2,10 @@
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 300;
-  src: local('Open Sans Light'), local('OpenSans-Light'), url("{{ url_for('fonts.static', filename='opensans/opensans.woff2')}}") format("woff2");
+  src:
+    local('Open Sans Light'),
+    local('OpenSans-Light'),
+    url("{{ url_for('fonts.static', filename='opensans/opensans.woff2') }}") format("woff2"),
+    url("{{ url_for('fonts.static', filename='opensans/OpenSans-Light.ttf') }}");
   unicode-range: "{{ unicode_range | join(',') }}";
 }
