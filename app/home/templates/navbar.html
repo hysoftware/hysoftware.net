@@ -1,5 +1,7 @@
 {% macro header() -%}
-<nav class="navbar navbar-default navbar-fixed-top main-menu">
+<nav class="navbar navbar-default navbar-fixed-top main-menu"
+  data-ng-controller="navbarController"
+  data-ng-class="navbarClass">
   <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
     data-target="#main-menu" aria-expanded="false">
       <span class="sr-only">Toggle navigation</span>
