@@ -1,13 +1,23 @@
 @import "./color.less";
 
 nav.main-menu {
-  background-color: transparent;
+  background-color: @titleTxtColor;
   border: none;
-  margin: 0;
-  .navbar-brand {
-    color: @titleTxtColor;
-    &:hover {
+  box-shadow: 0 1px 2px rgba(
+    red(@titleBgColor), green(@titleBgColor), blue(@titleBgColor), 0.5);
+  transition: all 0.2s linear;
+  &.on-title {
+    background-color: transparent;
+    box-shadow: none;
+    margin: 0;
+    .navbar-brand {
       color: @titleTxtColor;
+      &:hover {
+        color: @titleTxtColor;
+      }
     }
+  }
+  .navbar-brand {
+    color: @titleBgColor;
   }
 }
