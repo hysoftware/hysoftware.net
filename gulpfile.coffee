@@ -1,4 +1,5 @@
 g = require "gulp"
+require("gulp-help")(g)
 
 toolbox = require "hyamamoto-job-toolbox"
 
@@ -10,6 +11,7 @@ toolbox = require "hyamamoto-job-toolbox"
 toolbox.coffee "", "app", "./home/assets"
 toolbox.selfcheck.coffee "", "./etc/coffeelint.json"
 toolbox.less "", "app", [], "./home/assets"
+toolbox.python "", "app"
 
 default_dependencies = [
   "selfcheck"
