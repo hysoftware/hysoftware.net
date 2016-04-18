@@ -1,8 +1,15 @@
 g = require "gulp"
-require "./gulp/backend"
-require "./gulp/selfcheck"
-require "./gulp/third_party"
-require "./gulp/frontend"
+
+toolbox = require "hyamamoto-job-toolbox"
+
+# require "./gulp/backend"
+# require "./gulp/selfcheck"
+# require "./gulp/third_party"
+# require "./gulp/frontend"
+
+toolbox.coffee "", "app", "./home/assets"
+toolbox.selfcheck.coffee "", "./etc/coffeelint.json"
+toolbox.less "", "app", [], "./home/assets"
 
 default_dependencies = [
   "selfcheck"
