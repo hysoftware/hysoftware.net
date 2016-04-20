@@ -46,7 +46,7 @@
     "gulp-rename": "^1.2.2",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.5.2",
-    "hyamamoto-job-toolbox": "0.0.17",
+    "hyamamoto-job-toolbox": "0.0.20",
     "karma": "^0.13.19",
     "karma-chai-plugins": "^0.7.0",
     "karma-chrome-launcher": "^0.2.2",

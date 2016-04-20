@@ -5,10 +5,9 @@ uglify = require "gulp-uglify"
 concat = require "gulp-concat"
 srcmap = require "gulp-sourcemaps"
 
-thirdPartyPrefix = exports.thirdPartyPrefix = "./app/static"
-
-g.task "third_party", ->
-  thirdPartyPackages = [
+thirdPartyPrefix = "./app/static"
+module.exports =
+  "thirdPartyPackages": [
     "#{thirdPartyPrefix}/modernizr.js"
     "#{thirdPartyPrefix}/detectizr/dist/detectizr.js"
     "#{thirdPartyPrefix}/jquery/dist/jquery.js"
@@ -17,6 +16,10 @@ g.task "third_party", ->
     "#{thirdPartyPrefix}/angular-resource/angular-resource.js"
     "#{thirdPartyPrefix}/angular-ui-router/release/angular-ui-router.js"
   ]
+  "thirdPartyPrefix": thirdPartyPrefix
+
+g.task "third_party", ->
+  thirdPartyPackages = module.exports.thirdPartyPackages
   if process.env.node_mode isnt "production"
     thirdPartyPackages.splice(
       thirdPartyPackages.indexOf(
