@@ -10,23 +10,29 @@ toolbox.karma(
     "#{thirdParty.thirdPartyPrefix}/angular-mocks/angular-mocks.js"
   ]), ["static"]
 )
-toolbox.coffee "", "app", "./app/home/assets", [], ["karma.runner"]
+toolbox.coffee "", "app", "./app/home/assets", [], [
+  if toolboxHelper.isProduction or process.env.node_mode is "init"
+    "karma.server"
+  else
+    "karma.runner"
+]
 toolbox.selfcheck.coffee "", "./etc/coffeelint.json"
 toolbox.less "", "app", "./app/home/assets"
 toolbox.python "", "app", [
   "--with-coverage", "--cover-erase", "--cover-package=app", "--all"
 ]
 
-default_dependencies = [
-  "selfcheck"
-  "check.backend"
-  "third_party"
-  "frontend.less"
-  "frontend.coffee"
-] if toolboxHelper.isProduction or process.env.mode is "init"
-default_dependencies = [
-  "karma.server"
-] if not (toolboxHelper.isProduction or process.env.mode is "init")
+default_dependencies = []
+if toolboxHelper.isProduction or process.env.node_mode is "init"
+  default_dependencies = [
+    ".selfcheck.coffee"
+    "python.nosetest"
+    "third_party"
+    "less"
+    "coffee"
+  ]
+else
+  default_dependencies = ["karma.server"]
 
 g.task "default", default_dependencies or [], ->
   if not (toolboxHelper.isProduction or process.env.mode is "init")

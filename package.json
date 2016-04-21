@@ -10,7 +10,9 @@
     "webdriverUpdate": "$(npm bin)/webdriver-manager update",
     "bowerInstall": "$(npm bin)/bower install",
     "bowerUpdate": "$(npm bin)/bower update",
-    "buildModernizr": "$(npm bin)/modernizr -quc ./modernizr.conf.json -d app/static/modernizr.js"
+    "buildModernizr": "$(npm bin)/modernizr -quc ./modernizr.conf.json -d app/static/modernizr.js",
+    "ncu": "$(npm bin)/ncu",
+    "bowerNcu": "$(npm bin)/ncu -m bower"
   },
   "repository": {
     "type": "git",
@@ -42,11 +44,11 @@
     "gulp-less": "^3.0.5",
     "gulp-notify": "^2.2.0",
     "gulp-plumber": "^1.0.1",
-    "gulp-protractor": "github:forumouth/gulp-protractor",
+    "gulp-protractor": "^2.3.0",
     "gulp-rename": "^1.2.2",
-    "gulp-sourcemaps": "^1.6.0",
+    "gulp-sourcemaps": "^2.0.0-alpha",
     "gulp-uglify": "^1.5.2",
-    "hyamamoto-job-toolbox": "0.0.20",
+    "hyamamoto-job-toolbox": "^0.1.0",
     "karma": "^0.13.19",
     "karma-chai-plugins": "^0.7.0",
     "karma-chrome-launcher": "^0.2.2",
@@ -57,6 +59,7 @@
     "less-plugin-clean-css": "^1.5.1",
     "mocha": "^2.4.5",
     "modernizr": "^3.3.1",
+    "npm-check-updates": "^2.6.3",
     "protractor": "^3.0.0",
     "q": "^1.4.1",
     "sinon": "^1.17.3",
