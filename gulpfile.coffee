@@ -3,12 +3,13 @@ thirdParty = require "./gulp/third_party"
 require("gulp-help")(g)
 
 toolbox = require "hyamamoto-job-toolbox"
+karmaConf = require "./etc/karma.conf"
 toolboxHelper = require "hyamamoto-job-toolbox/lib/helper"
 
 toolbox.karma(
   "", "app", thirdParty.thirdPartyPackages.concat([
     "#{thirdParty.thirdPartyPrefix}/angular-mocks/angular-mocks.js"
-  ]), ["static"]
+  ]), ["static"], karmaConf
 )
 toolbox.coffee "", "app", "./app/home/assets", [], [
   if toolboxHelper.isProduction or process.env.node_mode is "init"
@@ -35,7 +36,7 @@ else
   default_dependencies = ["karma.server"]
 
 g.task "default", default_dependencies or [], ->
-  if not (toolboxHelper.isProduction or process.env.mode is "init")
+  if not (toolboxHelper.isProduction or process.env.node_mode is "init")
     g.watch ["tests/**/*.py", "app/**/*.py"], ["python.nosetest"]
     g.watch ["./gulpfile.coffee", "./gulp/**/*.coffee"], [".selfcheck.coffee"]
     g.watch ["./gulp/third_party.coffee"], ["third_party"]

@@ -1,8 +1,6 @@
-helper = require "hyamamoto-job-toolbox"
-path = require "path"
+helper = require "hyamamoto-job-toolbox/lib/helper"
 
-module.exports = (config) ->
-  config.set (
+module.exports =
     "basePath": "./"
     "quiet": not (helper.isProduction or process.env.node_mode is "init")
     "frameworks": ["mocha", "chai", "sinon"]
@@ -17,14 +15,17 @@ module.exports = (config) ->
     "coffeePreprocessor":
       "options":
         "sourceMap": true
-    "browsers": ["Chrome", "Firefox", "PhantomJS"]
+    "browsers": [
+      "Chrome"
+      # "Firefox"
+      "PhantomJS"
+    ]
     "plugins": [
+      "karma-coffee-preprocessor"
       "karma-mocha"
       "karma-chai-plugins"
       "karma-chrome-launcher"
-      "karma-coffee-preprocessor"
-      "karma-firefox-launcher"
+      # "karma-firefox-launcher"
       "karma-phantomjs-launcher"
       "karma-sinon"
     ]
-  )
