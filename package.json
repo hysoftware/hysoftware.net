@@ -3,7 +3,7 @@
     "version": "0.0.0",
     "description": "Website of hysoftware.net",
     "scripts": {
-        "postinstall": "./node_modules/bower/bin/bower install&&./node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update",
+        "postinstall": "$(npm bin)/bower install&&$(npm bin)/webdriver-manager update",
         "test": "grunt CIBack && grunt CIFront"
     },
     "repository": {
