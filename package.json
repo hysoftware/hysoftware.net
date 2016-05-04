@@ -33,7 +33,8 @@
     "karma-junit-reporter": "^1.0.0",
     "karma-ng-html2js-preprocessor": "^1.0.0",
     "karma-phantomjs-launcher": "^1.0.0",
-    "matchdep": "^1.0.1"
+    "matchdep": "^1.0.1",
+    "protractor": "^3.3.0"
   },
   "author": "Hiroaki Yamamoto",
   "license": "MIT",
