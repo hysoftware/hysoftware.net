@@ -3,10 +3,10 @@ About page unit test
 '''
 # pylint: disable=too-few-public-methods
 
+import hashlib
 from django.test import TestCase
 from django.core.management import call_command
 from ...models import Developer
-import hashlib
 
 # pylint: disable=invalid-name
 ripemd160 = hashlib.new("ripemd160")

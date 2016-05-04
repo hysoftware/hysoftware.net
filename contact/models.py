@@ -2,11 +2,11 @@
 Contact form model
 '''
 
-from common import gen_hash
 from django.db import models
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils import timezone
 from django.conf import settings
+from common import gen_hash
 
 # pylint: disable=too-few-public-methods
 
