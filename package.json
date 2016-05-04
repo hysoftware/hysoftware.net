@@ -16,7 +16,7 @@
   ],
   "devDependencies": {
     "bower": "^1.7.9",
-    "grunt": "^1.0.1",
+    "grunt": "~0.4.2",
     "grunt-autoprefixer": "^3.0.4",
     "grunt-closure-tools": "^0.9.9",
     "grunt-contrib-sass": "^1.0.0",
