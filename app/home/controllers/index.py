@@ -15,7 +15,7 @@ class IndexView(FlaskView):
         "Agile Software Development Professional",
         "Software Engineer Who Works Globally",
         "Great Software Engineer for Startups",
-        "Code, Design, and contribute with passion & friendly"
+        "Code, Design, and contribute with a strong adherence of products"
     ]
 
     def index(self):
