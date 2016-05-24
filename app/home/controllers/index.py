@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # coding=utf-8
 
+"""Home controller."""
+
 from random import choice
 
 from flask import render_template
@@ -10,6 +12,8 @@ from ...common import minify_html
 
 
 class IndexView(FlaskView):
+    """Home controller."""
+
     route_base = "/"
     website_taglines = [
         "Agile Software Development Professional",
@@ -19,9 +23,7 @@ class IndexView(FlaskView):
     ]
 
     def index(self):
-        '''
-        Main page resource
-        '''
+        """Main page resource."""
         return render_template(
             "index.html", tagline=choice(self.website_taglines),
             minify=minify_html

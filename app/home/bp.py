@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # coding=utf-8
 
+"""Blueprint for homepage."""
+
 from flask import Blueprint
 from .controllers import IndexView
 

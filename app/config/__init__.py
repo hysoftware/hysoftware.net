@@ -1,9 +1,7 @@
 #!/usr/bin/env python
 # coding=utf-8
 
-'''
-App configurations
-'''
+"""App configurations."""
 
 import os
 
@@ -16,4 +14,4 @@ elif mode == "devel":
 else:
     EnvironmentError("Invalid mode is given")
 
-__all__ = ["ProductionConfig", "DevelConfig"]
+__all__ = ("ProductionConfig", "DevelConfig")

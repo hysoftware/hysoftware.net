@@ -1,0 +1,27 @@
+{%- import "regulation_tab.html" as regulation_tab -%}
+<article class="about legal">
+  <header class="jumbotron page-title text-center">
+    <h2>Notation Based on Legal Responsibility</h2>
+  </header>
+  <section class="content">
+    <header>
+      <h2>Why This page?</h2>
+    </header>
+    <p>
+      In Japan, there are some "crazy" acts and regulations while the U.S.
+      doesn't regulate. Honestly, Hiro has a doubt if they are really
+      working. However, the law is the law. At least we need to observe the
+      japanese laws while Hiro lives in Japan...
+    </p>
+    <!-- Honestly, I want to move to the U.S. as a worker immigrant. -->
+    <section class="regulations">
+      <header>
+        <h2>Notation based on Legal Responsibility</h2>
+      </header>
+      <p>
+        Anyway, the below is the notation based on legal responsibility in Japan.
+      </p>
+      {{ regulation_tab.tab(regulations) }}
+    </section>
+  </section>
+</article>

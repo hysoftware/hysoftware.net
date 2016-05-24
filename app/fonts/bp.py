@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # coding=utf-8
 
+"""Blueprint for font-face."""
+
 from flask import Blueprint
 from .controller import OpenSansView
 

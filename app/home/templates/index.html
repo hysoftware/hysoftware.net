@@ -29,7 +29,7 @@
   </script>
   <title>HYSOFT</title>
 </head>
-<body>
+<body data-ng-class="{'home': state.is('home')}">
   {{ navbar.header() }}
   <div class="ui-view"></div>
   <footer>
@@ -57,6 +57,12 @@
       TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
       SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     </p>
+
+    <p class="text-right"><small>
+      <a href="javascript:void(0)" data-ui-sref="about_legal">
+        Notation Based on Legal Responsibility in Japan
+      </a>
+    </small></p>
   </footer>
 </body>
 </html>

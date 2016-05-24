@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 # coding=utf-8
 
+"""Controller for font-face."""
+
 from flask import render_template, make_response
 from flask.ext.classy import FlaskView
 
 
 class OpenSansView(FlaskView):
-    '''
-    OpenSansView
-    '''
+    """OpenSansView."""
 
     trailing_slash = False
     unicode_range = [
@@ -23,6 +23,7 @@ class OpenSansView(FlaskView):
     ]
 
     def index(self):
+        """Index page."""
         resp = make_response(
             render_template("opensans.css", unicode_range=self.unicode_range)
         )

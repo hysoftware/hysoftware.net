@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # coding=utf-8
 
+"""Index rendering tests."""
+
 
 from unittest import TestCase
 from unittest.mock import patch
@@ -9,11 +11,10 @@ from app import app
 
 
 class IndexRendering(TestCase):
-    '''
-    Index rendering test case
-    '''
+    """Index rendering test case."""
 
     def setUp(self):
+        """Setup function."""
         app.testing = True
         self.client = app.test_client()
 
@@ -24,9 +25,7 @@ class IndexRendering(TestCase):
     )
     @patch("app.home.controllers.index.minify_html")
     def test_index_access(self, minify, render_template, choice):
-        '''
-        self.render_template should be called with index.html
-        '''
+        """Should call render_template with index.html."""
         with self.client as cli:
             cli.get("/")
         render_template.assert_called_with(
