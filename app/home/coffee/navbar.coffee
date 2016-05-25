@@ -6,13 +6,21 @@ ng.module("hysoft.navbar.controller", [
   "$scope",
   "$state",
   "$window",
-  (scope, state, window) ->
-    navbarHeigth = 50
+  "$rootElement",
+  (scope, state, window, root) ->
     accept_transparent = [
       state.get "home"
+      state.get "about_legal"
     ]
     isOnTitle = ->
-      window.scrollY < (window.innerHeight - navbarHeigth)
+      navbarHeigth = root.find("nav.main-menu").innerHeight()
+      jumbotron = root.find(".ui-view .jumbotron").first()
+      transparentStartPosition = 0
+      transparentEndPosition = 0
+      try
+        transparentEndPosition = (jumbotron.innerHeight() - navbarHeigth)
+      catch
+      window.scrollY < transparentEndPosition
     scope.navbarClass =
       "on-title": isOnTitle() and state.current
     window.onscroll = ->

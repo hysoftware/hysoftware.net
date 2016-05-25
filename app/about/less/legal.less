@@ -3,9 +3,20 @@
     padding: 0 15px;
   }
   header.page-title {
-    background: url("/about/assets/book_retina.jpg") no-repeat;
-    background-size: 100%;
+    position: relative;
+    .background {
+      position: absolute;
+      background: url("/about/assets/book_retina.jpg") no-repeat;
+      background-size: 100%;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      filter: brightness(0.75) sepia(0.4);
+    }
     h1, h2, h3, h4, h5, h6 {
+      position: relative;
+      z-index: 1;
       color: #FFF8F4;
       text-shadow: 2px 2px 5px lighten(#212121, 10%);
     }

@@ -12,14 +12,18 @@ nav.main-menu {
     background-color: transparent;
     box-shadow: none;
     margin: 0;
-    .navbar-brand {
-      color: @titleTxtColor;
+    .navbar-brand, .navbar-brand:link,
+    .navbar-brand:visited, .navbar-brand:active  {
+      color: lighten(@navbarNormalTextHoverColor, 30%);
+      text-shadow: 5px 5px 5px lighten(#212121, 10%);
       &:hover {
-        color: @titleTxtColor;
+        color: lighten(@navbarNormalTextHoverColor, 45%);
+        text-shadow: 2px 2px 5px lighten(#212121, 10%);
       }
     }
   }
-  .navbar-brand {
+  .navbar-brand, .navbar-brand:link,
+  .navbar-brand:visited, .navbar-brand:active {
     transition: all 0.2s linear;
     color: @navbarNormalTextColor;
     &:hover {
