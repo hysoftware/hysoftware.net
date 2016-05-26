@@ -42,6 +42,13 @@ class Person(db.Document):
     DOD = db.DateTimeField()
     skills = db.EmbeddedDocumentListField(Skill)
     websites = db.EmbeddedDocumentListField(Website)
+    is_authenticated = db.BooleanField(required=True, default=False)
+    is_active = db.BooleanField(Required=True, default=False)
+    is_anonymous = False
+
+    def get_id(self):
+        """Return id."""
+        return str(self.id)
 
     def verify(self, password):
         """Verify the password."""

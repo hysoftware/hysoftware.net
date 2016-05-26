@@ -65,3 +65,11 @@ class PasswordWriteTest(PasswordHashTestBase):
         hashpw.assert_called_once_with(data.encode(), gensalt.return_value)
         gensalt.assert_called_once_with(15)
         self.assertEqual(self.model.code, hashpw.return_value.decode("utf-8"))
+
+
+class IDCheck(PasswordHashTestBase):
+    """The return value from get_id should be equal to str(model.id)."""
+
+    def test_id(self):
+        """The return value from get_id should be equal to str(model.id)."""
+        self.assertEqual(self.model.get_id(), str(self.model.id))

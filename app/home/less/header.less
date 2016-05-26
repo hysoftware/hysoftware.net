@@ -12,22 +12,20 @@ nav.main-menu {
     background-color: transparent;
     box-shadow: none;
     margin: 0;
-    .navbar-brand, .navbar-brand:link,
-    .navbar-brand:visited, .navbar-brand:active  {
-      color: lighten(@navbarNormalTextHoverColor, 30%);
+    a, a:link, a:visited, a:active, a:focus {
+      color: lighten(@navbarNormalTextHoverColor, 30%) !important;
       text-shadow: 5px 5px 5px lighten(#212121, 10%);
       &:hover {
-        color: lighten(@navbarNormalTextHoverColor, 45%);
+        color: lighten(@navbarNormalTextHoverColor, 45%) !important;
         text-shadow: 2px 2px 5px lighten(#212121, 10%);
       }
     }
   }
-  .navbar-brand, .navbar-brand:link,
-  .navbar-brand:visited, .navbar-brand:active {
+  a, a:link, a:visited, a:active, a:focus {
     transition: all 0.2s linear;
-    color: @navbarNormalTextColor;
+    color: @navbarNormalTextColor !important;
     &:hover {
-      color: @navbarNormalTextHoverColor;
+      color: @navbarNormalTextHoverColor !important;
     }
   }
 }

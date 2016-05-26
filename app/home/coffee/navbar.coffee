@@ -15,7 +15,6 @@ ng.module("hysoft.navbar.controller", [
     isOnTitle = ->
       navbarHeigth = root.find("nav.main-menu").innerHeight()
       jumbotron = root.find(".ui-view .jumbotron").first()
-      transparentStartPosition = 0
       transparentEndPosition = 0
       try
         transparentEndPosition = (jumbotron.innerHeight() - navbarHeigth)

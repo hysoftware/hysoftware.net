@@ -2,7 +2,8 @@ angular.module("hysoft", [
   "ui.router"
   "hysoft.about"
   "hysoft.home"
-  "hysoft.navbar.controller"
+  "hysoft.navbar.controller",
+  "hysoft.user.route"
 ]).config([
   "$urlRouterProvider", "$httpProvider", (url, http) ->
     url.otherwise (injector, to) ->
