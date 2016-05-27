@@ -6,7 +6,7 @@
 import os
 
 from flask import Flask
-from flask.ext.wtf.csrf import CsrfProtect, generate_csrf
+from flask.ext.wtf.csrf import CsrfProtect
 from flask.ext.debugtoolbar import DebugToolbarExtension
 from flask.ext.mongoengine import MongoEngine
 from flask.ext.login import LoginManager
@@ -54,11 +54,11 @@ def load_user(user_id):
     return Person.objects(id=user_id).get()
 
 
-@app.after_request
-def csrf_prevent(resp):
-    """Add CSRF Preventation for angularJS."""
-    resp.set_cookie("X-CSRFToken", generate_csrf())
-    return resp
+# @app.after_request
+# def csrf_prevent(resp):
+#     """Add CSRF Preventation for angularJS."""
+#     resp.set_cookie("X-CSRFToken", generate_csrf())
+#     return resp
 
 
 __all__ = ("app",)
