@@ -29,6 +29,8 @@ def add_superuser():
     model.lastname = input("Last Name? ")
     model.email = input("email? ")
     model.password = getpass.getpass()
+    model.is_authenticated = True
+    model.is_active = True
     model.save()
     print("Done.")
 

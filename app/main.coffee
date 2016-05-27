@@ -11,9 +11,8 @@ angular.module("hysoft", [
         to.path "/"
       else
         to.path "/oops"
-    # http.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest"
-    # http.defaults.xsrfCookieName = "X-CSRFToken"
-    # http.defaults.xsrfHeaderName = "X-CSRFToken"
+    http.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest"
+    http.defaults.xsrfCookieName = http.defaults.xsrfHeaderName = "X-CSRFToken"
 ]).run([
   "$rootScope", "$state", (rootScope, state) ->
     rootScope.state = state

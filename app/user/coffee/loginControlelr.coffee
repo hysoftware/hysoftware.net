@@ -1,16 +1,17 @@
 angular.module("hysoft.user.controllers", [
+  "hysoft.user.resources"
 ]).controller("loginController", [
-  "$scope", "$window", (scope, window) ->
+  "$scope", "$window", "UserSession", (scope, window, UserSession) ->
     scope.loginPageStyle =
       "height": window.innerHeight
 
     scope.isDirtyInvalid = (field) ->
       return field.$dirty and field.$invalid
 
-    scope.model = {}
+    scope.model = new UserSession()
 
     scope.send = ->
-      console.log scope.model
+      scope.model.$save()
 
     window.onresize = ->
       scope.$apply ->

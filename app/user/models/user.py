@@ -4,6 +4,7 @@
 """User database."""
 
 import mongoengine as db
+import flask.ext.mongoengine as flskdb
 import bcrypt
 
 
@@ -23,7 +24,7 @@ class Skill(db.EmbeddedDocument):
     frameworks = db.EmbeddedDocumentListField(Website)
 
 
-class Person(db.Document):
+class Person(flskdb.Document):
     """Person who is a part of hysoft."""
 
     email = db.EmailField(primary_key=True)

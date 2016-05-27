@@ -22,5 +22,5 @@ class UserLoadtest(ut.TestCase):
         objects.return_value.get = MagicMock(return_value=test_user)
         result = app.load_user(test_user.email)
         self.assertIs(result, test_user)
-        objects.assert_called_once_with(id=test_user.email)
+        objects.assert_called_once_with(pk=test_user.email)
         objects.return_value.get.assert_called_once_with()

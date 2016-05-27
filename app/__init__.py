@@ -6,7 +6,7 @@
 import os
 
 from flask import Flask
-from flask.ext.wtf.csrf import CsrfProtect
+from flask.ext.wtf.csrf import CsrfProtect, generate_csrf
 from flask.ext.debugtoolbar import DebugToolbarExtension
 from flask.ext.mongoengine import MongoEngine
 from flask.ext.login import LoginManager
@@ -25,9 +25,7 @@ cfgmap = {
 }
 
 app = Flask(__name__)
-app.config.from_object(
-    cfgmap[os.environ.get("mode", "devel")]
-)
+app.config.from_object(cfgmap[os.environ.get("mode", "devel")])
 login_manager = LoginManager(app)
 MongoEngine(app)
 CsrfProtect(app)
@@ -51,14 +49,14 @@ def html_minification(resp):
 @login_manager.user_loader
 def load_user(user_id):
     """Load user."""
-    return Person.objects(id=user_id).get()
+    return Person.objects(pk=user_id).get()
 
 
-# @app.after_request
-# def csrf_prevent(resp):
-#     """Add CSRF Preventation for angularJS."""
-#     resp.set_cookie("X-CSRFToken", generate_csrf())
-#     return resp
+@app.after_request
+def csrf_prevent(resp):
+    """Add CSRF Preventation for angularJS."""
+    resp.set_cookie("X-CSRFToken", generate_csrf())
+    return resp
 
 
 __all__ = ("app",)
