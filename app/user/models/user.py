@@ -3,12 +3,25 @@
 
 """User database."""
 
-import mongoengine as db
 import flask.ext.mongoengine as flskdb
+import mongoengine as db
+import mongoengine_goodjson as gj
 import bcrypt
 
 
-class Website(db.EmbeddedDocument):
+class QuerySet(gj.QuerySet, flskdb.BaseQuerySet):
+    """QuerySet."""
+
+    pass
+
+
+class Document(gj.Document, flskdb.Document):
+    """Document."""
+
+    meta = {"abstract": True, "queryset_class": QuerySet}
+
+
+class Website(gj.EmbeddedDocument):
     """Website."""
 
     name = db.StringField(required=True)
@@ -17,7 +30,7 @@ class Website(db.EmbeddedDocument):
     url = db.URLField(required=True)
 
 
-class Skill(db.EmbeddedDocument):
+class Skill(gj.EmbeddedDocument):
     """Skill."""
 
     language = db.StringField(required=True)

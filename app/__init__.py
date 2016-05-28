@@ -59,4 +59,4 @@ def csrf_prevent(resp):
     return resp
 
 
-__all__ = ("app",)
+__all__ = ("app")
