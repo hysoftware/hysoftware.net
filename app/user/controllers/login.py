@@ -3,9 +3,12 @@
 
 """Login controllers."""
 
+import json
 from flask import render_template, jsonify, make_response, abort
 from flask.ext.classy import FlaskView
-from flask.ext.login import login_user, logout_user
+from flask.ext.login import (
+    login_user, logout_user, current_user, login_required
+)
 from ..forms import LoginForm
 from ..models import Person
 
@@ -29,6 +32,14 @@ class LoginView(FlaskView):
             abort(404)
         login_user(person)
         return "", 200
+
+    @login_required
+    def status(self):
+        """Return your information."""
+        you = json.loads(current_user.to_json())
+        for exclude in ["code", "id", "is_authenticated", "is_active"]:
+            you.pop(exclude, None)
+        return jsonify(you)
 
     def delete(self):
         """Logout."""

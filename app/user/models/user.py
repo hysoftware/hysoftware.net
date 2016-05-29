@@ -15,12 +15,6 @@ class QuerySet(gj.QuerySet, flskdb.BaseQuerySet):
     pass
 
 
-class Document(gj.Document, flskdb.Document):
-    """Document."""
-
-    meta = {"abstract": True, "queryset_class": QuerySet}
-
-
 class Website(gj.EmbeddedDocument):
     """Website."""
 
@@ -37,10 +31,12 @@ class Skill(gj.EmbeddedDocument):
     frameworks = db.EmbeddedDocumentListField(Website)
 
 
-class Person(flskdb.Document):
+class Person(gj.Document, flskdb.Document):
     """Person who is a part of hysoft."""
 
-    email = db.EmailField(primary_key=True)
+    meta = {"queryset_class": QuerySet}
+
+    email = db.EmailField(unique=True)
     firstname = db.StringField(required=True)
     lastname = db.StringField(required=True)
     code = db.StringField(required=True, min_length=60, max_length=60)

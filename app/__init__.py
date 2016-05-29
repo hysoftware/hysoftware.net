@@ -49,7 +49,10 @@ def html_minification(resp):
 @login_manager.user_loader
 def load_user(user_id):
     """Load user."""
-    return Person.objects(pk=user_id).get()
+    try:
+        return Person.objects(pk=user_id).get()
+    except Person.DoesNotExist:
+        return None
 
 
 @app.after_request
