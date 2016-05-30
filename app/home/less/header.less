@@ -8,6 +8,16 @@ nav.main-menu {
     red(@shadowColor),
     green(@shadowColor),
     blue(@shadowColor), 0.5);
+  .dropdown.open {
+    .dropdown-toggle, ul.dropdown-menu {
+      background-color: @navbarNormalBgColor;
+    }
+    ul.dropdown-menu li:hover {
+      a {
+        background-color: @navbarNormalBgColorWithoutAlpha;
+      }
+    }
+  }
   &.on-title {
     background-color: transparent;
     box-shadow: none;

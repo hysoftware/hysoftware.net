@@ -1,7 +1,8 @@
 angular.module("hysoft.user.controllers", [
   "hysoft.user.resources"
 ]).controller("loginController", [
-  "$scope", "$window", "UserSession", (scope, window, UserSession) ->
+  "$scope", "$timeout", "$window", "UserSession",
+  (scope, timeout, window, UserSession) ->
     scope.loginPageStyle =
       "height": window.innerHeight
 
@@ -11,7 +12,14 @@ angular.module("hysoft.user.controllers", [
     scope.model = new UserSession()
 
     scope.send = ->
-      scope.model.$save()
+      delete scope.errors
+      scope.model.$save().then(
+        -> scope.userStatus.$get()
+      ).then(
+        -> timeout(-> scope.state.go "home", 2500)
+      ).catch (errors) ->
+        scope.errors = errors
+      return
 
     window.onresize = ->
       scope.$apply ->

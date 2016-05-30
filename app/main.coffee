@@ -3,7 +3,8 @@ angular.module("hysoft", [
   "hysoft.about"
   "hysoft.home"
   "hysoft.navbar.controller",
-  "hysoft.user.route"
+  "hysoft.user.route",
+  "hysoft.user.resources"
 ]).config([
   "$urlRouterProvider", "$httpProvider", (url, http) ->
     url.otherwise (injector, to) ->
@@ -14,6 +15,7 @@ angular.module("hysoft", [
     http.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest"
     http.defaults.xsrfCookieName = http.defaults.xsrfHeaderName = "X-CSRFToken"
 ]).run([
-  "$rootScope", "$state", (rootScope, state) ->
+  "$rootScope", "$state", "UserSession", (rootScope, state, User) ->
     rootScope.state = state
+    rootScope.userStatus = User.get()
 ])

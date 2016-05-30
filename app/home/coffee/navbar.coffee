@@ -2,12 +2,14 @@ ng = angular
 
 ng.module("hysoft.navbar.controller", [
   "ui.router"
+  "hysoft.user.resources"
 ]).controller("navbarController", [
   "$scope",
   "$state",
   "$window",
   "$rootElement",
-  (scope, state, window, root) ->
+  "UserSession"
+  (scope, state, window, root, User) ->
     accept_transparent = [
       state.get "home"
       state.get "about_legal"
@@ -22,6 +24,9 @@ ng.module("hysoft.navbar.controller", [
       window.scrollY < transparentEndPosition
     scope.navbarClass =
       "on-title": isOnTitle() and state.current
+    scope.logout = ->
+      scope.userStatus.$delete()
+      scope.userStatus = new User()
     window.onscroll = ->
       scope.$apply ->
         scope.navbarClass["on-title"] = isOnTitle() and

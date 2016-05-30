@@ -53,6 +53,7 @@
     "karma-chai-plugins": "^0.7.0",
     "karma-chrome-launcher": "^1.0.1",
     "karma-coffee-preprocessor": "^1.0.0",
+    "karma-coverage": "^1.0.0",
     "karma-firefox-launcher": "^1.0.0",
     "karma-mocha": "^1.0.1",
     "karma-sinon": "^1.0.4",

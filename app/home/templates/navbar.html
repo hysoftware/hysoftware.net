@@ -14,7 +14,22 @@
   </div>
   <div class="navbar-content container-fluid">
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="javascript:void(0)" data-ui-sref="login">Login</a></li>
+      <li data-ng-if="!userStatus.email">
+        <a href="javascript:void(0)" data-ui-sref="login">Login</a>
+      </li>
+      <li class="dropdown" data-ng-if="userStatus.email">
+        <a href="javascript:void(0)" class="dropdown-toggle"
+          data-toggle="dropdown" role="button"
+          aria-haspopup="true" aria-expanded="false">
+          {{'{{userStatus.firstname}} {{userStatus.lastname}}'}}
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="javascript:void(0)" data-ng-click="logout()">Logout</a>
+          </li>
+        </ul>
+      </li>
     </ul>
   </div>
 </nav>
