@@ -4,9 +4,11 @@
 """Admin panel."""
 
 from collections import OrderedDict
+
+from flask.ext.admin.form import rules
 import wtforms.fields as fld
 import wtforms.validators as vld
-from flask.ext.admin.form import rules
+
 from ..common import AdminModelBase
 
 
