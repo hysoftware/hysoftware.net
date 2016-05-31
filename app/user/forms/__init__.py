@@ -5,4 +5,4 @@
 
 from .login import LoginForm
 
-__all__ = ("LoginForm", )
+__all__ = ("LoginForm",)
