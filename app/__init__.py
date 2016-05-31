@@ -10,13 +10,14 @@ from flask.ext.wtf.csrf import CsrfProtect, generate_csrf
 from flask.ext.debugtoolbar import DebugToolbarExtension
 from flask.ext.mongoengine import MongoEngine
 from flask.ext.login import LoginManager
+from flask.ext.admin import Admin
 
 from .common import minify_html
 from .about import route as about_bp
 from .home import route as home_bp
 from .fonts import route as fonts_bp
 
-from .user import route as user_bp
+from .user import route as user_bp, PersonAdmin
 from .user.models import Person
 
 cfgmap = {
@@ -27,6 +28,7 @@ cfgmap = {
 app = Flask(__name__)
 app.config.from_object(cfgmap[os.environ.get("mode", "devel")])
 login_manager = LoginManager(app)
+admin = Admin(app, url="/manage")
 MongoEngine(app)
 CsrfProtect(app)
 DebugToolbarExtension(app)
@@ -36,6 +38,8 @@ app.register_blueprint(home_bp)
 if app.debug:
     app.register_blueprint(fonts_bp, url_prefix="/fonts")
 app.register_blueprint(user_bp, url_prefix="/u")
+
+admin.add_view(PersonAdmin(Person))
 
 
 @app.after_request

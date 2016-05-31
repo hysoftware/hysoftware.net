@@ -4,5 +4,6 @@
 """User-related module."""
 
 from .bp import route
+from .admin import PersonAdmin
 
-__all__ = ("route", )
+__all__ = ("route", "PersonAdmin")
