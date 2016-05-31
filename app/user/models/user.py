@@ -18,17 +18,17 @@ class QuerySet(gj.QuerySet, flskdb.BaseQuerySet):
 class Website(gj.EmbeddedDocument):
     """Website."""
 
-    name = db.StringField(required=True)
-    summary = db.StringField(required=True, max_length=400)
-    page_class = db.StringField(required=True)
+    name = db.StringField(required=True, max_length=20)
+    summary = db.StringField(required=True, max_length=140)
+    page_class = db.StringField(required=True, max_length=20)
     url = db.URLField(required=True)
 
 
 class Skill(gj.EmbeddedDocument):
     """Skill."""
 
-    language = db.StringField(required=True)
-    frameworks = db.EmbeddedDocumentListField(Website)
+    language = db.StringField(required=True, max_length=40)
+    frameworks = db.ListField(db.EmbeddedDocumentField(Website))
 
 
 class Person(gj.Document, flskdb.Document):
@@ -50,7 +50,7 @@ class Person(gj.Document, flskdb.Document):
     )
     DOB = db.DateTimeField()
     DOD = db.DateTimeField()
-    skills = db.EmbeddedDocumentListField(Skill)
+    skills = db.ListField(db.EmbeddedDocumentField(Skill))
     websites = db.EmbeddedDocumentListField(Website)
     is_authenticated = db.BooleanField(required=True, default=False)
     is_active = db.BooleanField(Required=True, default=False)
