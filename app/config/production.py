@@ -9,6 +9,9 @@ import os
 class ProductionConfig(object):
     """Production config."""
 
+    BUGTRACKER = os.environ.get(
+        "issue", "https://github.com/hysoftware/hysoftware.net"
+    )
     SECRET_KEY = os.environ["secret"]
     SESSION_COOKIE_SECURE = os.environ.get("cookie_secure", False)
     PREFERRED_URL_SCHEME = os.environ.get("url_scheme", "http")

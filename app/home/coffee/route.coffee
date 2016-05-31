@@ -1,6 +1,8 @@
 ng = angular
 ng.module("hysoft.home", [
-  "ui.router",
+  "ngAnimate"
+  "ui.router"
+  "toaster"
   "hysoft.home.controller"
 ]).config([
   "$stateProvider", (stateProvider) ->

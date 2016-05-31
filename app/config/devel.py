@@ -7,6 +7,7 @@
 class DevelConfig(object):
     """Configuration for development."""
 
+    BUGTRACKER = "https://github.com/hiroaki-yamamoto/hysoftware.net"
     # This is just to avoid doggy check
     SECRET_KEY = (lambda: (
         "iMP\Xe(-uFO>&Acjg89fgqsUYgcS79fxUwji2R6b5%79f&QQ1H"

@@ -17,6 +17,7 @@ class LoginForm(Form):
         render_kw={
             "class": "form-control",
             "data-ng-model": "model.email",
+            "data-ng-disabled": "loginForm.$submitted",
             "required": True
         }
     )
@@ -25,6 +26,7 @@ class LoginForm(Form):
         render_kw={
             "class": "form-control",
             "data-ng-model": "model.password",
+            "data-ng-disabled": "loginForm.$submitted",
             "required": True
         }
     )

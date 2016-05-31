@@ -13,8 +13,10 @@ module.exports =
     "#{thirdPartyPrefix}/jquery/dist/jquery.js"
     "#{thirdPartyPrefix}/bootstrap/dist/js/bootstrap.js"
     "#{thirdPartyPrefix}/angular/angular.js"
+    "#{thirdPartyPrefix}/angular-animate/angular-animate.js"
     "#{thirdPartyPrefix}/angular-resource/angular-resource.js"
     "#{thirdPartyPrefix}/angular-ui-router/release/angular-ui-router.js"
+    "#{thirdPartyPrefix}/AngularJS-Toaster/toaster.js"
   ]
   "thirdPartyPrefix": thirdPartyPrefix
 

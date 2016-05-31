@@ -18,4 +18,5 @@ angular.module("hysoft", [
   "$rootScope", "$state", "UserSession", (rootScope, state, User) ->
     rootScope.state = state
     rootScope.userStatus = User.get()
+    rootScope.angular = angular
 ])

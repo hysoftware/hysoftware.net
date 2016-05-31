@@ -4,12 +4,11 @@
   "description": "Hysoftware webapp package",
   "main": "app.coffee",
   "scripts": {
-    "install": "npm run webdriverUpdate && npm run bowerInstall && npm run buildModernizr",
-    "postversion": "npm run webdriverUpdate && npm run bowerUpdate && npm run buildModernizr",
+    "install": "npm run webdriverUpdate && npm run bower -- install && npm run buildModernizr",
+    "postversion": "npm run webdriverUpdate && npm run bower -- update && npm run buildModernizr",
     "gulp": "$(npm bin)/gulp",
     "webdriverUpdate": "$(npm bin)/webdriver-manager update",
-    "bowerInstall": "$(npm bin)/bower install",
-    "bowerUpdate": "$(npm bin)/bower update",
+    "bower": "$(npm bin)/bower",
     "buildModernizr": "$(npm bin)/modernizr -quc ./modernizr.conf.json -d app/static/modernizr.js",
     "ncu": "$(npm bin)/ncu",
     "bowerNcu": "$(npm bin)/ncu -m bower"
