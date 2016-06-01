@@ -5,7 +5,6 @@
 
 from collections import OrderedDict
 
-from flask.ext.admin.form import rules
 import wtforms.fields as fld
 import wtforms.validators as vld
 
@@ -26,27 +25,19 @@ class CurrentPasswordValidation(object):
         if model is None:
             return
 
-        if all([getattr(form, f).data for f in self.fields]) and \
-                not field.data:
-            raise vld.ValidationError("This field is required.")
-
-        if not model.verify(field.data):
-            raise vld.ValidationError("The password wasn't matched.")
+        if all([getattr(form, f).data for f in self.fields]):
+            if not field.data:
+                raise vld.ValidationError("This field is required.")
+            if not model.verify(field.data):
+                raise vld.ValidationError("The password wasn't matched.")
 
 
 class PersonAdmin(AdminModelBase):
     """Person admin."""
 
     form_subdocuments = {
-        "skills": {
-            "form_subdocuments": {
-                None: {
-                    "form_rules": (
-                        "language", "frameworks", rules.HTML("<hr>")
-                    )
-                }
-            }
-        }
+        "skills": {},
+        "websites": {},
     }
     column_exclude_list = ("code", )
     form_excluded_columns = ("code", )

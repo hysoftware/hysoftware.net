@@ -36,7 +36,7 @@ class Person(gj.Document, flskdb.Document):
 
     meta = {"queryset_class": QuerySet}
 
-    email = db.EmailField(unique=True)
+    email = db.EmailField(unique=True, required=True)
     firstname = db.StringField(required=True)
     lastname = db.StringField(required=True)
     code = db.StringField(required=True, min_length=60, max_length=60)
@@ -51,7 +51,7 @@ class Person(gj.Document, flskdb.Document):
     DOB = db.DateTimeField()
     DOD = db.DateTimeField()
     skills = db.ListField(db.EmbeddedDocumentField(Skill))
-    websites = db.EmbeddedDocumentListField(Website)
+    websites = db.ListField(db.EmbeddedDocumentField(Website))
     is_authenticated = db.BooleanField(required=True, default=False)
     is_active = db.BooleanField(Required=True, default=False)
     is_anonymous = False
