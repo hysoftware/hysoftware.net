@@ -12,10 +12,8 @@ nav.main-menu {
     .dropdown-toggle, ul.dropdown-menu {
       background-color: @navbarNormalBgColor;
     }
-    ul.dropdown-menu li:hover {
-      a {
-        background-color: @navbarNormalBgColorWithoutAlpha;
-      }
+    ul.dropdown-menu li a:hover {
+      background-color: @navbarNormalBgColorWithoutAlpha;
     }
   }
   &.on-title {
@@ -26,8 +24,9 @@ nav.main-menu {
       color: lighten(@navbarNormalTextHoverColor, 30%) !important;
       text-shadow: 5px 5px 5px lighten(#212121, 10%);
       &:hover {
-        color: lighten(@navbarNormalTextHoverColor, 45%) !important;
-        text-shadow: 2px 2px 5px lighten(#212121, 10%);
+        background-color: @navbarNormalBgColor;
+        // color: lighten(@navbarNormalTextHoverColor, 45%) !important;
+        text-shadow: none;
       }
     }
   }
