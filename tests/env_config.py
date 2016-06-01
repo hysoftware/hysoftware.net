@@ -59,7 +59,9 @@ class ProductionTestClass(EnvironmentTestBase):
         """Setup."""
         super().setUp()
         os.environ["mode"] = "production"
-        os.environ["secret"] = "test"
+        os.environ["secret"] = \
+            os.environ["recaptcha_prikey"] = \
+            os.environ["recaptcha_pubkey"] = "test"
 
     def test_production_mode(self):
         """Production Config should be read."""

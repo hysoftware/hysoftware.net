@@ -1,4 +1,3 @@
-{% macro home(tagline) %}
 <section class="jumbotron main-title" data-ng-style="titleStyle">
   <div class="background"></div>
   <header class="vertical-center text-center">
@@ -103,8 +102,19 @@
 </section>
 <section class="text-center subtitles">
   <h2>Tell us about you...</h2>
-  [Contactform]
+  <form>
+    {% for field in contact_form -%}
+        {% if "hidden" not in field.widget.field_flags or [] -%}
+          <fieldset class="form-group"
+            data-ng-class="{'has-error': isDirtyInvalid(loginForm.{{ field.name }})}">
+          {{ field.label(class="col-sm-2 control-label") }}
+          <div class="col-sm-10">
+        {%- endif %}
+        {{ field() }}
+        {% if "hidden" not in field.widget.field_flags or [] -%}
+          </div>
+          </fieldset>
+        {%- endif %}
+    {% endfor %}
+  </form>
 </section>
-{% endmacro %}
-
-{{ home(tagline) }}

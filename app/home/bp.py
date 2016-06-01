@@ -4,7 +4,7 @@
 """Blueprint for homepage."""
 
 from flask import Blueprint
-from .controllers import IndexView
+from .controllers import IndexView, HomeView
 
 
 route = Blueprint(
@@ -13,3 +13,4 @@ route = Blueprint(
     template_folder="templates"
 )
 IndexView.register(route)
+HomeView.register(route)

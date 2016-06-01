@@ -5,11 +5,8 @@
 
 from random import choice
 
-from flask import render_template
+from flask import render_template, session
 from flask.ext.classy import FlaskView
-from flask.ext.login import current_user
-
-from ...common import minify_html
 
 
 class IndexView(FlaskView):
@@ -25,7 +22,5 @@ class IndexView(FlaskView):
 
     def index(self):
         """Main page resource."""
-        return render_template(
-            "index.html", tagline=choice(self.website_taglines),
-            minify=minify_html, current_user=current_user
-        )
+        session["tagline"] = choice(self.website_taglines)
+        return render_template("index.html", tagline=session["tagline"])

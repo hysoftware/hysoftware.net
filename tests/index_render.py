@@ -6,7 +6,6 @@
 
 from unittest import TestCase
 from unittest.mock import patch
-from flask.ext.login import current_user
 
 from app import app
 
@@ -24,13 +23,13 @@ class IndexRendering(TestCase):
         "app.home.controllers.index.render_template",
         return_value="<body></body>"
     )
-    @patch("app.home.controllers.index.minify_html")
-    def test_index_access(self, minify, render_template, choice):
+    def test_index_access(self, render_template, choice):
         """Should call render_template with index.html."""
         with self.client as cli:
             cli.get("/")
-        render_template.assert_called_with(
-            "index.html", tagline="Test tagline", minify=minify,
-            current_user=current_user
+            with cli.session_transaction() as session:
+                self.assertEqual(session["tagline"], choice.return_value)
+        render_template.assert_called_once_with(
+            "index.html", tagline=choice.return_value
         )
         self.assertTrue(choice.called)

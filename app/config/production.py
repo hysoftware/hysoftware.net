@@ -21,3 +21,6 @@ class ProductionConfig(object):
         "username": os.environ.get("db_user", None),
         "password": os.environ.get("db_password", None)
     }
+    RECAPTCHA_USE_SSL = True
+    RECAPTCHA_PUBLIC_KEY = os.environ["recaptcha_pubkey"]
+    RECAPTCHA_PRIVATE_KEY = os.environ["recaptcha_prikey"]

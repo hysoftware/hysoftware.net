@@ -30,3 +30,6 @@ class DevelConfig(object):
     ]
     MONGODB_SETTINGS = {"host": "mongodb://localhost/hysoft"}
     WTF_CSRF_METHODS = ["POST", "PUT", "PATCH", "DELETE"]
+    RECAPTCHA_USE_SSL = True
+    RECAPTCHA_PUBLIC_KEY = "6Lc2dSETAAAAAI-VoBJQwjoCS88gmoNhXpcT-Pht"
+    RECAPTCHA_PRIVATE_KEY = "6Lc2dSETAAAAAEl0AHy6OmYZhY7qifnE_04G9az4"

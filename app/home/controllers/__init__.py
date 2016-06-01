@@ -4,5 +4,6 @@
 """Home contorllers."""
 
 from .index import IndexView
+from .home import HomeView
 
-__all__ = ("IndexView",)
+__all__ = ("IndexView", "HomeView")

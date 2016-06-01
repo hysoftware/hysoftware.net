@@ -9,7 +9,7 @@
           {{ field.label(class="col-sm-2 control-label") }}
           <div class="col-sm-10">
         {%- endif %}
-        {{ field() }}
+        {{ field }}
         {% if "hidden" not in field.widget.field_flags or [] -%}
           </div>
           </fieldset>

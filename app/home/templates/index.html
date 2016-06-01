@@ -25,9 +25,6 @@
   <link rel="stylesheet" href="{{ url_for('.static', filename='assets.css') }}">
   <script src="{{ url_for('static', filename='third_party.js') }}"></script>
   <script src="{{ url_for('.static', filename='assets.js') }}"></script>
-  <script type="text/ng-template" id="/home">
-    {{- minify(home.home(tagline)) | safe -}}
-  </script>
   <title>HYSOFT</title>
 </head>
 <body data-ng-cloak>
