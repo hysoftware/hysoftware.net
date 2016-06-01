@@ -60,7 +60,7 @@ class PersonAdmin(AdminModelBase):
         )
     ])
 
-    def on_model_change(self, form, model, is_created):
+    def on_model_change(self, form, model, is_created=False):
         """Apply new password."""
         if form.confirm_password.data:
             model.password = form.confirm_password.data
