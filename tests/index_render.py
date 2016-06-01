@@ -6,6 +6,7 @@
 
 from unittest import TestCase
 from unittest.mock import patch
+from flask.ext.login import current_user
 
 from app import app
 
@@ -29,6 +30,7 @@ class IndexRendering(TestCase):
         with self.client as cli:
             cli.get("/")
         render_template.assert_called_with(
-            "index.html", tagline="Test tagline", minify=minify
+            "index.html", tagline="Test tagline", minify=minify,
+            current_user=current_user
         )
         self.assertTrue(choice.called)

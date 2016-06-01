@@ -10,7 +10,7 @@ from flask.ext.wtf.csrf import CsrfProtect, generate_csrf
 from flask.ext.debugtoolbar import DebugToolbarExtension
 from flask.ext.mongoengine import MongoEngine
 from flask.ext.login import LoginManager
-from flask.ext.admin import Admin
+from flask.ext.admin.base import Admin, MenuLink
 
 from .common import minify_html
 from .about import route as about_bp
@@ -38,7 +38,7 @@ app.register_blueprint(home_bp)
 if app.debug:
     app.register_blueprint(fonts_bp, url_prefix="/fonts")
 app.register_blueprint(user_bp, url_prefix="/u")
-
+admin.add_link(MenuLink(name="Back to HYSOFT", url="/#/"))
 admin.add_view(PersonAdmin(Person))
 
 

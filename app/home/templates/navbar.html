@@ -1,4 +1,4 @@
-{% macro header() -%}
+{% macro header(current_user) -%}
 <nav class="navbar navbar-default navbar-fixed-top main-menu"
   data-ng-controller="navbarController"
   data-ng-class="navbarClass">
@@ -26,6 +26,9 @@
         </a>
         <ul class="dropdown-menu">
           <li>
+            {% if current_user.is_authenticated and "admin" in current_user.role -%}
+            <a href="{{ url_for('admin.index') }}">Manager</a>
+            {%- endif %}
             <a href="javascript:void(0)" data-ng-click="logout()">Logout</a>
           </li>
         </ul>
