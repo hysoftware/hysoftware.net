@@ -47,8 +47,7 @@ class ContactForm(Form):
         }
     )
     recaptcha = RecaptchaField(
-        "I am not a bot", validators=[vld.InputRequired()],
-        render_kw={
+        "I am not a bot", render_kw={
             "data-ng-model": "contact.recaptcha",
             "data-ng-disabled": "contactForm.$submitted",
             "required": True

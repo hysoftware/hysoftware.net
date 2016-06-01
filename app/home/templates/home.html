@@ -102,7 +102,8 @@
 </section>
 <section class="text-center subtitles">
   <h2>Tell us about you...</h2>
-  <form>
+  <form id="contactForm" name="contactForm"
+    data-ng-submit="sendContact()" novalidate>
     {% for field in contact_form -%}
         {% if "hidden" not in field.widget.field_flags or [] -%}
           <fieldset class="form-group"
@@ -116,5 +117,6 @@
           </fieldset>
         {%- endif %}
     {% endfor %}
+    <button type="submit" class="btn btn-success btn-lg">Send</button>
   </form>
 </section>
