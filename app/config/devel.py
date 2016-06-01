@@ -29,3 +29,4 @@ class DevelConfig(object):
         "flask.ext.mongoengine.panels.MongoDebugPanel"
     ]
     MONGODB_SETTINGS = {"host": "mongodb://localhost/hysoft"}
+    WTF_CSRF_METHODS = ["POST", "PUT", "PATCH", "DELETE"]

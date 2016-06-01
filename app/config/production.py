@@ -15,6 +15,7 @@ class ProductionConfig(object):
     SECRET_KEY = os.environ["secret"]
     SESSION_COOKIE_SECURE = os.environ.get("cookie_secure", False)
     PREFERRED_URL_SCHEME = os.environ.get("url_scheme", "http")
+    WTF_CSRF_METHODS = ["POST", "PUT", "PATCH", "DELETE"]
     MONGODB_SETTINGS = {
         "host": os.environ.get("db_url", None),
         "username": os.environ.get("db_user", None),

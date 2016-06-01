@@ -171,9 +171,10 @@ class LogoutTest(ut.TestCase):
         app.testing = True
         self.cli = app.test_client()
 
+    @patch("flask.ext.wtf.csrf.validate_csrf", return_value=True)
     @patch("app.Person.objects")
     @patch("app.user.controllers.login.logout_user")
-    def test_session_status(self, logout_user, user_objects):
+    def test_session_status(self, logout_user, user_objects, csrf):
         """GETting /u/login/status, current_user should be returned."""
         person = user.Person(
             id=ObjectId(),
