@@ -8,8 +8,8 @@ import wtforms.fields as fld
 import wtforms.fields.html5 as html5
 import wtforms.validators as vld
 
-from ...common import DelayedSelectField
-from ...user.models import Person
+from ..common import DelayedSelectField
+from ..user.models import Person
 
 
 class ContactForm(Form):

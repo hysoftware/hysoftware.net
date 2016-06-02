@@ -10,7 +10,7 @@ from flask.ext.classy import FlaskView
 from flask.ext.login import current_user
 
 from .index import IndexView
-from ..forms import ContactForm
+from ...contact.forms import ContactForm
 
 
 class HomeView(FlaskView):
