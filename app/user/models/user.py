@@ -52,8 +52,8 @@ class Person(gj.Document, flskdb.Document):
     DOD = db.DateTimeField()
     skills = db.ListField(db.EmbeddedDocumentField(Skill))
     websites = db.ListField(db.EmbeddedDocumentField(Website))
-    is_authenticated = db.BooleanField(required=True, default=False)
-    is_active = db.BooleanField(Required=True, default=False)
+    is_authenticated = db.BooleanField(default=False)
+    is_active = db.BooleanField(default=False)
     is_anonymous = False
 
     def get_id(self):
@@ -65,6 +65,11 @@ class Person(gj.Document, flskdb.Document):
         return bcrypt.hashpw(
             password.encode(), self.code.encode()
         ) == self.code.encode()
+
+    @property
+    def fullname(self):
+        """Return full name."""
+        return ("{} {}").format(self.firstname, self.lastname)
 
     @property
     def password(self):

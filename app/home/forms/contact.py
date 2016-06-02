@@ -5,7 +5,11 @@
 
 from flask.ext.wtf import Form, RecaptchaField
 import wtforms.fields as fld
+import wtforms.fields.html5 as html5
 import wtforms.validators as vld
+
+from ...common import DelayedSelectField
+from ...user.models import Person
 
 
 class ContactForm(Form):
@@ -28,11 +32,24 @@ class ContactForm(Form):
             "data-ng-disabled": "contactForm.$submitted"
         }
     )
-    email = fld.StringField(
+    email = html5.EmailField(
         "Email", validators=[vld.Email(), vld.InputRequired()],
         render_kw={
             "class": "form-control",
             "data-ng-model": "contact.email",
+            "data-ng-disabled": "contactForm.$submitted",
+            "required": True
+        }
+    )
+    to = DelayedSelectField(
+        "To",
+        description="if you're not sure, select 'Hiroaki Yamamoto'",
+        choices=lambda: [
+            (person.get_id(), person.fullname)
+            for person in Person.objects(role__in=["developer", "admin"])
+        ], render_kw={
+            "class": "form-control",
+            "data-ng-model": "contact.to",
             "data-ng-disabled": "contactForm.$submitted",
             "required": True
         }

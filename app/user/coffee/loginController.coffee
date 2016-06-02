@@ -1,15 +1,13 @@
 angular.module("hysoft.user.controllers", [
   "toaster"
   "hysoft.user.resources"
+  "hysoft.common.form.validation"
 ]).controller("loginController", [
-  "$scope", "$timeout", "$window", "toaster", "UserSession",
-  (scope, timeout, window, t, UserSession) ->
+  "$scope", "$timeout", "$window", "isDirtyInvalid", "toaster", "UserSession",
+  (scope, timeout, window, isDirtyInvalid, t, UserSession) ->
     scope.loginPageStyle =
       "height": window.innerHeight
-
-    scope.isDirtyInvalid = (field) ->
-      return field.$dirty and field.$invalid
-
+    scope.isDirtyInvalid = isDirtyInvalid
     scope.model = new UserSession()
     scope.userStatus.$get().then (data) ->
       t.pop(

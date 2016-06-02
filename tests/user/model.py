@@ -73,3 +73,15 @@ class IDCheck(PasswordHashTestBase):
     def test_id(self):
         """The return value from get_id should be equal to str(model.id)."""
         self.assertEqual(self.model.get_id(), str(self.model.id))
+
+
+class FullName(ut.TestCase):
+    """Test full name property."""
+
+    def setUp(self):
+        """setup."""
+        self.person = user_models.Person(firstname="Test", lastname="Example")
+
+    def test_fullname(self):
+        """Accessing fullname property, returns "Test Example"."""
+        self.assertEqual(self.person.fullname, "Test Example")

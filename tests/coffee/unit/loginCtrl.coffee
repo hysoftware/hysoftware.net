@@ -42,23 +42,6 @@ describe "Login Controller Tests", ->
     ]
     it "scope.state.go 'home' shouldn't be called at this time.", ->
       expect(scope.state.go.called).is.false
-    describe "isDirtyInvalid check", ->
-      testCases = [
-        ("$invalid": true, "$dirty": true, "expected": true),
-        ("$invalid": false, "$dirty": true, "expected": false),
-        ("$invalid": true, "$dirty": false, "expected": false),
-        ("$invalid": false, "$dirty": false, "expected": false)
-      ]
-      for testData in testCases
-        do (testData) ->
-          describe "When Invalid = #{testData.$invalid} and
-                   Dirty = #{testData.$dirty}", ->
-            it "Should return #{testData.expected}", ->
-              result = expect(scope.isDirtyInvalid testData)
-              if testData.expected
-                result.is.true
-              else
-                result.is.false
 
     describe "Send check", ->
       describe "Success Case", ->
