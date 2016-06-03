@@ -119,7 +119,7 @@
           </fieldset>
         {%- endif %}
     {% endfor %}
-    <div data-ng-if="contactForm.$submitted" class="alert alert-success">
+    <div data-ng-if="contactForm.$submitted &amp;&amp; contact.name" class="alert alert-success">
       <span class="glyphicon glyphicon-thumbs-up"></span>
       <strong>Great!</strong> Your message has been sent.
     </div>
@@ -135,7 +135,7 @@
             </ul>
           </div>
         </div>
-        <p data-ng-if="!angular.isObject(errors.data) &amp;&amp; errors.status > 499">
+        <p data-ng-if="!angular.isObject(contactErrors.data) &amp;&amp; contactErrors.status > 499">
           Oops!! Perhaps it seems to be serverside errror. Please contact Hiro.
         </p>
     </div>

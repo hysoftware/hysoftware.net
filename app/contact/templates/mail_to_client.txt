@@ -1,0 +1,18 @@
+Thanks for your interest
+========================
+
+Hi {{ form.name.data }}!
+Thanks for your interests. The mail is sent to {{ member.fullname }}.
+
+Here is the copy:
+{% for field in form -%}
+  {{ field.label.text }}: {{ field.data }}
+{%- endfor %}
+
+
+Thanks!
+
+=====================
+Hiroaki Yamamoto
+http://hysoftware.net
+=====================

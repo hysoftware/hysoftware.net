@@ -11,8 +11,10 @@ from flask.ext.debugtoolbar import DebugToolbarExtension
 from flask.ext.mongoengine import MongoEngine
 from flask.ext.login import LoginManager
 from flask.ext.admin.base import Admin, MenuLink
+from flask.ext.mail import Mail
 
 from .common import minify_html
+from .contact import route as contact_bp
 from .about import route as about_bp
 from .home import route as home_bp
 from .fonts import route as fonts_bp
@@ -28,12 +30,14 @@ cfgmap = {
 app = Flask(__name__)
 app.config.from_object(cfgmap[os.environ.get("mode", "devel")])
 login_manager = LoginManager(app)
+mail = Mail(app)
 admin = Admin(app, url="/manage")
 MongoEngine(app)
 CsrfProtect(app)
 DebugToolbarExtension(app)
 
 app.register_blueprint(about_bp, url_prefix="/about")
+app.register_blueprint(contact_bp, url_prefix="/contact")
 app.register_blueprint(home_bp)
 if app.debug:
     app.register_blueprint(fonts_bp, url_prefix="/fonts")
@@ -66,4 +70,4 @@ def csrf_prevent(resp):
     return resp
 
 
-__all__ = ("app")
+__all__ = ("app", "mail")

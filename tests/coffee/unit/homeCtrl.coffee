@@ -37,7 +37,7 @@ describe "Home controller tests", ->
       beforeEach inject [
         "$httpBackend", (http) ->
           prepareData()
-          http.expectPOST("/contact/#{scope.contact.to}").respond 200, ""
+          http.expectPOST("/contact").respond 200, ""
           scope.sendContact()
       ]
       afterEach inject [
@@ -58,10 +58,24 @@ describe "Home controller tests", ->
             http.flush()
         ]
 
-      it "After the request is flushed, the model should be cleared.",
+      it "Even if the request is flushed, the model shouldn't be cleared.",
         inject [
           "$httpBackend", (http) ->
             http.flush()
+            properties = [
+              "name", "company", "email", "to", "message",
+              "g-recaptcha-response"
+            ]
+            for property in properties
+              do (property) ->
+                expect(scope.contact).to.have.ownProperty property
+        ]
+
+      it "After the time is flushed, the model should be cleared.",
+        inject [
+          "$httpBackend", "$timeout", (http, timer) ->
+            http.flush()
+            timer.flush()
             properties = [
               "name", "company", "email", "to", "message",
               "g-recaptcha-response"
@@ -75,7 +89,7 @@ describe "Home controller tests", ->
       beforeEach inject [
         "$httpBackend", (http) ->
           prepareData()
-          http.expectPOST("/contact/#{scope.contact.to}").respond 417, {
+          http.expectPOST("/contact").respond 417, {
             "email": ["This field is required."]
           }
           scope.sendContact()

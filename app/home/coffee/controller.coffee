@@ -3,8 +3,8 @@ angular.module("hysoft.home.controller", [
   "hysoft.contact.resources"
 ]).controller(
   "homeController", [
-    "$element", "$scope", "$window", "Contact", "isDirtyInvalid",
-    (element, scope, window, Contact, isDirtyInvalid) ->
+    "$element", "$scope", "$timeout", "$window", "Contact", "isDirtyInvalid",
+    (element, scope, timeout, window, Contact, isDirtyInvalid) ->
       scope.contact = new Contact()
       scope.isDirtyInvalid = isDirtyInvalid
       scope.titleStyle =
@@ -16,7 +16,15 @@ angular.module("hysoft.home.controller", [
           "form#contactForm [name='g-recaptcha-response']"
         ).val()
         scope.contact.$save().then(
-          -> scope.contact = new Contact()
+          -> timeout(
+            (->
+              scope.contact = new Contact()
+              scope.contactForm.$setPristine()
+              try
+                grecaptcha.reset()
+              catch
+            ), 5000, false
+          )
         ).catch(
           (errors) ->
             scope.contactErrors = errors

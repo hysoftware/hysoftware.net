@@ -17,13 +17,27 @@ class DelayedSelectField(fld.SelectField):
         """
         super(DelayedSelectField, self).__init__(*args, **kwargs)
 
-    def iter_choices(self):
-        """Yeild the choice."""
+    @property
+    def choices(self):
+        """
+        Return choices.
+
+        CAUTION: This setter and getter is not symmetric; setter sets the
+            value directly while getter calls the value if it is callable.
+        """
         choices = None
         try:
-            choices = self.choices()
+            choices = self._choices()
         except TypeError:
-            choices = self.choices
+            choices = self._choices
+        return choices
 
-        for (value, label) in choices:
-            yield (value, label, self.coerce(value) == self.data)
+    @choices.setter
+    def choices(self, value):
+        """
+        Set choices.
+
+        CAUTION: This setter and getter is not symmetric; setter sets the
+            value directly while getter calls the value if it is callable.
+        """
+        self._choices = value

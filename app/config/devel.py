@@ -16,6 +16,7 @@ class DevelConfig(object):
         "C5\9jhR8U=P0Tkr0s9!T43>62W9uo2Ahh81Lh1iqN9e1NZE30t")
     )()
     DEBUG = True
+    MAIL_SUPPRESS_SEND = True
     DEBUG_TB_PANELS = [
         "flask.ext.debugtoolbar.panels.versions.VersionDebugPanel",
         "flask.ext.debugtoolbar.panels.timer.TimerDebugPanel",

@@ -3,6 +3,7 @@
 
 """Contact related module."""
 
+from .bp import route
 from .forms import ContactForm
 
-__all__ = ("ContactForm",)
+__all__ = ("ContactForm", "route")
