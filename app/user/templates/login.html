@@ -16,17 +16,15 @@
         {%- endif %}
     {% endfor %}
     <div class="alert"
-      data-ng-class="{
-        'alert-danger': errors &amp;&amp; errors.status > 499,
-        'alert-warning': errors &amp;&amp; errors.status < 500}"
+      data-ng-class="{'alert-danger': errors.status > 499, 'alert-warning': errors.status < 500}"
       data-ng-if="errors">
       <h3>Oh! Snap! (Status Code: {{"{{errors.status}}"}})</h3>
       <div data-ng-if="angular.isObject(errors.data)">
-        <p>The following errors are occured:</p>
-        <div data-ng-repeat="(field, errors) in errors.data" class="subarea">
+        <p>The following error(s) occured:</p>
+        <div data-ng-repeat="(field, messages) in errors.data" class="subarea">
           <h4>{{"{{ field }}"}}</h4>
           <ul>
-            <li data-ng-repeat="error in errors">{{"{{error}}"}}</li>
+            <li data-ng-repeat="msg in messages">{{"{{msg}}"}}</li>
           </ul>
         </div>
       </div>

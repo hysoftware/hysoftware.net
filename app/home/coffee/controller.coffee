@@ -9,10 +9,9 @@ angular.module("hysoft.home.controller", [
       scope.isDirtyInvalid = isDirtyInvalid
       scope.titleStyle =
         "height": window.innerHeight
-      scope.contactErrors = {}
 
       scope.sendContact = ->
-        scope.contactErrors = {}
+        delete scope.contactErrors
         scope.contact["g-recaptcha-response"] = element.find(
           "form#contactForm [name='g-recaptcha-response']"
         ).val()
