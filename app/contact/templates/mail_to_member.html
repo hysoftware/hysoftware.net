@@ -15,12 +15,12 @@
   <title>Thanks for your interests</title>
 </head>
 <body>
-  <h1>Thanks for your interest!</h1>
-  <p>Hi, {{ form.name.data }}</p>
+  <h1>{{ form.name.data }} seems to be interested in you</h1>
+  <p>Hi {{ member.firstname }}!</p>
   <p>
-    Thanks for your interest. Your mail has been sent to {{ member.fullname }}.
+    {{ form.name.data }}{% if form.company.data %} (Company: {{ form.company.data }}){% endif %} is interested in you.
   </p>
-  <p>Here is the copy:</p>
+  <p>Here is the copy from the form:</p>
   <table>
     <thead>
       <tr><th>Item</th><th>Value</th></tr>

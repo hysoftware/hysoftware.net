@@ -1,10 +1,10 @@
-Thanks for your interest
-========================
+{{ form.name.data }} seems to be interested in you
+===================================================
 
-Hi {{ form.name.data }}!
-Thanks for your interests. The mail has been sent to {{ member.fullname }}.
+Hi {{ member.firstname }}!
+{{ form.name.data }}{% if form.company.data %} (Company: {{ form.company.data }}){% endif %} is interested in you.
 
-Here is the copy:
+Here is the copy from the form:
 {% for field in form -%}
   {% if "hidden" not in (field.widget.field_flags or []) and field.name != "recaptcha" -%}
   {{ field.label.text }}: {% if field.choices_dict is defined %}{{ field.choices_dict[field.data] }}{% else %}{{ field.data }}{% endif %}

@@ -24,15 +24,26 @@ class ContactView(FlaskView):
         person = Person.objects(id=ObjectId(form.to.data)).get()
         mail.send_message(
             subject="Mail sending service from hysoftware.net",
-            sender=form.email.data, body=form.message.data,
-            recipients=[person.email]
+            sender=(form.name.data, form.email.data),
+            recipients=[person.email],
+            body=render_template(
+                "mail_to_member.txt", form=form, member=person
+            ),
+            html=render_template(
+                "mail_to_member.html", form=form, member=person
+            )
         )
         mail.send_message(
             subject="Thanks for your interest!",
-            sender="noreply@hysoftware.net",
+            sender=(
+                "HYSOFT (DON'T REPLY)", "noreply@hysoftware.net"
+            ),
             recipients=[form.email.data],
             body=render_template(
-                "mail_to_client.txt", form=form, member=person.fullname
+                "mail_to_client.txt", form=form, member=person
+            ),
+            html=render_template(
+                "mail_to_client.html", form=form, member=person
             )
         )
         return ""

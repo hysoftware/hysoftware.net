@@ -12,24 +12,27 @@ angular.module("hysoft.home.controller", [
 
       scope.sendContact = ->
         delete scope.contactErrors
+        delete scope.contactSuccess
         scope.contact["g-recaptcha-response"] = element.find(
           "form#contactForm [name='g-recaptcha-response']"
         ).val()
         scope.contact.$save().then(
-          -> timeout(
-            (->
-              scope.contact = new Contact()
-              scope.contactForm.$setPristine()
-              try
-                grecaptcha.reset()
-              catch
-            ), 5000, false
-          )
+          ->
+            scope.contactSuccess = true
+            timeout(
+              (->
+                scope.contact = new Contact()
+                scope.contactForm.$setPristine()
+              ), 5000, false
+            )
         ).catch(
           (errors) ->
             scope.contactErrors = errors
             scope.contactForm.$setPristine()
-        )
+        ).finally ->
+          try
+            grecaptcha.reset()
+          catch
 
       window.onresize = ->
         scope.$apply ->

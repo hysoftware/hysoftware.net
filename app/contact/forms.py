@@ -24,11 +24,20 @@ class ContactForm(Form):
             "required": True
         }
     )
-    company_name = fld.StringField(
-        "Your Company Name", validators=[vld.Optional()],
+    company = fld.StringField(
+        "Your Company Name (Optional)", validators=[vld.Optional()],
         render_kw={
             "class": "form-control",
             "data-ng-model": "contact.company",
+            "data-ng-disabled": "contactForm.$submitted"
+        }
+    )
+    website = html5.URLField(
+        "Your Profile URL e.g. Linkedin, Github, etc (Optional)",
+        validators=[vld.Optional(), vld.URL()],
+        render_kw={
+            "class": "form-control",
+            "data-ng-model": "contact.website",
             "data-ng-disabled": "contactForm.$submitted"
         }
     )
@@ -60,6 +69,7 @@ class ContactForm(Form):
             "class": "form-control",
             "data-ng-model": "contact.message",
             "data-ng-disabled": "contactForm.$submitted",
+            "rows": 10,
             "required": True
         }
     )

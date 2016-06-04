@@ -54,3 +54,24 @@ class DelayedEvaluationTest(TestCase):
                 result[:-1], self.data.return_value[index]
             )
         self.data.assert_called_once_with()
+
+
+class ChoicesAsDictTest(TestCase):
+    """Test choices_as_dict."""
+
+    def setUp(self):
+        """Setup."""
+        self.data = [
+            (("t{}").format(counter), ("test{}").format(counter))
+            for counter in range(3)
+        ]
+
+        class TestForm(Form):
+            field = DelayedSelectField(choices=self.data)
+
+        self.form = TestForm()
+
+    def test_as_dict(self):
+        """The map from value to label should work properly."""
+        result = self.form.field.choices_dict
+        self.assertDictEqual(dict(self.data), result)

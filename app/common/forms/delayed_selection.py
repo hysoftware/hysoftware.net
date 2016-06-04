@@ -41,3 +41,13 @@ class DelayedSelectField(fld.SelectField):
             value directly while getter calls the value if it is callable.
         """
         self._choices = value
+
+    @property
+    def choices_dict(self):
+        """
+        Return the mapper from value to label.
+
+        Return Value: A dict that has `value` as its key, and `label` as
+            its value.
+        """
+        return dict(self.choices)

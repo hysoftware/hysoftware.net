@@ -105,13 +105,13 @@
   <form id="contactForm" class="form-horizontal contact" name="contactForm"
     data-ng-submit="sendContact()" novalidate>
     {% for field in contact_form -%}
-        {% if "hidden" not in field.widget.field_flags or [] -%}
+        {% if "hidden" not in (field.widget.field_flags or []) -%}
           <fieldset class="form-group"
             data-ng-class="{'has-error': isDirtyInvalid(contactForm.{{ field.name }})}">
           {% if field.name != "recaptcha" -%}
-            {{ field.label(class="col-sm-2 control-label") }}
+            {{ field.label(class="col-sm-3 control-label") }}
           {%- endif %}
-          <div class="col-sm-10 {% if field.name == "recaptcha" %}col-sm-offset-2{% endif %}">
+          <div class="col-sm-9 {% if field.name == "recaptcha" %}col-sm-offset-3{% endif %}">
         {%- endif %}
         {{ field() }}
         {% if "hidden" not in field.widget.field_flags or [] -%}
@@ -119,9 +119,11 @@
           </fieldset>
         {%- endif %}
     {% endfor %}
-    <div data-ng-if="contactForm.$submitted &amp;&amp; contact.name" class="alert alert-success">
+    <div class="alert alert-success"
+      data-ng-if="contactForm.$submitted &amp;&amp; contactSuccess">
       <span class="glyphicon glyphicon-thumbs-up"></span>
       <strong>Great!</strong> Your message has been sent.
+      <p>{{"{{sendPromise}}"}}</p>
     </div>
     <div class="alert text-left" data-ng-if="contactErrors"
       data-ng-class="{'alert-danger': contactErrors.status > 499, 'alert-warning': contactErrors.status < 500}">

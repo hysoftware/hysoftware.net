@@ -16,7 +16,6 @@ class DevelConfig(object):
         "C5\9jhR8U=P0Tkr0s9!T43>62W9uo2Ahh81Lh1iqN9e1NZE30t")
     )()
     DEBUG = True
-    MAIL_SUPPRESS_SEND = True
     DEBUG_TB_PANELS = [
         "flask.ext.debugtoolbar.panels.versions.VersionDebugPanel",
         "flask.ext.debugtoolbar.panels.timer.TimerDebugPanel",
@@ -34,3 +33,10 @@ class DevelConfig(object):
     RECAPTCHA_USE_SSL = True
     RECAPTCHA_PUBLIC_KEY = "6Lc2dSETAAAAAI-VoBJQwjoCS88gmoNhXpcT-Pht"
     RECAPTCHA_PRIVATE_KEY = "6Lc2dSETAAAAAEl0AHy6OmYZhY7qifnE_04G9az4"
+
+    MAIL_SERVER = "smtp.mailgun.org"
+    MAIL_PORT = 587
+    MAIL_USE_TLS = True
+    MAIL_USERNAME = \
+        "postmaster@sandboxfb18aceb2a7948219de7080947534455.mailgun.org"
+    MAIL_PASSWORD = "34b7842a5db3aa3c9a2323cc2dac85bb"

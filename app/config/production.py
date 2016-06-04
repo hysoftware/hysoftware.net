@@ -27,6 +27,6 @@ class ProductionConfig(object):
     MAIL_SERVER = os.environ["MAIL_SERVER"]
     MAIL_USE_TLS = os.environ.get("MAIL_USE_TLS", "True").lower() == "true"
     MAIL_USE_SSL = os.environ.get("MAIL_USE_SSL", "False").lower() == "true"
-    MAIL_PORT = int(os.environ.get("MAIL_PORT", 465)) or 465
+    MAIL_PORT = int(os.environ.get("MAIL_PORT", 587)) or 587
     MAIL_USERNAME = os.environ["MAIL_USERNAME"]
     MAIL_PASSWORD = os.environ["MAIL_PASSWORD"]
