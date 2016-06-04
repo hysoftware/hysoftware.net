@@ -1,8 +1,8 @@
-{{ form.name.data }} seems to be interested in you
-===================================================
+{{ form.name.data }} sent you a message
+========================================
 
 Hi {{ member.firstname }}!
-{{ form.name.data }}{% if form.company.data %} (Company: {{ form.company.data }}){% endif %} is interested in you.
+{{ form.name.data }}{% if form.company.data %} (Company: {{ form.company.data }}){% endif %} sent you a message.
 
 Here is the copy from the form:
 {% for field in form -%}

@@ -3,6 +3,10 @@
 
 """Contact controller."""
 
+from urllib.parse import urljoin
+
+import requests
+
 from bson import ObjectId
 from flask import make_response, jsonify, current_app, render_template
 from flask.ext.classy import FlaskView
@@ -17,33 +21,48 @@ class ContactView(FlaskView):
 
     def post(self):
         """POST request."""
-        mail = current_app.extensions["mail"]
         form = ContactForm()
         if not form.validate():
             return make_response(jsonify(form.errors), 417)
         person = Person.objects(id=ObjectId(form.to.data)).get()
-        mail.send_message(
-            subject="Mail sending service from hysoftware.net",
-            sender=(form.name.data, form.email.data),
-            recipients=[person.email],
-            body=render_template(
-                "mail_to_member.txt", form=form, member=person
-            ),
-            html=render_template(
-                "mail_to_member.html", form=form, member=person
-            )
+        member_resp = requests.post(
+            urljoin(current_app.config["MAILGUN_URL"] + "/", "messages"),
+            auth=("api", current_app.config["MAILGUN_API"]),
+            data={
+                "from": form.email.data,
+                "to": person.email,
+                "subject": (
+                    "Someone wants to contact you (hysoftware.net)"
+                ).format(form.name.data),
+                "text": render_template(
+                    "mail_to_member.txt", form=form, member=person
+                ),
+                "html": render_template(
+                    "mail_to_member.html", form=form, member=person
+                )
+            }
         )
-        mail.send_message(
-            subject="Thanks for your interest!",
-            sender=(
-                "HYSOFT (DON'T REPLY)", "noreply@hysoftware.net"
-            ),
-            recipients=[form.email.data],
-            body=render_template(
-                "mail_to_client.txt", form=form, member=person
-            ),
-            html=render_template(
-                "mail_to_client.html", form=form, member=person
-            )
+        cli_resp = requests.post(
+            urljoin(current_app.config["MAILGUN_URL"] + "/", "messages"),
+            auth=("api", current_app.config["MAILGUN_API"]),
+            data={
+                "from": "HYSOFT Mailbot <noreply@hysoftware.net>",
+                "to": form.email.data,
+                "subject": "Thanks for your interest!",
+                "text": render_template(
+                    "mail_to_client.txt", form=form, member=person
+                ),
+                "html": render_template(
+                    "mail_to_client.html", form=form, member=person
+                )
+            }
         )
+        try:
+            member_resp.raise_for_status()
+            cli_resp.raise_for_status()
+        except requests.HTTPError as e:
+            return make_response(
+                jsonify({"Mail": [e.response.json().get("message")]}),
+                e.response.status_code
+            )
         return ""

@@ -62,9 +62,8 @@ class ProductionTestClass(EnvironmentTestBase):
         os.environ["secret"] = \
             os.environ["recaptcha_prikey"] = \
             os.environ["recaptcha_pubkey"] = \
-            os.environ["MAIL_SERVER"] = \
-            os.environ["MAIL_USERNAME"] = \
-            os.environ["MAIL_PASSWORD"] = "test"
+            os.environ["MAILGUN_API"] = \
+            os.environ["MAILGUN_URL"] = "test"
 
     def test_production_mode(self):
         """Production Config should be read."""

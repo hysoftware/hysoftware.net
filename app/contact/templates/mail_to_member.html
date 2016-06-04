@@ -12,13 +12,13 @@
       font-weight: 300;
     }
   </style>
-  <title>Thanks for your interests</title>
+  <title>{{ form.name.data }} sent you a message</title>
 </head>
 <body>
-  <h1>{{ form.name.data }} seems to be interested in you</h1>
+  <h1>{{ form.name.data }} wants you to contact him</h1>
   <p>Hi {{ member.firstname }}!</p>
   <p>
-    {{ form.name.data }}{% if form.company.data %} (Company: {{ form.company.data }}){% endif %} is interested in you.
+    {{ form.name.data }}{% if form.company.data %} (Company: {{ form.company.data }}){% endif %} sent you a message.
   </p>
   <p>Here is the copy from the form:</p>
   <table>

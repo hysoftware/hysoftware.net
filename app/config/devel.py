@@ -34,9 +34,6 @@ class DevelConfig(object):
     RECAPTCHA_PUBLIC_KEY = "6Lc2dSETAAAAAI-VoBJQwjoCS88gmoNhXpcT-Pht"
     RECAPTCHA_PRIVATE_KEY = "6Lc2dSETAAAAAEl0AHy6OmYZhY7qifnE_04G9az4"
 
-    MAIL_SERVER = "smtp.mailgun.org"
-    MAIL_PORT = 587
-    MAIL_USE_TLS = True
-    MAIL_USERNAME = \
-        "postmaster@sandboxfb18aceb2a7948219de7080947534455.mailgun.org"
-    MAIL_PASSWORD = "34b7842a5db3aa3c9a2323cc2dac85bb"
+    MAILGUN_API = "key-c0c09ef43a4d3a146d3945828fec775c"
+    MAILGUN_URL = "https://api.mailgun.net/v3/"\
+                  "sandboxfb18aceb2a7948219de7080947534455.mailgun.org"

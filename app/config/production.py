@@ -24,9 +24,5 @@ class ProductionConfig(object):
     RECAPTCHA_USE_SSL = True
     RECAPTCHA_PUBLIC_KEY = os.environ["recaptcha_pubkey"]
     RECAPTCHA_PRIVATE_KEY = os.environ["recaptcha_prikey"]
-    MAIL_SERVER = os.environ["MAIL_SERVER"]
-    MAIL_USE_TLS = os.environ.get("MAIL_USE_TLS", "True").lower() == "true"
-    MAIL_USE_SSL = os.environ.get("MAIL_USE_SSL", "False").lower() == "true"
-    MAIL_PORT = int(os.environ.get("MAIL_PORT", 587)) or 587
-    MAIL_USERNAME = os.environ["MAIL_USERNAME"]
-    MAIL_PASSWORD = os.environ["MAIL_PASSWORD"]
+    MAILGUN_API = os.environ["MAILGUN_API"]
+    MAILGUN_URL = os.environ["MAILGUN_URL"]

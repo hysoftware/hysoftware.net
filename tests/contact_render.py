@@ -4,11 +4,11 @@
 """Contact controller rendering tests."""
 
 import json
+from urllib.parse import urljoin
 from unittest import TestCase
-from unittest.mock import patch, PropertyMock
+from unittest.mock import patch, PropertyMock, call
 from bson import ObjectId
-# from flask.ext.mail import Message
-from app import app, mail
+from app import app
 from app.user.models import Person
 
 
@@ -18,9 +18,13 @@ class ContactSendingTest(TestCase):
     def setUp(self):
         """Setup."""
         app.testing = True
-        app.extensions["mail"].suppress = True
         self.cli = app.test_client()
-        self.person = Person(id=ObjectId(), email="test@example.com")
+        self.person = Person(
+            id=ObjectId(), email="test@example.com",
+            firstname="Test", lastname="Person"
+        )
+        self.url = urljoin(app.config["MAILGUN_URL"] + "/", "messages")
+        self.auth = ("api", app.config["MAILGUN_API"])
         self.data = {
             "name": "Text Example",
             "to": self.person.get_id(),
@@ -35,33 +39,60 @@ class ContactSendingTest(TestCase):
             resp = cli.get("/contact")
             self.assertEqual(resp.status_code, 405)
 
+    @patch("requests.post")
+    @patch("app.contact.controllers.render_template")
     @patch("app.contact.controllers.Person.objects")
     @patch("app.contact.forms.Person.objects")
     @patch("app.contact.controllers.ContactForm")
     @patch("flask.ext.wtf.csrf.validate_csrf", return_value=True)
-    def test_post(self, csrf, form, model, ctrl_model):
+    def test_post(self, csrf, form, model, ctrl_model, render_template, post):
         """[POST] Contact:index should send email."""
+        def render_template_side_effect(f, **kwargs):
+            return {
+                "mail_to_member.txt": "member.txt",
+                "mail_to_member.html": "member.html",
+                "mail_to_client.txt": "client.txt",
+                "mail_to_client.html": "client.html"
+            }[f]
+        render_template.side_effect = render_template_side_effect
+
         model.return_value = [self.person]
         ctrl_model.return_value.get.return_value = self.person
         form.return_value.validate.return_value = True
         for (key, value) in self.data.items():
-            setattr(
-                form.return_value, key, type("data", (object, ), {
-                    "data": value
-                })
-            )
+            setattr(form.return_value, key, type("data", (object, ), {
+                "data": value
+            }))
         with self.cli as cli:
-            with mail.record_messages() as out:
-                resp = cli.post("/contact", data=self.data)
-                self.assertEqual(resp.status_code, 200)
-                self.assertEqual(len(out), 2)
+            resp = cli.post("/contact", data=self.data)
+            self.assertEqual(resp.status_code, 200)
+        self.assertEqual(post.call_count, 2)
+        post.assert_has_calls([
+            call(self.url, auth=self.auth, data={
+                "from": self.data["email"],
+                "to": self.person.email,
+                "subject": (
+                    "Someone wants to contact you (hysoftware.net)"
+                ).format(self.data["name"]),
+                "text": render_template.side_effect("mail_to_member.txt"),
+                "html": render_template.side_effect("mail_to_member.html")
+            }),
+            call(self.url, auth=self.auth, data={
+                "from": "HYSOFT Mailbot <noreply@hysoftware.net>",
+                "to": self.data["email"],
+                "subject": "Thanks for your interest!",
+                "text": render_template.side_effect("mail_to_client.txt"),
+                "html": render_template.side_effect("mail_to_client.html")
+            })
+        ], any_order=True)
         form.return_value.validate.assert_called_once_with()
 
+    @patch("requests.post")
     @patch("app.contact.controllers.Person.objects")
     @patch("app.contact.forms.Person.objects")
     @patch("app.contact.controllers.ContactForm")
     @patch("flask.ext.wtf.csrf.validate_csrf", return_value=True)
-    def test_post_lacks_email(self, csrf, form, model, ctrl_model):
+    def test_post_lacks_email(self, csrf, form, model, ctrl_model, post):
         """[POST] Contact:index should return 417 with an email error."""
         model.return_value = [self.person]
         form.return_value.validate.return_value = False
@@ -76,5 +107,6 @@ class ContactSendingTest(TestCase):
                 errs.return_value,
                 json.loads(resp.data.decode("utf-8"))
             )
+        post.assert_not_called()
         form.return_value.validate.assert_called_once_with()
         errs.assert_called_once_with()

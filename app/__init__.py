@@ -11,7 +11,6 @@ from flask.ext.debugtoolbar import DebugToolbarExtension
 from flask.ext.mongoengine import MongoEngine
 from flask.ext.login import LoginManager
 from flask.ext.admin.base import Admin, MenuLink
-from flask.ext.mail import Mail
 
 from .common import minify_html
 from .contact import route as contact_bp
@@ -30,7 +29,6 @@ cfgmap = {
 app = Flask(__name__)
 app.config.from_object(cfgmap[os.environ.get("mode", "devel")])
 login_manager = LoginManager(app)
-mail = Mail(app)
 admin = Admin(app, url="/manage")
 MongoEngine(app)
 CsrfProtect(app)
@@ -70,4 +68,4 @@ def csrf_prevent(resp):
     return resp
 
 
-__all__ = ("app", "mail")
+__all__ = ("app")
