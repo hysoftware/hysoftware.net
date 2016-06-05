@@ -8,7 +8,7 @@ angular.module("hysoft.about", [
         "templateUrl": "/about/legal"
       )
     ).state(
-      "about_team", (
+      "about", (
         "url": "/about"
         "templateUrl": "/about"
       )
