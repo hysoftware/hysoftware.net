@@ -44,6 +44,8 @@ class Person(gj.Document, flskdb.Document):
         db.StringField(choices=[(item, item) for item in ["member", "admin"]]),
         required=True
     )
+    title = db.StringField(max_length=40)
+    bio = db.StringField()
     DOB = db.DateTimeField()
     DOD = db.DateTimeField()
     skills = db.ListField(db.EmbeddedDocumentField(Skill))

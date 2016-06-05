@@ -1,0 +1,26 @@
+<section class="members row">
+  <ul class="nav nav-pills nav-stacked col-sm-4" role="tablist">
+    {% for person in model -%}
+      <li role="presentation"{% if loop.index == 1 %} class="active"{% endif %}>
+        <a href="javascript:void(0)">
+          {{ person.firstname }}
+        </a>
+      </li>
+    {%- endfor %}
+  </ul>
+  <div class="tab-content col-sm-8">
+    {% for person in model -%}
+    <div id="{{ person.fiestname }}" role="tabpanel"
+      class="tab-pane{% if loop.index == 1 %} active{% endif %}">
+      <h3>{{ person.fullname }}</h3>
+      {% if person.title %}
+      <p>{{ person.title }}</p>
+      {% endif %}
+      {% if person.bio %}
+      <h4>Biography</h4>
+      {{ person.bio }}
+      {% endif %}
+    </div>
+    {%- endfor %}
+  </div>
+</section>

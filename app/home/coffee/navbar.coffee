@@ -16,6 +16,7 @@ ng.module("hysoft.navbar.controller", [
     accept_transparent = [
       state.get "home"
       state.get "about_legal"
+      state.get "about"
     ]
     isOnTitle = ->
       navbarHeigth = root.find("nav.main-menu").innerHeight()
