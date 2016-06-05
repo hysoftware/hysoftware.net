@@ -55,7 +55,7 @@ class ContactForm(Form):
         description="if you're not sure, select 'Hiroaki Yamamoto'",
         choices=lambda: [
             (person.get_id(), person.fullname)
-            for person in Person.objects(role__in=["developer", "admin"])
+            for person in Person.objects(role__in=["member"])
         ], render_kw={
             "class": "form-control",
             "data-ng-model": "contact.to",

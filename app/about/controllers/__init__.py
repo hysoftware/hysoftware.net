@@ -4,5 +4,6 @@
 """Controllers for about pages."""
 
 from .legal import LegalView
+from .team import TeamView
 
-__all__ = ("LegalView",)
+__all__ = ("LegalView", "TeamView")

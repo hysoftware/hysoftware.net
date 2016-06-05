@@ -41,11 +41,7 @@ class Person(gj.Document, flskdb.Document):
     lastname = db.StringField(required=True)
     code = db.StringField(required=True, min_length=60, max_length=60)
     role = db.ListField(
-        db.StringField(
-            choices=[(item, item) for item in [
-                "normal", "admin", "developer"
-            ]]
-        ),
+        db.StringField(choices=[(item, item) for item in ["member", "admin"]]),
         required=True
     )
     DOB = db.DateTimeField()

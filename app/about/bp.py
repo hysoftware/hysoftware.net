@@ -4,7 +4,7 @@
 """Blueprint for about pages."""
 
 from flask import Blueprint
-from .controllers import LegalView
+from .controllers import LegalView, TeamView
 
 route = Blueprint(
     "about", __name__,
@@ -13,3 +13,4 @@ route = Blueprint(
 )
 
 LegalView.register(route)
+TeamView.register(route, route_base="/")

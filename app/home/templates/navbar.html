@@ -12,8 +12,11 @@
       </button>
       <a class="navbar-brand" href="#">HYSOFT</a>
   </div>
-  <div class="navbar-content container-fluid">
-    <ul class="nav navbar-nav navbar-right">
+  <div id="main-menu" class="collapse navbar-collapse navbar-content">
+    <ul class="nav navbar-nav">
+      <li><a href="javascript:void(0)" data-ui-sref="about_team">Team</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right container-fluid">
       <li data-ng-if="!userStatus.email">
         <a href="javascript:void(0)" data-ui-sref="login">Login</a>
       </li>
