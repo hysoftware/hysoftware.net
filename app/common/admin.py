@@ -3,7 +3,8 @@
 
 """Admin base."""
 
-from flask import redirect
+from flask import abort
+from flask.ext.admin import AdminIndexView, expose
 from flask.ext.admin.contrib.mongoengine import ModelView
 from flask.ext.wtf import Form
 from flask.ext.login import current_user
@@ -21,4 +22,16 @@ class AdminModelBase(ModelView):
 
     def inaccessible_callback(self, name, **kwargs):
         """Redirect to home if the user is not accessible."""
-        return redirect("/#/")
+        abort(404)
+
+
+class HomeAdminView(AdminIndexView):
+    """Home admin view that aborts 404 if the user is not authorized."""
+
+    @expose("/")
+    def index(self):
+        """Index request."""
+        if not (current_user.is_authenticated and
+                "admin" in current_user.role):
+            abort(404)
+        return super(HomeAdminView, self).index()

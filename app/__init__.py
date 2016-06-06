@@ -12,7 +12,7 @@ from flask.ext.mongoengine import MongoEngine
 from flask.ext.login import LoginManager
 from flask.ext.admin.base import Admin, MenuLink
 
-from .common import minify_html
+from .common import minify_html, HomeAdminView
 from .contact import route as contact_bp
 from .about import route as about_bp
 from .home import route as home_bp
@@ -29,7 +29,7 @@ cfgmap = {
 app = Flask(__name__)
 app.config.from_object(cfgmap[os.environ.get("mode", "devel")])
 login_manager = LoginManager(app)
-admin = Admin(app, url="/manage")
+admin = Admin(app, index_view=HomeAdminView(url="/manage"))
 MongoEngine(app)
 CsrfProtect(app)
 DebugToolbarExtension(app)

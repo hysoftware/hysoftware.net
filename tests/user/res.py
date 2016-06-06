@@ -8,7 +8,8 @@ from unittest.mock import patch, ANY, MagicMock
 
 from bson import ObjectId
 import json
-from flask import abort
+from flask import abort, session
+from flask.ext.login import confirm_login
 
 from app import app
 import app.user.models as user
@@ -147,8 +148,6 @@ class StatusTest(ut.TestCase):
 
         with self.cli as cli:
             with app.test_request_context():
-                from flask import session
-                from flask.ext.login import confirm_login
                 session["user_id"] = person.get_id()
                 confirm_login()
                 with cli.session_transaction() as s:
@@ -187,10 +186,10 @@ class LogoutTest(ut.TestCase):
 
         with self.cli as cli:
             with app.test_request_context():
-                from flask import session
-                from flask.ext.login import confirm_login
                 session["user_id"] = person.get_id()
                 confirm_login()
+                with cli.session_transaction() as s:
+                    s.update(session)
 
             resp = cli.delete("/u/login")
             logout_user.assert_called_once_with()

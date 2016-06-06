@@ -4,7 +4,10 @@
 """Functionalities that is used commonly."""
 
 from .htmlminify import minify_html
-from .admin import AdminModelBase
+from .admin import AdminModelBase, HomeAdminView
 from .forms import DelayedSelectField
 
-__all__ = ("minify_html", "AdminModelBase", "DelayedSelectField")
+__all__ = (
+    "minify_html", "AdminModelBase",
+    "HomeAdminView", "DelayedSelectField"
+)

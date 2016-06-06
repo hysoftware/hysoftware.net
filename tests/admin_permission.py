@@ -55,9 +55,9 @@ class AccessibleCheck(ut.TestCase):
 class InaccessibleCallbackCheck(ut.TestCase):
     """Inaccessible callback check."""
 
-    @patch("app.common.admin.redirect")
-    def test_redirect(self, redirect):
-        """Redirect should be called with `/#/`."""
+    @patch("app.common.admin.abort")
+    def test_abort(self, abort):
+        """Abort should be called with 404."""
         admin = AdminModelBase(type("Document", (db.Document, ), {}))
         admin.inaccessible_callback(None)
-        redirect.assert_called_once_with("/#/")
+        abort.assert_called_once_with(404)
