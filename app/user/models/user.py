@@ -20,7 +20,7 @@ class Website(gj.EmbeddedDocument):
 
     name = db.StringField(required=True, max_length=20)
     summary = db.StringField(required=True, max_length=140)
-    page_class = db.StringField(required=True, max_length=20)
+    page_class = db.StringField(max_length=20)
     url = db.URLField(required=True)
 
 

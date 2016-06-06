@@ -2,7 +2,7 @@
   <ul class="nav nav-pills nav-stacked col-sm-4" role="tablist">
     {% for person in model -%}
       <li role="presentation"{% if loop.index == 1 %} class="active"{% endif %}>
-        <a href="javascript:void(0)">
+        <a href="javascript:void(0)" data-target="#person-{{loop.index}}">
           {{ person.firstname }}
         </a>
       </li>
@@ -10,7 +10,7 @@
   </ul>
   <div class="tab-content col-sm-8">
     {% for person in model -%}
-    <div id="{{ person.fiestname }}" role="tabpanel"
+    <div id="person-{{loop.index}}" role="tabpanel"
       class="tab-pane{% if loop.index == 1 %} active{% endif %}">
       <h3>{{ person.fullname }}</h3>
       {% if person.title %}
@@ -18,7 +18,36 @@
       {% endif %}
       {% if person.bio %}
       <h4>Biography</h4>
-      {{ person.bio }}
+      <p>{{ person.bio }}</p>
+      {% endif %}
+      {% if person.skills %}
+      <h4>Skill Tab</h4>
+      <ul class="nav nav-tabs" role="tablist">
+        {%for skill in person.skills -%}
+          <li role="presentation"{% if loop.index == 1 %} class="active"{% endif %}>
+            <a href="javascript:void(0)" role="tab" data-toggle="tab"
+              data-target="#skill-{{ loop.index }}">
+              {{ skill.language }}
+            </a>
+          </li>
+        {%- endfor %}
+      </ul>
+      <div class="tab-content">
+        {%for skill in person.skills -%}
+          <div role="tabpanel" class="tab-pane fade{% if loop.index == 1 %} in active{% endif %}" id="skill-{{ loop.index }}">
+            {% for fw in skill.frameworks %}
+            <ul>
+              <li>
+                <a href="{{ fw.url }}" target="_blank">
+                  {% if fw.page_class %}<span class="{{ fw.page_class }}"></span>{% endif %}
+                  {{ fw.name }} - {{ fw.summary }}
+                </a>
+              </li>
+            </ul>
+            {% endfor %}
+          </div>
+        {%- endfor %}
+      </div>
       {% endif %}
     </div>
     {%- endfor %}
