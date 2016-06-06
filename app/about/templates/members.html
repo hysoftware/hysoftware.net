@@ -1,5 +1,14 @@
 <section class="members row">
-  <ul class="nav nav-pills nav-stacked col-sm-4" role="tablist">
+  <ul class="nav nav-pills nav-stacked col-sm-4 hidden-xs" role="tablist">
+    {% for person in model -%}
+      <li role="presentation"{% if loop.index == 1 %} class="active"{% endif %}>
+        <a href="javascript:void(0)" data-target="#person-{{loop.index}}">
+          {{ person.firstname }}
+        </a>
+      </li>
+    {%- endfor %}
+  </ul>
+  <ul class="nav nav-pills visible-xs" role="tablist">
     {% for person in model -%}
       <li role="presentation"{% if loop.index == 1 %} class="active"{% endif %}>
         <a href="javascript:void(0)" data-target="#person-{{loop.index}}">
@@ -49,6 +58,19 @@
         {%- endfor %}
       </div>
       {% endif %}
+      {% if person.websites -%}
+      <h4>Websites</h4>
+      <ul>
+        {% for website in person.websites -%}
+        <li>
+          <a href="{{ website.url }}" target="_blank">
+            {% if website.page_class %}<span class="{{ website.page_class }}"></span>{% endif %}
+            {{ website.name }} - {{ website.summary }}
+          </a>
+        </li>
+        {%- endfor%}
+      </ul>
+      {%- endif %}
     </div>
     {%- endfor %}
   </div>
