@@ -6,7 +6,7 @@
 import json
 from urllib.parse import urljoin
 from unittest import TestCase
-from unittest.mock import patch, PropertyMock, call
+from unittest.mock import patch, PropertyMock, call, ANY
 from bson import ObjectId
 from app import app
 from app.user.models import Person
@@ -32,12 +32,6 @@ class ContactSendingTest(TestCase):
             "email": "test@example.com",
             "message": "This is a test."
         }
-
-    def test_get(self):
-        """[GET] Contact:index shouldn't be accessible."""
-        with self.cli as cli:
-            resp = cli.get("/contact")
-            self.assertEqual(resp.status_code, 405)
 
     @patch("requests.post")
     @patch("app.contact.controllers.render_template")
@@ -110,3 +104,47 @@ class ContactSendingTest(TestCase):
         post.assert_not_called()
         form.return_value.validate.assert_called_once_with()
         errs.assert_called_once_with()
+
+
+class ContactGETTest(TestCase):
+    """Contact GET request test."""
+
+    def setUp(self):
+        """Setup."""
+        app.testing = True
+        self.cli = app.test_client()
+        self.models = [Person(id=ObjectId())]
+        self.select = self.models[0].get_id()
+
+    @patch(
+        "app.contact.controllers.render_template",
+        return_value="<body><body>"
+    )
+    @patch("app.contact.controllers.Person.objects")
+    def test_index_rendering(self, objects, render_template):
+        """Getting /contact, render_template should be read properly."""
+        objects.return_value = self.models
+        with self.cli as cli:
+            resp = cli.get("/contact")
+            self.assertEqual(resp.status_code, 200)
+        objects.assert_called_once_with()
+        render_template.assert_called_once_with(
+            "contact.html", model=objects.return_value, form=ANY
+        )
+
+    @patch(
+        "app.contact.controllers.render_template",
+        return_value="<body><body>"
+    )
+    @patch("app.contact.controllers.Person.objects")
+    def test_get_rendering(self, objects, render_template):
+        """Getting /contact/:id, render_template should be read properly."""
+        objects.return_value = self.models
+        with self.cli as cli:
+            resp = cli.get(("/contact/{}").format(self.select))
+            self.assertEqual(resp.status_code, 200)
+        objects.assert_called_once_with()
+        render_template.assert_called_once_with(
+            "contact.html", model=objects.return_value,
+            active_id=self.select, form=ANY
+        )

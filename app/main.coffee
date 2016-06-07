@@ -5,6 +5,7 @@ angular.module("hysoft", [
   "hysoft.navbar.controller",
   "hysoft.user.route",
   "hysoft.user.resources"
+  "hysoft.contact.routes"
 ]).config([
   "$urlRouterProvider", "$httpProvider", (url, http) ->
     url.otherwise (injector, to) ->

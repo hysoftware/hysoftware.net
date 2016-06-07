@@ -1,3 +1,4 @@
+{% import "contact_modal.html" as contact -%}
 <section class="members row">
   <ul class="nav nav-pills nav-stacked col-sm-4 hidden-xs" role="tablist">
     {% for person in model -%}
@@ -71,8 +72,13 @@
         {%- endfor%}
       </ul>
       {%- endif %}
-      <button class="btn btn-lg btn-info">Contact Me!</button>
+      <a class="btn btn-lg btn-info" href="javascript:void(0)" data-ui-sref="contact_id({'id': '{{person.get_id()}}'})">
+        Contact!
+      </a>
     </div>
     {%- endfor %}
   </div>
 </section>
+{% for person in model -%}
+{{ contact.contact_modal(person) }}
+{%- endfor %}

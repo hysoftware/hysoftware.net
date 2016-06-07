@@ -17,6 +17,8 @@ ng.module("hysoft.navbar.controller", [
       state.get "home"
       state.get "about_legal"
       state.get "about"
+      state.get "contact"
+      state.get "contact_id"
     ]
     isOnTitle = ->
       navbarHeigth = root.find("nav.main-menu").innerHeight()

@@ -19,6 +19,20 @@ class ContactView(FlaskView):
 
     trailing_slash = False
 
+    def index(self):
+        """GET request without model."""
+        return render_template(
+            "contact.html", model=Person.objects(),
+            form=ContactForm()
+        )
+
+    def get(self, _id):
+        """GET request."""
+        return render_template(
+            "contact.html", model=Person.objects(), active_id=_id,
+            form=ContactForm()
+        )
+
     def post(self):
         """POST request."""
         form = ContactForm()
