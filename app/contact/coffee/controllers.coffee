@@ -1,5 +1,8 @@
 angular.module("hysoft.contact.controllers", [
+  "ui.router"
 ]).controller("contactController", [
-  "$scope", (scope) ->
-    undefined
+  "$scope", "$stateParams", (scope, params) ->
+    scope.contact = {}
+    if params.id
+      scope.contact.to = params.id
 ])

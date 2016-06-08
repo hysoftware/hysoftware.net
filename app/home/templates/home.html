@@ -120,24 +120,24 @@
         {%- endif %}
     {% endfor %}
     <div class="alert alert-success"
-      data-ng-if="contactForm.$submitted &amp;&amp; contactSuccess">
+      data-ng-if="contactForm.$submitted &amp;&amp; contact.success">
       <span class="glyphicon glyphicon-thumbs-up"></span>
       <strong>Great!</strong> Your message has been sent.
       <p>{{"{{sendPromise}}"}}</p>
     </div>
-    <div class="alert text-left" data-ng-if="contactErrors"
-      data-ng-class="{'alert-danger': contactErrors.status > 499, 'alert-warning': contactErrors.status < 500}">
+    <div class="alert text-left" data-ng-if="contact.errors"
+      data-ng-class="{'alert-danger': contact.errors.status > 499, 'alert-warning': contact.errors.status < 500}">
         <h3>Oh Snap!</h3>
-        <div data-ng-if="angular.isObject(contactErrors.data)">
+        <div data-ng-if="angular.isObject(contact.errors.data)">
           <p>The following error(s) occured</p>
-          <div data-ng-repeat="(field, messages) in contactErrors.data" class="subarea">
+          <div data-ng-repeat="(field, messages) in contact.errors.data" class="subarea">
             <h4>{{"{{ field }}"}}</h4>
             <ul>
               <li data-ng-repeat="msg in messages">{{"{{msg}}"}}</li>
             </ul>
           </div>
         </div>
-        <p data-ng-if="!angular.isObject(contactErrors.data) &amp;&amp; contactErrors.status > 499">
+        <p data-ng-if="!angular.isObject(contact.errors.data) &amp;&amp; contact.errors.status > 499">
           Oops!! Perhaps it seems to be serverside errror. Please contact Hiro.
         </p>
     </div>

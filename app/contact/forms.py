@@ -62,7 +62,8 @@ class ContactForm(Form):
             "data-ng-model": "contact.to",
             "data-ng-disabled": "contactForm.$submitted",
             "required": True
-        }, coerce=ObjectId
+        },
+        coerce=ObjectId
     )
     message = fld.TextAreaField(
         "Message", validators=[vld.InputRequired()],
