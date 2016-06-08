@@ -1,11 +1,11 @@
-describe "Home controller tests", ->
+describe "Contact controller tests", ->
   scope = undefined
   valval = "test"
   valStub = undefined
   findStub = undefined
 
   beforeEach ->
-    module "hysoft.home.controller"
+    module "hysoft.contact.controllers"
 
   beforeEach inject [
     "$controller", "$rootScope", (ctrl, root) ->
@@ -20,7 +20,7 @@ describe "Home controller tests", ->
       scope.contactForm = (
         "$setPristine": ->
       )
-      ctrl "homeController", (
+      ctrl "contactController", (
         "$scope": scope,
         "$element": new ElementMock()
       )
