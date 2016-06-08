@@ -3,6 +3,7 @@
 
 """Contact form."""
 
+from bson import ObjectId
 from flask.ext.wtf import Form, RecaptchaField
 import wtforms.fields as fld
 import wtforms.fields.html5 as html5
@@ -54,14 +55,14 @@ class ContactForm(Form):
         "To",
         description="if you're not sure, select 'Hiroaki Yamamoto'",
         choices=lambda: [
-            (person.get_id(), person.fullname)
+            (person.id, person.fullname)
             for person in Person.objects(role__in=["member"])
         ], render_kw={
             "class": "form-control",
             "data-ng-model": "contact.to",
             "data-ng-disabled": "contactForm.$submitted",
             "required": True
-        }
+        }, coerce=ObjectId
     )
     message = fld.TextAreaField(
         "Message", validators=[vld.InputRequired()],

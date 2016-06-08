@@ -14,8 +14,9 @@ angular.module("hysoft.home.controller", [
         delete scope.contactErrors
         delete scope.contactSuccess
         scope.contact["g-recaptcha-response"] = element.find(
-          "form#contactForm[name='g-recaptcha-response']"
+          "form#contactForm [name='g-recaptcha-response']"
         ).val()
+        console.log scope.contact
         scope.contact.$save().then(
           ->
             scope.contactSuccess = true
