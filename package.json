@@ -44,7 +44,7 @@
     "gulp-less": "^3.0.5",
     "gulp-notify": "^2.2.0",
     "gulp-plumber": "^1.0.1",
-    "gulp-protractor": "^2.3.0",
+    "gulp-protractor": "^2.4.0",
     "gulp-rename": "^1.2.2",
     "gulp-sourcemaps": "^2.0.0-alpha",
     "gulp-uglify": "^1.5.2",
@@ -61,7 +61,7 @@
     "mocha": "^2.4.5",
     "modernizr": "^3.3.1",
     "npm-check-updates": "^2.6.3",
-    "protractor": "^3.0.0",
+    "protractor": "^3.3.0",
     "q": "^1.4.1",
     "sinon": "^1.17.3",
     "ttf2woff2": "^2.0.3"
