@@ -68,4 +68,11 @@ def csrf_prevent(resp):
     return resp
 
 
+@app.after_request
+def prevent_clickjack(resp):
+    """Prevent ClickJack exploit."""
+    resp.headers["X-Frame-Options"] = "DENY"
+    return resp
+
+
 __all__ = ("app")
