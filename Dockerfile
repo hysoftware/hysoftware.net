@@ -1,11 +1,13 @@
 # !! IMPORTANT: ARCHLINUX BASE IMAGE IS OBSOLETE
 
-FROM base/archlinux
+FROM hysoftware/baseimage
 
 MAINTAINER Hiroaki Yamamoto
-RUN pacman -Sy --noconfirm archlinux-keyring
-RUN pacman -Su --noconfirm python git python-pip libffi \
-  openssl ca-certificates-utils
+
+ENV host 0.0.0.0
+ENV port 80
+ENV node_mode production
+ENV mode production
 
 RUN useradd -m hysoft
 USER hysoft
@@ -16,10 +18,10 @@ RUN git clone https://github.com/hiroaki-yamamoto/hysoftware.net webapp
 USER root
 WORKDIR /home/hysoft/webapp
 RUN pip install -r requirements.txt
+RUN npm install
+
 USER hysoft
 
-ENV host 0.0.0.0
-ENV port 80
 ENTRYPOINT ["python"]
 CMD ["run_app.py", "runserver"]
 EXPOSE 80
