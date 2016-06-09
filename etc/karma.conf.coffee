@@ -1,5 +1,10 @@
 helper = require "hyamamoto-job-toolbox/lib/helper"
 
+browsers = ["PhantomJS"]
+
+if not helper.isProduction
+  browsers.push "Chrome"
+
 module.exports =
   "basePath": "./"
   "quiet": not (helper.isProduction or process.env.node_mode is "init")
@@ -20,11 +25,7 @@ module.exports =
   "coverageReporter":
     "dir": "frontend_coverages"
     "type": 'lcov'
-  "browsers": [
-    "Chrome"
-    # "Firefox"
-    "PhantomJS"
-  ]
+  "browsers": browsers
   "plugins": [
     "karma-coffee-preprocessor"
     "karma-mocha"
