@@ -25,6 +25,7 @@
   <link rel="stylesheet" href="{{ url_for('.static', filename='assets.css') }}">
   <script src="{{ url_for('static', filename='third_party.js') }}"></script>
   <script src="{{ url_for('.static', filename='assets.js') }}"></script>
+  {% include "analytics.html" %}
   <title>HYSOFT</title>
 </head>
 <body data-ng-cloak>
