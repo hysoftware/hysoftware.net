@@ -3,5 +3,4 @@ build:
   steps:
     - npm-install
     - npm-test
-    - virtualenv
     - pip-install
