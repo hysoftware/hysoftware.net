@@ -1,7 +1,8 @@
 box: hysoftware/global-dep-image
 build:
   steps:
-    - npm-install
+    - npm-install:
+      options: "--unsafe-perm"
     - virtualenv
     - pip-install
     - npm-test
