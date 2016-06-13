@@ -1,15 +1,15 @@
 sudo: false
-language: node_js
-node_js:
-  - "6.1"
+language: python
 python:
   - "3.5"
+node_js:
+  - "6.1"
 cache:
   pip: true
   directories:
     - node_modules
     - app/static
 before_install:
-  - pip install -r requirements.txt
+  - npm install
 script:
   - npm test
