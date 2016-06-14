@@ -3,16 +3,6 @@ build:
   steps:
     - script:
       name: "Change user permission"
-      code: |
-        useradd hysoft
-        chown -R hysoft:hysoft ${WERCKER_ROOT}
-        chown -R hysoft:hysoft ${WERCKER_SOURCE_DIR}
-        chown -R hysoft:hysoft ${WERCKER_CACHE_DIR}
-        chown -R hysoft:hysoft ${WERCKER_OUTPUT_DIR}
-        su hysoft
-    - script:
-      name: "Show user info"
-      code: id
     - npm-install
     - virtualenv
     - pip-install
