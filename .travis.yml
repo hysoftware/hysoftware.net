@@ -14,6 +14,7 @@ addons:
       - g++-4.8
       - libnotify-bin
       - python3.5
+      - python3.5-dev
       - python3.5-venv
 cache:
   apt: true
