@@ -25,4 +25,4 @@ cache:
 before_script:
   - "pyvenv-3.5 ../venv"
   - "source ../venv/bin/activate"
-  - "pip install requirements.txt"
+  - "pip install -r requirements.txt"
