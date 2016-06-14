@@ -22,5 +22,6 @@ addons:
 before_script:
   - "npm install"
   - "npm run bower -- install"
+  - "id"
 script:
   - "npm test"
