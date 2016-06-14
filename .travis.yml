@@ -1,0 +1,19 @@
+language: python
+python:
+  - "3.5"
+env:
+  global:
+    - DISTRO=precise
+addons:
+  apt:
+    sources:
+      - sourceline: "deb-src https://deb.nodesource.com/node_6.x ${DISTRO} main"
+        key_url: "https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
+      - sourceline: "deb https://deb.nodesource.com/node_6.x ${DISTRO} main"
+        key_url: "https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
+    packages:
+      - nodejs
+before_script:
+  - "npm install"
+script:
+  - "npm test"
