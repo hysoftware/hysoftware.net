@@ -10,7 +10,9 @@ build:
         chown -R hysoft:hysoft ${WERCKER_CACHE_DIR}
         chown -R hysoft:hysoft ${WERCKER_OUTPUT_DIR}
         su hysoft
-        id
+    - script:
+      name: "Show user info"
+      code: id
     - npm-install
     - virtualenv
     - pip-install
