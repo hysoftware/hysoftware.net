@@ -4,6 +4,12 @@ python:
 env:
   global:
     - DISTRO=precise
+cache:
+  apt: true
+  pip: true
+  directories:
+    - "${HOME}/.npm"
+    - "node_modules"
 addons:
   apt:
     sources:
