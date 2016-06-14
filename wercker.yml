@@ -1,6 +1,15 @@
 box: hysoftware/global-dep-image
 build:
   steps:
+    - script:
+      name: "Change user permission"
+      code: |
+        adduser hysoft
+        chown -R hysoft:hysoft ${WERCKER_ROOT}
+        chown -R hysoft:hysoft ${WERCKER_SOURCE_DIR}
+        chown -R hysoft:hysoft ${WERCKER_CACHE_DIR}
+        chown -R hysoft:hysoft ${WERCKER_OUTPUT_DIR}
+        su hysoft
     - npm-install
     - virtualenv
     - pip-install
