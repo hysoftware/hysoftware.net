@@ -24,5 +24,3 @@ before_script:
   - "virtualenv -p python3.5 ../venv"
   - "source ../bin/activate"
   - "pip install requirements.txt"
-script:
-  - "npm test"
