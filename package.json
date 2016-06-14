@@ -64,7 +64,8 @@
     "npm-check-updates": "^2.6.3",
     "protractor": "^3.3.0",
     "q": "^1.4.1",
-    "sinon": "^1.17.3"
+    "sinon": "^1.17.3",
+    "ttf2woff": "^2.0.1"
   },
   "dependencies": {}
 }
