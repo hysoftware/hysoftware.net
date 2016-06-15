@@ -23,7 +23,8 @@ cache:
     - "${HOME}/.npm"
     - "node_modules"
     - "app/static"
-before_script:
+install:
+  - "npm install"
   - "npm update"
   - "pyvenv-3.5 ../venv"
   - "source ../venv/bin/activate && pip install -r requirements.txt && deactivate"
