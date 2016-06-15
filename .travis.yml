@@ -27,6 +27,8 @@ install:
   - "npm install"
   - "npm update"
   - "pyvenv-3.5 ../venv"
-  - "source ../venv/bin/activate && pip install -r requirements.txt && deactivate"
+  - "source ../venv/bin/activate"
+  - "pip install -r requirements.txt
+  - "deactivate"
 script:
   - "source ../venv/bin/activate && echo ${VIRTUAL_ENV} && npm test && deactivate"
