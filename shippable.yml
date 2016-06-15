@@ -9,4 +9,4 @@ build:
      - virtualenv ../venv
      - npm install
      - source ../venv/bin/activate && pip install -r requirements.txt && deactivate
-     - source ../venv/bin/activate && npm test
+     - source ../venv/bin/activate && npm test && deactivate
