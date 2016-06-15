@@ -4,7 +4,7 @@ build:
     image_name: hysoftware/global-dep-image
     image_tag: latest
     pull: true
-    options: -e
+    commands: sh
   ci:
      - virtualenv ../venv
      - npm install
