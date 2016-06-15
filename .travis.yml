@@ -39,4 +39,3 @@ after_success:
   - "source ../venv/bin/activate"
   - "coveralls"
   - "deactivate"
-  - "npm run coveralls"
