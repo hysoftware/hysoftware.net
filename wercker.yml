@@ -1,7 +1,0 @@
-box: hysoftware/global-dep-image
-build:
-  steps:
-    - npm-install
-    - virtualenv
-    - pip-install
-    - npm-test
