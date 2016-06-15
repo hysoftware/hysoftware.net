@@ -1,4 +1,8 @@
 # hysoftware.net webapp
+[![TravisImage]][TravisLink]
+
+[TravisImage]: https://travis-ci.org/hysoftware/hysoftware.net.svg?branch=master
+[TravisLink]: https://travis-ci.org/hysoftware/hysoftware.net
 
 ## What this?
 This is a website of [hysoftware].
