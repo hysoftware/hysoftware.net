@@ -27,4 +27,4 @@ before_script:
   - "pyvenv-3.5 ../venv"
   - "source ../venv/bin/activate && pip install -r requirements.txt && deactivate"
 script:
-  - "source ../venv/bin/activatev && echo ${VIRTUAL_ENV} && npm test && deactivate"
+  - "source ../venv/bin/activate && echo ${VIRTUAL_ENV} && npm test && deactivate"
