@@ -31,4 +31,6 @@ install:
   - "pip install -r requirements.txt"
   - "deactivate"
 script:
-  - "source ../venv/bin/activate && echo ${VIRTUAL_ENV} && npm test && deactivate"
+  - "source ../venv/bin/activate"
+  - "npm test"
+  - "deactivate"
