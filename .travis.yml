@@ -25,8 +25,6 @@ cache:
     - "app/static"
 before_script:
   - "pyvenv-3.5 ../venv"
-  - "source ../venv/bin/activate"
-  - "pip install -r requirements.txt"
+  - "source ../venv/bin/activate && pip install -r requirements.txt && deactivate"
 script:
-  - "source ../venv/bin/activate"
-  - "npm test"
+  - "source ../venv/bin/activate && npm test && deactivate"
