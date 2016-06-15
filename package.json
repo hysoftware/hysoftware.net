@@ -12,7 +12,8 @@
     "buildModernizr": "$(npm bin)/modernizr -quc ./modernizr.conf.json -d app/static/modernizr.js",
     "ncu": "$(npm bin)/ncu",
     "bowerNcu": "$(npm bin)/ncu -m bower",
-    "test": "$(npm bin)/gulp"
+    "test": "$(npm bin)/gulp",
+    "coveralls": "$(npm bin)/gulp coveralls"
   },
   "repository": {
     "type": "git",

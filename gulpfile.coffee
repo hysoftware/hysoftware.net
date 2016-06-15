@@ -1,4 +1,5 @@
 g = require "gulp"
+coveralls = require "gulp-coveralls"
 thirdParty = require "./gulp/third_party"
 require("gulp-help")(g)
 
@@ -46,3 +47,6 @@ g.task "default", default_dependencies or [], ->
       "app/main.coffee",
       "tests/**/coffee/**/*.coffee"
     ], ["coffee"]
+
+g.task "coveralls", ->
+  g.src("frontend_coverages/**/lcov.info").pipe coveralls()

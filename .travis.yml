@@ -35,3 +35,8 @@ script:
   - "source ../venv/bin/activate"
   - "npm test"
   - "deactivate"
+after_success:
+  - "source ../venv/bin/activate"
+  - "coveralls"
+  - "deactivate"
+  - "npm run coveralls"
