@@ -34,4 +34,4 @@ class HomeAdminView(AdminIndexView):
         if not (current_user.is_authenticated and
                 "admin" in current_user.role):
             abort(404)
-        return super().index()
+        return super(HomeAdminView, self).index()
