@@ -45,9 +45,7 @@ class ContactView(FlaskView):
             data={
                 "from": form.email.data,
                 "to": person.email,
-                "subject": (
-                    "Someone wants to contact you (hysoftware.net)"
-                ).format(form.name.data),
+                "subject": "Someone wants to contact you (hysoftware.net)",
                 "text": render_template(
                     "mail_to_member.txt", form=form, member=person
                 ),
