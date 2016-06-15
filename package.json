@@ -5,7 +5,7 @@
   "main": "app.coffee",
   "scripts": {
     "install": "npm run webdriverUpdate && npm run bower -- install && npm run buildModernizr",
-    "postversion": "npm run webdriverUpdate && npm run bower -- update && npm run buildModernizr",
+    "update": "npm run webdriverUpdate && npm run bower -- update && npm run buildModernizr",
     "gulp": "$(npm bin)/gulp",
     "webdriverUpdate": "$(npm bin)/webdriver-manager update",
     "bower": "$(npm bin)/bower",

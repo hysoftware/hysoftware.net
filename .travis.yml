@@ -1,5 +1,12 @@
 language: node_js
 sudo: false
+cache:
+  apt: true
+  pip: true
+  directories:
+    - "${HOME}/.npm"
+    - "node_modules"
+    - "app/static"
 compiler: g++-4.8
 env:
   - CXX=g++-4.8
@@ -16,16 +23,10 @@ addons:
       - python3.5
       - python3.5-dev
       - python3.5-venv
-cache:
-  apt: true
-  pip: true
-  directories:
-    - "${HOME}/.npm"
-    - "node_modules"
-    - "app/static"
 install:
   - "npm install"
   - "npm update"
+  - "npm run update"
   - "pyvenv-3.5 ../venv"
   - "source ../venv/bin/activate"
   - "pip install -r requirements.txt"
