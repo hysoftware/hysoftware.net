@@ -1,0 +1,50 @@
+<section class="login-page" data-ng-style="loginPageStyle">
+  <div class="background"></div>
+  <form data-ng-submit="send()" name="loginForm" class="form-horizontal vertical-center" novalidate>
+    <legend class="text-center">Login</legend>
+    {% for field in form -%}
+        {% if "hidden" not in field.widget.field_flags or [] -%}
+          <fieldset class="form-group"
+            data-ng-class="{'has-error': isDirtyInvalid(loginForm.{{ field.name }})}">
+          {{ field.label(class="col-sm-2 control-label") }}
+          <div class="col-sm-10">
+        {%- endif %}
+        {{ field }}
+        {% if "hidden" not in field.widget.field_flags or [] -%}
+          </div>
+          </fieldset>
+        {%- endif %}
+    {% endfor %}
+    <div class="alert"
+      data-ng-class="{'alert-danger': errors.status > 499, 'alert-warning': errors.status < 500}"
+      data-ng-if="errors">
+      <h3>Oh! Snap! (Status Code: {{"{{errors.status}}"}})</h3>
+      <div data-ng-if="angular.isObject(errors.data)">
+        <p>The following error(s) occured:</p>
+        <div data-ng-repeat="(field, messages) in errors.data" class="subarea">
+          <h4>{{"{{ field }}"}}</h4>
+          <ul>
+            <li data-ng-repeat="msg in messages">{{"{{msg}}"}}</li>
+          </ul>
+        </div>
+      </div>
+      <p data-ng-if="!angular.isObject(errors.data) &amp;&amp; errors.status === 404">
+        Email/Password is not correct. If you can't remember it, contat Hiro.
+      </p>
+      <p data-ng-if="!angular.isObject(errors.data) &amp;&amp; errors.status > 499">
+        Oops!! Perhaps it seems to be serverside errror. Please contact Hiro.
+      </p>
+    </div>
+    <div class="alert alert-success"
+      data-ng-if="loginForm.$submitted &amp;&amp; userStatus.email &amp;&amp; !errors">
+      <span class="glyphicon glyphicon-thumbs-up"></span>
+      <strong>Success</strong> Hi! {{"{{userStatus.firstname}}"}}!
+    </div>
+    <fieldset class="text-right">
+      <button type="submit" class="btn btn-sm"
+        data-ng-disabled="loginForm.$invalid || loginForm.$submitted">
+        Submit
+      </button>
+    </fieldset>
+  </form>
+</section>

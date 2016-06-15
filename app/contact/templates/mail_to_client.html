@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale==1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+  <style type="text/css">
+    * {
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 300;
+    }
+  </style>
+  <title>Thanks for your interests</title>
+</head>
+<body>
+  <h1>Thanks for your interest!</h1>
+  <p>Hi {{ form.name.data }},</p>
+  <p>
+    Thanks for your interest. Your mail has been sent to {{ member.fullname }}.
+  </p>
+  <p>Here is the copy:</p>
+  <table>
+    <thead>
+      <tr><th>Item</th><th>Value</th></tr>
+    </thead>
+    {% for field in form -%}
+      {% if "hidden" not in (field.widget.field_flags or []) and field.name != "recaptcha" %}
+        <tr><td>{{ field.label.text }}</td><td>{% if field.choices_dict is defined %}{{ field.choices_dict[field.data] }}{% else %}{{ field.data }}{% endif %}</td></tr>
+      {% endif %}
+    {%- endfor %}
+  </table>
+  <p>Thanks!</p>
+  <hr>
+  <p>
+    Hiroaki Yamamoto <br />
+    <a href="https://hysoftware.net">HYSOFT</a>
+  </p>
+</body>
+</html>

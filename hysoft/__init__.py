@@ -1,3 +1,0 @@
-'''
-HYSOFT main module
-'''

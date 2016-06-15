@@ -1,0 +1,84 @@
+{% import "contact_modal.html" as contact -%}
+<section class="members row">
+  <ul class="nav nav-pills nav-stacked col-sm-4 hidden-xs" role="tablist">
+    {% for person in model -%}
+      <li role="presentation"{% if loop.index == 1 %} class="active"{% endif %}>
+        <a href="javascript:void(0)" data-target="#person-{{loop.index}}">
+          {{ person.firstname }}
+        </a>
+      </li>
+    {%- endfor %}
+  </ul>
+  <ul class="nav nav-pills visible-xs" role="tablist">
+    {% for person in model -%}
+      <li role="presentation"{% if loop.index == 1 %} class="active"{% endif %}>
+        <a href="javascript:void(0)" data-target="#person-{{loop.index}}">
+          {{ person.firstname }}
+        </a>
+      </li>
+    {%- endfor %}
+  </ul>
+  <div class="tab-content col-sm-8">
+    {% for person in model -%}
+    <div id="person-{{loop.index}}" role="tabpanel"
+      class="tab-pane{% if loop.index == 1 %} active{% endif %}">
+      <h3>{{ person.fullname }}</h3>
+      {% if person.title %}
+      <p>{{ person.title }}</p>
+      {% endif %}
+      {% if person.bio %}
+      <h4>Biography</h4>
+      <p>{{ person.bio }}</p>
+      {% endif %}
+      {% if person.skills %}
+      <h4>Skill Tab</h4>
+      <ul class="nav nav-tabs" role="tablist">
+        {%for skill in person.skills -%}
+          <li role="presentation"{% if loop.index == 1 %} class="active"{% endif %}>
+            <a href="javascript:void(0)" role="tab" data-toggle="tab"
+              data-target="#skill-{{ loop.index }}">
+              {{ skill.language }}
+            </a>
+          </li>
+        {%- endfor %}
+      </ul>
+      <div class="tab-content">
+        {%for skill in person.skills -%}
+          <div role="tabpanel" class="tab-pane fade{% if loop.index == 1 %} in active{% endif %}" id="skill-{{ loop.index }}">
+            {% for fw in skill.frameworks %}
+            <ul>
+              <li>
+                <a href="{{ fw.url }}" target="_blank">
+                  {% if fw.page_class %}<span class="{{ fw.page_class }}"></span>{% endif %}
+                  {{ fw.name }} - {{ fw.summary }}
+                </a>
+              </li>
+            </ul>
+            {% endfor %}
+          </div>
+        {%- endfor %}
+      </div>
+      {% endif %}
+      {% if person.websites -%}
+      <h4>Websites</h4>
+      <ul>
+        {% for website in person.websites -%}
+        <li>
+          <a href="{{ website.url }}" target="_blank">
+            {% if website.page_class %}<span class="{{ website.page_class }}"></span>{% endif %}
+            {{ website.name }} - {{ website.summary }}
+          </a>
+        </li>
+        {%- endfor%}
+      </ul>
+      {%- endif %}
+      <a class="btn btn-lg btn-info" href="javascript:void(0)" data-ui-sref="contact_id({'id': '{{person.get_id()}}'})">
+        Contact!
+      </a>
+    </div>
+    {%- endfor %}
+  </div>
+</section>
+{% for person in model -%}
+{{ contact.contact_modal(person) }}
+{%- endfor %}

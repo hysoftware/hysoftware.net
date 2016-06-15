@@ -1,0 +1,9 @@
+box: hysoftware/global-dep-image
+build:
+  steps:
+    - script:
+      name: "Change user permission"
+    - npm-install
+    - virtualenv
+    - pip-install
+    - npm-test

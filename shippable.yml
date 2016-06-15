@@ -1,51 +1,12 @@
-language: python
-cache: true
-
-python:
-    - "3.4"
-
-node_js:
-    - "5.11"
-
-rvm:
-    - "2.2.1"
-
-jdk:
-    - "openjdk7"
-
-env:
-    - "DEBUG=True"
-
-before_install:
-    - "sudo npm install -g grunt-cli"
-    - "sudo rm -rf .npm"
-    - "sudo gem install bundler --pre"
-
-install:
-    - "source ${SHIPPABLE_VE_DIR}/bin/activate"
-    - "pip install --upgrade -r requirements.txt"
-    - "sudo npm install"
-    - "npm run postinstall"
-    - "bundle install"
-    - "grunt third_party-dev"
-    - "deactivate"
-
-script:
-    - "source ${SHIPPABLE_VE_DIR}/bin/activate"
-    - "echo \"Python version: $(python --version)\""
-    - "echo \"NodeJS version: $(node --version)\""
-    - "npm test"
-    - "python manage.py test"
-    - "deactivate"
-
-after_success:
-    - "export NOW=$(date)"
-    - "export NOW_EPOCH=$(date +%s -d \"${NOW}\")"
-    - "git push git@github.com:hysoftware/hysoftware.net-deploy.git master"
-    - "rm -rf home/static/assets.css.map home/static/assets.js.map third_party.js.map"
-    - "grunt third_party"
-    - "sed -i -e \"/home\\\/static\\\/third_party/D\" -e \"/home\\\/static\\\/assets/D\" .gitignore"
-    - "git add ."
-    - "git commit -m \"Shippable deploy resullt at ${NOW}\""
-    - "git branch deploy-${NOW_EPOCH}"
-    - "git push git@github.com:hysoftware/hysoftware.net-deploy.git deploy-${NOW_EPOCH}"
+language: none
+build:
+  pre_ci_boot:
+    image_name: hysoftware/global-dep-image
+    image_tag: latest
+    pull: true
+    options: -e
+  ci:
+     - virtualenv ../venv
+     - npm install
+     - source ../venv/bin/activate && pip install -r requirements.txt && deactivate
+     - source ../venv/bin/activate && npm test

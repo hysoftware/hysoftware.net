@@ -1,4 +1,2 @@
 uses:
-    - django
-# ignore-patterns:
-    # - migrations/.*\.py$
+    - flask

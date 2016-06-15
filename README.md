@@ -1,31 +1,29 @@
-# [hysoftware.net webapp](https://hysoftware.net)
-[![Build Status](https://api.shippable.com/projects/54d80f8e5ab6cc13528b3a5f/badge?branchName=master)](https://app.shippable.com/projects/54d80f8e5ab6cc13528b3a5f/builds/latest)
-[![Code Climate](https://codeclimate.com/github/hysoftware/hysoftware.net/badges/gpa.svg)](https://codeclimate.com/github/hysoftware/hysoftware.net)
-[![Code Health](https://landscape.io/github/hysoftware/hysoftware.net/master/landscape.svg?style=flat)](https://landscape.io/github/hysoftware/hysoftware.net/master)
+# hysoftware.net webapp
 
-## what is this?
-This is a web-app of hysoftware.net
+## What this?
+This is a website of [hysoftware].
 
-## Build instruction
+## License
 
-### Requirements
-* Python3
-* virtualenv
-* nodejs
-* grunt (install it thru ```npm install -g grunt-cli``` after nodejs is installed)
-* bundler (hint: ruby gem...)
+The MIT License (MIT)
+Copyright (c) 2016- Hiroaki Yamamoto
 
-### How to (Assume that you already opened prompt)
-1. Create a virtualenv and activate it
-2. CD into the repo
-3. Run ```pip install -r requirements.txt```.
-4. Run ```bundle install```.
-5. Run ```npm install```.
-6. Run ```grunt third_party-dev```
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-## Development Environment
-All build process can be executed through grunt.
-The following is the list of commands used for development:
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-* ```grunt devFront```: Build/Test frontend
-* ```grunt devBack```: Build/Test backend
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+[hysoftware]: https://hysoftware.net

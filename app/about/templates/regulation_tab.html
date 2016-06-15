@@ -1,0 +1,24 @@
+{%- macro tab(regulations) -%}
+<div class="regulation-tab">
+  <ul class="nav nav-tabs" role="tablist">
+    {% for (id, title, template, active) in regulations -%}
+    <li role="presentation"
+      {% if active -%}
+      class="active"
+      {%- endif %}
+      >
+      <a href="javascript:void(0)"
+        data-target="#{{ id }}" aria-controls="{{ id }}" role="tab"
+        data-toggle="tab">{{ title }}</a>
+    </li>
+    {%- endfor %}
+  </ul>
+  <div class="tab-content">
+    {% for (id, title, template, active) in regulations -%}
+    <div role="tabpanel" class="tab-pane{% if active %} active{% endif %}" id="{{ id }}">
+      {% include template %}
+    </div>
+    {%- endfor %}
+  </div>
+</div>
+{%- endmacro -%}

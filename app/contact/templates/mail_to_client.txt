@@ -1,0 +1,19 @@
+Thanks for your interest
+========================
+
+Hi {{ form.name.data }}!
+Thanks for your interests. The mail has been sent to {{ member.fullname }}.
+
+Here is the copy:
+{% for field in form -%}
+  {% if "hidden" not in (field.widget.field_flags or []) and field.name != "recaptcha" -%}
+  {{ field.label.text }}: {% if field.choices_dict is defined %}{{ field.choices_dict[field.data] }}{% else %}{{ field.data }}{% endif %}
+  {%- endif %}
+{% endfor %}
+
+Thanks!
+
+=====================
+Hiroaki Yamamoto
+http://hysoftware.net
+=====================
