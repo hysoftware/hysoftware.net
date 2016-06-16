@@ -8,9 +8,13 @@ if [ -z ${TRAVIS_TAG} ]; then
 fi
 
 pushd ${HOME}
-git clone https://hiroaki-yamamoto:${DEPLOY_KEY}@github.com/hysoftware/hysoftware.net-deploy deploy > /dev/null
+git clone ${DEPLOY_REPO} deploy > /dev/null
 mv deploy/.git git
-rsync --delete --delete-excluded --exclude-from=${TRAVIS_BUILD_DIR}/exludelist.txt -aP ${TRAVIS_BUILD_DIR}/ deploy
+popd
+
+rsync --delete --delete-excluded --exclude-from=${TRAVIS_BUILD_DIR}/exludelist.txt -aP . ${HOME}/deploy
+
+pushd ${HOME}
 mv git deploy/.git
 cd depoloy
 git add . > /dev/null
