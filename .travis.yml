@@ -2,11 +2,11 @@ language: node_js
 sudo: false
 cache:
   apt: true
-  pip: true
   directories:
     - "${HOME}/.npm"
     - "node_modules"
     - "app/static"
+    - "../venv"
 compiler: g++-4.8
 env:
   global:
@@ -42,4 +42,3 @@ after_success:
   - "source ../venv/bin/activate"
   - "coveralls"
   - "deactivate"
-  - "docker help"
