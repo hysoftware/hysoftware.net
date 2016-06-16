@@ -45,6 +45,6 @@ after_success:
   - "deactivate"
 deploy:
   provider: script
-  script: deploy.sh
+  script: ./deploy.sh
   on:
     tags: true
