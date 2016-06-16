@@ -24,7 +24,7 @@ echo "Putting git control back"
 mv git deploy/.git
 
 echo "cd the repo"
-cd depoloy
+cd deploy
 
 echo "git add ."
 git add . > /dev/null
