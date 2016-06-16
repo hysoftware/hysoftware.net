@@ -11,7 +11,10 @@
 - *.bak
 - *~
 - .coverage
+- *.less
 - *.coffee
 - app/**/raw_assets
 - frontend_coverages
 - .gitignore
+- less
+- coffee

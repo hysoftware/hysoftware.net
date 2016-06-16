@@ -12,6 +12,7 @@ env:
   global:
     - CXX=g++-4.8
     - DEPLOY_REPO=https://hiroaki-yamamoto:${DEPLOY_KEY}@github.com/hysoftware/hysoftware.net-deploy
+    - node_mode=production
 node_js:
   - "6.2"
 addons:
