@@ -8,32 +8,20 @@ if [ -z ${TRAVIS_TAG} ]; then
 fi
 
 cd ${HOME}
-echo "Cloning deploy repo"
-git clone ${DEPLOY_REPO} deploy > /dev/null
+git clone ${DEPLOY_REPO} deploy > /dev/null 2>&1
 
-echo "Moving git control"
 mv deploy/.git git
-
-echo "Copying files to the repo"
 rsync --delete \
   --delete-excluded \
   --exclude-from=${TRAVIS_BUILD_DIR}/excludelist.txt \
-  -aP ${TRAVIS_BUILD_DIR}/ ${HOME}/deploy
-
-echo "Putting git control back"
+  -aP ${TRAVIS_BUILD_DIR}/ ${HOME}/deploy > /dev/null 2>&1
 mv git deploy/.git
 
-echo "cd the repo"
 cd deploy
-
-echo "git add ."
-git add --all . > /dev/null
-echo "git commit"
-git config --global user.email "build@travis"
-git config --global user.name "Travis CI"
-git commit -m "Release for ${TRAVIS_TAG}" > /dev/null
-git tag -a ${TRAVIS_TAG} -m ${TRAVIS_TAG}
-
-echo "Pushing"
+git add --all . > /dev/null 2>&1
+git config --global user.email "build@travis" > /dev/null 2>&1
+git config --global user.name "Travis CI" > /dev/null 2>&1
+git commit -m "Release for ${TRAVIS_TAG}" > /dev/null 2>&1
+git tag -a ${TRAVIS_TAG} -m ${TRAVIS_TAG} > /dev/null 2>&1
 git push origin master ${TRAVIS_TAG} > /dev/null 2>&1
 cd ${TRAVIS_BUILD_DIR}
