@@ -17,7 +17,7 @@ mv deploy/.git git
 echo "Copying files to the repo"
 rsync --delete \
   --delete-excluded \
-  --exclude-from=${TRAVIS_BUILD_DIR}/exludelist.txt \
+  --exclude-from=${TRAVIS_BUILD_DIR}/excludelist.txt \
   -aP ${TRAVIS_BUILD_DIR}/ ${HOME}/deploy
 
 echo "Putting git control back"
