@@ -2,10 +2,10 @@
 
 # Deploy to hysoftware/hysoftware.net-deploy
 
-# if [ -z ${TRAVIS_TAG} ]; then
-#   echo "This deploy script is available for tag release."
-#   exit 1
-# fi
+if [ -z ${TRAVIS_TAG} ]; then
+  echo "This deploy script is available for tag release."
+  exit 1
+fi
 
 cd ${HOME}
 echo "Cloning deploy repo"
@@ -28,12 +28,12 @@ cd deploy
 
 echo "git add ."
 git add --all . > /dev/null
-# git commit -m "Release for ${TRAVIS_TAG}" > /dev/null
 echo "git commit"
 git config --global user.email "build@travis"
 git config --global user.name "Travis CI"
-git commit -m "Release for $(date +%s)" > /dev/null
+git commit -m "Release for ${TRAVIS_TAG}" > /dev/null
+git tag -a ${TRAVIS_TAG} -m ${TRAVIS_TAG}
 
 echo "Pushing"
-git push origin master > /dev/null 2>&1
+git push origin master ${TRAVIS_TAG} > /dev/null 2>&1
 cd ${TRAVIS_BUILD_DIR}
