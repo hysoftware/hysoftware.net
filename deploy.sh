@@ -10,7 +10,7 @@ fi
 pushd ${HOME}
 git clone https://hiroaki-yamamoto:${DEPLOY_KEY}@github.com/hysoftware/hysoftware.net-deploy deploy > /dev/null
 mv deploy/.git git
-rsync --delete --delete-excluded --exclude-from=${TRAVIS_BUILD_DIR}/exludelist.txt -aP ${TRAVIS_BUILD_DIR} deploy
+rsync --delete --delete-excluded --exclude-from=${TRAVIS_BUILD_DIR}/exludelist.txt -aP ${TRAVIS_BUILD_DIR}/ deploy
 mv git deploy/.git
 cd depoloy
 git add . > /dev/null
