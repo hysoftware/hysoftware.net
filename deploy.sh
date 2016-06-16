@@ -7,7 +7,7 @@
 #   exit 1
 # fi
 
-pushd ${HOME}
+cd ${HOME}
 echo "Cloning deploy repo"
 git clone ${DEPLOY_REPO} deploy > /dev/null
 
@@ -34,4 +34,4 @@ git commit -m "Release for $(date +%s)" > /dev/null
 
 echo "Pushing"
 git push origin master > /dev/null
-popd
+cd ${TRAVIS_BUILD_DIR}
