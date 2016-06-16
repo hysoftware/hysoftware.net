@@ -41,6 +41,8 @@ hysoft.db
 vendor
 .bundle
 .coverage
+*.coffee
+app/**/raw_assets
 app/static
 app/home/assets/third_party.js
 app/home/assets/third_party.js.map

@@ -9,7 +9,9 @@ cache:
     - "app/static"
 compiler: g++-4.8
 env:
-  - CXX=g++-4.8
+  global:
+    - CXX=g++-4.8
+    - DEPLOY_REPO=https://github.com/hysoftware/hysoftware.net-deploy
 node_js:
   - "6.2"
 addons:
@@ -18,6 +20,7 @@ addons:
       - ubuntu-toolchain-r-test
       - deadsnakes
     packages:
+      - rsync
       - g++-4.8
       - libnotify-bin
       - python3.5
@@ -39,3 +42,4 @@ after_success:
   - "source ../venv/bin/activate"
   - "coveralls"
   - "deactivate"
+  - "docker help"
