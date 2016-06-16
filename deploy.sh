@@ -27,9 +27,11 @@ echo "cd the repo"
 cd deploy
 
 echo "git add ."
-git add . > /dev/null
+git add --all . > /dev/null
 # git commit -m "Release for ${TRAVIS_TAG}" > /dev/null
 echo "git commit"
+git config --global user.email "build@travis"
+git config --global user.name "Travis CI"
 git commit -m "Release for $(date +%s)" > /dev/null
 
 echo "Pushing"
