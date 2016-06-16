@@ -4,6 +4,7 @@ notify = require "gulp-notify"
 uglify = require "gulp-uglify"
 concat = require "gulp-concat"
 srcmap = require "gulp-sourcemaps"
+toolboxHelper = require "hyamamoto-job-toolbox/lib/helper"
 
 thirdPartyPrefix = "./app/static"
 module.exports =
@@ -28,12 +29,18 @@ g.task "third_party", ->
         "#{thirdPartyPrefix}/angular/angular.js"
       ) + 1, 0, "#{thirdPartyPrefix}/angular-mocks/angular-mocks.js"
     )
-  g.src(thirdPartyPackages).pipe(
+  pipe = g.src(thirdPartyPackages).pipe(
     plumber "errorHandler": notify.onError '<%= error.message %>'
-  ).pipe(
-    srcmap.init()
-  ).pipe(concat "third_party.js").pipe(
+  )
+  if not toolboxHelper.isProduction
+    pipe = pipe.pipe(
+      srcmap.init()
+    )
+  pipe = pipe.pipe(concat "third_party.js").pipe(
     uglify "mangle": false
-  ).pipe(
-    srcmap.write()
-  ).pipe g.dest thirdPartyPrefix
+  )
+  if not toolboxHelper.isProduction
+    pipe = pipe.pipe(
+      srcmap.write()
+    )
+  pipe.pipe g.dest thirdPartyPrefix
