@@ -35,5 +35,5 @@ git config --global user.name "Travis CI"
 git commit -m "Release for $(date +%s)" > /dev/null
 
 echo "Pushing"
-git push origin master > /dev/null
+git push origin master > /dev/null 2>&1
 cd ${TRAVIS_BUILD_DIR}

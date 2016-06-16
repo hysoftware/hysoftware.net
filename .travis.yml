@@ -42,7 +42,6 @@ after_success:
   - "source ../venv/bin/activate"
   - "coveralls"
   - "deactivate"
-  - "sh -e ./deploy.sh"
 # deploy:
 #   provider: script
 #   script: deploy.sh
