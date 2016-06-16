@@ -45,5 +45,5 @@ after_success:
 deploy:
   provider: script
   script: deploy.sh
-  on:
-    tags: true
+  # on:
+  #   tags: true
