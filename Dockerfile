@@ -10,7 +10,6 @@ USER hysoft
 WORKDIR /home/hysoft
 RUN virtualenv venv
 WORKDIR /home/hysoft/venv
-# RUN git clone https://github.com/hiroaki-yamamoto/hysoftware.net.git webapp
 RUN mkdir webapp
 COPY . /home/hysoft/venv/webapp
 
