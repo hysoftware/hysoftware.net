@@ -20,10 +20,6 @@ USER hysoft
 
 WORKDIR /home/hysoft/venv/webapp
 RUN . ../bin/activate && pip install -r requirements.txt && deactivate
-
-RUN npm install
-RUN npm test
-RUN rm -rf node_module frontend_coverage .coverage
 ENV mode production
 
 USER root
