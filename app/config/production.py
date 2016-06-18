@@ -17,6 +17,7 @@ class ProductionConfig(object):
     PREFERRED_URL_SCHEME = os.environ.get("url_scheme", "http")
     WTF_CSRF_METHODS = ["POST", "PUT", "PATCH", "DELETE"]
     MONGODB_SETTINGS = {
+        "db": os.environ.get("db_url", "").split("/")[-1] or None,
         "host": os.environ.get("db_url", None),
         "username": os.environ.get("db_user", None),
         "password": os.environ.get("db_password", None)
