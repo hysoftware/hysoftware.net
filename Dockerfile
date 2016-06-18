@@ -27,4 +27,4 @@ RUN chmod uo+rx /home/hysoft/venv/webapp/docker/runserver.sh /usr/bin/runserver.
 USER hysoft
 
 ENTRYPOINT ["runserver.sh"]
-EXPOSE 80
+EXPOSE 8888
