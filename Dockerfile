@@ -24,8 +24,6 @@ ENV mode production
 USER root
 RUN ln -s /home/hysoft/venv/webapp/docker/runserver.sh /usr/bin
 RUN chmod uo+rx /home/hysoft/venv/webapp/docker/runserver.sh /usr/bin/runserver.sh
-RUN mkdir ./ssl
-VOLUME ./ssl
 USER hysoft
 
 ENTRYPOINT ["runserver.sh"]
