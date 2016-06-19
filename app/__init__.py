@@ -44,8 +44,7 @@ admin.add_link(MenuLink(name="Back to HYSOFT", url="/#/"))
 admin.add_view(PersonAdmin(Person))
 
 
-@app.before_first_request
-def authenticate_db():
+def db_auth():
     """Authenticate the database if there is auth info."""
     db = mongo.connection
     conf = app.config["MONGODB_SETTINGS"]
@@ -53,6 +52,12 @@ def authenticate_db():
         db[conf["host"].split("/")[-1] or conf["db"]].authenticate(
             conf["username"], conf["password"]
         )
+
+
+@app.before_first_request
+def authenticate_db():
+    """Authenticate the database if there is auth info."""
+    db_auth()
 
 
 @app.after_request
@@ -86,4 +91,4 @@ def prevent_clickjack(resp):
     return resp
 
 
-__all__ = ("app")
+__all__ = ("app", "db_auth")
