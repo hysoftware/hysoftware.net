@@ -30,7 +30,7 @@ app = Flask(__name__)
 app.config.from_object(cfgmap[os.environ.get("mode", "devel")])
 login_manager = LoginManager(app)
 admin = Admin(app, index_view=HomeAdminView(url="/manage"))
-MongoEngine(app)
+mongo = MongoEngine(app)
 CsrfProtect(app)
 DebugToolbarExtension(app)
 
@@ -42,6 +42,17 @@ if app.debug:
 app.register_blueprint(user_bp, url_prefix="/u")
 admin.add_link(MenuLink(name="Back to HYSOFT", url="/#/"))
 admin.add_view(PersonAdmin(Person))
+
+
+@app.before_first_request
+def authenticate_db():
+    """Authenticate the database if there is auth info."""
+    db = mongo.connection
+    conf = app.config["MONGODB_SETTINGS"]
+    if conf.get("username") or conf.get("password"):
+        db[conf["host"].split("/")[-1] or conf["db"]].authenticate(
+            conf["username"], conf["password"]
+        )
 
 
 @app.after_request

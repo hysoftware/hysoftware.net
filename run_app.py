@@ -6,7 +6,7 @@ import getpass
 
 from flask.ext.script import Manager, Server
 
-from app import app
+from app import app, authenticate_db
 import app.user.models as user
 
 
@@ -21,6 +21,7 @@ manager.add_command(
 @manager.command
 def add_superuser():
     """Add a superuser."""
+    authenticate_db()
     admin = user.Person.objects(role__in=["admin"])
     if len(admin) > 0:
         raise ValueError("There's already an admin!")
