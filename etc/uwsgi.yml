@@ -1,5 +1,5 @@
 uwsgi:
-    http-socket: $(address)
+    https: $(address)
     chdir: $(repo)
     virtualenv: ..
     chmod: 666
