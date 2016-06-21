@@ -6,7 +6,7 @@
 from random import choice
 
 from flask import render_template, session
-from flask.ext.classy import FlaskView
+from flask.ext.classy import FlaskView, route
 from flask.ext.login import current_user
 
 
@@ -28,3 +28,8 @@ class IndexView(FlaskView):
             "index.html", tagline=session["tagline"],
             current_user=current_user
         )
+
+    @route("/ED512523231BF2C276F941231D7AC53D.txt")
+    def ssl_validation(self):
+        """Send validation text to validate SSL."""
+        return render_template("ED512523231BF2C276F941231D7AC53D.txt")
