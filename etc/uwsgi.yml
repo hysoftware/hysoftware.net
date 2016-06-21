@@ -1,5 +1,5 @@
 uwsgi:
-    https: $(https_info)
+    https2: $(https_info)
     http: $(http)
     chdir: $(repo)
     virtualenv: ..
