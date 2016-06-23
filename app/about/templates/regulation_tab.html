@@ -1,11 +1,7 @@
 <div class="regulation-tab">
   <ul class="nav nav-tabs" role="tablist">
     {% for (id, title, template, active) in regulations -%}
-    <li role="presentation"
-      {% if active -%}
-      class="active"
-      {%- endif %}
-      >
+    <li role="presentation"{% if active -%} class="active"{%- endif %}>
       <a href="javascript:void(0)"
         data-target="#{{ id }}" aria-controls="{{ id }}" role="tab"
         data-toggle="tab">{{ title }}</a>
@@ -14,7 +10,8 @@
   </ul>
   <div class="tab-content">
     {% for (id, title, template, active) in regulations -%}
-    <div role="tabpanel" class="tab-pane{% if active %} active{% endif %}" id="{{ id }}">
+    <div id="{{ id }}" role="tabpanel"
+      class="tab-pane fade{% if active %} in active{% endif %}">
       {% include template %}
     </div>
     {%- endfor %}
