@@ -1,4 +1,3 @@
-{%- macro tab(regulations) -%}
 <div class="regulation-tab">
   <ul class="nav nav-tabs" role="tablist">
     {% for (id, title, template, active) in regulations -%}
@@ -21,4 +20,3 @@
     {%- endfor %}
   </div>
 </div>
-{%- endmacro -%}

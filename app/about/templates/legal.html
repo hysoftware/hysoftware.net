@@ -1,4 +1,3 @@
-{%- import "regulation_tab.html" as regulation_tab -%}
 <article class="about legal">
   <header class="jumbotron page-title text-center">
     <div class="background"></div>
@@ -11,6 +10,6 @@
     <p>
       The followings are the notation based on legal responsibility in Japan.
     </p>
-    {{ regulation_tab.tab(regulations) }}
+    {%- include "regulation_tab.html" -%}
   </section>
 </article>

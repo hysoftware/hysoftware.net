@@ -4,9 +4,10 @@
 """Legal Notificaiton Rendering test."""
 
 from unittest import TestCase
-from unittest.mock import patch
+from unittest.mock import patch, ANY
 
 from app import app
+from app.about.controllers import LegalView
 
 
 class LegalNotationRenderingTest(TestCase):
@@ -28,16 +29,10 @@ class LegalNotationRenderingTest(TestCase):
     )
     def test_about_rendering(self, render_template):
         """The legal notification should be rendered."""
-        regulations = [
-            (
-                "scta",
-                "Notation based on the Specified Commercial Transaction Act",
-                "scta.html", True
-            )
-        ]
         with self.client as cli:
             resp = cli.get("/about/legal")
             self.assertEqual(resp.status_code, 200)
         render_template.assert_called_once_with(
-            "legal.html", regulations=regulations
+            "legal.html", regulations=LegalView.regulations,
+            assets_info=ANY
         )
