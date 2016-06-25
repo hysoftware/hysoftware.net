@@ -5,10 +5,13 @@
     <p>{{ tagline }}</p>
   </header>
   <div class="bottom text-center">
-    <span class="ion-ios-arrow-down"></span>
+    <a class="scrollDownBtn" href="javascript:void(0)"
+      data-ng-click="scrollTo('#first-subtitle')">
+      <span class="ion-ios-arrow-down"></span>
+    </a>
   </div>
 </section>
-<section class="text-center subtitles">
+<section id="first-subtitle" class="text-center subtitles">
   <h2>Code, Design, and Contribute for You And Your Company</h2>
   <div class="ion-ios-flame eyecatch"></div>
   <p>

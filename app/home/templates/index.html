@@ -31,7 +31,8 @@
 <body data-ng-cloak>
   {{ navbar.header(current_user) }}
   <div data-toaster-container></div>
-  <div class="ui-view" data-autoscroll="true"></div>
+  <div class="ui-view main-view" data-state="{{'{{ state.current.name }}'}}"
+    data-autoscroll="true"></div>
   <footer>
     <h1>The license of this website: The MIT License (MIT)</h1>
 
