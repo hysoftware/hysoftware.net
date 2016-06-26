@@ -66,3 +66,15 @@ class ProductionTestClass(TestCase):
             with self.assertRaises(ImportError):
                 from app.config import DevelConfig
                 self.assertIsNone(DevelConfig)
+
+
+class InvalidModeTest(TestCase):
+    """Test Invalid mode."""
+
+    def test_invalid_mode_config(self):
+        """Config should raise Invalid mode is given error."""
+        with patch.dict(os.environ, {"mode": "hahaha"}):
+            with self.assertRaises(EnvironmentError) as e:
+                import app.config  # noqa
+
+        self.assertEqual(str(e.exception), "Invalid mode is given.")

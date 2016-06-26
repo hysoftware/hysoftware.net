@@ -12,6 +12,6 @@ if mode == "production":
 elif mode == "devel":
     from .devel import DevelConfig
 else:
-    EnvironmentError("Invalid mode is given")
+    raise EnvironmentError("Invalid mode is given.")
 
 __all__ = ("ProductionConfig", "DevelConfig")
