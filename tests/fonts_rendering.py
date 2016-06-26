@@ -18,7 +18,10 @@ class OpenSansFontsRenderingTests(TestCase):
         app.testing = True
         self.cli = app.test_client()
 
-    @patch("app.fonts.controller.render_template", return_value="done")
+    @patch(
+        "app.fonts.controller.render_template",
+        return_value="<body></body>"
+    )
     def test_fontface_rendering(self, render_template):
         """font-face should be rendered."""
         with self.cli as cli:

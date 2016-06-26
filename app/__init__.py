@@ -30,7 +30,6 @@ app = Flask(__name__)
 app.config.from_object(cfgmap[os.environ.get("mode", "devel")])
 login_manager = LoginManager(app)
 admin = Admin(app, index_view=HomeAdminView(url="/manage"))
-mongo = MongoEngine(app)
 CsrfProtect(app)
 DebugToolbarExtension(app)
 
@@ -46,6 +45,7 @@ admin.add_view(PersonAdmin(Person))
 
 def db_auth():
     """Authenticate the database if there is auth info."""
+    mongo = MongoEngine(app)
     db = mongo.connection
     conf = app.config["MONGODB_SETTINGS"]
     if conf.get("username") or conf.get("password"):

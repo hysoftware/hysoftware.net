@@ -3,75 +3,66 @@
 
 """Env config tests."""
 
-import sys
 import os
+import sys
 
 from unittest import TestCase
+from unittest.mock import patch
 
 
-class EnvironmentTestBase(TestCase):
-    """
-    Test Environment configurations.
-
-    Note that this is just an base
-    """
-
-    def setUp(self):
-        """Setup."""
-        if type(self) is EnvironmentTestBase:
-            raise TypeError("This class is abstract class")
-        self.env_backup = os.environ.get("mode", None)
-
-    def tearDown(self):
-        """Tear down."""
-        if self.env_backup:
-            os.environ["mode"] = self.env_backup
-        else:
-            os.environ.pop("mode", None)
-
-        sys.modules.pop("app.config", None)
-
-
-class DevelopmentTestClass(EnvironmentTestBase):
+class DevelopmentTestClass(TestCase):
     """Development Mode Test."""
 
     def setUp(self):
         """Setup."""
-        super(DevelopmentTestClass, self).setUp()
-        os.environ["mode"] = "devel"
+        self.env = patch.dict(os.environ, {"mode": "devel"})
+
+    def tearDown(self):
+        """Teardown."""
+        sys.modules.pop("app.config", None)
 
     def test_development_mode(self):
         """Devel Config should be read."""
-        from app.config import DevelConfig
-        self.assertIsNotNone(DevelConfig)
+        with self.env:
+            from app.config import DevelConfig
+            self.assertIsNotNone(DevelConfig)
 
     def test_production_mode(self):
         """Production config should raise an error."""
-        with self.assertRaises(ImportError):
-            from app.config import ProductionConfig
-            self.assertIsNone(ProductionConfig)
+        with self.env:
+            with self.assertRaises(ImportError):
+                from app.config import ProductionConfig
+                self.assertIsNone(ProductionConfig)
 
 
-class ProductionTestClass(EnvironmentTestBase):
+class ProductionTestClass(TestCase):
     """Test Development Mode."""
 
     def setUp(self):
         """Setup."""
-        super().setUp()
-        os.environ["mode"] = "production"
-        os.environ["secret"] = \
-            os.environ["recaptcha_prikey"] = \
-            os.environ["recaptcha_pubkey"] = \
-            os.environ["MAILGUN_API"] = \
-            os.environ["MAILGUN_URL"] = "test"
+        env = {"mode": "production"}
+        env.update({
+            key: "test"
+            for key in [
+                "secret", "recaptcha_prikey", "recaptcha_pubkey",
+                "MAILGUN_API", "MAILGUN_URL"
+            ]
+        })
+        self.env = patch.dict(os.environ, env)
+
+    def tearDown(self):
+        """Teardown."""
+        sys.modules.pop("app.config", None)
 
     def test_production_mode(self):
         """Production Config should be read."""
-        from app.config import ProductionConfig
-        self.assertIsNotNone(ProductionConfig)
+        with self.env:
+            from app.config import ProductionConfig
+            self.assertIsNotNone(ProductionConfig)
 
     def test_devel_mode(self):
         """Devel config should raise an error."""
-        with self.assertRaises(ImportError):
-            from app.config import DevelConfig
-            self.assertIsNone(DevelConfig)
+        with self.env:
+            with self.assertRaises(ImportError):
+                from app.config import DevelConfig
+                self.assertIsNone(DevelConfig)

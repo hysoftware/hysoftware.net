@@ -4,6 +4,7 @@
 """Contact controller rendering tests."""
 
 import json
+from requests import HTTPError
 from urllib.parse import urljoin
 from unittest import TestCase
 from unittest.mock import patch, PropertyMock, call, ANY
@@ -43,10 +44,10 @@ class ContactSendingTest(TestCase):
         """[POST] Contact:index should send email."""
         def render_template_side_effect(f, **kwargs):
             return {
-                "mail_to_member.txt": "member.txt",
-                "mail_to_member.html": "member.html",
-                "mail_to_client.txt": "client.txt",
-                "mail_to_client.html": "client.html"
+                "mail_to_member.txt": "<body>member</body>",
+                "mail_to_member.html": "<body>member</body>",
+                "mail_to_client.txt": "<body>client</body>",
+                "mail_to_client.html": "<body>client</body>"
             }[f]
         render_template.side_effect = render_template_side_effect
 
@@ -89,6 +90,7 @@ class ContactSendingTest(TestCase):
     def test_post_lacks_email(self, csrf, form, model, ctrl_model, post):
         """[POST] Contact:index should return 417 with an email error."""
         model.return_value = [self.person]
+        ctrl_model.return_value.get.return_value = self.person
         form.return_value.validate.return_value = False
         errs = PropertyMock(
             return_value={"email": ["This field is required."]}
@@ -105,6 +107,41 @@ class ContactSendingTest(TestCase):
         form.return_value.validate.assert_called_once_with()
         errs.assert_called_once_with()
 
+    @patch("requests.post")
+    @patch(
+        "app.contact.controllers.render_template",
+        return_value="<body></body>"
+    )
+    @patch("app.contact.controllers.Person.objects")
+    @patch("app.contact.forms.Person.objects")
+    @patch("app.contact.controllers.ContactForm")
+    @patch("flask.ext.wtf.csrf.validate_csrf", return_value=True)
+    def test_post_request_failure(
+        self, csrf, form, model, ctrl_model, render_template, post
+    ):
+        """[POST] Contact:index should return 502 with an Mail error."""
+        test_message = "Test Message"
+        post.return_value.raise_for_status.side_effect = HTTPError(
+            response=type("Response", (object, ), {
+                "json": lambda self: {"message": test_message},
+                "status_code": 502
+            })()
+        )
+        model.return_value = [self.person]
+        ctrl_model.return_value.get.return_value = self.person
+        form.return_value.validate.return_value = True
+        for (key, value) in self.data.items():
+            setattr(form.return_value, key, type("data", (object, ), {
+                "data": value
+            }))
+        with self.cli as cli:
+            resp = cli.post("/contact", data=self.data)
+            self.assertEqual(resp.status_code, 502)
+            self.assertDictEqual(
+                json.loads(resp.data.decode("utf-8")),
+                {"Mail": [test_message]}
+            )
+
 
 class ContactGETTest(TestCase):
     """Contact GET request test."""
@@ -118,7 +155,7 @@ class ContactGETTest(TestCase):
 
     @patch(
         "app.contact.controllers.render_template",
-        return_value="<body><body>"
+        return_value="<body></body>"
     )
     @patch("app.contact.controllers.Person.objects")
     def test_index_rendering(self, objects, render_template):
@@ -134,7 +171,7 @@ class ContactGETTest(TestCase):
 
     @patch(
         "app.contact.controllers.render_template",
-        return_value="<body><body>"
+        return_value="<body></body>"
     )
     @patch("app.contact.controllers.Person.objects")
     def test_get_rendering(self, objects, render_template):
