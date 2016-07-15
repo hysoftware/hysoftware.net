@@ -4,7 +4,7 @@
 """About team controller."""
 
 from flask import render_template
-from flask.ext.classy import FlaskView
+from flask_classy import FlaskView
 
 from ...user.models import Person
 

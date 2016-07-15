@@ -5,8 +5,8 @@
 
 import json
 from flask import render_template, jsonify, make_response, abort
-from flask.ext.classy import FlaskView
-from flask.ext.login import (
+from flask_classy import FlaskView
+from flask_login import (
     login_user, logout_user, current_user, login_required
 )
 from ..forms import LoginForm

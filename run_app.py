@@ -4,7 +4,7 @@
 import os
 import getpass
 
-from flask.ext.script import Manager, Server
+from flask_script import Manager, Server
 
 from app import app, db_auth
 import app.user.models as user

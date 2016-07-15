@@ -5,7 +5,7 @@
 
 import bcrypt
 from Crypto.Cipher import AES
-import flask.ext.mongoengine as flskdb
+import flask_mongoengine as flskdb
 import mongoengine as db
 import mongoengine_goodjson as gj
 

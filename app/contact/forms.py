@@ -4,7 +4,7 @@
 """Contact form."""
 
 from bson import ObjectId
-from flask.ext.wtf import Form, RecaptchaField
+from flask_wtf import Form, RecaptchaField
 import wtforms.fields as fld
 import wtforms.fields.html5 as html5
 import wtforms.validators as vld

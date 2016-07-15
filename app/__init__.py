@@ -6,11 +6,11 @@
 import os
 
 from flask import Flask
-from flask.ext.wtf.csrf import CsrfProtect, generate_csrf
-from flask.ext.debugtoolbar import DebugToolbarExtension
-from flask.ext.mongoengine import MongoEngine
-from flask.ext.login import LoginManager
-from flask.ext.admin.base import Admin, MenuLink
+from flask_wtf.csrf import CsrfProtect, generate_csrf
+from flask_debugtoolbar import DebugToolbarExtension
+from flask_mongoengine import MongoEngine
+from flask_login import LoginManager
+from flask_admin.base import Admin, MenuLink
 
 from .common import minify_html, HomeAdminView
 from .contact import route as contact_bp

@@ -7,7 +7,7 @@ from unittest.mock import patch
 
 from bson import ObjectId
 from flask import abort, session
-from flask.ext.login import confirm_login
+from flask_login import confirm_login
 
 from app import app
 from app.user.models import Person

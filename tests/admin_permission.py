@@ -7,7 +7,7 @@ import mongoengine as db
 import unittest as ut
 from unittest.mock import patch
 
-from flask.ext.login import login_user
+from flask_login import login_user
 from bson import ObjectId
 from app import app
 from app.user.models import Person

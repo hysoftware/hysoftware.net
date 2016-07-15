@@ -39,7 +39,7 @@ class ContactSendingTest(TestCase):
     @patch("app.contact.controllers.Person.objects")
     @patch("app.contact.forms.Person.objects")
     @patch("app.contact.controllers.ContactForm")
-    @patch("flask.ext.wtf.csrf.validate_csrf", return_value=True)
+    @patch("flask_wtf.csrf.validate_csrf", return_value=True)
     def test_post(self, csrf, form, model, ctrl_model, render_template, post):
         """[POST] Contact:index should send email."""
         def render_template_side_effect(f, **kwargs):
@@ -86,7 +86,7 @@ class ContactSendingTest(TestCase):
     @patch("app.contact.controllers.Person.objects")
     @patch("app.contact.forms.Person.objects")
     @patch("app.contact.controllers.ContactForm")
-    @patch("flask.ext.wtf.csrf.validate_csrf", return_value=True)
+    @patch("flask_wtf.csrf.validate_csrf", return_value=True)
     def test_post_lacks_email(self, csrf, form, model, ctrl_model, post):
         """[POST] Contact:index should return 417 with an email error."""
         model.return_value = [self.person]
@@ -115,7 +115,7 @@ class ContactSendingTest(TestCase):
     @patch("app.contact.controllers.Person.objects")
     @patch("app.contact.forms.Person.objects")
     @patch("app.contact.controllers.ContactForm")
-    @patch("flask.ext.wtf.csrf.validate_csrf", return_value=True)
+    @patch("flask_wtf.csrf.validate_csrf", return_value=True)
     def test_post_request_failure(
         self, csrf, form, model, ctrl_model, render_template, post
     ):
