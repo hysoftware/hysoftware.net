@@ -7,6 +7,7 @@ from collections import OrderedDict
 
 import wtforms.fields as fld
 import wtforms.validators as vld
+from wtf_otp import OTPSecretKeyField
 
 from ..common import AdminModelBase
 from .models import Person
@@ -39,8 +40,8 @@ class PersonAdmin(AdminModelBase):
         "skills": {},
         "websites": {},
     }
-    column_exclude_list = ("code", )
-    form_excluded_columns = ("code", )
+    column_exclude_list = ("code", "sacode")
+    form_excluded_columns = ("code", "sacode")
     form_extra_fields = OrderedDict([
         (
             "current_password", fld.PasswordField(
@@ -55,6 +56,9 @@ class PersonAdmin(AdminModelBase):
         (
             "confirm_password",
             fld.PasswordField(validators=[vld.EqualTo("new_password")])
+        ), (
+            "2FA_secret",
+            OTPSecretKeyField(qrcode_url="/u/qrcode")
         )
     ])
 
