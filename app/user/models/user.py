@@ -3,10 +3,11 @@
 
 """User database."""
 
+import bcrypt
+from Crypto.Cipher import AES
 import flask.ext.mongoengine as flskdb
 import mongoengine as db
 import mongoengine_goodjson as gj
-import bcrypt
 
 
 class QuerySet(gj.QuerySet, flskdb.BaseQuerySet):
@@ -40,6 +41,7 @@ class Person(gj.Document, flskdb.Document):
     firstname = db.StringField(required=True)
     lastname = db.StringField(required=True)
     code = db.StringField(required=True, min_length=60, max_length=60)
+    sacode = db.BinaryField()
     role = db.ListField(
         db.StringField(choices=[(item, item) for item in ["member", "admin"]]),
         required=True
@@ -80,3 +82,19 @@ class Person(gj.Document, flskdb.Document):
         self.code = bcrypt.hashpw(
             password.encode(), bcrypt.gensalt(15)
         ).decode("utf-8")
+
+    def set_2fa(self, password, fasecret):
+        """Set 2FA secret key."""
+        ec = AES.new(
+            password[:32].ljust(32, "$").encode(), AES.MODE_CBC,
+            password[::-1][:16].rjust(16, "#").encode()
+        )
+        self.sacode = ec.encrypt(fasecret.encode())
+
+    def get_2fa(self, password):
+        """Get 2FA secret key."""
+        ec = AES.new(
+            password[:32].ljust(32, "$").encode(), AES.MODE_CBC,
+            password[::-1][:16].rjust(16, "#").encode()
+        )
+        return ec.decrypt(self.sacode)

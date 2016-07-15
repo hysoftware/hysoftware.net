@@ -6,6 +6,8 @@
 import unittest as ut
 from unittest.mock import patch
 
+from Crypto.Cipher import AES
+
 import app.user.models as user_models
 
 
@@ -85,3 +87,45 @@ class FullName(ut.TestCase):
     def test_fullname(self):
         """Accessing fullname property, returns "Test Example"."""
         self.assertEqual(self.person.fullname, "Test Example")
+
+
+class TwoFAStora(ut.TestCase):
+    """2FA store test."""
+
+    def setUp(self):
+        """setup."""
+        self.person = user_models.Person(firstname="Test", lastname="Example")
+        self.secret_key = "This is a test"
+        self.person.sacode = b"This is a test"
+        self.twofasacret = "23456789ABCDEFGH"
+
+    @patch("app.user.models.user.AES.new")
+    def test_set(self, aes_new):
+        """AES256 should be initialized and it encrypts the data."""
+        aes_new.return_value.encrypt.return_value = b"testesttest"
+        self.person.set_2fa(self.secret_key, self.twofasacret)
+        aes_new.assert_called_once_with(
+            self.secret_key[:32].ljust(32, "$").encode(),
+            AES.MODE_CBC, self.secret_key[::-1][:16].rjust(16, "#").encode()
+        )
+        aes_new.return_value.encrypt.assert_called_once_with(
+            self.twofasacret.encode()
+        )
+        self.assertIs(
+            self.person.sacode, aes_new.return_value.encrypt.return_value
+        )
+
+    @patch("app.user.models.user.AES.new")
+    def test_get(self, aes_new):
+        """AES256 should be initialized and it decodes the data."""
+        ret = self.person.get_2fa(self.secret_key)
+        aes_new.assert_called_once_with(
+            self.secret_key[:32].ljust(32, "$").encode(),
+            AES.MODE_CBC, self.secret_key[::-1][:16].rjust(16, "#").encode()
+        )
+        aes_new.return_value.decrypt.assert_called_once_with(
+            self.person.sacode
+        )
+        self.assertIs(
+            ret, aes_new.return_value.decrypt.return_value
+        )
