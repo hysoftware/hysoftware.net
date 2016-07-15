@@ -4,10 +4,11 @@
 """User Admin Panel tests."""
 
 from unittest import TestCase
-from unittest.mock import patch, PropertyMock
+from unittest.mock import patch, PropertyMock, MagicMock
 
 from wtforms.form import Form
 import wtforms.fields as fld
+from wtf_otp import OTPSecretKeyField
 from werkzeug.datastructures import MultiDict
 
 from app.user.models import Person
@@ -17,7 +18,10 @@ from app.user.admin import PersonAdmin
 class TestForm(Form):
     """Test form."""
 
+    current_password = fld.PasswordField()
     confirm_password = fld.PasswordField()
+    sfa_secret = OTPSecretKeyField()
+    sfa_confirm = fld.IntegerField()
 
 
 class PersonAdminEmptyConfirmPasswordTest(TestCase):
@@ -27,6 +31,8 @@ class PersonAdminEmptyConfirmPasswordTest(TestCase):
         """Setup."""
         self.form = TestForm()
         self.person = Person()
+        self.person.get_2fa = MagicMock(return_value="")
+        self.person.set_2fa = MagicMock(return_value="")
         self.admin = PersonAdmin(Person)
 
     @patch("app.user.admin.Person.password", new_callable=PropertyMock)
@@ -43,6 +49,8 @@ class PersonAdminNonEmptyConfirmPasswordTest(TestCase):
         """Setup."""
         self.form = TestForm(MultiDict({"confirm_password": "test"}))
         self.person = Person()
+        self.person.get_2fa = MagicMock(return_value="")
+        self.person.set_2fa = MagicMock(return_value="")
         self.admin = PersonAdmin(Person)
 
     @patch("app.user.admin.Person.password", new_callable=PropertyMock)

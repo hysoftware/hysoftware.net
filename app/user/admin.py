@@ -87,7 +87,7 @@ class PersonAdmin(AdminModelBase):
             "current_password", fld.PasswordField(
                 validators=[
                     CurrentPasswordValidation([
-                        "new_password", "confirm_password"
+                        "new_password", "confirm_password", "sfa_secret"
                     ])
                 ]
             )
@@ -126,5 +126,11 @@ class PersonAdmin(AdminModelBase):
 
     def on_model_change(self, form, model, is_created=False):
         """Apply new password."""
+        password = form.current_password.data
+        sfa_secret = form.sfa_secret.data or model.get_2fa(password)
+
         if form.confirm_password.data:
             model.password = form.confirm_password.data
+            password = form.confirm_password.data
+
+        model.set_2fa(password, sfa_secret)

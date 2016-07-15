@@ -97,4 +97,4 @@ class Person(gj.Document, flskdb.Document):
             password[:32].ljust(32, "$").encode(), AES.MODE_CBC,
             password[::-1][:16].rjust(16, "#").encode()
         )
-        return ec.decrypt(self.sacode)
+        return ec.decrypt(self.sacode) if self.sacode else None
