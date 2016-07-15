@@ -9,7 +9,7 @@ import requests
 
 from bson import ObjectId
 from flask import make_response, jsonify, current_app, render_template
-from flask.ext.classy import FlaskView
+from flask_classy import FlaskView
 from .forms import ContactForm
 from ..user.models import Person
 

@@ -9,7 +9,7 @@ from unittest.mock import patch, ANY, MagicMock
 from bson import ObjectId
 import json
 from flask import abort, session
-from flask.ext.login import confirm_login
+from flask_login import confirm_login
 
 from app import app
 import app.user.models as user
@@ -43,7 +43,7 @@ class LoginPostTest(ut.TestCase):
         app.testing = True
         self.cli = app.test_client()
 
-    @patch("flask.ext.wtf.csrf.validate_csrf", return_value=True)
+    @patch("flask_wtf.csrf.validate_csrf", return_value=True)
     @patch("app.user.controllers.login.Person")
     @patch("app.user.controllers.login.login_user")
     def test_post_login(self, login_user, Person, csrf):
@@ -72,7 +72,7 @@ class LoginPostTest(ut.TestCase):
             person.verify.assert_called_once_with(req_data["password"])
             login_user.assert_called_once_with(person)
 
-    @patch("flask.ext.wtf.csrf.validate_csrf", return_value=True)
+    @patch("flask_wtf.csrf.validate_csrf", return_value=True)
     @patch("app.user.controllers.login.Person")
     @patch("app.user.controllers.login.login_user")
     def test_post_logi_lack_formn(self, login_user, Person, csrf):
@@ -97,7 +97,7 @@ class LoginPostTest(ut.TestCase):
             person.verify.assert_not_called()
             login_user.assert_not_called()
 
-    @patch("flask.ext.wtf.csrf.validate_csrf", return_value=True)
+    @patch("flask_wtf.csrf.validate_csrf", return_value=True)
     @patch("app.user.controllers.login.Person")
     @patch("app.user.controllers.login.login_user")
     @patch("app.user.controllers.login.abort", side_effect=abort)
@@ -170,7 +170,7 @@ class LogoutTest(ut.TestCase):
         app.testing = True
         self.cli = app.test_client()
 
-    @patch("flask.ext.wtf.csrf.validate_csrf", return_value=True)
+    @patch("flask_wtf.csrf.validate_csrf", return_value=True)
     @patch("app.Person.objects")
     @patch("app.user.controllers.login.logout_user")
     def test_session_status(self, logout_user, user_objects, csrf):

@@ -4,10 +4,10 @@
 """Admin base."""
 
 from flask import abort
-from flask.ext.admin import AdminIndexView, expose
-from flask.ext.admin.contrib.mongoengine import ModelView
-from flask.ext.wtf import Form
-from flask.ext.login import current_user
+from flask_admin import AdminIndexView, expose
+from flask_admin.contrib.mongoengine import ModelView
+from flask_wtf import Form
+from flask_login import current_user
 
 
 class AdminModelBase(ModelView):

@@ -6,8 +6,8 @@
 from random import choice
 
 from flask import render_template, session
-from flask.ext.classy import FlaskView, route
-from flask.ext.login import current_user
+from flask_classy import FlaskView, route
+from flask_login import current_user
 
 
 class IndexView(FlaskView):

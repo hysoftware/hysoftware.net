@@ -3,7 +3,7 @@
 
 """Login form."""
 
-from flask.ext.wtf import Form
+from flask_wtf import Form
 import wtforms.fields as fld
 import wtforms.fields.html5 as html5fld
 import wtforms.validators as vld

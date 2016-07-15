@@ -4,7 +4,7 @@
 """Controller for font-face."""
 
 from flask import render_template, make_response
-from flask.ext.classy import FlaskView
+from flask_classy import FlaskView
 
 
 class OpenSansView(FlaskView):

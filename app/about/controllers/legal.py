@@ -4,7 +4,7 @@
 """Legal notification page controller."""
 
 from flask import render_template, url_for
-from flask.ext.classy import FlaskView
+from flask_classy import FlaskView
 
 
 class LegalView(FlaskView):
