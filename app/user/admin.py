@@ -7,7 +7,7 @@ from collections import OrderedDict
 
 import wtforms.fields as fld
 import wtforms.validators as vld
-from wtf_otp import OTPSecretKeyField
+from wtf_otp import OTPSecretKeyField, OTPCheck
 
 from ..common import AdminModelBase
 from .models import Person
@@ -31,6 +31,46 @@ class CurrentPasswordValidation(object):
                 raise vld.ValidationError("This field is required.")
             if not model.verify(field.data):
                 raise vld.ValidationError("The password wasn't matched.")
+
+
+class ValidateTrue(object):
+    """Validate the value with the specified validator."""
+
+    def __init__(self, validator, exp, *args, **kwargs):
+        """
+        Initialize the class.
+
+        Parameters:
+            validator: The validator. The value is validated when the exp is
+                Truthy.
+            exp: Expression to check if vaidation is needed. Note that this
+                can be callable with form and field params, and in this case,
+                the exp is evaluated when __call__ is called.
+            *args: Any arguments to be passed to the validator.
+            **kwargs: Any keyword arguments to be passed to the validator.
+        """
+        self.validator = validator
+        self.exp = exp
+        self.args = args
+        self.kwargs = kwargs
+
+    def __call__(self, form, field):
+        """
+        Validate the field.
+
+        Parameters:
+            form: The form
+            field: The field
+        """
+        exp = False
+        try:
+            exp = self.exp(form, field)
+        except TypeError:
+            exp = self.exp
+
+        if exp:
+            validation = self.validator(*self.args, **self.kwargs)
+            return validation(form, field)
 
 
 class PersonAdmin(AdminModelBase):
@@ -57,8 +97,30 @@ class PersonAdmin(AdminModelBase):
             "confirm_password",
             fld.PasswordField(validators=[vld.EqualTo("new_password")])
         ), (
-            "2FA_secret",
-            OTPSecretKeyField(qrcode_url="/u/qrcode")
+            "sfa_secret",
+            OTPSecretKeyField(qrcode_url="/u/qrcode", render_kw={
+                "button_args": {"class": "btn"}
+            }, validators=[
+                ValidateTrue(
+                    vld.InputRequired,
+                    lambda form, field: form.sfa_confirm.data
+                )
+            ])
+        ), (
+            "sfa_confirm", fld.IntegerField(
+                validators=[
+                    ValidateTrue(
+                        vld.Optional,
+                        lambda form, field: not form.sfa_secret.data
+                    ),
+                    ValidateTrue(
+                        vld.InputRequired,
+                        lambda form, field: form.sfa_secret.data
+                    ),
+                    vld.NumberRange(min=0, max=999999),
+                    OTPCheck(lambda form, field: form.sfa_secret.data)
+                ]
+            )
         )
     ])
 

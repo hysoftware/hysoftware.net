@@ -4,5 +4,6 @@
 """User related controllers."""
 
 from .login import LoginView
+from .qrcode import QRCode
 
-__all__ = ("LoginView", )
+__all__ = ("LoginView", "QRCode")

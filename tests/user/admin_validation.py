@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding=utf-8
 
-"""Admin password validation check."""
+"""Admin validation checks."""
 
 from unittest import TestCase
 from unittest.mock import patch, MagicMock
@@ -10,11 +10,11 @@ from wtforms.form import Form
 import wtforms.fields as fld
 from werkzeug.datastructures import MultiDict
 
-from app.user.admin import CurrentPasswordValidation
+from app.user.admin import CurrentPasswordValidation, ValidateTrue
 from app.user.models import Person
 
 
-class TestForm(Form):
+class CurrentPasswordTestForm(Form):
     """Test form."""
 
     email = fld.StringField()
@@ -27,12 +27,12 @@ class TestForm(Form):
     confirm_password = fld.PasswordField()
 
 
-class ValidationTest(TestCase):
+class CurrentPasswordValidationTest(TestCase):
     """Successful validatoion tests."""
 
     def setUp(self):
         """Setup."""
-        self.form = TestForm(MultiDict({
+        self.form = CurrentPasswordTestForm(MultiDict({
             "email": "test@example.com",
             "current_password": "test",
             "new_password": "test2",
@@ -57,12 +57,12 @@ class ValidationTest(TestCase):
         person.verify.assert_called_once_with(self.form.current_password.data)
 
 
-class ValidationLacksConfirmPassword(TestCase):
+class CurrentPasswordValidationLacksConfirmPassword(TestCase):
     """Confirm passwrod lacks."""
 
     def setUp(self):
         """setup."""
-        self.form = TestForm(MultiDict({
+        self.form = CurrentPasswordTestForm(MultiDict({
             "email": "test@example.com",
             "current_password": "test",
             "new_password": "test2"
@@ -79,12 +79,12 @@ class ValidationLacksConfirmPassword(TestCase):
         self.person.verify.assert_not_called()
 
 
-class ValidationLacksNewPassword(TestCase):
+class CurrentPasswordValidationLacksNewPassword(TestCase):
     """New passwrod lacks."""
 
     def setUp(self):
         """setup."""
-        self.form = TestForm(MultiDict({
+        self.form = CurrentPasswordTestForm(MultiDict({
             "email": "test@example.com",
             "current_password": "test",
             "confirm_password": "test2"
@@ -101,12 +101,12 @@ class ValidationLacksNewPassword(TestCase):
         self.person.verify.assert_not_called()
 
 
-class ValidationLacksCurrentPassword(TestCase):
+class CurrentPasswordValidationLacksCurrentPassword(TestCase):
     """New passwrod lacks."""
 
     def setUp(self):
         """setup."""
-        self.form = TestForm(MultiDict({
+        self.form = CurrentPasswordTestForm(MultiDict({
             "email": "test@example.com",
             "new_password": "test",
             "confirm_password": "test2"
@@ -127,12 +127,12 @@ class ValidationLacksCurrentPassword(TestCase):
         self.person.verify.assert_not_called()
 
 
-class ValidationCurrentPasswordNotMatch(TestCase):
+class CurrentPasswordValidationCurrentPasswordNotMatch(TestCase):
     """New passwrod lacks."""
 
     def setUp(self):
         """setup."""
-        self.form = TestForm(MultiDict({
+        self.form = CurrentPasswordTestForm(MultiDict({
             "email": "test@example.com",
             "current_password": "test0",
             "new_password": "test",
@@ -153,4 +153,88 @@ class ValidationCurrentPasswordNotMatch(TestCase):
         person_objects.return_value.first.assert_called_once_with()
         self.person.verify.assert_called_once_with(
             self.form.current_password.data
+        )
+
+
+def gen_conditional_validation_form(dynamic, non_dynamic_exp=True):
+    """Generate validation test form."""
+    exp = (lambda form, field: form.email.data) if dynamic else non_dynamic_exp
+
+    class ConditionalValidationTestForm(Form):
+        class ValidationMock(object):
+            mock = MagicMock()
+
+            def __call__(self, *args, **kwargs):
+                self.mock(*args, **kwargs)
+
+        mock = ValidationMock
+        email = fld.StringField()
+        target = fld.StringField(validators=[ValidateTrue(mock, exp)])
+
+    return ConditionalValidationTestForm
+
+
+class ConditionalStaticNotValidationTest(TestCase):
+    """Test case that shouldn't validate the value."""
+
+    def setUp(self):
+        """Setup."""
+        self.formcls = gen_conditional_validation_form(False, False)
+        self.form = self.formcls(data={"target": "test"})
+        self.form.validate()
+
+    def test_validation(self):
+        """The form shouldn't validate target field."""
+        self.form.mock.mock.assert_not_called()
+
+
+class ConditionalStaticValidationTest(TestCase):
+    """Test case that should validate the value."""
+
+    def setUp(self):
+        """Setup."""
+        self.formcls = gen_conditional_validation_form(False, True)
+        self.form = self.formcls(data={
+            "email": "test@example.com",
+            "target": "test"
+        })
+        self.form.validate()
+
+    def test_validation(self):
+        """The form shouldn't validate target field."""
+        self.form.mock.mock.assert_called_once_with(
+            self.form, self.form.target
+        )
+
+
+class ConditionalDynamicNotValidationTest(TestCase):
+    """Test case that shouldn't validate the value."""
+
+    def setUp(self):
+        """Setup."""
+        self.formcls = gen_conditional_validation_form(True)
+        self.form = self.formcls(data={"target": "test"})
+        self.form.validate()
+
+    def test_validation(self):
+        """The form shouldn't validate target field."""
+        self.form.mock.mock.assert_not_called()
+
+
+class ConditionalDynamicValidationTest(TestCase):
+    """Test case that should validate the value."""
+
+    def setUp(self):
+        """Setup."""
+        self.formcls = gen_conditional_validation_form(True)
+        self.form = self.formcls(data={
+            "email": "test@example.com",
+            "target": "test"
+        })
+        self.form.validate()
+
+    def test_validation(self):
+        """The form shouldn't validate target field."""
+        self.form.mock.mock.assert_called_once_with(
+            self.form, self.form.target
         )

@@ -44,11 +44,11 @@ class QRCodeTest(TestCase):
             self.assertEqual(resp.status_code, 404)
 
     @patch("app.Person.objects")
-    @patch("app.user.controllers.qrcode.OTPSecretKeyField")
-    def test_qrcode_200(self, qrcode_generator, user_objects):
+    @patch("app.user.controllers.qrcode.OTPDummyForm")
+    def test_qrcode_200(self, form, user_objects):
         """The resource should return SVG image for the qrcode."""
         user_objects.return_value.get = MagicMock(return_value=self.person)
-        qrcode_generator.return_value.qrcode.return_value = "<svg></svg>"
+        form.return_value.field.qrcode.return_value = "<svg></svg>"
         with self.cli as cli:
             with app.test_request_context():
                 session["user_id"] = self.person.get_id()
@@ -59,9 +59,10 @@ class QRCodeTest(TestCase):
             self.assertEqual(resp.status_code, 200)
             self.assertEqual(resp.mimetype, "image/svg+xml")
             self.assertEqual(
-                resp.data, qrcode_generator.return_value.qrcode.return_value
+                resp.data,
+                form.return_value.field.qrcode.return_value.encode()
             )
-        qrcode_generator.assert_called_once_with()
-        qrcode_generator.return_value.qrcode.assert_called_once_with(
+        form.assert_called_once_with()
+        form.return_value.field.qrcode.assert_called_once_with(
             self.secret, name=self.person.email, issuer_name="HYSOFT"
         )
