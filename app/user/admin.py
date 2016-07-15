@@ -51,10 +51,8 @@ class PersonAdmin(AdminModelBase):
                 ]
             )
         ),
+        ("new_password", fld.PasswordField()),
         (
-            "new_password",
-            fld.PasswordField()
-        ), (
             "confirm_password",
             fld.PasswordField(validators=[vld.EqualTo("new_password")])
         )
