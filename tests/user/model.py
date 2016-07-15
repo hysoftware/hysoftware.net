@@ -108,9 +108,7 @@ class TwoFAStora(ut.TestCase):
             self.secret_key[:32].ljust(32, "$").encode(),
             AES.MODE_CBC, self.secret_key[::-1][:16].rjust(16, "#").encode()
         )
-        aes_new.return_value.encrypt.assert_called_once_with(
-            self.twofasacret.encode()
-        )
+        aes_new.return_value.encrypt.assert_called_once_with(self.twofasacret)
         self.assertIs(
             self.person.sacode, aes_new.return_value.encrypt.return_value
         )

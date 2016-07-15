@@ -89,7 +89,7 @@ class Person(gj.Document, flskdb.Document):
             password[:32].ljust(32, "$").encode(), AES.MODE_CBC,
             password[::-1][:16].rjust(16, "#").encode()
         )
-        self.sacode = ec.encrypt(fasecret.encode())
+        self.sacode = ec.encrypt(fasecret)
 
     def get_2fa(self, password):
         """Get 2FA secret key."""

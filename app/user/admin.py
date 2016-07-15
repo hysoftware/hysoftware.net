@@ -87,8 +87,9 @@ class PersonAdmin(AdminModelBase):
             "current_password", fld.PasswordField(
                 validators=[
                     CurrentPasswordValidation([
-                        "new_password", "confirm_password", "sfa_secret"
-                    ])
+                        "new_password", "confirm_password"
+                    ]),
+                    CurrentPasswordValidation(["sfa_secret"])
                 ]
             )
         ),
