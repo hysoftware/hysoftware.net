@@ -28,7 +28,7 @@ class LoginView(FlaskView):
         if not form.validate():
             return make_response(jsonify(form.errors), 417)
         person = Person.objects.get_or_404(email=form.email.data)
-        if not person.verify(form.password.data):
+        if not person.verify(form.password.data, form.sfa_confirm.data):
             abort(404)
         login_user(person)
         return "", 200

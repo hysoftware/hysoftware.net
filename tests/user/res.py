@@ -69,7 +69,7 @@ class LoginPostTest(ut.TestCase):
             Person.objects.get_or_404.assert_called_once_with(
                 email=person.email
             )
-            person.verify.assert_called_once_with(req_data["password"])
+            person.verify.assert_called_once_with(req_data["password"], None)
             login_user.assert_called_once_with(person)
 
     @patch("flask_wtf.csrf.validate_csrf", return_value=True)
@@ -122,7 +122,7 @@ class LoginPostTest(ut.TestCase):
                 email=person.email
             )
             _abort.assert_called_once_with(404)
-            person.verify.assert_called_once_with(req_data["password"])
+            person.verify.assert_called_once_with(req_data["password"], None)
             login_user.assert_not_called()
 
 
