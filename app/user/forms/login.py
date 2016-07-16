@@ -30,3 +30,8 @@ class LoginForm(Form):
             "required": True
         }
     )
+    sfa_confirm = fld.IntegerField("2FA Token", render_kw={
+        "class": "form-control",
+        "data-ng-model": "model.sfa_confirm",
+        "data-ng-disabled": "loginForm.$submitted"
+    })

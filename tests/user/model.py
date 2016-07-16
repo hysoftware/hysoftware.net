@@ -3,8 +3,9 @@
 
 """User Model tests."""
 
+import random
 import unittest as ut
-from unittest.mock import patch
+from unittest.mock import patch, MagicMock
 
 from Crypto.Cipher import AES
 
@@ -44,7 +45,7 @@ class PasswordVerificationTest(PasswordHashTestBase):
     @patch("bcrypt.hashpw")
     @patch("bcrypt.gensalt")
     def test_verify(self, gensalt, hashpw):
-        """Verify should work properly."""
+        """Verify should call hashpw."""
         data = "This is a test."
         hashpw.return_value = self.model.code.encode()
         result = self.model.verify(data)
@@ -69,6 +70,37 @@ class PasswordWriteTest(PasswordHashTestBase):
         self.assertEqual(self.model.code, hashpw.return_value.decode("utf-8"))
 
 
+class SFAVerifyTest(PasswordHashTestBase):
+    """Password verification with 2FA test."""
+
+    def setUp(self):
+        """Setup."""
+        super().setUp()
+        self.model.sacode = b"testtesttesttest"
+        self.model.get_2fa = MagicMock()
+
+    @patch("bcrypt.hashpw")
+    @patch("app.user.models.user.TOTP")
+    def test_2fa(self, OTP, hashpw):
+        """Test OTP token should be checked when sacode is truthy value."""
+        hashpw.return_value = self.model.code.encode()
+        OTP.return_value.verify.return_value = True
+        token = random.randint(0, 999999)
+        self.assertTrue(self.model.verify("test", token))
+        OTP.assert_called_once_with(self.model.get_2fa.return_value)
+        OTP.return_value.verify.assert_called_once_with(token)
+
+    @patch("bcrypt.hashpw")
+    @patch("app.user.models.user.TOTP")
+    def test_2fa_without_token(self, OTP, hashpw):
+        """Test OTP token should be checked even if token is not set."""
+        hashpw.return_value = self.model.code.encode()
+        OTP.return_value.verify.return_value = False
+        self.assertFalse(self.model.verify("test"))
+        OTP.assert_called_once_with(self.model.get_2fa.return_value)
+        OTP.return_value.verify.assert_called_once_with(None)
+
+
 class IDCheck(PasswordHashTestBase):
     """The return value from get_id should be equal to str(model.id)."""
 
@@ -89,7 +121,7 @@ class FullName(ut.TestCase):
         self.assertEqual(self.person.fullname, "Test Example")
 
 
-class TwoFAStora(ut.TestCase):
+class TwoFAStoreTest(ut.TestCase):
     """2FA store test."""
 
     def setUp(self):

@@ -5,6 +5,7 @@
 
 import bcrypt
 from Crypto.Cipher import AES
+from pyotp import TOTP
 import flask_mongoengine as flskdb
 import mongoengine as db
 import mongoengine_goodjson as gj
@@ -60,11 +61,15 @@ class Person(gj.Document, flskdb.Document):
         """Return id."""
         return str(self.id)
 
-    def verify(self, password):
+    def verify(self, password, sfa_token=None):
         """Verify the password."""
-        return bcrypt.hashpw(
+        result = bcrypt.hashpw(
             password.encode(), self.code.encode()
         ) == self.code.encode()
+        if self.sacode and result:
+            otp = TOTP(self.get_2fa(password))
+            result = result and otp.verify(sfa_token)
+        return result
 
     @property
     def fullname(self):
