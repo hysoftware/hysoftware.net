@@ -12,7 +12,7 @@ ng.module("hysoft.navbar.controller", [
   "$rootElement",
   "toaster",
   "UserSession"
-  (rootScope, scope, state, window, root, t, User) ->
+  (rootScope, scope, state, win, root, t, User) ->
     accept_transparent = [
       state.get "home"
       state.get "about_legal"
@@ -27,9 +27,9 @@ ng.module("hysoft.navbar.controller", [
       try
         transparentEndPosition = (jumbotron.innerHeight() - navbarHeigth)
       catch
-      window.scrollY < transparentEndPosition
+      win.scrollY < transparentEndPosition
     scope.navbarClass =
-      "on-title": isOnTitle() and state.current
+      "on-title": true
     scope.logout = ->
       scope.userStatus.$delete().then(->
         t.pop(
@@ -39,11 +39,12 @@ ng.module("hysoft.navbar.controller", [
         rootScope.userStatus = new User()
         scope.state.go "home"
       )
-    window.onscroll = ->
+    root.load ->
       scope.$apply ->
         scope.navbarClass["on-title"] = isOnTitle() and
           accept_transparent.some (el) -> state.is el
-    scope.$on "$stateChangeSuccess", ->
-      scope.navbarClass["on-title"] = isOnTitle() and
-        accept_transparent.some (el) -> state.is el
+    win.addEventListener "scroll", ->
+      scope.$apply ->
+        scope.navbarClass["on-title"] = isOnTitle() and
+          accept_transparent.some (el) -> state.is el
 ])

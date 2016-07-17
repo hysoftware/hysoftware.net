@@ -1,6 +1,6 @@
 {% macro header(current_user) -%}
 <nav class="navbar navbar-default navbar-fixed-top main-menu"
-  data-ng-controller="navbarController"
+  data-ng-controller="navbarController" data-ng-show="load"
   data-ng-class="navbarClass">
   <div class="navbar-header">
     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
