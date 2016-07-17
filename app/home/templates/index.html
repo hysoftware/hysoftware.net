@@ -30,7 +30,9 @@
 </head>
 <body data-ng-cloak data-ng-class="{'load': !load}">
   {{ navbar.header(current_user) }}
-  <div class="loading-screen" data-ng-hide="load"></div>
+  <div class="loading-screen text-center" data-ng-hide="load">
+    <span class="ion-ionic vertical-center"></span>
+  </div>
   <div data-toaster-container></div>
   <div class="ui-view main-view" data-state="{{'{{ state.current.name }}'}}"
     data-autoscroll="true"></div>

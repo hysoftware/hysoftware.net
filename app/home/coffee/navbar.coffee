@@ -39,7 +39,7 @@ ng.module("hysoft.navbar.controller", [
         rootScope.userStatus = new User()
         scope.state.go "home"
       )
-    root.load ->
+    scope.$on "stateChangeSuccess", ->
       scope.$apply ->
         scope.navbarClass["on-title"] = isOnTitle() and
           accept_transparent.some (el) -> state.is el
