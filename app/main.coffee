@@ -16,8 +16,8 @@ angular.module("hysoft", [
     http.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest"
     http.defaults.xsrfCookieName = http.defaults.xsrfHeaderName = "X-CSRFToken"
 ]).run([
-  "$rootScope", "$state", "UserSession", "$window", "$timeout"
-  (rootScope, state, User, win, timeout) ->
+  "$rootScope", "$state", "UserSession", "$window"
+  (rootScope, state, User, win) ->
     rootScope.state = state
     rootScope.userStatus = User.get()
     rootScope.angular = angular
