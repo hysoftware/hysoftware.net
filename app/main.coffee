@@ -23,7 +23,5 @@ angular.module("hysoft", [
     rootScope.angular = angular
     rootScope.load = false
 
-    win.addEventListener(
-      "load", (-> rootScope.$apply -> rootScope.load = true), true
-    )
+    win.addEventListener "load", -> rootScope.$apply -> rootScope.load = true
 ])
