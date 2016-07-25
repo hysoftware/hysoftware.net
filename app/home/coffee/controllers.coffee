@@ -10,7 +10,7 @@ angular.module("hysoft.home.controller", [
       scope.contact = new Contact()
       scope.isDirtyInvalid = isDirtyInvalid
       scope.titleStyle =
-        "height": window.innerHeight
+        "height": window.innerHeight + "px"
       scope.scrollTo = scrollTo
 
       scope.sendContact = ->
@@ -23,5 +23,5 @@ angular.module("hysoft.home.controller", [
 
       window.onresize = ->
         scope.$apply ->
-          scope.titleStyle.height = window.innerHeight
+          scope.titleStyle.height = window.innerHeight + "px"
 ])
