@@ -4,8 +4,8 @@
   "description": "Hysoftware webapp package",
   "main": "app.coffee",
   "scripts": {
-    "install": "npm run webdriverUpdate && npm run bower -- install",
-    "update": "npm run webdriverUpdate && npm run bower -- update",
+    "install": "npm run bower -- install",
+    "update": "npm run bower -- update",
     "gulp": "$(npm bin)/gulp",
     "bower": "$(npm bin)/bower",
     "ncu": "$(npm bin)/ncu",
