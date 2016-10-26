@@ -1,2 +1,5 @@
 uses:
-    - flask
+    - django
+    - celery
+python-targets:
+  - 3

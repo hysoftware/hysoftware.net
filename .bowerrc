@@ -1,4 +1,4 @@
 {
     "analytics": false,
-    "directory": "./app/static"
+    "directory": "./app/common/static/third_party"
 }
