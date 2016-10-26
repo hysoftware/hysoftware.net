@@ -40,7 +40,7 @@ hysoft.db
 vendor
 .bundle
 .coverage
-app/static
+app/common/static/third_party
 app/home/assets/third_party.js
 app/home/assets/third_party.js.map
 app/home/assets/third_party.css
