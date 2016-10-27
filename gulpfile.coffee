@@ -24,10 +24,10 @@ g.task "third_party", ->
   pipe = g.src(files).pipe(
     plumber "errorHandler": notify.onError '<%= error.message %>'
   )
-  if not toolbox.isProduction
+  if not toolbox.helper.isProduction
     pipe = pipe.pipe sourcemaps.init()
   pipe = pipe.pipe(concat("third_party.js")).pipe uglify()
-  if not toolbox.isProduction
+  if not toolbox.helper.isProduction
     pipe = pipe.pipe sourcemaps.write()
   pipe.pipe g.dest "app/common/static"
 
@@ -56,7 +56,7 @@ g.task "django.test", ["python.mentain"], ->
 
 init_deps = []
 
-if toolbox.isProduction or process.env.node_mode is "init"
+if toolbox.helper.isProduction or process.env.node_mode is "init"
   init_deps = init_deps.concat(
     "third_party"
     ("#{name}.coffee" for name in Object.keys modules)
@@ -65,7 +65,7 @@ if toolbox.isProduction or process.env.node_mode is "init"
   )
 
 g.task "default", init_deps, ->
-  if not toolbox.isProduction
+  if not toolbox.helper.isProduction
     for mod_name, prefix of modules
       do (mod_name, prefix) ->
         g.watch [path.join(prefix, "scss/**/*.scss")], ["#{mod_name}.scss"]
