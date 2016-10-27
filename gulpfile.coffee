@@ -10,6 +10,9 @@ uglify = require "gulp-uglify"
 concat = require "gulp-concat"
 sourcemaps = require "gulp-sourcemaps"
 
+q = require "q"
+rimraf = require "rimraf"
+
 g.task "third_party", ->
   prefix = "app/common/static/third_party"
   files = (path.join(prefix, item) for item in [
@@ -46,13 +49,18 @@ for name, modPath of modules
 toolbox.python "", "app", null, null, null, ["app/*/migrations"]
 
 g.task "django.test", ["python.mentain"], ->
-  toolbox.virtualenv(
-    "DJANGO_SETTINGS_FACTORY='app.settings.TestConfig' RECAPTCHA_TESTING='True'
-     coverage run --branch --omit '*/migrations/*'
-     --source=app -- manage.py test"
+  q.nfcall(rimraf, "app/**/?(*.pyc|__pycache__)").then(
+    -> toolbox.virtualenv(
+      "coverage erase"
+    )
   ).then(
-    -> toolbox.virtualenv("coverage report -m ")
-  )
+    -> toolbox.virtualenv(
+      "DJANGO_SETTINGS_FACTORY='app.settings.TestConfig'
+       RECAPTCHA_TESTING='True'
+       coverage run --branch --omit '*/migrations/*'
+       --source=app -- manage.py test"
+    )
+  ).then(-> toolbox.virtualenv("coverage report -m "))
 
 init_deps = []
 
