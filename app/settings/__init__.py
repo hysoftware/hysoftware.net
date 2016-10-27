@@ -4,6 +4,7 @@
 """App config."""
 
 from .devel import DevelConfig
+from .testing import TestConfig
 
 
-__all__ = ["DevelConfig"]
+__all__ = ["DevelConfig", "TestConfig"]
