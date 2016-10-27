@@ -7,4 +7,4 @@ from .devel import DevelConfig
 from .testing import TestConfig
 
 
-__all__ = ["DevelConfig", "TestConfig"]
+__all__ = ("DevelConfig", "TestConfig")

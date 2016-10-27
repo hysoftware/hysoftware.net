@@ -43,7 +43,7 @@ for name, modPath of modules
     )
     toolbox.sass "#{name}.", path, destPath, name
 
-toolbox.python "", "app"
+toolbox.python "", "app", null, null, null, ["app/*/migrations"]
 
 g.task "django.test", ["python.mentain"], ->
   toolbox.virtualenv(
