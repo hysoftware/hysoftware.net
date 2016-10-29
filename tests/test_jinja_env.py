@@ -22,3 +22,17 @@ class DictTest(TestCase):
             "static": staticfiles_storage.url,
             "static_exists": __static_exists__
         }, self.options.globals)
+
+    def test_reverse(self):
+        """The options should have 'url' funciton."""
+        from django.core.urlresolvers import reverse
+        self.assertDictContainsSubset({
+            "url": reverse
+        }, self.options.globals)
+
+    def test_translation(self):
+        """The options should have translation functions."""
+        from django.utils.translation import ugettext, ungettext
+        self.assertDictContainsSubset({
+            "_": ugettext, "_n": ungettext
+        }, self.options.globals)

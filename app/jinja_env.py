@@ -7,6 +7,8 @@ from jinja2 import Environment
 
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.contrib.staticfiles.finders import find
+from django.core.urlresolvers import reverse
+from django.utils.translation import ugettext, ungettext
 
 
 def __static_exists__(path):
@@ -19,6 +21,9 @@ def jinja_options(**env):
     environ = Environment(**env)
     environ.globals.update({
         "static": staticfiles_storage.url,
-        "static_exists": __static_exists__
+        "static_exists": __static_exists__,
+        "url": reverse,
+        "_": ugettext,
+        "_n": ungettext
     })
     return environ
