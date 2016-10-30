@@ -13,9 +13,9 @@ class DevelConfig(DjangoDefaults):
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     SECRET_KEY = 'si0%k#galmbd0vzpp817e!1v*a=lu!!$b&3b4l8$^4-3!-aj!s'
     DEBUG = True
-    ALLOWED_HOSTS = ['localhost']
+    ALLOWED_HOSTS = ('localhost')
 
-    INSTALLED_APPS = [
+    INSTALLED_APPS = (
         'django.contrib.admin',
         'django.contrib.auth',
         'django.contrib.contenttypes',
@@ -23,10 +23,11 @@ class DevelConfig(DjangoDefaults):
         'django.contrib.messages',
         'django.contrib.staticfiles',
         'captcha',
-        "app.common.apps.CommonConfig"
-    ]
+        "app.common.apps.CommonConfig",
+        "app.home.apps.HomeConfig"
+    )
 
-    MIDDLEWARE = [
+    MIDDLEWARE = (
         'django.middleware.security.SecurityMiddleware',
         'django.contrib.sessions.middleware.SessionMiddleware',
         'django.middleware.common.CommonMiddleware',
@@ -34,11 +35,11 @@ class DevelConfig(DjangoDefaults):
         'django.contrib.auth.middleware.AuthenticationMiddleware',
         'django.contrib.messages.middleware.MessageMiddleware',
         'django.middleware.clickjacking.XFrameOptionsMiddleware'
-    ]
+    )
 
     ROOT_URLCONF = 'app.urls'
 
-    TEMPLATES = [
+    TEMPLATES = (
         {
             'BACKEND': 'django.template.backends.jinja2.Jinja2',
             'DIRS': [],
@@ -58,7 +59,7 @@ class DevelConfig(DjangoDefaults):
                 ],
             },
         },
-    ]
+    )
 
     WSGI_APPLICATION = 'app.wsgi.application'
 
@@ -69,7 +70,7 @@ class DevelConfig(DjangoDefaults):
         }
     }
 
-    AUTH_PASSWORD_VALIDATORS = [
+    AUTH_PASSWORD_VALIDATORS = (
         {
             "NAME": ("django.contrib.auth.password_validation.%s") % cls_name
         } for cls_name in [
@@ -78,7 +79,7 @@ class DevelConfig(DjangoDefaults):
             "CommonPasswordValidator",
             "NumericPasswordValidator"
         ]
-    ]
+    )
 
     LANGUAGE_CODE = 'en-us'
     TIME_ZONE = 'UTC'
