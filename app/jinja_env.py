@@ -7,13 +7,22 @@ from jinja2 import Environment
 
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.contrib.staticfiles.finders import find
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse, resolve
+from django.urls import NoReverseMatch
 from django.utils.translation import ugettext, ungettext
 
 
 def __static_exists__(path):
     """Check whether the specified path exists on static file or not."""
     return bool(find(path, all=True))
+
+
+def url_exists(endpoint):
+    """Check if the url exists."""
+    try:
+        return bool(reverse(endpoint))
+    except NoReverseMatch:
+        return False
 
 
 def jinja_options(**env):
@@ -23,6 +32,8 @@ def jinja_options(**env):
         "static": staticfiles_storage.url,
         "static_exists": __static_exists__,
         "url": reverse,
+        "url_exists": url_exists,
+        "resolve": resolve,
         "_": ugettext,
         "_n": ungettext
     })

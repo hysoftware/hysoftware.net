@@ -3,7 +3,13 @@
 
 """Commonly used package."""
 
+from django.conf.urls import url
+from .views import JSView, CSSView
+
 
 app_name = "common"
 
-urlpatterns = []
+urlpatterns = (
+    url(r'^js$', JSView.as_view(), name="js"),
+    url(r'^css$', CSSView.as_view(), name="css")
+)

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}{% endblock %} - HYSOFT</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:100,500">
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="{{ static('third_party/angular/angular-csp.css') }}">
+  <link rel="stylesheet" href="{{ static('third_party/angular-material/angular-material.min.css') }}">
+  <link href="{{ url('common:css') }}" rel="stylesheet">
+  {% if static_exists(resolve(request.path_info).app_name + ".css") -%}
+  <link href="{{ static(resolve(request.path_info).app_name + ".css") }}" rel="stylesheet">
+  {%- endif %}
+  {% if url_exists(resolve(request.path_info).app_name + ":css") -%}
+  <link href="{{ url(resolve(request.path_info).app_name + ":css") }}" rel="stylesheet">
+  {%- endif %}
+  {% block style_header %}{% endblock -%}
+  <script src="{{ static('third_party.js') }}" charset="utf-8"></script>
+  <script src="{{ url('common:js') }}"></script>
+  {% if static_exists(resolve(request.path_info).app_name + '.js') -%}
+  <script src="{{ static(resolve(request.path_info).app_name + '.js') }}"></script>
+  {%- endif %}
+  {% if url_exists(resolve(request.path_info).app_name + ":js") -%}
+  <script src="{{ url(resolve(request.path_info).app_name + ':js') }}"></script>
+  {%- endif %}
+  {% block script_header %}{% endblock %}
+</head>
+<body>
+  {% block body %}{%endblock -%}
+</body>
+</html>

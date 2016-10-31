@@ -42,9 +42,9 @@ for name, modPath of modules
     destPath = path.join(modPath, "jinja2")
     toolbox.coffee(
       "#{name}.", modPath, destPath,
-      undefined, undefined, undefined, undefined, undefined, name
+      undefined, undefined, undefined, undefined, undefined, name, false
     )
-    toolbox.sass "#{name}.", path, destPath, name
+    toolbox.sass "#{name}.", modPath, destPath, name
 
 toolbox.python "", "app", null, null, null, ["app/*/migrations"]
 
@@ -76,6 +76,8 @@ g.task "default", init_deps, ->
   if not toolbox.helper.isProduction
     for mod_name, prefix of modules
       do (mod_name, prefix) ->
-        g.watch [path.join(prefix, "scss/**/*.scss")], ["#{mod_name}.scss"]
-        g.watch [path.join(prefix, "scss/**/*.coffee")], ["#{mod_name}.coffee"]
+        g.watch [path.join(prefix, "**/*.scss")], ["#{mod_name}.scss"]
+        g.watch [
+          path.join(prefix, "**/coffee/**/*.coffee")
+        ], ["#{mod_name}.coffee"]
     g.watch ["app/**/*.py", "tests/**/*.py"], ["django.test"]
