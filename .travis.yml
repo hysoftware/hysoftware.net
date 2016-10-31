@@ -14,7 +14,7 @@ env:
     - CXX=g++-4.8
     - node_mode=production
 node_js:
-  - "6.2"
+  - "node"
 addons:
   apt:
     sources:
