@@ -10,7 +10,9 @@ from cbsettings import DjangoDefaults
 class DevelConfig(DjangoDefaults):
     """Config for devleopment."""
 
-    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    BASE_DIR = os.path.dirname(
+        os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    )
     SECRET_KEY = 'si0%k#galmbd0vzpp817e!1v*a=lu!!$b&3b4l8$^4-3!-aj!s'
     DEBUG = True
     ALLOWED_HOSTS = ('localhost')
@@ -48,7 +50,7 @@ class DevelConfig(DjangoDefaults):
         },
         {
             'BACKEND': 'django.template.backends.django.DjangoTemplates',
-            'DIRS': [],
+            'DIRS': [os.path.join(BASE_DIR, "jinja2")],
             'APP_DIRS': True,
             'OPTIONS': {
                 'context_processors': [

@@ -4,6 +4,7 @@
 """Test home view."""
 
 from unittest.mock import patch
+from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.test import TestCase, RequestFactory
 
@@ -18,15 +19,16 @@ class HomeViewRenderingTest(TestCase):
         self.request = RequestFactory().get("/")
         self.view = HomeView.as_view()
 
-    @patch("django.shortcuts.render", return_value=HttpResponse("ok."))
-    def test_home_access(self, render):
-        """Accessing /, home template should be rendered."""
-        result = self.view(self.request)
-        self.assertEqual(render.return_value.content, result.content)
-        self.assertEqual(render.return_value.status_code, result.status_code)
+    def test_utl(self):
+        """The url should be /."""
+        self.assertEqual(reverse("home:index"), "/")
 
-    @patch("django.shortcuts.render", return_value=HttpResponse("ok."))
-    def test_render_call(self, render):
+    def test_home_template(self):
+        """Home view should have proper template."""
+        self.assertEqual(HomeView.template_name, "home.html")
+
+    @patch("app.home.views.HomeView.get", return_value=HttpResponse("ok"))
+    def test_render_call(self, get):
         """Accessing /, render should be called once with proper params."""
         self.view(self.request)
-        render.assert_called_once_with("home.html")
+        get.assert_called_once_with(self.request)

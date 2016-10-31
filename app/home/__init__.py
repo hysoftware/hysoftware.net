@@ -10,5 +10,5 @@ from .views import HomeView
 app_name = "home"
 
 urlpatterns = (
-    url(r'^$', HomeView.as_view(), name="index")
+    url(r'^$', HomeView.as_view(), name="index"),
 )
