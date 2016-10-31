@@ -3,6 +3,12 @@
 
 """Home views."""
 
-# from django.shortcuts import render
+from django.views.generic import TemplateView
+
+
+class HomeView(TemplateView):
+    """Home Template View."""
+
+    template_name = "home.html"
 
 # Create your views here.
