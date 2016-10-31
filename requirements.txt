@@ -1,8 +1,10 @@
 colorama==0.3.7
 coverage==4.2
+coveralls==1.1
 Django==1.10.2
 django-classbasedsettings==1.5.0
 django-recaptcha==1.0.6
+docopt==0.6.2
 flake8==3.0.4
 flake8-docstrings==1.0.2
 flake8-polyfill==1.0.1
@@ -15,3 +17,4 @@ pycodestyle==2.0.0
 pydocstyle==1.1.1
 pyflakes==1.2.3
 radon==1.4.2
+requests==2.11.1
