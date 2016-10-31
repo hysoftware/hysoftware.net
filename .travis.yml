@@ -5,6 +5,7 @@ cache:
   pip: true
   directories:
     - "${HOME}/.npm"
+    - "${HOME}/.nvm"
     - "node_modules"
     - "app/common/static/third_party"
     - "../venv"
