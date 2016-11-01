@@ -26,7 +26,22 @@
   {%- endif %}
   {% block script_header %}{% endblock %}
 </head>
-<body>
+<body data-ng-app="{{ resolve(request.path_info).app_name }}">
   {% block body %}{%endblock -%}
+  <div class="mobile-menu">
+  <!-- data-hide-gt-sm> -->
+    <md-fab-speed-dial class="md-fling" data-md-direction="up">
+      <md-fab-trigger>
+        <button data-md-button class="md-fab md-primary">
+          <md-icon class="material-icons">menu</md-icon>
+        </button>
+      </md-fab-trigger>
+      <md-fab-actions>
+        <button data-md-button class="md-fab md-raised md-mini">
+          <md-icon class="material-icons">help</md-icon>
+        </button>
+      </md-fab-actions>
+    </md-fab-speed-dial>
+  </div>
 </body>
 </html>

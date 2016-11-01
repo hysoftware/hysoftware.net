@@ -5,7 +5,7 @@
 
 from django.test import TestCase
 
-from app.home.views import HomeView
+from app.home.views import HomeView, JSView
 
 from .view_base import TemplateViewTestBase
 
@@ -17,3 +17,13 @@ class HomeViewRenderingTest(TemplateViewTestBase, TestCase):
     endpoint = "home:index"
     page_url = "/"
     view_cls = HomeView
+
+
+class HomeJSViewRenderingTest(TemplateViewTestBase, TestCase):
+    """Home frontend script view rendering test."""
+
+    template_name = "home.js"
+    content_type = "application/javascript"
+    endpoint = "home:js"
+    page_url = "/js"
+    view_cls = JSView
