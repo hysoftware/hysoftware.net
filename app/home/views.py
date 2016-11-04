@@ -11,4 +11,11 @@ class HomeView(TemplateView):
 
     template_name = "home.html"
 
+
+class JSView(TemplateView):
+    """Home front-end script view."""
+
+    template_name = "home.js"
+    content_type = "application/javascript"
+
 # Create your views here.

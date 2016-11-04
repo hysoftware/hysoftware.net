@@ -3,7 +3,7 @@
 
 """View test base."""
 
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse, resolve
 from django.test import RequestFactory
 from django.views.generic import TemplateView
 
@@ -28,6 +28,12 @@ class TemplateViewTestBase(object):
     def test_url(self):
         """The URL should be found in the app."""
         self.assertEqual(reverse(self.endpoint), self.page_url)
+
+    def test_assignment(self):
+        """The view should be assigned to URL."""
+        self.assertEqual(
+            resolve(self.page_url).func.__name__, self.view.__name__
+        )
 
     def test_template(self):
         """The TemplateView should have proper template name."""
