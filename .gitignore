@@ -149,5 +149,11 @@ app/common/static/third_party.js
 app/**/jinja2/*.css
 app/**/jinja2/*.js
 
-# Redis dump file
+# SQLite Database file for development
 devel.db
+
+# Redis dump file
+dump.rdb
+
+# Uploaded files
+uploads

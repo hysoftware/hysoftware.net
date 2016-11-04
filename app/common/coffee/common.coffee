@@ -36,12 +36,13 @@ angular.module("common", [
     # Full-screen functionality
     root.scrFullFillPrevState = {}
     root.screenFullFill = (
-      element, scope, diffRate, minHeight=0, minHeightRate=1
+      id, scope, diffRate, minHeight=0, minHeightRate=1
     ) ->
-      root.scrFullFillPrevState[element].heightDiffRate = diffRate
-      root.scrFullFillPrevState[element].minHeight = minHeight
-      root.scrFullFillPrevState[element].minHeightRate = minHeightRate
-      root.scrFullFillPrevState[element].scope = scope
+      root.scrFullFillPrevState[id]=
+        "heightDiffRate": diffRate
+        "minHeight": minHeight
+        "minHeightRate": minHeightRate
+        "scope": scope
       computedStyle = undefined
       if minHeight instanceof Element
         computedStyle = wind.getComputedStyle(minHeight)

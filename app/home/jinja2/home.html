@@ -1,2 +1,13 @@
 {% extends "base.html" -%}
 {% block title %}Hello World!{% endblock -%}
+{% block home -%}
+<section class="home">
+  <header class="home-header">
+    <div class="filter"></div>
+    <div class="title">
+      <h1>HYSOFT</h1>
+      <p>{{ view.pitch }}</p>
+    </div>
+  </header>
+</section>
+{% endblock %}
