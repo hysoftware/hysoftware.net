@@ -7,7 +7,7 @@ from unittest.mock import patch
 from django.test import TestCase
 
 from app.common.models import ThirdPartyAssets
-from app.home.views import HomeView, JSView, HomeTitleImageView
+from app.home.views import HomeView, JSView, CSSView, HomeTitleImageView
 
 from .view_base import TemplateViewTestBase
 
@@ -20,6 +20,56 @@ class HomeViewRenderingTest(TemplateViewTestBase, TestCase):
     page_url = "/"
     view_cls = HomeView
 
+    @patch("app.home.models.Pitch.objects")
+    @patch("app.home.views.get_language_from_request", return_value="en-us")
+    def test_pitch_property(self, get_lang, pitch_objs):
+        """
+        The pitch should call Pitch.objects.choice in proper language.
+
+        In addition to this, the return value should be proper.
+        """
+        view_obj = self.view_cls()
+        view_obj.request = self.request
+        self.assertEqual(
+            view_obj.pitch,
+            getattr(
+                pitch_objs.choice.return_value,
+                "text_%s" % get_lang.return_value.replace("-", "_")
+            )
+        )
+        get_lang.assert_called_once_with(self.request)
+        pitch_objs.choice.assert_called_once_with()
+
+    @patch("app.home.models.Pitch.objects")
+    @patch("app.home.views.get_language_from_request", return_value="en-us")
+    def test_pitch_property_no_language(self, get_lang, pitch_objs):
+        """
+        It should show the defualt text if the translation is empty.
+
+        In addition to this, the return value should be proper.
+        """
+        view_obj = self.view_cls()
+        view_obj.request = self.request
+        pitch_objs.choice.return_value.text_en_us = None
+        self.assertEqual(view_obj.pitch, pitch_objs.choice.return_value.text)
+        get_lang.assert_called_once_with(self.request)
+        pitch_objs.choice.assert_called_once_with()
+
+    @patch("app.home.models.Pitch.objects")
+    @patch("app.home.views.get_language_from_request", return_value="en-us")
+    def test_pitch_property_exception(self, get_lang, pitch_objs):
+        """
+        It should show the defualt text if the translation is unavailable.
+
+        In addition to this, the return value should be proper.
+        """
+        view_obj = self.view_cls()
+        view_obj.request = self.request
+        del pitch_objs.choice.return_value.text_en_us
+        self.assertEqual(view_obj.pitch, pitch_objs.choice.return_value.text)
+        get_lang.assert_called_once_with(self.request)
+        pitch_objs.choice.assert_called_once_with()
+
 
 class HomeJSViewRenderingTest(TemplateViewTestBase, TestCase):
     """Home frontend script view rendering test."""
@@ -29,6 +79,16 @@ class HomeJSViewRenderingTest(TemplateViewTestBase, TestCase):
     endpoint = "home:js"
     page_url = "/js"
     view_cls = JSView
+
+
+class HomeCSSViewRenderingTest(TemplateViewTestBase, TestCase):
+    """Home stylesheet view rendering test."""
+
+    template_name = "home.css"
+    content_type = "text/css"
+    view_cls = CSSView
+    endpoint = "home:css"
+    page_url = "/css"
 
 
 class HomeTitleImageRenderingTest(TestCase):

@@ -1,0 +1,16 @@
+.home-header {
+  position: relative;
+  background: url("{{ url( 'home:title_image' ) }}") no-repeat;
+  background-size: cover;
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    text-transform: uppercase;
+    font: {
+      size: 4rem;
+    }
+  }
+  * {
+    color: #F6F6F6;
+    text-shadow: #212123 5px 5px 5px;
+  }
+}

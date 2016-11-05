@@ -1,11 +1,11 @@
 {% extends "base.html" -%}
 {% block title %}Hello World!{% endblock -%}
-{% block home -%}
+{% block body -%}
 <section class="home">
-  <header class="home-header">
-    <div class="filter"></div>
-    <div class="title">
-      <h1>HYSOFT</h1>
+  <header class="home-header"
+    data-ng-style="screenFullFill('title', this, 0.2)">
+    <div class="title text-center vcenter">
+      <h1>{{ settings.TITLE }}</h1>
       <p>{{ view.pitch }}</p>
     </div>
   </header>

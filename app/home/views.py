@@ -6,6 +6,7 @@
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.utils.functional import cached_property
+from django.utils.translation import get_language_from_request
 from django.views.generic import TemplateView, View
 
 
@@ -14,12 +15,28 @@ class HomeView(TemplateView):
 
     template_name = "home.html"
 
+    @property
+    def pitch(self):
+        """Get pitch."""
+        from .models import Pitch
+        pitch = Pitch.objects.choice()
+        return getattr(pitch, ("text_{}").format(
+            get_language_from_request(self.request).replace("-", "_")
+        ), None) or pitch.text
+
 
 class JSView(TemplateView):
     """Home front-end script view."""
 
     template_name = "home.js"
     content_type = "application/javascript"
+
+
+class CSSView(TemplateView):
+    """Home stylesheet view."""
+
+    template_name = "home.css"
+    content_type = "text/css"
 
 
 class HomeTitleImageView(View):

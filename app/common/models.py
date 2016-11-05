@@ -3,6 +3,7 @@
 
 """Common Database model."""
 
+from django.utils.translation import ugettext_lazy as _lz
 from django.db import models as db
 
 
@@ -14,6 +15,12 @@ class ThirdPartyAssets(db.Model):
     open-source, copyleft, or proprietary. For third party libs that this
     app depends, check requirements.txt, package.json, and bower.json.
     """
+
+    class Meta(object):
+        """Metadata."""
+
+        verbose_name = _lz("Third Party Asset")
+        verbose_name_plural = _lz("Third Party Assets")
 
     filename = db.CharField(max_length=40, primary_key=True)
     # 2097152 = 2MB

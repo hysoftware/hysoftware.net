@@ -45,3 +45,10 @@ class DictTest(TestCase):
         self.assertDictContainsSubset({
             "_": ugettext, "_n": ungettext
         }, self.options.globals)
+
+    def test_settings(self):
+        """The optoins should have settings as global variable."""
+        from django.conf import settings
+        self.assertDictContainsSubset({
+            "settings": settings
+        }, self.options.globals)

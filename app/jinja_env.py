@@ -5,6 +5,7 @@
 
 from jinja2 import Environment
 
+from django.conf import settings
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.contrib.staticfiles.finders import find
 from django.core.urlresolvers import reverse, resolve
@@ -29,6 +30,7 @@ def jinja_options(**env):
     """Set jinja env."""
     environ = Environment(**env)
     environ.globals.update({
+        "settings": settings,
         "static": staticfiles_storage.url,
         "static_exists": __static_exists__,
         "url": reverse,

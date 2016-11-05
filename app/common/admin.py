@@ -4,7 +4,6 @@
 """Common administration panel."""
 
 from django.contrib import admin
-from django.utils.translation import ugettext as _
 from .models import ThirdPartyAssets
 
 
@@ -12,8 +11,4 @@ from .models import ThirdPartyAssets
 class ThirdPartyAssetsAdmin(admin.ModelAdmin):
     """Third party assets admin."""
 
-    class Meta(object):
-        """Metadata."""
-
-        verbose_name = _("Third Party Asset")
-        verbose_name_plural = _("Third Party Assets")
+    pass
