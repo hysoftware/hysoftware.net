@@ -3,3 +3,34 @@ md-fab-speed-dial {
   right: 0;
   bottom: 0;
 }
+nav.main-nav {
+  position: fixed;
+  z-index: 10;
+  width: 100%;
+  height: 45px;
+  background-color: transparent;
+  color: #F6F6F6;
+  opacity: inherit;
+  transition: background-color 500ms, opacity 500ms;
+  * {
+    height: 100%;
+    padding: 0;
+    margin: 0 5px;;
+  }
+  &.out {
+    background-color: #212122;
+    opacity: 0.8;
+  }
+  a {
+    color: #F6F6F6;
+    text-decoration: none;
+  }
+  ul {
+    display: inline-table;
+    li {
+      display: table-cell;
+      vertical-align: middle;
+      padding: inherit 0px;
+    }
+  }
+}

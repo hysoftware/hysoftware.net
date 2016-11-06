@@ -52,3 +52,9 @@ class DictTest(TestCase):
         self.assertDictContainsSubset({
             "settings": settings
         }, self.options.globals)
+
+    def test_getattr(self):
+        """The option should have getattr as global variable."""
+        self.assertDictContainsSubset({
+            "getattr": getattr
+        }, self.options.globals)

@@ -36,6 +36,7 @@ def jinja_options(**env):
         "url": reverse,
         "url_exists": url_exists,
         "resolve": resolve,
+        "getattr": getattr,
         "_": ugettext,
         "_n": ungettext
     })

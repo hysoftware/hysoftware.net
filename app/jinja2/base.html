@@ -1,3 +1,7 @@
+{%
+  set transparentMenuEnabled =
+    "true" if getattr(view, 'enable_transparent_menu', True) else "false"
+-%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,6 +31,16 @@
   {% block script_header %}{% endblock %}
 </head>
 <body data-ng-app="{{ resolve(request.path_info).app_name }}">
+  <nav class="main-nav" data-ng-controller="navBarCtrl"
+    data-ng-init="enableTransparentMenu = {{ transparentMenuEnabled }}"
+    data-ng-class="navBarCls" data-layout="row">
+    <ul>
+      <li><a href="#">Test</a></li>
+      <li><a href="#">Test2</a></li>
+    </ul>
+    <div class="sep" data-flex></div>
+    test
+  </nav>
   {% block body %}{%endblock -%}
   <md-fab-speed-dial class="md-scale" data-md-direction="up" data-hide-gt-sm>
     <md-fab-trigger>

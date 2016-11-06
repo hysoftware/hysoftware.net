@@ -56,8 +56,9 @@ angular.module("common", [
         height = expected_height
       else
         height = _minHeight
+      root.scrFullFillPrevState[id].height = height
       "height": "#{height}px"
-    wind.addEventListener "resize", ->
+    wind.addEventListener "resize", (->
       handler = @
       root.$apply ->
         for elem, state of root.scrFullFillPrevState
@@ -70,4 +71,22 @@ angular.module("common", [
               state.scope.unregistDestroy = state.scope.$on("$destroy", ->
                 wind.removeEventListener("resize", handler)
               )
+    ), false
+]).controller("navBarCtrl", [
+  "$rootElement", "$scope", "$window",
+  (rootElem, scope, wind) ->
+    header = rootElem[0].querySelector("header")
+    header.height = ->
+      parseFloat(@style.height.replace(/[^0-9.]/g, ""), 10)
+    header.isWindowUnderHeader = ->
+      if scope.enableTransparentMenu
+        offsetY = header.offsetTop
+        return offsetY <= wind.scrollY <= (offsetY + header.height() - 45)
+      else return true
+    scope.navBarCls =
+      "out": not header.isWindowUnderHeader()
+    wind.addEventListener "scroll", (->
+      scope.$apply ->
+        scope.navBarCls.out = not header.isWindowUnderHeader()
+    ), false
 ])
