@@ -15,7 +15,13 @@ class HomeView(TemplateView):
 
     template_name = "home.html"
 
-    @property
+    @cached_property
+    def users_info(self):
+        """Get users info."""
+        from ..user.models import UserInfo
+        return UserInfo.objects
+
+    @cached_property
     def pitch(self):
         """Get pitch."""
         from .models import Pitch

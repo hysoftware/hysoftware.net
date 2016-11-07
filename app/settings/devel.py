@@ -27,7 +27,8 @@ class DevelConfig(DjangoDefaults):
         'django.contrib.staticfiles',
         'captcha',
         "app.common.apps.CommonConfig",
-        "app.home.apps.HomeConfig"
+        "app.home.apps.HomeConfig",
+        "app.user.apps.UserConfig"
     )
 
     MIDDLEWARE = (

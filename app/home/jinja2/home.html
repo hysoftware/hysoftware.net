@@ -1,5 +1,5 @@
 {% extends "base.html" -%}
-{% block title %}Hello World!{% endblock -%}
+{% block title %}Welcome{% endblock -%}
 {% block body -%}
 <section class="home">
   <header class="home-header"
@@ -10,5 +10,64 @@
       <p>{{ view.pitch }}</p>
     </div>
   </header>
+  <section class="about container">
+    <header class="text-center">
+      <h1>
+        {{_n(
+          "Do you need a software engineer?",
+          "Do you need software engineers?", view.users_info.count()
+        )}}
+        {{_n(
+          "I can help building your apps", "We can help building your apps",
+          view.users_info.count()
+        )}}
+      </h1>
+    </header>
+    <p>
+      {{_n("
+        Developing products is difficul and App development is one of
+        the most difficult process. Especially, it is very difficult to find
+        good person who has coding and software engineering knowledge.
+        I, {first_name} {last_name}, can help building your apps.
+      ", "
+        Developing products is difficul and App development is one of
+        the most difficult process. Especially, it is very difficult to find
+        good person who has coding and software engineering knowledge.
+        We can help building your apps.
+      ", view.users_info.count()).format(
+        settings.TITLE,
+        first_name=view.users_info.first().user.first_name,
+        last_name=view.users_info.first().user.last_name
+      )}}
+    </p>
+  </section>
+  <section class="text-center container">
+    <header>
+      <h1>{{_n(
+        "What are advantages by hiring me?",
+        "What are advantages by hiring us?",
+        view.users_info.count()
+      )}}</h1>
+    </header>
+    <p>
+      {{_n(
+        "My advantages are aimed at the quality of code. As you can see",
+        "Our advantages are aimed at the quality of code.",
+        view.users_info.count()
+      )}}
+      {% if view.users_info.count() > 1 -%}
+        <a href="undefined">{{_("Each developer's github")}}</a>
+      {% else -%}
+        <a href="https://github.com/{{ view.users_info.first().github }}" target="_blank">
+          {{_("{}'s Github").format(view.users_info.first().user.first_name)}}
+        </a>
+      {%- endif %}{{_n(
+        " ,I am coding many software with high testing rate and great quality.
+          This is why you should hire me.",
+        " ,We are coding many software with high testing rate and great quality.
+          This is why you should hire us.", view.users_info.count()
+      )}}
+    </p>
+  </section>
 </section>
 {% endblock %}

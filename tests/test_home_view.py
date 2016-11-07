@@ -70,6 +70,11 @@ class HomeViewRenderingTest(TemplateViewTestBase, TestCase):
         get_lang.assert_called_once_with(self.request)
         pitch_objs.choice.assert_called_once_with()
 
+    def test_user_property(self):
+        """"A queryset of user info object should be returned."""
+        from app.user.models import UserInfo
+        self.assertIs(self.view_cls().users_info, UserInfo.objects)
+
 
 class HomeJSViewRenderingTest(TemplateViewTestBase, TestCase):
     """Home frontend script view rendering test."""
