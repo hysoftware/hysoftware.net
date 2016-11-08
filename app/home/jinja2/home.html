@@ -1,7 +1,7 @@
 {% extends "base.html" -%}
 {% block title %}Welcome{% endblock -%}
 {% block body -%}
-<section class="home">
+<section class="home text-center">
   <header class="home-header"
     data-ng-style="screenFullFill('title', this, 0.2)">
     <div class="filter"></div>
@@ -10,76 +10,93 @@
       <p>{{ view.pitch }}</p>
     </div>
   </header>
-  <section class="about container">
-    <header class="text-center">
-      <h1>
-        {{_n(
-          "Do you need a software engineer?",
-          "Do you need software engineers?", view.users_info.count()
+  <div class="container">
+    <section>
+      <header>
+        <h1>
+          {{_n(
+            "Do you need a software engineer?",
+            "Do you need software engineers?", view.users_info.count()
+          )}}
+          {{_n(
+            "I can help building your apps", "We can help building your apps",
+            view.users_info.count()
+          )}}
+        </h1>
+      </header>
+      <p>
+        {{_n("
+          Developing products is difficul and App development is one of
+          the most difficult process. Especially, it is very difficult to find
+          good person who has coding and software engineering knowledge.
+          I, {first_name} {last_name}, can help building your apps.
+        ", "
+          Developing products is difficul and App development is one of
+          the most difficult process. Especially, it is very difficult to find
+          good person who has coding and software engineering knowledge.
+          We can help building your apps.
+        ", view.users_info.count()).format(
+          settings.TITLE,
+          first_name=view.users_info.first().user.first_name,
+          last_name=view.users_info.first().user.last_name
         )}}
+      </p>
+    </section>
+    <section>
+      <header>
+        <h1>{{_n(
+          "Why you need me?",
+          "Why you need us?",
+          view.users_info.count()
+        )}}</h1>
+      </header>
+      <p>
         {{_n(
-          "I can help building your apps", "We can help building your apps",
+          "My advantages are aimed at the quality of code. As you can see",
+          "Our advantages are aimed at the quality of code.",
           view.users_info.count()
         )}}
-      </h1>
-    </header>
-    <p>
-      {{_n("
-        Developing products is difficul and App development is one of
-        the most difficult process. Especially, it is very difficult to find
-        good person who has coding and software engineering knowledge.
-        I, {first_name} {last_name}, can help building your apps.
-      ", "
-        Developing products is difficul and App development is one of
-        the most difficult process. Especially, it is very difficult to find
-        good person who has coding and software engineering knowledge.
-        We can help building your apps.
-      ", view.users_info.count()).format(
-        settings.TITLE,
-        first_name=view.users_info.first().user.first_name,
-        last_name=view.users_info.first().user.last_name
-      )}}
-    </p>
-  </section>
-  <section class="text-center container">
-    <header>
-      <h1>{{_n(
-        "Why you need me?",
-        "Why you need us?",
-        view.users_info.count()
-      )}}</h1>
-    </header>
-    <p>
-      {{_n(
-        "My advantages are aimed at the quality of code. As you can see",
-        "Our advantages are aimed at the quality of code.",
-        view.users_info.count()
-      )}}
-      {% if view.users_info.count() > 1 -%}
-        <a href="undefined">{{_("Each developer's github")}}</a>
-      {% else -%}
-        <a href="https://github.com/{{ view.users_info.first().github }}" target="_blank">
-          {{_("{}'s Github").format(view.users_info.first().user.first_name)}}
-        </a>
-      {%- endif %}{{_n(
-        " ,I am coding many software with high testing rate and great quality.
-          This is why you should hire me.",
-        " ,We are coding many software with high testing rate and great quality.
-          This is why you should hire us.", view.users_info.count()
-      )}}
-    </p>
-  </section>
-  <section class="text-center container">
-    <header>
-      <h1>{{_n(
-        "Proof of code. I ♥ Open-Source!",
-        "Proof of code. We ♥ Open-Source!", view.users_info.count()
-      )}}</h1>
-    </header>
-    <p>{{_(
-      "While many software engineers don't disclose their code, all staff at "
-      "hysoft are required to have Github account. It means "
-    )}}</p>
-  </section>
+        {% if view.users_info.count() > 1 -%}
+          <a href="undefined">{{_("Each developer's github")}}</a>
+        {% else -%}
+          <a href="https://github.com/{{ view.users_info.first().github }}" target="_blank">
+            {{_("{}'s Github").format(view.users_info.first().user.first_name)}}
+          </a>
+        {%- endif %}{{_n(
+          " ,I am coding many software with high testing rate and great quality.
+            This is why you should hire me.",
+          " ,We are coding many software with high testing rate and great quality.
+            This is why you should hire us.", view.users_info.count()
+        )}}
+      </p>
+    </section>
+    <section>
+      <header>
+        <h1>{{_n(
+          "Proof of code. I <i class=\"material-icons\">favorite</i> Open-Source!",
+          "Proof of code. We <i class=\"material-icons\">favorite</i> Open-Source!",
+          view.users_info.count()
+        )|safe}}</h1>
+      </header>
+      <p>{{_(
+        "While many software engineers don't disclose their code, all staff at "
+        "hysoft are required to have Github account. It means all the software "
+        "engineer at hysoft must write open-source code. As the proof..."
+      )}}</p>
+    </section>
+    <section>
+      <header>
+        <h1>This webapp is open-source!</h1>
+        <div data-layout="row">
+          <h2 data-flex><i class="ion-social-python"></i></h2>
+          <h2 data-flex><i class="ion-social-html5"></i></h2>
+          <h2 data-flex><i class="ion-social-javascript"></i></h2>
+          <h2 data-flex><i class="ion-social-angular"></i></h2>
+          <h2 data-flex><i class="ion-social-css3"></i></h2>
+          <h2 data-flex><i class="ion-social-sass"></i></h2>
+        </div>
+      </header>
+    </section>
+  </div>
 </section>
 {% endblock %}
