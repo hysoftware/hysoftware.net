@@ -44,8 +44,8 @@
   <section class="text-center container">
     <header>
       <h1>{{_n(
-        "What are advantages by hiring me?",
-        "What are advantages by hiring us?",
+        "Why you need me?",
+        "Why you need us?",
         view.users_info.count()
       )}}</h1>
     </header>
@@ -68,6 +68,18 @@
           This is why you should hire us.", view.users_info.count()
       )}}
     </p>
+  </section>
+  <section class="text-center container">
+    <header>
+      <h1>{{_n(
+        "Proof of code. I ♥ Open-Source!",
+        "Proof of code. We ♥ Open-Source!", view.users_info.count()
+      )}}</h1>
+    </header>
+    <p>{{_(
+      "While many software engineers don't disclose their code, all staff at "
+      "hysoft are required to have Github account. It means "
+    )}}</p>
   </section>
 </section>
 {% endblock %}
