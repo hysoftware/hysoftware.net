@@ -73,8 +73,8 @@
     <section>
       <header>
         <h1>{{_n(
-          "Proof of code. I <i class=\"material-icons\">favorite</i> Open-Source!",
-          "Proof of code. We <i class=\"material-icons\">favorite</i> Open-Source!",
+          "Proof of code. I <i class=\"material-icons\">favorite</i> Open-Source",
+          "Proof of code. We <i class=\"material-icons\">favorite</i> Open-Source",
           view.users_info.count()
         )|safe}}</h1>
       </header>
@@ -86,7 +86,13 @@
     </section>
     <section>
       <header>
-        <h1>This webapp is open-source!</h1>
+        <h1>
+          {{_(
+            "This webapp is "
+            "<a href=\"{{ settings.SOURCE_URL }}\" target=\"_blank\">"
+            "open-source</a>"
+          )|safe}}
+        </h1>
         <div data-layout="row">
           <h2 data-flex><i class="ion-social-python"></i></h2>
           <h2 data-flex><i class="ion-social-html5"></i></h2>
@@ -96,6 +102,11 @@
           <h2 data-flex><i class="ion-social-sass"></i></h2>
         </div>
       </header>
+      <p>{{_(
+        "As you can see "
+        "<a href=\"{{ settings.SOURCE_URL }}\" target=\"_blank\">this page</a>,"
+        "this webapp is open-source and there's nothing that is hidden."
+      )|safe}}</p>
     </section>
   </div>
 </section>

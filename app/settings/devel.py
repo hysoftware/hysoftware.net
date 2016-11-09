@@ -17,6 +17,7 @@ class DevelConfig(DjangoDefaults):
     DEBUG = True
     ALLOWED_HOSTS = ('localhost')
     TITLE = "hysoft"
+    SOURCE_URL = "https://github.com/hysoftware/hysoftware.net"
 
     INSTALLED_APPS = (
         'django.contrib.admin',
