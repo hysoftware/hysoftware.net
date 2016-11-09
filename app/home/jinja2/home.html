@@ -117,5 +117,18 @@
       </p>
     </section>
   </div>
+  <section class="interest">
+    <header>
+      <h1>Interesting?</h1>
+    </header>
+    <p>{{_n(
+      "Let's contact me. I'm looking forward to getting know each other.",
+      "Let's contact us. We're looking forward to getting know each other.",
+      view.users_info.count()
+    )}}</p>
+    <a href="#" data-md-button class="md-raised md-warn">
+      {{_n("Contact me!", "Contact us!", view.users_info.count())}}
+    </a>
+  </section>
 </section>
 {% endblock %}
