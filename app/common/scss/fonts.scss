@@ -1,20 +1,34 @@
-h1, h2, h3, h4, h5, h6 {
-  font: {
-    family: 'Raleway', sans-serif;
-    weight: 300
-  }
-}
-strong, b {
-  font: {
-    family: 'Raleway', sans-serif;
-    weight: 500
-  }
-}
 * {
   font: {
     family: 'Raleway', sans-serif;
     weight: 300
   }
 }
+h1, h2, h3, h4, h5, h6 {
+  font: {
+    weight: 300
+  }
+}
+strong, b {
+  font: {
+    weight: 500
+  }
+}
 h1 {font-size: 2rem;}
 h2 {font-size: 1.82rem;}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.text-no-transform {
+  text-transform: none;
+}
+
+.impact {
+  font: {
+    weight: 500;
+    size: 1.5rem;
+  }
+  padding: 0.3em 0.6em;
+}

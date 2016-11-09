@@ -15,8 +15,8 @@
       <header>
         <h1>
           {{_n(
-            "Do you need a software engineer?",
-            "Do you need software engineers?", view.users_info.count()
+            "Need a software engineer?",
+            "Need software engineers?", view.users_info.count()
           )}}
           {{_n(
             "I can help building your apps", "We can help building your apps",
@@ -107,6 +107,14 @@
         "<a href=\"{{ settings.SOURCE_URL }}\" target=\"_blank\">this page</a>,"
         "this webapp is open-source and there's nothing that is hidden."
       )|safe}}</p>
+      <p>
+        <a href="{{ settings.SOURCE_URL }}" target="_blank"
+          class="md-raised md-primary text-no-transform impact"
+          data-md-button>
+          <i class="ion-social-github"></i>
+          {{_("Check out this webapp's code on Github")}}
+        </a>
+      </p>
     </section>
   </div>
 </section>
