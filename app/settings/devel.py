@@ -26,10 +26,12 @@ class DevelConfig(DjangoDefaults):
         'django.contrib.sessions',
         'django.contrib.messages',
         'django.contrib.staticfiles',
+        'django_countries',
         'captcha',
         "app.common.apps.CommonConfig",
         "app.home.apps.HomeConfig",
-        "app.user.apps.UserConfig"
+        "app.user.apps.UserConfig",
+        "app.legal.apps.LegalConfig"
     )
 
     MIDDLEWARE = (
