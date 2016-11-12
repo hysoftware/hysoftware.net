@@ -3,6 +3,10 @@
 
 """Controllers for legal notation."""
 
-# from django.shortcuts import render
+from django.views.generic import TemplateView
 
-# Create your views here.
+
+class LegalView(TemplateView):
+    """Legal view."""
+
+    template_name = "legal.html"
