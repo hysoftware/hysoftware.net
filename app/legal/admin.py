@@ -19,6 +19,8 @@ class ActInline(admin.ModelAdmin):
 
     model = Act
     inlines = (NotationTableAdmin, )
+    list_display = ("name", "description", "country")
+    search_fields = ("name", "description", "country")
 
 
 @admin.register(RecognizedCountry)
