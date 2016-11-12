@@ -26,7 +26,7 @@ class RecognizedCountry(db.Model):
 class Act(db.Model):
     """Act list."""
 
-    country = db.ForeignKey(RecognizedCountry)
+    country = db.ForeignKey(RecognizedCountry, null=True, blank=True)
     name = db.CharField(max_length=400)
     description = db.TextField()
 
