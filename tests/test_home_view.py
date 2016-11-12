@@ -7,7 +7,7 @@ from unittest.mock import patch
 from django.test import TestCase
 
 from app.common.models import ThirdPartyAssets
-from app.home.views import HomeView, JSView, CSSView, HomeTitleImageView
+from app.home.views import HomeView, CSSView, HomeTitleImageView
 
 from .view_base import TemplateViewTestBase
 
@@ -74,16 +74,6 @@ class HomeViewRenderingTest(TemplateViewTestBase, TestCase):
         """"A queryset of user info object should be returned."""
         from app.user.models import UserInfo
         self.assertIs(self.view_cls().users_info, UserInfo.objects)
-
-
-class HomeJSViewRenderingTest(TemplateViewTestBase, TestCase):
-    """Home frontend script view rendering test."""
-
-    template_name = "home.js"
-    content_type = "application/javascript"
-    endpoint = "home:js"
-    page_url = "/js"
-    view_cls = JSView
 
 
 class HomeCSSViewRenderingTest(TemplateViewTestBase, TestCase):

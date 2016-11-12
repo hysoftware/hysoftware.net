@@ -24,13 +24,15 @@
   <script src="{{ url('common:js') }}"></script>
   {% if static_exists(resolve(request.path_info).app_name + '.js') -%}
   <script src="{{ static(resolve(request.path_info).app_name + '.js') }}"></script>
+  {% set ind_module_exists = True -%}
   {%- endif %}
   {% if url_exists(resolve(request.path_info).app_name + ":js") -%}
   <script src="{{ url(resolve(request.path_info).app_name + ':js') }}"></script>
+  {% set ind_module_exists = True -%}
   {%- endif %}
   {% block script_header %}{% endblock %}
 </head>
-<body data-ng-app="{{ resolve(request.path_info).app_name }}">
+<body data-ng-app="{% if ind_module_exists -%}{{ resolve(request.path_info).app_name }}{% else %}common{% endif %}">
   <nav class="main-nav" data-ng-controller="navBarCtrl"
     data-ng-init="enableTransparentMenu = {{ transparentMenuEnabled }}"
     data-ng-class="navBarCls" data-layout="row">

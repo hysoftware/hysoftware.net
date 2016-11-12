@@ -31,13 +31,6 @@ class HomeView(TemplateView):
         ), None) or pitch.text
 
 
-class JSView(TemplateView):
-    """Home front-end script view."""
-
-    template_name = "home.js"
-    content_type = "application/javascript"
-
-
 class CSSView(TemplateView):
     """Home stylesheet view."""
 
