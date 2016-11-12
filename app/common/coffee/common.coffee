@@ -1,5 +1,6 @@
 angular.module("common", [
   "ngMaterial"
+  "common.factories"
 ]).config([
   "$httpProvider", (http) ->
     http.defaults.xsrfCookieName = "csrftoken"
@@ -73,16 +74,9 @@ angular.module("common", [
               )
     ), false
 ]).controller("navBarCtrl", [
-  "$rootElement", "$scope", "$window",
-  (rootElem, scope, wind) ->
-    header = rootElem[0].querySelector("header")
-    header.height = ->
-      parseFloat(@style.height.replace(/[^0-9.]/g, ""), 10)
-    header.isWindowUnderHeader = ->
-      if scope.enableTransparentMenu
-        offsetY = header.offsetTop
-        return offsetY <= wind.scrollY <= (offsetY + header.height() - 45)
-      else return true
+  "HeaderDetector", "$scope", "$window",
+  (HeaderDetector, scope, wind) ->
+    header = new HeaderDetector scope
     scope.navBarCls =
       "out": not header.isWindowUnderHeader()
     wind.addEventListener "scroll", (->

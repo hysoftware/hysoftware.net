@@ -10,3 +10,10 @@ class LegalView(TemplateView):
     """Legal view."""
 
     template_name = "legal.html"
+
+
+class CSSView(TemplateView):
+    """Template view."""
+
+    template_name = "legal.css"
+    content_type = "text/css"

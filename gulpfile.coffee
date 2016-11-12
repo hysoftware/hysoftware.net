@@ -37,6 +37,7 @@ g.task "third_party", ->
 modules =
   "common": "app/common"
   "home": "app/home"
+  "legal": "app/legal"
 
 for name, modPath of modules
   do (name, modPath) ->
