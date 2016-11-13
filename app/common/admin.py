@@ -11,4 +11,5 @@ from .models import ThirdPartyAssets
 class ThirdPartyAssetsAdmin(admin.ModelAdmin):
     """Third party assets admin."""
 
-    pass
+    list_display = ("filename", "image", "license", "license_url")
+    search_fields = list_display

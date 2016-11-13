@@ -1,0 +1,15 @@
+{
+  "licenses": [
+    {
+      "filename": "home_title.jpg",
+      "license": "CC0",
+      "source": "http://alana.io/downloads/apple-macbook-laptop/",
+      "license_url": "http://alana.io/license/"
+    }, {
+      "filename": "legal_title.jpg",
+      "license": "CC0",
+      "source": "http://alana.io/downloads/book-3/",
+      "license_url": "http://alana.io/license/"
+    }
+  ]
+}
