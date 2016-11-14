@@ -6,6 +6,14 @@
     <div class="filter"></div>
     <h1 class="vcenter">Legal</h1>
   </header>
-  <p>Test</p>
+  <section class="container-large">
+    <header><h2>{{ _("What and Why This Page?") }}</h2></header>
+    <p>{{_(
+      "{} is currently a sole proprietorship in Japan and there are acts"
+      "to require business (including corp, llc, and sole proprietorship) "
+      "to show some notations. This page shows the notations to make them "
+      " clear."
+    ).format(settings.TITLE)}}</p>
+  </section>
 </section>
 {%- endblock %}
