@@ -1,7 +1,7 @@
 {% extends "base.html" -%}
 {% block title %}Legal{% endblock title -%}
 {% block body -%}
-<section data-ng-controller="legalCtrl">
+<section data-ng-controller="legalCtrl" class="legal-page">
   <header class="text-center header-legal">
     <div class="filter"></div>
     <h1 class="vcenter">Legal</h1>
@@ -61,6 +61,17 @@
           {%- endfor %}
         </md-tabs>
       {%- endfor %}
+    </section>
+    <section class="copyrights">
+      <header><h2>Copyrights</h2></header>
+      <p>
+        {{_(
+          "As footer shows, this website is licensed under "
+          "the terms of The MIT License. However, the assets created by third "
+          "party might not be licensed under The MIT License. For details, "
+          "please visit the following links:"
+        )}}
+      </p>
     </section>
   </section>
 </section>
