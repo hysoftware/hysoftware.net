@@ -18,21 +18,21 @@ angular.module("common", [
       ), true
     root.isDirtyInvalid = (fld) ->
       return fld.$dirty and fld.$invalid
-    root.fillModel = (scope, target_elem) ->
-      for elem in target_elem.querySelectorAll "[data-ng-model][value]"
-        do (elem) ->
-          val = elem.value
-          date = new Date(val)
-          scope.$eval "#{elem.dataset.ngModel} = val", (
-            val: (if isNaN date.getTime() then val else date)
-          )
-      for elem in target_elem.querySelectorAll(
-        "[type=\"checkbox\"][data-ng-model]"
-      )
-        do (elem) ->
-          scope.$eval "#{elem.dataset.ngModel} = val", (
-            val: elem.getAttribute("checked") is "checked"
-          )
+    # root.fillModel = (scope, target_elem) ->
+    #   for elem in target_elem.querySelectorAll "[data-ng-model][value]"
+    #     do (elem) ->
+    #       val = elem.value
+    #       date = new Date(val)
+    #       scope.$eval "#{elem.dataset.ngModel} = val", (
+    #         val: (if isNaN date.getTime() then val else date)
+    #       )
+    #   for elem in target_elem.querySelectorAll(
+    #     "[type=\"checkbox\"][data-ng-model]"
+    #   )
+    #     do (elem) ->
+    #       scope.$eval "#{elem.dataset.ngModel} = val", (
+    #         val: elem.getAttribute("checked") is "checked"
+    #       )
 
     # Full-screen functionality
     root.scrFullFillPrevState = {}

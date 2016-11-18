@@ -58,3 +58,10 @@ class DictTest(TestCase):
         self.assertDictContainsSubset({
             "getattr": getattr
         }, self.options.globals)
+
+    def test_md(self):
+        """The options should have markdown compiler as filter."""
+        from markdown import markdown
+        self.assertDictContainsSubset({
+            "markdown": markdown
+        }, self.options.filters)

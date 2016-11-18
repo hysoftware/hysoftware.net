@@ -4,6 +4,7 @@
 """Jinja2 env."""
 
 from jinja2 import Environment
+from markdown import markdown
 
 from django.conf import settings
 from django.contrib.staticfiles.storage import staticfiles_storage
@@ -39,5 +40,8 @@ def jinja_options(**env):
         "getattr": getattr,
         "_": ugettext,
         "_n": ungettext
+    })
+    environ.filters.update({
+        "markdown": markdown
     })
     return environ

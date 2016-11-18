@@ -1,7 +1,7 @@
 {% extends "base.html" -%}
 {% block title %}Legal{% endblock title -%}
 {% block body -%}
-<section>
+<section data-ng-controller="legalCtrl">
   <header class="text-center header-legal">
     <div class="filter"></div>
     <h1 class="vcenter">Legal</h1>
@@ -9,11 +9,59 @@
   <section class="container-large">
     <header><h2>{{ _("What and Why This Page?") }}</h2></header>
     <p>{{_(
-      "{} is currently a sole proprietorship in Japan and there are acts"
+      "{} is currently a sole proprietorship in Japan and there are acts "
       "to require business (including corp, llc, and sole proprietorship) "
       "to show some notations. This page shows the notations to make them "
       " clear."
     ).format(settings.TITLE)}}</p>
+    <section>
+      <header>
+        <h3>{{_("Select Country")}}</h3>
+        <p>{{_n(
+          "If the country is not listed, it is not recognized by me. In that case,
+           please let me know.",
+           "If the country is not listed, it is not recognized by us. In that case,
+            please let us know.", view.users_info.count()
+        )}}</p>
+      </header>
+      <md-input-container>
+        <md-select data-ng-model="model.country"
+          data-ng-init="setCountry('{{ view.country.first().country.code }}')"
+          aria-label="{{_('Recognized Country')}}"
+          data-placeholder="{{_('Select Country')}}">
+          {% for item in  view.country.all() -%}
+            <md-option value="{{ item.country.code }}">
+              {{ item.country.name }}
+            </md-option>
+          {%- endfor%}
+        </md-select>
+      </md-input-container>
+      {% for country_item in view.country.all() -%}
+        <md-tabs data-ng-if="model.country == '{{ country_item.country.code }}'"
+          data-md-dynamic-height data-md-border-bottom>
+          {% for act in country_item.act_set.all() -%}
+          <md-tab data-label="{{ act.name }}">
+            <section>
+              <header>
+                <h3><strong>{{ act.name }}</strong></h3>
+                <p>{{ act.description }}</p>
+              </header>
+              <table>
+                <thead>
+                  <tr><th>{{_("Name")}}</th><th>{{_("description")}}</th></tr>
+                </thead>
+                <tbody>
+                  {% for note in act.notationtable_set.all() -%}
+                  <tr><td>{{ note.name }}</td><td>{{ note.text | markdown | safe}}</td></tr>
+                  {%- endfor %}
+                </tbody>
+              </table>
+            </section>
+          </md-tab>
+          {%- endfor %}
+        </md-tabs>
+      {%- endfor %}
+    </section>
   </section>
 </section>
 {%- endblock %}

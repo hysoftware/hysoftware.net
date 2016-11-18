@@ -4,7 +4,7 @@
 """Database model for legal notation."""
 
 from django.db import models as db
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _lz
 from django_countries.fields import CountryField
 
 
@@ -14,7 +14,7 @@ class RecognizedCountry(db.Model):
     class Meta(object):
         """Metadata."""
 
-        verbose_name_plural = _("Recognized Countries")
+        verbose_name_plural = _lz("Recognized Countries")
 
     country = CountryField()
 

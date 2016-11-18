@@ -8,7 +8,7 @@ from unittest.mock import patch
 from django.test import TestCase
 from .view_base import TemplateViewTestBase
 
-from app.legal.views import LegalView, CSSView
+from app.legal.views import LegalView, CSSView, JSView
 
 
 class LegalViewTest(TemplateViewTestBase, TestCase):
@@ -25,6 +25,12 @@ class LegalViewTest(TemplateViewTestBase, TestCase):
         view = self.view_cls()
         self.assertIs(view.country, objects)
 
+    @patch("app.user.models.UserInfo.objects")
+    def test_user_info(self, objects):
+        """Test recognized country class."""
+        view = self.view_cls()
+        self.assertIs(view.users_info, objects)
+
 
 class CSSViewTest(TemplateViewTestBase, TestCase):
     """CSS view access test."""
@@ -34,3 +40,12 @@ class CSSViewTest(TemplateViewTestBase, TestCase):
     page_url = "/l/css"
     view_cls = CSSView
     content_type = "text/css"
+
+
+class JSViewTest(TemplateViewTestBase, TestCase):
+    """JS view access test."""
+    template_name = "legal.js"
+    endpoint = "legal:js"
+    page_url = "/l/js"
+    view_cls = JSView
+    content_type = "application/javascript"

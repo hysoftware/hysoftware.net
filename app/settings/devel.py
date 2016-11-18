@@ -15,7 +15,7 @@ class DevelConfig(DjangoDefaults):
     ))
     SECRET_KEY = 'si0%k#galmbd0vzpp817e!1v*a=lu!!$b&3b4l8$^4-3!-aj!s'
     DEBUG = True
-    ALLOWED_HOSTS = ('localhost')
+    ALLOWED_HOSTS = ('localhost', '127.0.0.1')
     TITLE = "hysoft"
     SOURCE_URL = "https://github.com/hysoftware/hysoftware.net"
 

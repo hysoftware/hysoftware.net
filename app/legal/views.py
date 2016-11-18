@@ -18,9 +18,22 @@ class LegalView(TemplateView):
         from .models import RecognizedCountry
         return RecognizedCountry.objects
 
+    @cached_property
+    def users_info(self):
+        """Return hysoft staff's information."""
+        from ..user.models import UserInfo
+        return UserInfo.objects
+
 
 class CSSView(TemplateView):
-    """Template view."""
+    """CSS view."""
 
     template_name = "legal.css"
     content_type = "text/css"
+
+
+class JSView(TemplateView):
+    """JS View."""
+
+    template_name = "legal.js"
+    content_type = "application/javascript"
