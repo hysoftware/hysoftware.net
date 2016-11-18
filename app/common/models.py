@@ -28,3 +28,4 @@ class ThirdPartyAssets(db.Model):
     source = db.URLField(max_length=500)
     license = db.CharField(max_length=10)
     license_url = db.URLField()
+    check_date = db.DateField(auto_now_add=True)

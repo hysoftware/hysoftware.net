@@ -65,3 +65,10 @@ class DictTest(TestCase):
         self.assertDictContainsSubset({
             "markdown": markdown
         }, self.options.filters)
+
+    def test_urlparse(self):
+        """The options should have urlparse function as global variable."""
+        from urllib.parse import urlparse
+        self.assertDictContainsSubset({
+            "urlparse": urlparse
+        }, self.options.globals)

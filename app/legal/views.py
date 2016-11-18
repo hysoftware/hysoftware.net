@@ -24,6 +24,12 @@ class LegalView(TemplateView):
         from ..user.models import UserInfo
         return UserInfo.objects
 
+    @cached_property
+    def assets_info(self):
+        """Retrn third party asset model."""
+        from ..common.models import ThirdPartyAssets
+        return ThirdPartyAssets.objects
+
 
 class CSSView(TemplateView):
     """CSS view."""

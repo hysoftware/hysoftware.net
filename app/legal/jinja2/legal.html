@@ -72,6 +72,37 @@
           "please visit the following links:"
         )}}
       </p>
+      <table>
+        <thead>
+          <tr>
+            <th>File Name</th>
+            <th>Source</th>
+            <th>License</th>
+            <th>Check Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for asset in view.assets_info.all() -%}
+            <tr>
+              <td>
+                <a target="_blank"
+                  href="{{ url('common:assets', kwargs={'filename': asset.filename}) }}">
+                  {{ asset.filename }}
+                </a>
+              </td>
+              <td>
+                <a href="{{ asset.source }}" target="_blank">
+                  {{ urlparse(asset.source).netloc }}
+                </a>
+              </td>
+              <td>
+                <a href="{{ asset.license_url }}"　target="_blank">{{ asset.license }}</a>
+              </td>
+              <td>{{ asset.check_date }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </section>
   </section>
 </section>

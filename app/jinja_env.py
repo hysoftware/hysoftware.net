@@ -5,6 +5,7 @@
 
 from jinja2 import Environment
 from markdown import markdown
+from urllib.parse import urlparse
 
 from django.conf import settings
 from django.contrib.staticfiles.storage import staticfiles_storage
@@ -36,6 +37,7 @@ def jinja_options(**env):
         "static_exists": __static_exists__,
         "url": reverse,
         "url_exists": url_exists,
+        "urlparse": urlparse,
         "resolve": resolve,
         "getattr": getattr,
         "_": ugettext,
