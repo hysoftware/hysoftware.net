@@ -7,7 +7,7 @@
 <head>
   <meta charset="UTF-8">
   <title>{% block title %}{% endblock %} - {{ settings.TITLE }}</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:300,500">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:300,500,700">
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="{{ static('third_party/angular/angular-csp.css') }}">
@@ -37,8 +37,8 @@
     data-ng-init="enableTransparentMenu = {{ transparentMenuEnabled }}"
     data-ng-class="navBarCls" data-layout="row">
     <ul>
-      <li><a href="#">Test</a></li>
-      <li><a href="#">Test2</a></li>
+      <li class="brand"><a href="{{ url('home:index') }}">{{ settings.TITLE }}</a></li>
+      <li><a href="#">About</a></li>
     </ul>
     <div class="sep" data-flex></div>
     test
@@ -58,7 +58,7 @@
   </md-fab-speed-dial>
   <footer>
     <h1>{{_("The MIT License (MIT)")}}</h1>
-    <p>Copyright (c) 2016- hysoft (Owner: Hiroaki Yamamoto)</p>
+    <p>Copyright (c) 2016- {{ settings.TITLE }} (Owner: Hiroaki Yamamoto)</p>
     <p>{{_("
       Permission is hereby granted, free of charge, to any person obtaining a
       copy of this software and associated documentation files

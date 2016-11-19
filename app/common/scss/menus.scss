@@ -11,7 +11,7 @@ nav.main-nav {
   background-color: transparent;
   color: #F6F6F6;
   opacity: inherit;
-  transition: background-color 500ms, opacity 500ms;
+  transition: background-color 500ms, opacity 500ms, text-shadow 500ms;
   * {
     height: 100%;
     padding: 0;
@@ -20,6 +20,9 @@ nav.main-nav {
   &.out {
     background-color: #212122;
     opacity: 0.8;
+  }
+  &:not(.out) {
+    text-shadow: 3px 3px 2px black;
   }
   a {
     color: #F6F6F6;
@@ -30,7 +33,13 @@ nav.main-nav {
     li {
       display: table-cell;
       vertical-align: middle;
-      padding: inherit 0px;
+      padding: inherit 0.5rem;
+      &.brand * {
+        padding: inherit 1rem;
+        font: {
+          weight: 500;
+        }
+      }
     }
   }
 }
