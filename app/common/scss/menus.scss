@@ -1,5 +1,5 @@
 md-fab-speed-dial {
-  position: absolute;
+  position: fixed;
   right: 0;
   bottom: 0;
 }
@@ -24,7 +24,7 @@ nav.main-nav {
   &:not(.out) {
     text-shadow: 3px 3px 2px black;
   }
-  a {
+  a, md-icon {
     color: #F6F6F6;
     text-decoration: none;
   }

@@ -2,6 +2,27 @@
   set transparentMenuEnabled =
     "true" if getattr(view, 'enable_transparent_menu', True) else "false"
 -%}
+{%
+  set menu = [
+    {
+        "name": _("About"),
+        "url": "#",
+        "icon_class": "material-icons",
+        "icon_body": "help"
+    }, {
+        "name": _("Contact"),
+        "url": "#",
+        "icon_class": "material-icons",
+        "icon_body": "email"
+    }, {
+      "name": _("Github of this webapp"),
+      "url": "https://github.com/hysoftware/hysoftware.net",
+      "icon_class": "ion-social-github",
+      "show_icon_on_header": True,
+      "target": "_blank"
+    }
+  ]
+-%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,6 +59,19 @@
     data-ng-class="navBarCls" data-layout="row">
     <ul>
       <li class="brand"><a href="{{ url('home:index') }}">{{ settings.TITLE }}</a></li>
+      {% for menu_item in menu -%}
+      <li>
+        <a href="{{ menu_item.url }}"
+          {% if menu_item.target %}target="{{ menu_item.target }}"{% endif %}>
+          {% if menu_item.show_icon_on_header -%}
+          <i class="{{ menu_item.icon_class }}">
+            {{ menu_item.icon_body or ""}}
+          </i>
+          {%- endif %}
+          {{menu_item.name}}
+        </a>
+      </li>
+      {%- endfor %}
       <li><a href="#">About</a></li>
     </ul>
     <div class="sep" data-flex></div>
@@ -51,9 +85,18 @@
       </button>
     </md-fab-trigger>
     <md-fab-actions>
-      <button data-md-button class="md-fab md-raised md-mini">
-        <md-icon class="material-icons">help</md-icon>
-      </button>
+      <a href="{{ url('home:index') }}" data-md-button class="md-fab md-raised md-mini">
+        <md-tooltip data-md-direction="left">{{ _("home") }}</md-tooltip>
+        <md-icon class="material-icons">home</md-icon>
+      </a>
+      {% for menu_item in menu -%}
+      <a href="{{ menu_item.url }}" data-md-button class="md-fab md-raised md-mini"
+        {% if menu_item.target %}target="{{ menu_item.target }}"{% endif %}
+        aria-label="{{ menu_item.name }}">
+        <md-tooltip data-md-direction="left">{{ menu_item.name }}</md-tooltip>
+        <md-icon class="{{ menu_item.icon_class }}">{{ menu_item.icon_body or ""}}</md-icon>
+      </a>
+      {%- endfor %}
     </md-fab-actions>
   </md-fab-speed-dial>
   <footer>
