@@ -56,7 +56,7 @@
 <body data-ng-app="{% if ind_module_exists -%}{{ resolve(request.path_info).app_name }}{% else %}common{% endif %}">
   <nav class="main-nav" data-ng-controller="navBarCtrl"
     data-ng-init="enableTransparentMenu = {{ transparentMenuEnabled }}"
-    data-ng-class="navBarCls" data-layout="row">
+    data-ng-class="navBarCls" data-hide-xs data-hide-sm data-layout="row">
     <ul>
       <li class="brand"><a href="{{ url('home:index') }}">{{ settings.TITLE }}</a></li>
       {% for menu_item in menu -%}
@@ -72,10 +72,11 @@
         </a>
       </li>
       {%- endfor %}
-      <li><a href="#">About</a></li>
     </ul>
     <div class="sep" data-flex></div>
-    test
+    <ul>
+      <li><a href="{{ url('admin:login') }}">Login</a></li>
+    </ul>
   </nav>
   {% block body %}{%endblock -%}
   <md-fab-speed-dial class="md-scale" data-md-direction="up" data-hide-gt-sm>
@@ -88,6 +89,10 @@
       <a href="{{ url('home:index') }}" data-md-button class="md-fab md-raised md-mini">
         <md-tooltip data-md-direction="left">{{ _("home") }}</md-tooltip>
         <md-icon class="material-icons">home</md-icon>
+      </a>
+      <a href="{{ url('admin:login') }}" data-md-button class="md-fab md-raised md-mini">
+        <md-tooltip data-md-direction="left">{{ _("Login") }}</md-tooltip>
+        <md-icon class="material-icons">lock_outline</md-icon>
       </a>
       {% for menu_item in menu -%}
       <a href="{{ menu_item.url }}" data-md-button class="md-fab md-raised md-mini"
@@ -124,7 +129,9 @@
       TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
       SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     ")}}</p>
-    <p class="text-right nospace"><small><a href="{{ url('legal:index') }}">{{_("Legal")}}</a></small></p>
+    <p class="legal-link nospace">
+      <small><a href="{{ url('legal:index') }}">{{_("Legal")}}</a></small>
+    </p>
   </footer>
 </body>
 </html>

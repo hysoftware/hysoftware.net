@@ -1,9 +1,6 @@
 .text-center {
   text-align: center;
 }
-.text-right{
-  text-align: right;
-}
 .vcenter {
   position: relative;
   transform: translateY(-50%);
@@ -42,4 +39,13 @@ a[data-md-button].md-fab {
     top: 50%;
     left: 50%;
   }
+}
+
+.legal-link {
+  $transitionDuration: 500ms;
+  text-align: right;
+}
+
+@media only screen and (max-width: 959px) {
+  .legal-link {text-align: left;}
 }
