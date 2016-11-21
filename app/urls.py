@@ -22,5 +22,6 @@ urlpatterns = [
     url(r'^c/', include('app.common')),
     url(r'^l/', include('app.legal')),
     url(r'^s/', admin.site.urls),
+    url(r"^u/", include('app.user')),
     url(r'^', include('app.home'))
 ] + static.static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
