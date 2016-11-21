@@ -38,6 +38,7 @@ modules =
   "common": "app/common"
   "home": "app/home"
   "legal": "app/legal"
+  "user": "app/user"
 
 for name, modPath of modules
   do (name, modPath) ->
