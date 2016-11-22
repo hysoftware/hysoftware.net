@@ -13,8 +13,8 @@ from .models import UserInfo, GithubProfile, TaskLog
 def fetch_github_profile(user_info_id=None):
     """Fetch user profile from github."""
     users_info_query = UserInfo.objects
-    if user_info_id:
-        users_info_query.filter(id=user_info_id)
+    if user_info_id is not None:
+        users_info_query = users_info_query.filter(id=user_info_id)
 
     for info in users_info_query.all():
         resp = requests.get(

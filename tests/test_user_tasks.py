@@ -98,15 +98,26 @@ class GithubFetchTaskTest(TestCase):
                 timeout=(10.0, 10.0)
             ) for model in self.models
         ), any_order=True)
-        for github in [
+        github_all = GithubProfile.objects.all()
+        githubs = [
             {
-                field.name: getattr(info.github_profile, field.name)
-                for field in info.github_profile._meta.get_fields()
-            } for info in self.models if hasattr(self.models, "github_profile")
-        ]:
-            self.assertDictContainsSubset(
-                github, get.return_value.json.return_value
-            )
+                field.name: getattr(github, field.name)
+                for field in github._meta.get_fields()
+                if field.name not in ("user_info", "id")
+            } for github in github_all
+        ]
+        results = [
+            {
+                key: value
+                for (key, value) in self.server_resp.items()
+                if key in ("avatar_url", "html_url", "bio")
+            }
+        ] * 2
+        self.assertListEqual(githubs, results)
+        self.assertListEqual(
+            [github.user_info for github in github_all],
+            self.models
+        )
 
     @patch("requests.get")
     def test_task_not_found(self, get):
@@ -140,6 +151,9 @@ class GithubFetchTaskTest(TestCase):
     def test_github_individual_update(self, objects, get):
         """The task should update only the corresponding profile."""
         get.return_value.json.return_value = self.server_resp
+        objects.filter.return_value.all.return_value = [
+            self.models[0]
+        ]
         fetch_github_profile(self.models[0].id)
         objects.filter.assert_called_once_with(id=self.models[0].id)
         objects.filter.return_value.all.assert_called_once_with()
@@ -148,10 +162,17 @@ class GithubFetchTaskTest(TestCase):
             headers={"Accept": "application/vnd.github.v3+json"},
             timeout=(10.0, 10.0)
         )
-        self.assertDictContainsSubset({
+        obj_result = {
             field.name: getattr(self.models[0].github_profile, field.name)
             for field in self.models[0].github_profile._meta.get_fields()
-        }, get.return_value.json.return_value)
+            if field.name not in ("id", "user_info")
+        }
+        correct_data = {
+            key: value
+            for (key, value) in self.server_resp.items()
+            if key in ("avatar_url", "html_url", "bio")
+        }
+        self.assertDictEqual(obj_result, correct_data)
         self.assertFalse(any([
             hasattr(info, "github_profile") for info in self.models[1:]
         ]))
