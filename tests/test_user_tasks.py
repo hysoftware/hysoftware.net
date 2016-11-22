@@ -28,25 +28,13 @@ class GithubFetchTaskTest(TestCase):
                 last_name="Example %d" % count
             ) for count in range(3)
         ]
-        self.models = UserInfo.objects.bulk_create([
-            UserInfo(user=self.users[0], github="hiroaki-yamamoto"),
-            UserInfo(user=self.users[1], github="octocat")
-        ])
-
-    def tearDown(self):
-        """Teardown."""
-        from django.contrib.auth import get_user_model
-        get_user_model().objects.all().delete()
-        UserInfo.objects.all().delete()
-
-    def task_name_check(self):
-        """The name of the task should be 'user.github.fetch'."""
-        self.assertEqual(fetch_github_profile.name, "user.github.fetch")
-
-    @patch("requests.get")
-    def test_task_normal_call(self, get):
-        """All users who have github should update github profile."""
-        get.return_value.json.return_value = {
+        self.models = [
+            UserInfo.objects.create(
+                user=self.users[0], github="hiroaki-yamamoto"
+            ),
+            UserInfo.objects.create(user=self.users[1], github="octocat")
+        ]
+        self.server_resp = {
             "login": "octocat",
             "id": 1,
             "avatar_url": "https://github.com/images/error/octocat_happy.gif",
@@ -86,6 +74,21 @@ class GithubFetchTaskTest(TestCase):
             "created_at": "2008-01-14T04:33:35Z",
             "updated_at": "2008-01-14T04:33:35Z"
         }
+
+    def tearDown(self):
+        """Teardown."""
+        from django.contrib.auth import get_user_model
+        get_user_model().objects.all().delete()
+        UserInfo.objects.all().delete()
+
+    def task_name_check(self):
+        """The name of the task should be 'user.github.fetch'."""
+        self.assertEqual(fetch_github_profile.name, "user.github.fetch")
+
+    @patch("requests.get")
+    def test_task_normal_call(self, get):
+        """All users who have github should update github profile."""
+        get.return_value.json.return_value = self.server_resp
         fetch_github_profile()
         self.assertEqual(get.call_count, 2)
         get.assert_has_calls((
@@ -131,3 +134,24 @@ class GithubFetchTaskTest(TestCase):
             ) % (resp.status_code, resp.text, info.github)
             for info in self.models
         ], [item.message for item in logs])
+
+    @patch("requests.get")
+    @patch("app.user.tasks.UserInfo.objects")
+    def test_github_individual_update(self, objects, get):
+        """The task should update only the corresponding profile."""
+        get.return_value.json.return_value = self.server_resp
+        fetch_github_profile(self.models[0].id)
+        objects.filter.assert_called_once_with(id=self.models[0].id)
+        objects.filter.return_value.all.assert_called_once_with()
+        get.assert_called_once_with(
+            "https://api.github.com/users/%s" % self.models[0].github,
+            headers={"Accept": "application/vnd.github.v3+json"},
+            timeout=(10.0, 10.0)
+        )
+        self.assertDictContainsSubset({
+            field.name: getattr(self.models[0].github_profile, field.name)
+            for field in self.models[0].github_profile._meta.get_fields()
+        }, get.return_value.json.return_value)
+        self.assertFalse(any([
+            hasattr(info, "github_profile") for info in self.models[1:]
+        ]))

@@ -10,9 +10,11 @@ from .models import UserInfo, GithubProfile, TaskLog
 
 
 @current_app.task(name="user.github.fetch")
-def fetch_github_profile():
+def fetch_github_profile(user_info_id=None):
     """Fetch user profile from github."""
     users_info_query = UserInfo.objects
+    if user_info_id:
+        users_info_query.filter(id=user_info_id)
 
     for info in users_info_query.all():
         resp = requests.get(
