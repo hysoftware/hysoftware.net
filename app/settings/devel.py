@@ -3,6 +3,7 @@
 
 """Configuration for development."""
 
+from datetime import timedelta
 import os
 from cbsettings import DjangoDefaults
 
@@ -103,3 +104,14 @@ class DevelConfig(DjangoDefaults):
             BASE_DIR, "uploads"
         )
     MEDIA_URL = "/uploads/"
+    CELERY_BROKER_URL = "redis://"
+    CELERY_RESULT_BACKEND = "redis://"
+    CELERY_RESULT_SERIALIZER = "msgpack"
+    CELERY_ACCEPT_CONTENT = ("msgpack", )
+    CELERY_TASK_SERIALIZER = "msgpack"
+    CELERY_BEAT_SCHEDULE = {
+        "refresh_github_profile": {
+            "task": "user.github.fetch",
+            "schedule": timedelta(hours=12)
+        }
+    }
