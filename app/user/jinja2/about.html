@@ -37,12 +37,59 @@
       </p>
     </section>
   </section>
-  <section class="text-center">
+  <section class="text-center container-large">
     <header>
       <h2>{{ _n("Who am I?", "Who are we?", users_info_count) }}</h2>
     </header>
-    <div data-layout="column">
-    </div>
+    {% for row in range(((users_info_count / 4) + 1)|int) -%}
+      <div class="member-row" data-layout="row">
+        <div data-flex></div>
+        {% for info in view.users_info.all()[row * 4: 4 * (row + 1)] -%}
+        <section data-flex="25" class="member-card">
+          <header>
+            <img class="github-avatar"
+              src="{{ info.github_profile.avatar_url }}"
+              alt="Avatar at Github">
+            <h4>{{ info.user.first_name }} {{ info.user.last_name }}</h4>
+          </header>
+          <p class="social-links text-center">
+            <a href="{{ info.github_profile.html_url }}" target="_blank">
+              <i class="ion-social-github"></i>
+              <md-tooltip data-md-direction="bottom">
+                {{_("View {}'s profile at Github").format(info.user.first_name)}}
+              </md-tooltip>
+            </a>
+            {% if info.linkedin -%}
+            <a href="{{ info.linkedin }}" target="_blank">
+              <md-tooltip data-md-direction="bottom">
+                {{_("View {}'s profile at Linkedin").format(info.user.first_name)}}
+              </md-tooltip>
+              <i class="ion-social-linkedin"></i>
+            </a>
+            {% endif -%}
+            {% if info.angel_co -%}
+            <a href="https://angel.co/{{ info.angel_co }}" target="_blank">
+              <md-tooltip data-md-direction="bottom">
+                {{_("View {}'s profile at AngelList").format(info.user.first_name)}}
+              </md-tooltip> <i class="socicon-angellist"></i>
+            </a>
+            {% endif %}
+            {% if info.hacker_rank -%}
+            <a href="https://hackerrank.com/{{ info.hacker_rank }}" target="_blank">
+              <md-tooltip data-md-direction="bottom">
+                {{_("View {}'s profile at HackerRank").format(info.user.first_name)}}
+              </md-tooltip> H
+            </a>
+            {%- endif %}
+          </p>
+          {% if info.github_profile.bio -%}
+          <p>{{ info.github_profile.bio }}</p>
+          {%- endif %}
+        </section>
+        {% endfor %}
+        <div data-flex></div>
+      </div>
+    {%- endfor %}
   </section>
 </section>
 {% endblock %}

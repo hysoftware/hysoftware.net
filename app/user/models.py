@@ -20,6 +20,13 @@ class UserInfo(db.Model):
 
     user = db.OneToOneField(settings.AUTH_USER_MODEL)
     github = db.CharField(max_length=39, unique=True, db_index=True)
+    linkedin = db.URLField(unique=True, db_index=True, blank=True, null=True)
+    angel_co = db.CharField(
+        max_length=80, unique=True, db_index=True, blank=True, null=True
+    )
+    hacker_rank = db.CharField(
+        max_length=17, unique=True, db_index=True, blank=True, null=True
+    )
 
 
 class GithubProfile(db.Model):
@@ -28,7 +35,7 @@ class GithubProfile(db.Model):
     user_info = db.OneToOneField(UserInfo, related_name="github_profile")
     avatar_url = db.URLField()
     html_url = db.URLField()
-    bio = db.CharField(max_length=160)
+    bio = db.CharField(max_length=160, blank=True, null=True)
 
 
 class TaskLog(db.Model):

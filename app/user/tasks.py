@@ -25,7 +25,7 @@ def fetch_github_profile(user_info_id=None):
         try:
             resp.raise_for_status()
             GithubProfile.objects.update_or_create(
-                user_info=info, **{
+                user_info=info, defaults={
                     key: value
                     for (key, value) in resp.json().items()
                     if key in [
