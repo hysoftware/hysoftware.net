@@ -173,6 +173,64 @@ class GithubFetchTaskTest(TestCase):
             if key in ("avatar_url", "html_url", "bio")
         }
         self.assertDictEqual(obj_result, correct_data)
-        self.assertFalse(any([
-            hasattr(info, "github_profile") for info in self.models[1:]
-        ]))
+        if type(self) is GithubFetchTaskTest:
+            self.assertFalse(any([
+                hasattr(info, "github_profile") for info in self.models[1:]
+            ]))
+        else:
+            self.assertListEqual(
+                self.example_data[1:],
+                [
+                    {
+                        field.name: getattr(model.github_profile, field.name)
+                        for field in model.github_profile._meta.get_fields()
+                        if field.name != "id"
+                    } for model in self.models[1:]
+                ]
+            )
+
+
+class GithubProfileUpdateTest(GithubFetchTaskTest):
+    """Github Profile Update test."""
+
+    def setUp(self):
+        """Setup."""
+        super(GithubProfileUpdateTest, self).setUp()
+        self.example_data = []
+        for info in self.models:
+            example_data = {
+                "user_info": info,
+                "avatar_url": "http://example.com",
+                "html_url": "http://examle.com",
+                "bio": "test"
+            }
+            self.example_data.append(example_data)
+            GithubProfile.objects.create(**example_data)
+
+    @patch("requests.get")
+    @patch("app.user.tasks.GithubProfile.objects.update_or_create")
+    def test_task_not_found(self, update_or_create, get):
+        """When requests get error, log it."""
+        resp = MagicMock()
+        resp.status_code = 502
+        resp.text = "The service is under mentainance."
+        get.return_value.raise_for_status.side_effect = requests.HTTPError(
+            response=resp
+        )
+        fetch_github_profile()
+        update_or_create.assert_not_called()
+        self.assertEqual(TaskLog.objects.count(), 2)
+        logs = TaskLog.objects.all()
+        self.assertListEqual([
+            "Github Profile Fetch Failed", "Github Profile Fetch Failed"
+        ], [item.title for item in logs])
+        self.assertListEqual(
+            [self.users[0], self.users[1]], [item.user for item in logs]
+        )
+        self.assertListEqual([
+            (
+                "Fetching github profile failed because of "
+                "this error:\ncode:%d\nPayload: %s\nGithubID: %s"
+            ) % (resp.status_code, resp.text, info.github)
+            for info in self.models
+        ], [item.message for item in logs])

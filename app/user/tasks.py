@@ -34,6 +34,7 @@ def fetch_github_profile(user_info_id=None):
                     ]
                 }
             )
+            info.github_profile.refresh_from_db()
         except requests.HTTPError as e:
             TaskLog.objects.create(
                 user=info.user, title="Github Profile Fetch Failed",
