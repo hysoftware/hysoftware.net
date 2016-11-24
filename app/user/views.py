@@ -19,6 +19,12 @@ class AboutView(TemplateView):
         return UserInfo.objects
 
 
+class MemberDialog(TemplateView):
+    """Staff Dialog."""
+
+    template_name = "member_dialog.html"
+
+
 class CSSView(TemplateView):
     """CSS view."""
 

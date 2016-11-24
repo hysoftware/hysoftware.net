@@ -3,6 +3,8 @@
 
 """Database models for user module."""
 
+import uuid
+
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _lz
 
@@ -18,6 +20,7 @@ class UserInfo(db.Model):
         verbose_name = _lz("User Info")
         verbose_name_plural = _lz("User Info")
 
+    id = db.UUIDField(primary_key=True, default=uuid.uuid4)
     user = db.OneToOneField(settings.AUTH_USER_MODEL)
     github = db.CharField(max_length=39, unique=True, db_index=True)
     linkedin = db.URLField(unique=True, db_index=True, blank=True, null=True)

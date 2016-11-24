@@ -20,10 +20,13 @@
 }
 .member-card {
   cursor: pointer;
-  transition: box-shadow 500ms;
+  transition: box-shadow 250ms;
   padding: 1rem;
   border-radius: 3px;
   &:hover {
     box-shadow: 4px 4px 1.2rem #212123;
+  }
+  &:active {
+    box-shadow: 1px 1px 1.2rem #212123;
   }
 }

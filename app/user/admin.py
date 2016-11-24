@@ -24,6 +24,7 @@ class UserInfoAdmin(admin.ModelAdmin):
     """User info admin panel."""
 
     list_display = ("user",)
+    readonly_fields = ("id", )
     inlines = (GithubProfileAdminView, )
 
     def save_model(self, req, obj, form, change):

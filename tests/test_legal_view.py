@@ -50,6 +50,7 @@ class CSSViewTest(TemplateViewTestBase, TestCase):
 
 class JSViewTest(TemplateViewTestBase, TestCase):
     """JS view access test."""
+
     template_name = "legal.js"
     endpoint = "legal:js"
     page_url = "/l/js"
