@@ -30,7 +30,7 @@ class UserInfoAdmin(admin.ModelAdmin):
     def save_model(self, req, obj, form, change):
         """Save the model and execute user.github.fetch task."""
         super(UserInfoAdmin, self).save_model(req, obj, form, change)
-        ctask.send_task("user.github.fetch", (obj.id, ))
+        ctask.send_task("user.github.fetch", (str(obj.id), ))
 
 
 @admin.register(TaskLog)

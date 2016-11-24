@@ -1,0 +1,10 @@
+{% extends "dialog_base.html" -%}
+{% block title -%}
+{{ _("{0} {1}").format(
+  view.user_info.user.first_name,
+  view.user_info.user.last_name
+) }}
+{%- endblock %}
+{% block body -%}
+none
+{%- endblock %}

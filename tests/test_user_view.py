@@ -9,7 +9,7 @@ from unittest.mock import patch
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 
-from app.user.views import AboutView, CSSView, MemberDialog
+from app.user.views import AboutView, CSSView, MemberDialog, JSView
 from app.user.models import UserInfo
 from .view_base import TemplateViewTestBase
 
@@ -53,8 +53,14 @@ class MemberPageTest(TemplateViewTestBase, TestCase):
         get_user_model().objects.all().delete()
         UserInfo.objects.all().delete()
 
+    def test_user_info_property(self):
+        """It should return user information."""
+        view = self.view_cls()
+        view.kwargs = {"info_id": str(self.info.id)}
+        self.assertEqual(view.user_info, self.info)
 
-class CSSPagetest(TemplateViewTestBase, TestCase):
+
+class CSSPageTest(TemplateViewTestBase, TestCase):
     """CSS view test."""
 
     endpoint = "user:css"
@@ -62,3 +68,13 @@ class CSSPagetest(TemplateViewTestBase, TestCase):
     view_cls = CSSView
     template_name = "user.css"
     content_type = "text/css"
+
+
+class JSPageTest(TemplateViewTestBase, TestCase):
+    """JS view test."""
+
+    endpoint = "user:js"
+    page_url = "/u/js"
+    view_cls = JSView
+    template_name = "user.js"
+    content_type = "application/javascript"

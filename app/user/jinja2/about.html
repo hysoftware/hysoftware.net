@@ -2,7 +2,7 @@
 {% set users_info_count = view.users_info.count() -%}
 {% block title %}{{ _("About") }}{% endblock -%}
 {% block body -%}
-<section class="about">
+<section class="about" data-ng-controller="aboutCtrl">
   <header class="text-center header-about">
     <h1 class="vcenter">{{ _("About") }}</h1>
   </header>
@@ -45,7 +45,8 @@
       <div class="member-row" data-layout="row">
         <div data-flex></div>
         {% for info in view.users_info.all()[row * 4: 4 * (row + 1)] -%}
-        <section data-flex="25" class="member-card">
+        <section data-flex="25" class="member-card"
+          data-ng-click="showStaff('{{ info.id }}')">
           <header>
             <img class="github-avatar"
               src="{{ info.github_profile.avatar_url }}"

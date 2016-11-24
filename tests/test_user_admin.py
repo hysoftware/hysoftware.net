@@ -3,6 +3,7 @@
 
 """User admin tests."""
 
+import uuid
 from unittest.mock import patch, MagicMock
 
 from django.contrib.auth import get_user_model
@@ -29,7 +30,8 @@ class GithubTaskSendTest(TestCase):
     def test_task_send(self, ctask):
         """Celery should send task to fetch github profile."""
         obj = MagicMock()
+        obj.id = uuid.uuid4
         self.admin.save_model(None, obj, None, None)
         ctask.send_task.assert_called_once_with(
-            "user.github.fetch", (obj.id,)
+            "user.github.fetch", (str(obj.id),)
         )
