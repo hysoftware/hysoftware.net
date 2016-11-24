@@ -49,3 +49,12 @@ a[data-md-button].md-fab {
 @media only screen and (max-width: 959px) {
   .legal-link {text-align: left;}
 }
+
+.md-dialog-content {
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+  }
+  header {
+    border-bottom: 1px solid #E0E0E1;
+  }
+}

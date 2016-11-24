@@ -30,3 +30,31 @@
     box-shadow: 1px 1px 1.2rem #212123;
   }
 }
+
+.availability-section {
+  margin: 1rem 0;
+}
+
+.member {
+  .status {
+    display: inline-block;
+    padding: 0 0.5rem;
+    font-weight: 500;
+    border-radius: 4px;
+    &.FL {
+      $color: #558B2F;
+      color: $color;
+      border: 1px solid $color;
+    }
+    &.PT {
+      $color: #FF6F00;
+      color: $color;
+      border: 1px solid $color;
+    }
+    &.NA {
+      $color: #d50000;
+      color: $color;
+      border: 1px solid $color;
+    }
+  }
+}

@@ -46,7 +46,7 @@
         <div data-flex></div>
         {% for info in view.users_info.all()[row * 4: 4 * (row + 1)] -%}
         <section data-flex="25" class="member-card"
-          data-ng-click="showStaff('{{ info.id }}')">
+          data-ng-click="showStaff($event, '{{ info.id }}')">
           <header>
             <img class="github-avatar"
               src="{{ info.github_profile.avatar_url }}"

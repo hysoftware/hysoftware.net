@@ -4,6 +4,7 @@
 """Database models for user module."""
 
 import uuid
+from collections import OrderedDict
 
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _lz
@@ -20,15 +21,24 @@ class UserInfo(db.Model):
         verbose_name = _lz("User Info")
         verbose_name_plural = _lz("User Info")
 
+    availability_choices = OrderedDict((
+        ("FL", _lz("Available for Full-Time and Part-Time position")),
+        ("PT", _lz("Available for Part-Time position only")),
+        ("NA", _lz("Busy"))
+    ))
     id = db.UUIDField(primary_key=True, default=uuid.uuid4)
     user = db.OneToOneField(settings.AUTH_USER_MODEL)
-    github = db.CharField(max_length=39, unique=True, db_index=True)
-    linkedin = db.URLField(unique=True, db_index=True, blank=True, null=True)
+    title = db.CharField(max_length=40, db_index=True)
+    github = db.CharField(max_length=39, unique=True)
+    linkedin = db.URLField(db_index=True, blank=True, null=True)
+    availability = db.CharField(
+        max_length=2, db_index=True, choices=availability_choices.items()
+    )
     angel_co = db.CharField(
-        max_length=80, unique=True, db_index=True, blank=True, null=True
+        max_length=80, db_index=True, blank=True, null=True
     )
     hacker_rank = db.CharField(
-        max_length=17, unique=True, db_index=True, blank=True, null=True
+        max_length=17, db_index=True, blank=True, null=True
     )
 
 
