@@ -1,6 +1,7 @@
 angular.module("common", [
   "ngMaterial"
   "common.factories"
+  "common.ctrls"
 ]).config([
   "$httpProvider", (http) ->
     http.defaults.xsrfCookieName = "csrftoken"

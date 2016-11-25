@@ -29,5 +29,5 @@ angular.module("user.ctrls", [
           "clickOutsideToClose": true
         )
 ]).controller("staffCtrl", [
-  "$scope", (scope) ->
+  "$scope", (scope) -> undefined
 ])

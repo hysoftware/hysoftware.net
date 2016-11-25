@@ -1,9 +1,9 @@
 <md-dialog aria-label="{% block title %}{% endblock %}">
-  <md-toolbar>
+  <md-toolbar data-ng-controller="dialogHeaderController">
     <div class="md-toolbar-tools">
       <h2>{{ self.title() }}</h2>
       <span flex></span>
-      <md-button class="md-icon-button" ng-click="cancel()">
+      <md-button class="md-icon-button" data-ng-click="dialog.cancel()">
         <md-icon class="material-icons" aria-label="Close dialog">close</md-icon>
       </md-button>
     </div>
