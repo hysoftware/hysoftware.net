@@ -3,14 +3,17 @@ angular.module("user.ctrls", [
 ]).controller("aboutCtrl", [
   "$element", "$scope", "$mdDialog", (elem, scope, dialog) ->
     scope.showStaff = (event, staffId) ->
-      socialIcons =  elem[0].querySelector(
+      socialIconsParents =  elem[0].querySelectorAll(
         ".member-card .social-links"
-      ).children
+      )
       underSocial = false
 
-      for socialIcon in socialIcons
-        if socialIcon.contains(event.target) or socialIcon is event.target
-          underSocial = true
+      for socialIcons in socialIconsParents
+        for socialIcon in socialIcons.children
+          if socialIcon.contains(event.target) or socialIcon is event.target
+            underSocial = true
+            break
+        if underSocial
           break
 
       if not underSocial
