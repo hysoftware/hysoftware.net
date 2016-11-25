@@ -24,9 +24,56 @@
   {% if view.user_info.github_profile.bio -%}
   <section class="bio">
     <header>
-      <h3>Biography</h3>
+      <h3>{{_("Biography")}}</h3>
     </header>
     <p>{{ view.user_info.github_profile.bio }}</p>
+  </section>
+  {%- endif %}
+  {% if view.user_info.coding_languages.count() -%}
+  <section class="coding-lang">
+    <header><h3>{{_("Coding Langauges and Frameworks")}}</h3></header>
+    <md-tabs data-dynamic-height data-md-border-bottom>
+      {% for coding_lang in view.user_info.coding_languages.all() -%}
+        {%
+          set frameworks = view.user_info.frameworks.filter(
+            languages__name__iexact=coding_lang
+          )
+        -%}
+        <md-tab label="{{ coding_lang.name }}">
+          <md-content class="md-padding">
+            <h3>{{_("Frameworks / Libraries / Skills")}}</h3>
+            {% if frameworks.count() -%}
+              {% for row in range(((frameworks.count() / 4) + 1)|int) -%}
+                <div data-layout="row">
+                  <div data-flex></div>
+                  {% for fw in frameworks.all()[row * 4: 4 * (row + 1)] -%}
+                    <section data-flex="25" class="text-center fwcard">
+                      <header class="framework-header">
+                        <h4 class="framework-icon">
+                          {% if fw.icon_cls -%}
+                          <i class="{{ fw.icon_cls }}">{{ fw.icon_body or "" }}</i>
+                          {%- else -%}
+                          {{ fw.name[0] }}
+                          {%- endif %}
+                        </h4>
+                        <p>{{ fw.name }}</p>
+                      </header>
+                      <p>{{ fw.description }}</p>
+                    </section>
+                  {% endfor %}
+                  <div data-flex></div>
+                </div>
+              {%- endfor %}
+            {%- else %}
+              <p>{{_(
+                "Oops! He can use the language, but he haven't "
+                "used any frameworks."
+              )}}</p>
+            {% endif %}
+          </md-content>
+        </md-tab>
+      {%- endfor %}
+    </md-tabs>
   </section>
   {%- endif %}
 </section>

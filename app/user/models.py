@@ -41,6 +41,13 @@ class UserInfo(db.Model):
         max_length=17, db_index=True, blank=True, null=True
     )
 
+    def __str__(self):
+        """Represent the model."""
+        return ("{} {} <{}, Github ID: {}>").format(
+            self.user.first_name, self.user.last_name,
+            self.user.email, self.github
+        )
+
 
 class GithubProfile(db.Model):
     """Github profile."""
@@ -49,6 +56,29 @@ class GithubProfile(db.Model):
     avatar_url = db.URLField()
     html_url = db.URLField()
     bio = db.CharField(max_length=160, blank=True, null=True)
+
+
+class CodingLanguage(db.Model):
+    """Coding language."""
+
+    name = db.CharField(max_length=20, primary_key=True)
+    users_info = db.ManyToManyField(UserInfo, related_name="coding_languages")
+
+    def __str__(self):
+        """Represent the model."""
+        return self.name
+
+
+class Framework(db.Model):
+    """Framework / Langage."""
+
+    name = db.CharField(max_length=20, primary_key=True)
+    users_info = db.ManyToManyField(UserInfo, related_name="frameworks")
+    languages = db.ManyToManyField(CodingLanguage, related_name="frameworks")
+    icon_cls = db.CharField(max_length=20, blank=True, null=True)
+    icon_body = db.CharField(max_length=20, blank=True, null=True)
+    url = db.URLField()
+    description = db.TextField()
 
 
 class TaskLog(db.Model):

@@ -5,7 +5,7 @@
 
 from celery import current_app as ctask
 from django.contrib import admin
-from .models import UserInfo, TaskLog, GithubProfile
+from .models import UserInfo, TaskLog, GithubProfile, CodingLanguage, Framework
 
 
 class GithubProfileAdminView(admin.TabularInline):
@@ -17,6 +17,31 @@ class GithubProfileAdminView(admin.TabularInline):
 
     model = GithubProfile
     readonly_fields = ("avatar_url", "html_url", "bio")
+
+
+@admin.register(CodingLanguage)
+class CodingLanguageAdmin(admin.ModelAdmin):
+    """Coding langauge admin panel."""
+
+    list_display = ("name", )
+    search_fields = (
+        "name", "users_info__user__email", "users_info__user__first_name",
+        "users_info__user__last_name"
+    )
+
+
+@admin.register(Framework)
+class FrameowrkAdmin(admin.ModelAdmin):
+    """Framework admin."""
+
+    list_display = (
+        "name", "icon_cls", "icon_body", "url", "description"
+    )
+    search_fields = list_display + (
+        "languages__name",
+        "users_info__user__email", "users_info__user__first_name",
+        "users_info__user__last_name"
+    )
 
 
 @admin.register(UserInfo)
