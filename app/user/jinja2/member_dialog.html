@@ -8,7 +8,7 @@
 {{ full_name }}
 {%- endblock %}
 {% block body -%}
-<section class="member md-dialog-content">
+<section class="member md-dialog-content" data-ng-controller="staffCtrl">
   <header>
     <h2>{{ full_name }}</h2>
     <p>{{ view.user_info.title }}</p>
@@ -55,7 +55,11 @@
                 <div data-layout="row">
                   <div data-flex></div>
                   {% for fw in frameworks.all()[row * 4: 4 * (row + 1)] -%}
-                    <section data-flex="25" class="text-center fwcard">
+                    <section data-flex="25" class="text-center fwcard"
+                      data-ng-click="open('{{ fw.url }}')">
+                      <md-tooltip data-md-direction="top">
+                        Open {{ fw.name }} website ({{ fw.url }})
+                      </md-tooltip>
                       <header class="framework-header">
                         <h4 class="framework-icon">
                           {% if fw.icon_cls -%}
