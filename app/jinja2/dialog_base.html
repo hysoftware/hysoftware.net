@@ -1,5 +1,6 @@
-<md-dialog aria-label="{% block title %}{% endblock %}">
-  <md-toolbar data-ng-controller="dialogHeaderController">
+<md-dialog aria-label="{% block title %}{% endblock %}"
+  data-ng-controller="dialogController">
+  <md-toolbar>
     <div class="md-toolbar-tools">
       <h2>{{ self.title() }}</h2>
       <span flex></span>

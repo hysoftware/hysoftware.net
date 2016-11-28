@@ -49,6 +49,18 @@ class UserInfo(db.Model):
         )
 
 
+class Hobby(db.Model):
+    """Hobby."""
+
+    class Meta(object):
+        """Metaclass."""
+
+        verbose_name_plural = _lz("Hobbies")
+
+    user = db.ForeignKey(UserInfo, db_index=True, related_name="hobbies")
+    hobby = db.CharField(max_length=140, db_index=True)
+
+
 class GithubProfile(db.Model):
     """Github profile."""
 

@@ -1,6 +1,6 @@
 angular.module("common.ctrls", [
   "ngMaterial"
-]).controller("dialogHeaderController", [
+]).controller("dialogController", [
   "$scope", "$mdDialog", (scope, dialog) ->
     scope.dialog = dialog
 ])

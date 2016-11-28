@@ -5,7 +5,10 @@
 
 from celery import current_app as ctask
 from django.contrib import admin
-from .models import UserInfo, TaskLog, GithubProfile, CodingLanguage, Framework
+from .models import (
+    UserInfo, TaskLog, GithubProfile, CodingLanguage, Framework,
+    Hobby
+)
 
 
 class GithubProfileAdminView(admin.TabularInline):
@@ -44,13 +47,19 @@ class FrameowrkAdmin(admin.ModelAdmin):
     )
 
 
+class HobbyPanel(admin.TabularInline):
+    """Member's hobby."""
+
+    model = Hobby
+
+
 @admin.register(UserInfo)
 class UserInfoAdmin(admin.ModelAdmin):
     """User info admin panel."""
 
     list_display = ("user",)
     readonly_fields = ("id", )
-    inlines = (GithubProfileAdminView, )
+    inlines = (GithubProfileAdminView, HobbyPanel)
 
     def save_model(self, req, obj, form, change):
         """Save the model and execute user.github.fetch task."""
