@@ -93,6 +93,21 @@ class Framework(db.Model):
     description = db.TextField()
 
 
+class Inbox(db.Model):
+    """Inbox model."""
+
+    user = db.ForeignKey(UserInfo, db_index=True)
+    post_time = db.DateTimeField(auto_now_add=True, db_index=True)
+    company_name = db.CharField(
+        max_length=50, blank=True, null=True, db_index=True
+    )
+    primary_name = db.CharField(
+        max_length=100, db_index=True, verbose_name=_lz("Your Name")
+    )
+    email = db.EmailField(db_index=True)
+    message = db.TextField()
+
+
 class TaskLog(db.Model):
     """Celery task logs."""
 
