@@ -32,6 +32,24 @@ class MemberDialog(TemplateView):
         return get_object_or_404(UserInfo, id=self.kwargs["info_id"])
 
 
+class ContactView(TemplateView):
+    """Contact view."""
+
+    template_name = "contact.html"
+
+    @cached_property
+    def user_info(self):
+        """Return the user information."""
+        from .models import UserInfo
+        return get_object_or_404(UserInfo, id=self.kwargs["info_id"])
+
+    @cached_property
+    def users_info(self):
+        """Return UserInfo.objects."""
+        from .models import UserInfo
+        return UserInfo.objects
+
+
 class CSSView(TemplateView):
     """CSS view."""
 

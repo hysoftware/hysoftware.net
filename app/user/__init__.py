@@ -6,7 +6,7 @@
 
 from django.conf.urls import url
 from ..common.utils import gen_uuid_pattern
-from .views import AboutView, CSSView, MemberDialog, JSView
+from .views import AboutView, CSSView, MemberDialog, JSView, ContactView
 
 
 app_name = "user"
@@ -18,5 +18,9 @@ urlpatterns = (
     url(
         r"^staff/" + gen_uuid_pattern("info_id") + r"$",
         MemberDialog.as_view(), name="staff"
+    ),
+    url(
+        r"^contact/" + gen_uuid_pattern("info_id") + r"?$",
+        ContactView.as_view(), name="contact"
     )
 )

@@ -1,0 +1,7 @@
+{% extends "base.html" -%}
+{% set user_info = view.user_info if view.kwargs.info_id else None -%}
+{% block title %}{{ _("Contact") }}{% endblock -%}
+{% block body %}
+<section class="contactForm">
+</section>
+{%- endblock %}
