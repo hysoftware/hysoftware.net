@@ -79,38 +79,3 @@ class TemplateViewTestBase(URLAssignmentTestBase):
             self.view_cls.content_type,
             getattr(self, "content_type", None)
         )
-
-
-# class AssetTestBase(object):
-#     """
-#     Third party asset access test base.
-#
-#     Required Attribute:
-#         page_url (required): The url associated with the endpoint.
-#         object_get_patch_module (required):
-#             The module path of get_object_or_404.
-#         filename (required): File name endpoint of ThirdPartyAssets.
-#         content_type (required): The content type.
-#     """
-#
-#     def __init__(self, *args, **kwargs):
-#         """Init the class."""
-#         self.request = RequestFactory().get(self.page_url)
-#         if not getattr(self, "view", None):
-#             self.view = self.view_cls.as_view()
-#         super(AssetTestBase, self).__init__(*args, **kwargs)
-#
-#     def test_get(self):
-#         """The content should be rendered."""
-#         with patch(self.object_get_patch_module) as objects:
-#             objects.return_value.image.read.return_value = "Test"
-#             result = self.view(self.request)
-#             objects.assert_called_once_with(
-#                 ThirdPartyAssets, filename=self.filename
-#             )
-#         self.assertEqual(result.status_code, 200)
-#         self.assertEqual(result["Content-Type"], self.content_type)
-#         self.assertEqual(
-#             result.content.decode("utf-8"),
-#             objects.return_value.image.read.return_value
-#         )
