@@ -1,13 +1,6 @@
 .header-about {
-  height: 150px;
-  background:
-    url(" {{ url('common:assets', kwargs={'filename': 'about'}) }} ") no-repeat;
+  background: url(" {{ url('common:assets', kwargs={'filename': 'about'}) }} ");
   background-position: 0% 50%;
-  background-size: cover;
-  h1, h2, h3, h4, h5, h6, p {
-    margin: 0;
-    padding: 0;
-    color: #E8F5E9;
-    text-shadow: 2px 2px 4px #000001;
-  }
+  color: #E8F5E9;
+  text-shadow: 2px 2px 4px #212122;
 }

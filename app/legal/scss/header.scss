@@ -1,13 +1,5 @@
 .header-legal {
-  position: relative;
-  height: 150px;
-  background:
-    url("{{ url( 'common:assets', kwargs={'filename': 'legal'} ) }}")
-    no-repeat;
-  background-size: cover;
-  h1, h2, h3, h4, h5, h6 {
-    margin: 0;
-  }
+  background: url("{{ url( 'common:assets', kwargs={'filename': 'legal'} ) }}");
   color: #EFEBE9;
   text-shadow: 2px 2px 2px #212122;
   .filter {
