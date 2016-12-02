@@ -58,7 +58,7 @@ g.task "django.test", ["python.mentain"], ->
     )
   ).then(
     -> toolbox.virtualenv(
-      "DJANGO_SETTINGS_FACTORY='app.settings.TestConfig'
+      "DJANGO_SETTINGS_FACTORY='app.settings.testing.TestConfig'
        RECAPTCHA_TESTING='True'
        coverage run --branch --omit '*/migrations/*'
        --source=app -- manage.py test"

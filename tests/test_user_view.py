@@ -4,10 +4,11 @@
 """User view tests."""
 
 import uuid
+import json
 from unittest.mock import patch
 
 from django.contrib.auth import get_user_model
-from django.test import TestCase
+from django.test import TestCase, RequestFactory
 
 from app.user.views import (
     AboutView, CSSView, MemberDialog, JSView, ContactView
@@ -87,6 +88,31 @@ class ContactPageTest(TemplateViewTestBase, TestCase):
         view = self.view_cls()
         view.kwargs = {"info_id": str(self.info.id)}
         self.assertEqual(view.user_info, self.info)
+
+    @patch("app.user.forms.ContactForm")
+    def test_form_get(self, form):
+        """It should return view.info."""
+        view = self.view_cls()
+        view.request = self.request
+        self.assertIs(view.form, form.return_value)
+        form.assert_called_once_with()
+
+    @patch("app.user.forms.ContactForm")
+    def test_form_post(self, form):
+        """It should return view.info."""
+        body = {
+            "company_name": "Test Corp",
+            "primary_name": "Test Name",
+            "email": "test@example.com",
+            "message": "This is a test",
+            "recaptcha_response_field": "PASSED"
+        }
+        view = self.view_cls()
+        view.request = RequestFactory().post(
+            self.page_url, json.dumps(body), content_type="applicatoin/json"
+        )
+        self.assertIs(view.form, form.return_value)
+        form.assert_called_once_with(body)
 
 
 class ContactPageWithoutInfoIDTest(TemplateViewTestBase, TestCase):

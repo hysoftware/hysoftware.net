@@ -5,6 +5,7 @@
 
 from django import forms as forms
 from .models import Inbox
+from captcha.fields import ReCaptchaField
 
 
 class ContactForm(forms.ModelForm):
@@ -15,3 +16,5 @@ class ContactForm(forms.ModelForm):
 
         model = Inbox
         exclude = ("user", "post_time")
+
+    nobot = ReCaptchaField()

@@ -115,3 +115,7 @@ class DevelConfig(DjangoDefaults):
             "schedule": timedelta(hours=12)
         }
     }
+
+    RECAPTCHA_PUBLIC_KEY = "6Lc2dSETAAAAAI-VoBJQwjoCS88gmoNhXpcT-Pht"
+    RECAPTCHA_PRIVATE_KEY = "MyRecaptchaPrivateKey456"
+    NOCAPTCHA = True

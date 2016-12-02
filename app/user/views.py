@@ -3,6 +3,8 @@
 
 """About member view."""
 
+import json
+
 from django.shortcuts import get_object_or_404
 from django.views.generic import TemplateView
 from django.utils.functional import cached_property
@@ -48,6 +50,14 @@ class ContactView(TemplateView):
         """Return UserInfo.objects."""
         from .models import UserInfo
         return UserInfo.objects
+
+    @cached_property
+    def form(self):
+        """Return contact form."""
+        from .forms import ContactForm
+        return ContactForm(json.loads(
+            self.request.body.decode("utf-8")
+        )) if self.request.body else ContactForm()
 
 
 class CSSView(TemplateView):
