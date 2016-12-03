@@ -8,6 +8,7 @@ from .models import Inbox
 from captcha.fields import ReCaptchaField
 
 from django_nghelp.forms import AngularForm
+from django_nghelp.widgets import MDSelect
 
 
 class ContactForm(AngularForm, forms.ModelForm):
@@ -18,8 +19,12 @@ class ContactForm(AngularForm, forms.ModelForm):
 
         name = "contactForm"
         model = Inbox
-        exclude = ("user", "post_time")
+        exclude = ("post_time", )
         no_materialize = ("nobot", )
         no_label = ("nobot", )
+
+        widgets = {
+            "user": MDSelect()
+        }
 
     nobot = ReCaptchaField()

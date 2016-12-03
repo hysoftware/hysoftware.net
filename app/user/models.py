@@ -43,9 +43,8 @@ class UserInfo(db.Model):
 
     def __str__(self):
         """Represent the model."""
-        return ("{} {} <{}, Github ID: {}>").format(
-            self.user.first_name, self.user.last_name,
-            self.user.email, self.github
+        return ("{} {} ({})").format(
+            self.user.first_name, self.user.last_name, self.title
         )
 
 

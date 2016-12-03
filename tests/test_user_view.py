@@ -130,6 +130,28 @@ class ContactPageWithoutInfoIDTest(TemplateViewTestBase, TestCase):
         self.assertEqual(view.users_info, objects)
 
 
+class ContactPagePostMethodTest(TemplateViewTestBase, TestCase):
+    """Contact page POST method test."""
+
+    endpoint = "user:contact"
+    template_name = "contact.html"
+    info_id = uuid.uuid4()
+    page_url = ("/u/contact/{}").format(info_id)
+    view_cls = ContactView
+    method = "post"
+    url_kwargs = {"info_id": str(info_id)}
+
+    def setUp(self):
+        """SetUp."""
+        self.user = get_user_model().objects.create_user(
+            username="test", password="test"
+        )
+        self.info = UserInfo.objects.create(
+            id=self.info_id, user=self.user, github="octocat"
+        )
+        self.page_url = ("/u/contact/{}").format(str(self.info.id))
+
+
 class CSSPageTest(TemplateViewTestBase, TestCase):
     """CSS view test."""
 
