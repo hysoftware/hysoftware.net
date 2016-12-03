@@ -27,9 +27,9 @@
   },
   "homepage": "https://github.com/hysoftware/hysoftware.net#readme",
   "devDependencies": {
-    "bower": "^1.7.9",
-    "eslint": "^3.9.1",
-    "eslint-config-google": "^0.7.0",
+    "bower": "^1.8.0",
+    "eslint": "^3.11.1",
+    "eslint-config-google": "^0.7.1",
     "gulp": "^3.9.1",
     "hyamamoto-job-toolbox": "^0.2.6",
     "q": "^1.4.1",

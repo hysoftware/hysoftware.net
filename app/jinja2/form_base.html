@@ -1,0 +1,67 @@
+{% macro error_messages(fld, form) -%}
+<div data-ng-messages="{{ form.Meta.name }}.{{ fld.name }}.$error"
+  data-multiple role="alert" data-md-auto-hide="false">
+  {% if fld.field.required -%}
+  <div data-ng-message="required">{{_("This field is required.")}}</div>
+  {%- endif %}
+  {% if fld.field.widget.input_type == 'email' -%}
+  <div data-ng-message="email">
+    {{_("The value must match email address pattern.")}}
+  </div>
+  {%- endif %}
+  {% for (name, body) in {
+    "max": _("The value must be at most its maximum value: {}"),
+    "maxlength": _("The length of value must be at most {} characters"),
+    "min": _("The value must be at least its minimum value: {}"),
+    "minlength": _("The length value must be at least {} characters"),
+    "pattern": _("The value must match the pattern."),
+  }.items() -%}
+  {% set attr=("data-ng-{}").format(name) -%}
+  {% set ngval = fld.field.widget.attrs.get(("data-ng-{}").format(name)) -%}
+  {% if (name or attr) in fld.field.widget.attrs -%}
+  <div data-ng-message="{{ name }}">
+    {% if ngval -%}
+    {{ body.format(("{{{{ {} }}}}").format(ngval)) }}
+    {%- else -%}
+    {{ body.format(fld.field.widget.attrs[name]) -}}
+    {%- endif %}
+  </div>
+  {% endif %}
+  {%- endfor %}
+</div>
+{%- endmacro %}
+
+{% macro render_field(fld, form, show_label=True, show_err_msg=True) -%}
+  <md-input-container>
+    {% if show_label -%}
+    {{ fld.label_tag() }}
+    {%- endif %}
+    {{ fld }}
+    {% if show_err_msg -%}
+    {{ error_messages(fld, form) -}}
+    {%- endif %}
+  </md-input-container>
+{%- endmacro %}
+
+{% macro render(form) -%}
+  {% for fld in form -%}
+    {% if fld.name in form.Meta.no_materialize -%}
+      <div data-layout="row">
+        {% if fld.name not in form.Meta.no_label -%}
+        <div data-flex>
+          <div data-flex></div>
+          {{ fld.label_tag() }}
+        </div>
+        {%- endif %}
+        <div data-flex>
+          {{ fld }}
+          {{ error_messages(fld, form) -}}
+        </div>
+      </div>
+    {%- else -%}
+      {{
+        render_field(fld, form, show_label=fld.name not in form.Meta.no_label)
+      -}}
+    {%- endif %}
+  {%- endfor %}
+{%- endmacro %}

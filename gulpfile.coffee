@@ -17,8 +17,8 @@ g.task "third_party", ->
   prefix = "app/common/static/third_party"
   files = (path.join(prefix, item) for item in [
     "angular/angular.js"
-    "angular-aria/angular-aria.js"
     "angular-animate/angular-animate.js"
+    "angular-aria/angular-aria.js"
     "angular-messages/angular-messages.js"
     "angular-resource/angular-resource.js"
     "angular-material/angular-material.js"

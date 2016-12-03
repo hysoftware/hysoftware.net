@@ -13,7 +13,7 @@ import cbsettings
 from django.core.wsgi import get_wsgi_application
 
 os.environ.setdefault(
-    "DJANGO_SETTINGS_FACTORY", "app.settings.DevelConfig"
+    "DJANGO_SETTINGS_FACTORY", "app.settings.devel.DevelConfig"
 )
 cbsettings.configure()
 

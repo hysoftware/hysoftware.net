@@ -54,7 +54,8 @@
   {%- endif %}
   {% block script_header %}{% endblock %}
 </head>
-<body data-ng-app="{% if ind_module_exists -%}{{ resolve(request.path_info).app_name }}{% else %}common{% endif %}">
+<body data-ng-cloak
+  data-ng-app="{% if ind_module_exists -%}{{ resolve(request.path_info).app_name }}{% else %}common{% endif %}">
   <nav class="main-nav" data-ng-controller="navBarCtrl"
     data-ng-init="enableTransparentMenu = {{ transparentMenuEnabled }}"
     data-ng-class="navBarCls" data-hide-xs data-hide-sm data-layout="row">

@@ -1,5 +1,6 @@
 angular.module("common", [
   "ngMaterial"
+  "ngMessages"
   "common.factories"
   "common.ctrls"
 ]).config([

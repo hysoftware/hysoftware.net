@@ -1,5 +1,4 @@
 angular.module("user.ctrls", [
-  "ngMaterial"
 ]).controller("aboutCtrl", [
   "$element", "$scope", "$mdDialog", (elem, scope, dialog) ->
     scope.showStaff = (event, staffId) ->
@@ -33,4 +32,7 @@ angular.module("user.ctrls", [
     scope.open = (url) ->
       wind.open url
       return true
+]).controller("contactCtrl", [
+  "$scope", (scope) ->
+    scope.model = {}
 ])

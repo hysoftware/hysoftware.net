@@ -1,10 +1,27 @@
 {% extends "base.html" -%}
+{% import "form_base.html" as form -%}
 {% set user_info = view.user_info if view.kwargs.info_id else None -%}
 {% block title %}{{ _("Contact") }}{% endblock -%}
 {% block body %}
-<section class="contactForm">
+<section class="contactForm" data-ng-controller="contactCtrl">
   <header class="page header text-center contact">
-    <h1 class="vcenter">Contact</h1>
+    <div class="vcenter">
+      <h1 class="vcenter">Contact</h1>
+    </div>
   </header>
+  <p class="text-center">{{_n(
+    (
+      "Please use the below form to contact me. This is just for avoiding Bot,"
+      " and don't worry. I can tell you my email address later."
+    ), (
+      "Please use the below form to contact us. This is just for avoiding Bot,"
+      " and don't worry. we can tell you my email address later."
+    ),
+    view.users_info.count()
+  )}}</p>
+  <form name="{{ view.form.Meta.name }}" class="container"
+    data-ng-submit="send()" novalidate>
+    {{ form.render(view.form) }}
+  </form>
 </section>
 {%- endblock %}

@@ -9,7 +9,7 @@ import cbsettings
 
 if __name__ == "__main__":
     os.environ.setdefault(
-        "DJANGO_SETTINGS_FACTORY", "app.settings.DevelConfig"
+        "DJANGO_SETTINGS_FACTORY", "app.settings.devel.DevelConfig"
     )
     cbsettings.configure()
     try:
