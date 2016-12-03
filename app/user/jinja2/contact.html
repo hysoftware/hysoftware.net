@@ -22,6 +22,10 @@
   <form name="{{ view.form.Meta.name }}" class="container"
     data-ng-submit="send()" novalidate>
     {{ form.render(view.form) }}
+    <div class="text-center">
+      <button data-md-button type="submit" class="md-raised md-primary"
+        data-ng-disabled="sendBtnCap({{ view.form.Meta.name }})">Submit</button>
+    </div>
   </form>
 </section>
 {%- endblock %}
