@@ -95,7 +95,7 @@ class Framework(db.Model):
 class Inbox(db.Model):
     """Inbox model."""
 
-    user = db.ForeignKey(UserInfo, db_index=True)
+    user = db.ForeignKey(UserInfo, verbose_name="To", db_index=True)
     post_time = db.DateTimeField(auto_now_add=True, db_index=True)
     primary_name = db.CharField(
         max_length=100, db_index=True, verbose_name=_lz("Your Name")
