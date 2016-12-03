@@ -93,6 +93,8 @@
 
 {% block footer -%}
   <span data-fle></span>
-  <button data-md-button class="md-raised md-accent">{{_('Contact')}}</button>
+  <a data-md-button class="md-raised md-accent" href="{{
+    url('user:contact', kwargs={'info_id': view.user_info.id})
+  -}}">{{_('Contact')}}</a>
   <button data-md-button data-ng-click="dialog.cancel()">{{_('Close')}}</button>
 {%- endblock %}

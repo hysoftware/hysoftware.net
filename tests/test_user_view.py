@@ -101,6 +101,7 @@ class ContactPageTest(TemplateViewTestBase, TestCase):
     def test_form_post(self, form):
         """It should return view.info."""
         body = {
+            "user": str(self.info_id),
             "company_name": "Test Corp",
             "primary_name": "Test Name",
             "email": "test@example.com",
