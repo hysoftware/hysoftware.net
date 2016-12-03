@@ -94,8 +94,9 @@ class ContactPageTest(TemplateViewTestBase, TestCase):
         """It should return view.info."""
         view = self.view_cls()
         view.request = self.request
+        view.kwargs = self.url_kwargs
         self.assertIs(view.form, form.return_value)
-        form.assert_called_once_with()
+        form.assert_called_once_with(info_id=str(self.info_id))
 
     @patch("app.user.forms.ContactForm")
     def test_form_post(self, form):
@@ -129,6 +130,15 @@ class ContactPageWithoutInfoIDTest(TemplateViewTestBase, TestCase):
         """It should return user information."""
         view = self.view_cls()
         self.assertEqual(view.users_info, objects)
+
+    @patch("app.user.forms.ContactForm")
+    def test_form_get(self, form):
+        """It should return view.info."""
+        view = self.view_cls()
+        view.request = self.request
+        view.kwargs = {"info_id": None}
+        self.assertIs(view.form, form.return_value)
+        form.assert_called_once_with()
 
 
 class ContactPagePostMethodTest(TemplateViewTestBase, TestCase):

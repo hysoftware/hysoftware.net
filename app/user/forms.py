@@ -28,3 +28,10 @@ class ContactForm(AngularForm, forms.ModelForm):
         }
 
     nobot = ReCaptchaField()
+
+    def __init__(self, *args, **kwargs):
+        """Init the instance."""
+        info_id = kwargs.pop("info_id", None)
+        super(ContactForm, self).__init__(*args, **kwargs)
+        print(self.fields["user"].initial)
+        self.fields["user"].initial = info_id

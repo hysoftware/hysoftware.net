@@ -57,7 +57,9 @@ class ContactView(TemplateView):
         from .forms import ContactForm
         return ContactForm(json.loads(
             self.request.body.decode("utf-8")
-        )) if self.request.body else ContactForm()
+        )) if self.request.body else ContactForm(
+            info_id=self.kwargs["info_id"]
+        ) if self.kwargs["info_id"] else ContactForm()
 
 
 class CSSView(TemplateView):
