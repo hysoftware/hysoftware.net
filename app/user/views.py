@@ -5,6 +5,7 @@
 
 import json
 
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404
 from django.views.generic import TemplateView
 from django.utils.functional import cached_property
@@ -60,6 +61,14 @@ class ContactView(TemplateView):
         )) if self.request.body else ContactForm(
             info_id=self.kwargs["info_id"]
         ) if self.kwargs["info_id"] else ContactForm()
+
+    def post(self, req, **kwargs):
+        """Store the message and email to the customer and me."""
+        form = self.form
+        if not form.is_valid():
+            return JsonResponse(form.errors, status=417)
+        form.save()
+        return HttpResponse("", status=200)
 
 
 class CSSView(TemplateView):

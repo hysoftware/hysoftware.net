@@ -3,7 +3,9 @@
 
 """User related forms like ContactForm."""
 
-from django import forms as forms
+from celery import current_app as ctask
+from django import forms
+from django.template import loader
 from .models import Inbox
 from captcha.fields import ReCaptchaField
 
@@ -23,9 +25,7 @@ class ContactForm(AngularForm, forms.ModelForm):
         no_materialize = ("nobot", )
         no_label = ("nobot", )
 
-        widgets = {
-            "user": MDSelect(disable_select=True)
-        }
+        widgets = {"user": MDSelect()}
 
     nobot = ReCaptchaField()
 
@@ -34,3 +34,22 @@ class ContactForm(AngularForm, forms.ModelForm):
         info_id = kwargs.pop("info_id", None)
         super(ContactForm, self).__init__(*args, **kwargs)
         self.fields["user"].initial = info_id
+
+    def save(self):
+        """Save the form."""
+        super(ContactForm, self).save()
+        ctask.send_task(
+            "user.mail", (
+                self.instance.email,
+                loader.get_template("mail/client.html").render(),
+                loader.get_template("mail/client.txt").render()
+            )
+        )
+        if self.instance.user.user.email:
+            ctask.send_task(
+                "user.mail", (
+                    self.instance.user.user.email,
+                    loader.get_template("mail/staff.html").render(),
+                    loader.get_template("mail/staff.txt").render()
+                )
+            )

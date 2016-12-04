@@ -13,7 +13,7 @@ from django.test import TestCase, RequestFactory
 from app.user.views import (
     AboutView, CSSView, MemberDialog, JSView, ContactView
 )
-from app.user.models import UserInfo
+from app.user.models import UserInfo, Inbox
 from .view_base import TemplateViewTestBase
 
 
@@ -107,7 +107,7 @@ class ContactPageTest(TemplateViewTestBase, TestCase):
             "primary_name": "Test Name",
             "email": "test@example.com",
             "message": "This is a test",
-            "recaptcha_response_field": "PASSED"
+            "g-recaptcha-response": "PASSED"
         }
         view = self.view_cls()
         view.request = RequestFactory().post(
@@ -154,6 +154,14 @@ class ContactPagePostMethodTest(TemplateViewTestBase, TestCase):
 
     def setUp(self):
         """SetUp."""
+        self.body = {
+            "user": str(self.info_id),
+            "company_name": "Test Corp",
+            "primary_name": "Test Name",
+            "email": "test@example.com",
+            "message": "This is a test",
+            "g-recaptcha-response": "PASSED"
+        }
         self.user = get_user_model().objects.create_user(
             username="test", password="test"
         )
@@ -161,6 +169,37 @@ class ContactPagePostMethodTest(TemplateViewTestBase, TestCase):
             id=self.info_id, user=self.user, github="octocat"
         )
         self.page_url = ("/u/contact/{}").format(str(self.info.id))
+        self.request = RequestFactory().post(
+            '/u/contact/', data=json.dumps(self.body),
+            content_type="application/json"
+        )
+
+    def tearDown(self):
+        """Teardown."""
+        Inbox.objects.all().delete
+
+    @patch("app.user.forms.ctask")
+    @patch("app.user.forms.loader")
+    def test_post_correct(self, loader, ctask):
+        """Test post method with invalid payload."""
+        result = self.view(self.request)
+        inbox = Inbox.objects.get()
+        self.assertEqual(result.status_code, 200)
+        self.assertEqual(inbox.user, self.info)
+
+    @patch("app.user.forms.ctask")
+    @patch("app.user.forms.loader")
+    def test_post_invalid(self, loader, ctask):
+        """Test post method with invalid payload."""
+        self.body.pop("g-recaptcha-response", None)
+        self.request = RequestFactory().post(
+            '/u/contact/', data=json.dumps(self.body),
+            content_type="application/json"
+        )
+        result = self.view(self.request)
+        content = json.loads(result.content.decode("utf-8"))
+        self.assertEqual(result.status_code, 417)
+        self.assertDictEqual({"nobot": ["This field is required."]}, content)
 
 
 class CSSPageTest(TemplateViewTestBase, TestCase):
