@@ -115,6 +115,12 @@ class DevelConfig(DjangoDefaults):
             "schedule": timedelta(hours=12)
         }
     }
+    MAILGUN_KEY = "key-c0c09ef43a4d3a146d3945828fec775c"
+    MAILGUN_URL = (
+        "https://api.mailgun.net/v3/"
+        "sandboxfb18aceb2a7948219de7080947534455.mailgun.org"
+    )
+    DEFAULT_FROM_EMAIL = "no-reply@hysoftware.net"
 
     RECAPTCHA_PUBLIC_KEY = "6Lc2dSETAAAAAI-VoBJQwjoCS88gmoNhXpcT-Pht"
     RECAPTCHA_PRIVATE_KEY = "MyRecaptchaPrivateKey456"

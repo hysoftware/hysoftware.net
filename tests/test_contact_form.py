@@ -72,12 +72,14 @@ class ContactFormTest(TestCase):
             call(
                 "user.mail", (
                     self.form.instance.email,
+                    "Thanks for your interest!",
                     "client_html", "client_txt"
                 )
             ),
             call(
                 "user.mail", (
                     self.info.user.email,
+                    "Someone is interested in you through hysoftware.net",
                     "staff_html", "staff_txt"
                 )
             )
@@ -133,6 +135,7 @@ class ContactFormWithoutEmailTest(TestCase):
         ctask.send_task.assert_called_once_with(
             "user.mail", (
                 self.form.instance.email,
+                "Thanks for your interest!",
                 "client_html", "client_txt"
             )
         )

@@ -110,7 +110,7 @@ class Inbox(db.Model):
 class TaskLog(db.Model):
     """Celery task logs."""
 
-    user = db.ForeignKey(settings.AUTH_USER_MODEL)
+    user = db.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True)
     log_date = db.DateTimeField(auto_now_add=True)
     title = db.CharField(max_length=250)
     message = db.TextField()

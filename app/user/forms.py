@@ -6,6 +6,7 @@
 from celery import current_app as ctask
 from django import forms
 from django.template import loader
+from django.utils.translation import ugettext as _
 from .models import Inbox
 from captcha.fields import ReCaptchaField
 
@@ -41,6 +42,7 @@ class ContactForm(AngularForm, forms.ModelForm):
         ctask.send_task(
             "user.mail", (
                 self.instance.email,
+                _("Thanks for your interest!"),
                 loader.get_template("mail/client.html").render(),
                 loader.get_template("mail/client.txt").render()
             )
@@ -49,6 +51,7 @@ class ContactForm(AngularForm, forms.ModelForm):
             ctask.send_task(
                 "user.mail", (
                     self.instance.user.user.email,
+                    _("Someone is interested in you through hysoftware.net"),
                     loader.get_template("mail/staff.html").render(),
                     loader.get_template("mail/staff.txt").render()
                 )

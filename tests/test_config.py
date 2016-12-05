@@ -16,7 +16,9 @@ class ProductionConfigTest(TestCase):
         self.environ = {
             "SECRET": "test",
             "RECAPTCHA_PUBLIC_KEY": "recaptcha_test_pubkey",
-            "RECAPTCHA_PRIVATE_KEY": "recaptcha_test_privkey"
+            "RECAPTCHA_PRIVATE_KEY": "recaptcha_test_privkey",
+            "MAILGUN_KEY": "mailgun-key",
+            "MAILGUN_URL": "mailgun-url"
         }
         with patch.dict("os.environ", self.environ):
             from app.settings.public import PublicConfig
@@ -51,3 +53,10 @@ class ProductionConfigTest(TestCase):
             self.conf_p.RECAPTCHA_PRIVATE_KEY,
             self.environ["RECAPTCHA_PRIVATE_KEY"]
         )
+
+    def test_mailgun(self):
+        """Mailgun test."""
+        self.assertNotEqual(self.conf_p.MAILGUN_KEY, self.conf_d.MAILGUN_KEY)
+        self.assertNotEqual(self.conf_p.MAILGUN_URL, self.conf_d.MAILGUN_URL)
+        self.assertEqual(self.conf_p.MAILGUN_KEY, self.environ["MAILGUN_KEY"])
+        self.assertEqual(self.conf_p.MAILGUN_URL, self.environ["MAILGUN_URL"])

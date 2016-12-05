@@ -3,8 +3,11 @@
 
 """User tasks."""
 
+import json
 import requests
 from celery import current_app
+from django.contrib.auth import get_user_model
+from django.conf import settings
 
 from .models import UserInfo, GithubProfile, TaskLog
 
@@ -43,3 +46,40 @@ def fetch_github_profile(user_info_id=None):
                     "this error:\ncode:%d\nPayload: %s\nGithubID: %s"
                 ) % (e.response.status_code, e.response.text, info.github)
             )
+
+
+@current_app.task(name="user.mail")
+def send_mail(mail_addr, title, html, txt):
+    """Send a mail."""
+    payload = {
+        "from": settings.DEFAULT_FROM_EMAIL,
+        "to": mail_addr,
+        "subject": title,
+        "html": html,
+        "text": txt
+    }
+    resp = requests.post(
+        settings.MAILGUN_URL + "/messages",
+        auth=("api", settings.MAILGUN_KEY), json=payload
+    )
+    try:
+        resp.raise_for_status()
+    except requests.HTTPError as e:
+        msg = None
+        user = get_user_model().objects.filter(email=mail_addr).first()
+        try:
+            msg = json.dumps(e.response.json(), indent=2)
+        except json.JSONDecodeError:
+            msg = e.response.text
+        TaskLog.objects.create(
+            user=user,
+            title=("Mail Send Task Failure(To: {})").format(mail_addr),
+            message=(
+                "The mail couldn't be sent successfully. Here's the record. \n"
+                "\nRequest Payload:\n{}\n\nResponse Code: {}\n"
+                "Response Payload:\n{}"
+            ).format(
+                json.dumps(payload, indent=2), e.response.status_code,
+                msg
+            )
+        )
