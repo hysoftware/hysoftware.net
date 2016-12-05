@@ -14,6 +14,8 @@ class DevelConfig(DjangoDefaults):
     BASE_DIR = os.path.dirname(os.path.dirname(
         os.path.dirname(os.path.abspath(__file__))
     ))
+    ISSUE_BOARD = "https://github.com/hysoftware/hysoftware.net/issues"
+    ISSUE_TXT = ""
     SECRET_KEY = 'si0%k#galmbd0vzpp817e!1v*a=lu!!$b&3b4l8$^4-3!-aj!s'
     DEBUG = True
     ALLOWED_HOSTS = ('localhost', '127.0.0.1')
@@ -123,5 +125,5 @@ class DevelConfig(DjangoDefaults):
     DEFAULT_FROM_EMAIL = "no-reply@hysoftware.net"
 
     RECAPTCHA_PUBLIC_KEY = "6Lc2dSETAAAAAI-VoBJQwjoCS88gmoNhXpcT-Pht"
-    RECAPTCHA_PRIVATE_KEY = "MyRecaptchaPrivateKey456"
+    RECAPTCHA_PRIVATE_KEY = "6Lc2dSETAAAAAEl0AHy6OmYZhY7qifnE_04G9az4"
     NOCAPTCHA = True

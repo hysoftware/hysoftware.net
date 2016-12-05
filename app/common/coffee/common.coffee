@@ -1,12 +1,14 @@
 angular.module("common", [
   "ngMaterial"
+  "ngResource"
   "ngMessages"
   "common.factories"
   "common.ctrls"
 ]).config([
-  "$httpProvider", (http) ->
+  "$httpProvider", "$resourceProvider", (http, res) ->
     http.defaults.xsrfCookieName = "csrftoken"
     http.defaults.xsrfHeaderName = "X-CSRFToken"
+    res.defaults.stripTrailingSlashes = false
 ]).run([
   "$rootScope", "$window", (root, wind) ->
     # Form / Model Related Stuff

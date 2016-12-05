@@ -20,8 +20,28 @@
     view.users_info.count()
   )}}</p>
   <form name="{{ view.form.Meta.name }}" class="container"
-    data-ng-submit="send()" novalidate>
-    {{ form.render(view.form) }}
+    data-ng-submit="send('{{ view.form.Meta.name }}')" novalidate>
+    {{ form.render(view.form, csrf_input) }}
+    <div class="text-center alert success"
+      data-ng-show="sent &amp;&amp; !errors">
+      <i class="material-icons">thumb_up</i> <strong>{{_("Done.")}}</strong>
+      {{_n(
+        "Your mail has been sent and I will "
+        "contact you soon as soon as possible.",
+        "Your mail has been sent and we will "
+        "contact you soon as soon as possible.",
+        view.users_info.count()
+      )}}
+    </div>
+    <div class="text-center alert error"
+      data-ng-show="errors.status > 499">
+      <i class="material-icons">error</i> <strong>{{_("Server Error.")}}</strong>
+      {{_("Please report this issue if you dont mind:")}}
+      <a data-md-button class="md-raised md-accent"
+        href="{{ settings.ISSUE_BOARD }}" target="_blank">
+        {{_("Report the issue")}}
+      </a>
+    </div>
     <div class="text-center">
       <button data-md-button type="submit" class="md-raised md-primary"
         data-ng-disabled="sendBtnCap({{ view.form.Meta.name }})">Submit</button>

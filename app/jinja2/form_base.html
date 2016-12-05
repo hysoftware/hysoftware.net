@@ -28,6 +28,9 @@
   </div>
   {% endif %}
   {%- endfor %}
+  <div data-ng-repeat="item in errors.data.{{ fld.name }}">
+    {{'{{ item }}'}}
+  </div>
 </div>
 {%- endmacro %}
 
@@ -43,7 +46,8 @@
   </md-input-container>
 {%- endmacro %}
 
-{% macro render(form) -%}
+{% macro render(form, csrf) -%}
+  {{ csrf }}
   {% for fld in form -%}
     {% if fld.name in form.Meta.no_materialize -%}
       <div data-layout="row">

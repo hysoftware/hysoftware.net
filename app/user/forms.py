@@ -36,6 +36,11 @@ class ContactForm(AngularForm, forms.ModelForm):
         super(ContactForm, self).__init__(*args, **kwargs)
         self.fields["user"].initial = info_id
 
+        for field in self.fields.values():
+            field.widget.attrs.update({
+                "data-ng-disabled": ("{}.$submitted").format(self.Meta.name)
+            })
+
     def save(self):
         """Save the form."""
         super(ContactForm, self).save()

@@ -1,4 +1,5 @@
 angular.module("user.ctrls", [
+  "user.res"
 ]).controller("aboutCtrl", [
   "$element", "$scope", "$mdDialog", (elem, scope, dialog) ->
     scope.showStaff = (event, staffId) ->
@@ -33,6 +34,21 @@ angular.module("user.ctrls", [
       wind.open url
       return true
 ]).controller("contactCtrl", [
-  "$scope", (scope) ->
-    scope.model = {}
+  "ContactResource", "$scope", "$timeout",
+  (Contact, scope, timeout) ->
+    scope.model = new Contact()
+    scope.sent = false
+    scope.send = (form_name)->
+      scope.sent = false
+      if scope.errors
+        delete scope.errors
+      scope.model["g-recaptcha-response"] = grecaptcha.getResponse()
+      scope.model.$save().then(
+        -> scope.sent = true
+      ).catch(
+        (err) ->
+          scope.errors = err
+          grecaptcha.reset()
+          timeout (-> scope[form_name].$setPristine()), 3000
+      )
 ])
