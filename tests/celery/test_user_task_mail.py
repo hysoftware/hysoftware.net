@@ -62,13 +62,14 @@ class MailSendErrorTestWithoutUser(TestCase):
 
     def setUp(self):
         """Setup."""
-        self.payload = {
-            "from": settings.DEFAULT_FROM_EMAIL,
-            "to": "test@example.com",
-            "subject": "This is a test title",
-            "text": "Thie is a test message",
-            "html": "<test>This is a test message.</test>"
-        }
+        if not getattr(self, "payload", None):
+            self.payload = {
+                "from": settings.DEFAULT_FROM_EMAIL,
+                "to": "test@example.com",
+                "subject": "This is a test title",
+                "text": "Thie is a test message",
+                "html": "<test>This is a test message.</test>"
+            }
         self.mail = send_mail
         req = requests.Request("POST", settings.MAILGUN_URL, json=self.payload)
         self.resp = requests.Response()
@@ -82,8 +83,25 @@ class MailSendErrorTestWithoutUser(TestCase):
         self.resp.request = req
 
     @patch("requests.post")
-    def test_submit_error(self, post):
+    def test_log_user(self, post):
+        """The tasklog shouldn't have user model."""
+        post.return_value.raise_for_status.side_effect = \
+            requests.HTTPError(response=self.resp)
+        self.mail(
+            self.payload["to"], self.payload["subject"],
+            self.payload["html"], self.payload["text"]
+        )
+        log = TaskLog.objects.get()
+        self.assertIsNone(log.user)
+
+    @patch("requests.post")
+    @patch("json.dumps")
+    def test_log_title_message(self, dumps, post):
         """If the request raises an error, the error should be logged it."""
+        def dumps_side_effect(dct, **kwargs):
+            return "payload" if dct == self.payload \
+                else "response" if dct == self.resp.json() else None
+        dumps.side_effect = dumps_side_effect
         post.return_value.raise_for_status.side_effect = \
             requests.HTTPError(response=self.resp)
         self.mail(
@@ -92,7 +110,6 @@ class MailSendErrorTestWithoutUser(TestCase):
         )
 
         log = TaskLog.objects.get()
-        self.assertIsNone(log.user)
         self.assertEqual(
             log.title,
             ("Mail Send Task Failure(To: {})").format(self.payload["to"])
@@ -104,13 +121,13 @@ class MailSendErrorTestWithoutUser(TestCase):
                 "\nRequest Payload:\n{}\n\nResponse Code: {}\n"
                 "Response Payload:\n{}"
             ).format(
-                json.dumps(self.payload, indent=2), self.resp.status_code,
-                json.dumps(self.resp.json(), indent=2)
+                json.dumps(self.payload), self.resp.status_code,
+                json.dumps(self.resp.json())
             )
         )
 
 
-class MailSendErrorTestWithUser(TestCase):
+class MailSendErrorTestWithUser(MailSendErrorTestWithoutUser):
     """Mail send error test without user."""
 
     def setUp(self):
@@ -125,72 +142,38 @@ class MailSendErrorTestWithUser(TestCase):
             "text": "Thie is a test message",
             "html": "<test>This is a test message.</test>"
         }
-        self.mail = send_mail
-        req = requests.Request("POST", settings.MAILGUN_URL, json=self.payload)
-        self.resp = requests.Response()
-        self.resp.status_code = 417
-        self.resp.headers["Content-Type"] = "application/json"
-        self.resp.raw = io.BytesIO(
-            json.dumps({"error": "this is the error message"}).encode()
-        )
-        self.resp.encoding = "utf-8"
-        self.resp.reason = "Expectation Failed"
-        self.resp.request = req
+        super(MailSendErrorTestWithUser, self).setUp()
 
     @patch("requests.post")
-    def test_submit_error(self, post):
-        """If the request raises an error, the error should be logged it."""
+    def test_log_user(self, post):
+        """The tasklog should have user model."""
         post.return_value.raise_for_status.side_effect = \
             requests.HTTPError(response=self.resp)
         self.mail(
             self.payload["to"], self.payload["subject"],
             self.payload["html"], self.payload["text"]
         )
-
         log = TaskLog.objects.get()
         self.assertEqual(log.user, self.user)
-        self.assertEqual(
-            log.title,
-            ("Mail Send Task Failure(To: {})").format(self.payload["to"])
-        )
-        self.assertEqual(
-            log.message,
-            (
-                "The mail couldn't be sent successfully. Here's the record. \n"
-                "\nRequest Payload:\n{}\n\nResponse Code: {}\n"
-                "Response Payload:\n{}"
-            ).format(
-                json.dumps(self.payload, indent=2), self.resp.status_code,
-                json.dumps(self.resp.json(), indent=2)
-            )
-        )
 
 
-class MailSendErrorPlainTextTest(TestCase):
+class MailSendErrorPlainTextTest(MailSendErrorTestWithoutUser):
     """Mail send error test with plain text."""
 
     def setUp(self):
         """Setup."""
-        self.payload = {
-            "from": settings.DEFAULT_FROM_EMAIL,
-            "to": "test@example.com",
-            "subject": "This is a test title",
-            "text": "Thie is a test message",
-            "html": "<test>This is a test message.</test>"
-        }
-        self.mail = send_mail
-        req = requests.Request("POST", settings.MAILGUN_URL, json=self.payload)
-        self.resp = requests.Response()
-        self.resp.status_code = 417
-        self.resp.headers["Content-Type"] = "application/json"
+        super(MailSendErrorPlainTextTest, self).setUp()
+        self.resp.headers["Content-Type"] = "text/plain"
         self.resp.raw = io.BytesIO(("This is a test meessage").encode())
-        self.resp.encoding = "utf-8"
-        self.resp.reason = "Expectation Failed"
-        self.resp.request = req
 
     @patch("requests.post")
-    def test_submit_error(self, post):
+    @patch("json.dumps")
+    def test_log_title_message(self, dumps, post):
         """If the request raises an error, the error should be logged it."""
+        def dumps_side_effect(dct, **kwargs):
+            return "payload" if dct == self.payload \
+                else "response" if dct == self.resp.json() else None
+        dumps.side_effect = dumps_side_effect
         post.return_value.raise_for_status.side_effect = \
             requests.HTTPError(response=self.resp)
         self.mail(
@@ -211,7 +194,7 @@ class MailSendErrorPlainTextTest(TestCase):
                 "\nRequest Payload:\n{}\n\nResponse Code: {}\n"
                 "Response Payload:\n{}"
             ).format(
-                json.dumps(self.payload, indent=2), self.resp.status_code,
+                json.dumps(self.payload), self.resp.status_code,
                 self.resp.text
             )
         )
