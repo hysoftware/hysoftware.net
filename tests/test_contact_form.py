@@ -4,7 +4,7 @@
 """ContactForm Tests."""
 
 import uuid
-from unittest.mock import patch, call, MagicMock
+from unittest.mock import patch, call
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 
@@ -45,24 +45,20 @@ class ContactFormTest(TestCase):
     @patch("app.user.forms.loader")
     def test_save(self, loader, ctask):
         """Save function should send celery task asynchronously."""
-        def get_template_side_effect(name):
+        def render_to_string_side_effect(name, *args, **kwargs):
             """Get template side effect."""
-            def render_side_effect(*args, **kwargs):
-                return "client_html" if name == "mail/client.html" \
-                    else "client_txt" if name == "mail/client.txt" \
-                    else "staff_html" if name == "mail/staff.html" \
-                    else "staff_txt" if name == "mail/staff.txt" \
-                    else None
-            ret = MagicMock()
-            ret.render.side_effect = render_side_effect
-            return ret
+            return "client_html" if name == "mail/client.html" \
+                else "client_txt" if name == "mail/client.txt" \
+                else "staff_html" if name == "mail/staff.html" \
+                else "staff_txt" if name == "mail/staff.txt" \
+                else None
 
-        loader.get_template.side_effect = get_template_side_effect
+        loader.render_to_string.side_effect = render_to_string_side_effect
 
         self.form.save()
-        self.assertEqual(loader.get_template.call_count, 4)
+        self.assertEqual(loader.render_to_string.call_count, 4)
         self.assertEqual(ctask.send_task.call_count, 2)
-        loader.get_template.assert_has_calls([
+        loader.render_to_string.assert_has_calls([
             call("mail/client.html"),
             call("mail/client.txt"),
             call("mail/staff.html"),
@@ -113,22 +109,18 @@ class ContactFormWithoutEmailTest(TestCase):
     @patch("app.user.forms.loader")
     def test_save_without_staff_email(self, loader, ctask):
         """Save function should send celery task without staff email."""
-        def get_template_side_effect(name):
+        def render_to_string_side_effect(name):
             """Get template side effect."""
-            def render_side_effect(*args, **kwargs):
-                return "client_html" if name == "mail/client.html" \
-                    else "client_txt" if name == "mail/client.txt" \
-                    else None
-            ret = MagicMock()
-            ret.render.side_effect = render_side_effect
-            return ret
+            return "client_html" if name == "mail/client.html" \
+                else "client_txt" if name == "mail/client.txt" \
+                else None
 
-        loader.get_template.side_effect = get_template_side_effect
+        loader.render_to_string.side_effect = render_to_string_side_effect
 
         self.form.save()
-        self.assertEqual(loader.get_template.call_count, 2)
+        self.assertEqual(loader.render_to_string.call_count, 2)
         self.assertEqual(ctask.send_task.call_count, 1)
-        loader.get_template.assert_has_calls([
+        loader.render_to_string.assert_has_calls([
             call("mail/client.html"),
             call("mail/client.txt")
         ])

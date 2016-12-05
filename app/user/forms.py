@@ -48,8 +48,8 @@ class ContactForm(AngularForm, forms.ModelForm):
             "user.mail", (
                 self.instance.email,
                 _("Thanks for your interest!"),
-                loader.get_template("mail/client.html").render(),
-                loader.get_template("mail/client.txt").render()
+                loader.render_to_string("mail/client.html"),
+                loader.render_to_string("mail/client.txt")
             )
         )
         if self.instance.user.user.email:
@@ -57,7 +57,7 @@ class ContactForm(AngularForm, forms.ModelForm):
                 "user.mail", (
                     self.instance.user.user.email,
                     _("Someone is interested in you through hysoftware.net"),
-                    loader.get_template("mail/staff.html").render(),
-                    loader.get_template("mail/staff.txt").render()
+                    loader.render_to_string("mail/staff.html"),
+                    loader.render_to_string("mail/staff.txt")
                 )
             )
