@@ -7,7 +7,7 @@ from celery import current_app as ctask
 from django.contrib import admin
 from .models import (
     UserInfo, TaskLog, GithubProfile, CodingLanguage, Framework,
-    Hobby
+    Hobby, Inbox
 )
 
 
@@ -77,3 +77,19 @@ class TaskLog(admin.ModelAdmin):
         "title", "message", "log_date"
     )
     readonly_fields = ("title", "message", "user", "log_date")
+
+
+@admin.register(Inbox)
+class InboxAdmin(admin.ModelAdmin):
+    """Inbox admin panel."""
+
+    list_display = (
+        "user", "post_time", "primary_name", "company_name", "email"
+    )
+    search_fields = (
+        "user__user__email", "post_time", "primary_name", "company_name",
+        "email", "message"
+    )
+    readonly_fields = (
+        "user", "post_time", "primary_name", "email", "company_name", "message"
+    )

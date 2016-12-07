@@ -58,11 +58,19 @@ class ContactFormTest(TestCase):
         self.form.save()
         self.assertEqual(loader.render_to_string.call_count, 4)
         self.assertEqual(ctask.send_task.call_count, 2)
+        staff_context = {
+            "user": self.form.instance.user.user,
+            "form": self.form
+        }
+        cli_context = {
+            "form": self.form,
+            "users_info": UserInfo.objects
+        }
         loader.render_to_string.assert_has_calls([
-            call("mail/client.html"),
-            call("mail/client.txt"),
-            call("mail/staff.html"),
-            call("mail/staff.txt")
+            call("mail/client.html", context=cli_context),
+            call("mail/client.txt", context=cli_context),
+            call("mail/staff.html", context=staff_context),
+            call("mail/staff.txt", context=staff_context)
         ])
         ctask.send_task.assert_has_calls([
             call(
@@ -109,7 +117,7 @@ class ContactFormWithoutEmailTest(TestCase):
     @patch("app.user.forms.loader")
     def test_save_without_staff_email(self, loader, ctask):
         """Save function should send celery task without staff email."""
-        def render_to_string_side_effect(name):
+        def render_to_string_side_effect(name, *args, **kwargs):
             """Get template side effect."""
             return "client_html" if name == "mail/client.html" \
                 else "client_txt" if name == "mail/client.txt" \
@@ -120,9 +128,13 @@ class ContactFormWithoutEmailTest(TestCase):
         self.form.save()
         self.assertEqual(loader.render_to_string.call_count, 2)
         self.assertEqual(ctask.send_task.call_count, 1)
+        cli_context = {
+            "form": self.form,
+            "users_info": UserInfo.objects
+        }
         loader.render_to_string.assert_has_calls([
-            call("mail/client.html"),
-            call("mail/client.txt")
+            call("mail/client.html", context=cli_context),
+            call("mail/client.txt", context=cli_context)
         ])
         ctask.send_task.assert_called_once_with(
             "user.mail", (

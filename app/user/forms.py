@@ -44,20 +44,32 @@ class ContactForm(AngularForm, forms.ModelForm):
     def save(self):
         """Save the form."""
         super(ContactForm, self).save()
+        cli_context = {
+            "form": self,
+            "users_info": self.Meta.model._meta.get_field("user").model.objects
+        }
         ctask.send_task(
             "user.mail", (
                 self.instance.email,
                 _("Thanks for your interest!"),
-                loader.render_to_string("mail/client.html"),
-                loader.render_to_string("mail/client.txt")
+                loader.render_to_string(
+                    "mail/client.html", context=cli_context
+                ),
+                loader.render_to_string("mail/client.txt", context=cli_context)
             )
         )
         if self.instance.user.user.email:
+            context = {
+                "user": self.instance.user.user,
+                "form": self
+            }
             ctask.send_task(
                 "user.mail", (
                     self.instance.user.user.email,
                     _("Someone is interested in you through hysoftware.net"),
-                    loader.render_to_string("mail/staff.html"),
-                    loader.render_to_string("mail/staff.txt")
+                    loader.render_to_string(
+                        "mail/staff.html", context=context
+                    ),
+                    loader.render_to_string("mail/staff.txt", context=context)
                 )
             )

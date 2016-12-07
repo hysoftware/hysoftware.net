@@ -7,7 +7,9 @@ import os
 from celery import Celery
 import cbsettings
 
-os.environ.setdefault("DJANGO_SETTINGS_FACTORY", "app.settings.DevelConfig")
+os.environ.setdefault(
+    "DJANGO_SETTINGS_FACTORY", "app.settings.devel.DevelConfig"
+)
 cbsettings.configure()
 
 app = Celery(__name__)
