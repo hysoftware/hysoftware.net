@@ -22,14 +22,14 @@
   "(Usually, we reply your mail in 1-3 business days, however it might be 1 or "
   "2 weeks in super-busy season.)", users_info.count()
 )}}</p>
-<p>Thank you</p>
+<p>{{ _("Thank you") }}</p>
 <p>{{ _("Btw, here is what you wrote...") }}</p>
 
 <blockquote cite="http://hysoftware.net/u/contact">
   <p>{{ form.message }}</p>
   <p>
     {{_("Company name: {}").format(form.instance.company_name) }} <br>
-    {{_("Your email address: {}").format(form.instance.email)}} <br>
+    {{_("Your email address: {}").format(form.instance.email) }} <br>
   </p>
 </blockquote>
 {% endblock %}
