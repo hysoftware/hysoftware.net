@@ -1,15 +1,7 @@
 {% extends "mail_base.html" -%}
 {% block title %}{{ _("Thank you for your interests") }}{% endblock -%}
-{% block header -%}
-<style>
-  blockquote {
-    border-left: 0.25rem solid #BDBDBE;
-    color: #616161;
-  }
-</style>
-{%- endblock %}
 {% block body -%}
-<h1>{{ _("Hi {} !").format(primary_name) }}</h1>
+<h1>{{ _("Hi {} !").format(form.instance.primary_name) }}</h1>
 <p>{{ _n(
   "Thank you for your interests. I will reply as soon as possible.",
   "Thank you for your interests. we will reply as soon as possible.",

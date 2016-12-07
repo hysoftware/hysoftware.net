@@ -1,0 +1,14 @@
+{% extends "mail_base.html" -%}
+{% block title %}{{ form.instance.primary_name }}{% endblock -%}
+{% block body -%}
+<h1>{{ _("{} is interested in you.").format(form.instance.primary_name) }}</h1>
+<p>
+  {{_("Hi {},").foramt(user)}} <br>
+  {{ form.instance.primary_name }}
+  {% if form.instance.company_name %}({{ form.instance.company_name }}){% endif -%}
+  is interested in you. Here is the message he wrote:
+</p>
+<blockquote cite="{{ url('') }}">
+
+</blockquote>
+{%- endblock %}
