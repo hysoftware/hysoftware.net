@@ -52,12 +52,6 @@
   <script src="{{ url(resolve(request.path_info).app_name + ':js') }}"></script>
   {% set ind_module_exists = True -%}
   {%- endif %}
-  <style>
-    blockquote {
-      border-left: 0.25rem solid #BDBDBE;
-      color: #616161;
-    }
-  </style>
   {% block script_header %}{% endblock %}
 </head>
 <body data-ng-cloak
