@@ -2,7 +2,6 @@ angular.module("common", [
   "ngMaterial"
   "ngResource"
   "ngMessages"
-  "common.factories"
   "common.ctrls"
 ]).config([
   "$httpProvider", "$resourceProvider", (http, res) ->
