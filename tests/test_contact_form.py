@@ -5,6 +5,7 @@
 
 import uuid
 from unittest.mock import patch, call
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 
@@ -83,9 +84,11 @@ class ContactFormTest(TestCase):
             call(
                 "user.mail", (
                     self.info.user.email,
-                    "Someone is interested in you through hysoftware.net",
+                    ("[{}] Someone wants you to contact him").format(
+                        settings.TITLE
+                    ),
                     "staff_html", "staff_txt"
-                )
+                ), {"from": self.form.instance.email}
             )
         ])
 

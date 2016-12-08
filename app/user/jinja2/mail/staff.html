@@ -11,7 +11,9 @@
 {%- endblock %}
 {% block title %}{{ form.instance.primary_name }}{% endblock -%}
 {% block body -%}
-<h1>{{ _("{} is interested in you.").format(form.instance.primary_name) }}</h1>
+<h1>{{ _("{} contacted you from {}.").format(
+  form.instance.primary_name, settings.TITLE
+) }}</h1>
 <p>
   {{_("Hi {},").format(user)}} <br>
   {{ form.instance.primary_name }}
@@ -23,7 +25,10 @@
   <tbody>
     {% for fld in form -%}
       {% if form.instance[fld.name] -%}
-      <tr><td>{{ fld.label }}</td><td>{{ form.instance[fld.name] }}</td></tr>
+      <tr>
+        <td>{{ fld.label }}</td>
+        <td><pre>{{ form.instance[fld.name] }}</pre></td>
+      </tr>
       {%- endif %}
     {%- endfor %}
   </tbody>

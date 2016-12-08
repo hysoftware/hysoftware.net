@@ -5,6 +5,7 @@
 
 from celery import current_app as ctask
 from django import forms
+from django.conf import settings
 from django.template import loader
 from django.utils.translation import ugettext as _
 from .models import Inbox
@@ -66,10 +67,12 @@ class ContactForm(AngularForm, forms.ModelForm):
             ctask.send_task(
                 "user.mail", (
                     self.instance.user.user.email,
-                    _("Someone is interested in you through hysoftware.net"),
+                    _("[{}] Someone wants you to contact him").format(
+                        settings.TITLE
+                    ),
                     loader.render_to_string(
                         "mail/staff.html", context=context
                     ),
                     loader.render_to_string("mail/staff.txt", context=context)
-                )
+                ), {"from": self.instance.email}
             )

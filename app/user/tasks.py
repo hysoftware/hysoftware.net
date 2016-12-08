@@ -49,10 +49,10 @@ def fetch_github_profile(user_info_id=None):
 
 
 @current_app.task(name="user.mail")
-def send_mail(mail_addr, title, html, txt):
+def send_mail(mail_addr, title, html, txt, **kwargs):
     """Send a mail."""
     payload = {
-        "from": settings.DEFAULT_FROM_EMAIL,
+        "from": kwargs.pop("from", settings.DEFAULT_FROM_EMAIL),
         "to": mail_addr,
         "subject": title,
         "html": html,
@@ -60,7 +60,7 @@ def send_mail(mail_addr, title, html, txt):
     }
     resp = requests.post(
         settings.MAILGUN_URL + "/messages",
-        auth=("api", settings.MAILGUN_KEY), json=payload
+        auth=("api", settings.MAILGUN_KEY), data=payload
     )
     try:
         resp.raise_for_status()

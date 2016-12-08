@@ -53,7 +53,7 @@ class MailSendTest(TestCase):
         post.assert_called_once_with(
             settings.MAILGUN_URL + "/messages",
             auth=("api", settings.MAILGUN_KEY),
-            json=self.payload
+            data=self.payload
         )
 
 
@@ -71,7 +71,7 @@ class MailSendErrorTestWithoutUser(TestCase):
                 "html": "<test>This is a test message.</test>"
             }
         self.mail = send_mail
-        req = requests.Request("POST", settings.MAILGUN_URL, json=self.payload)
+        req = requests.Request("POST", settings.MAILGUN_URL, data=self.payload)
         self.resp = requests.Response()
         self.resp.status_code = 417
         self.resp.headers["Content-Type"] = "application/json"
