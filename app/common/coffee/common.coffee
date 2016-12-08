@@ -77,14 +77,4 @@ angular.module("common", [
                 wind.removeEventListener("resize", handler)
               )
     ), false
-]).controller("navBarCtrl", [
-  "HeaderDetector", "$scope", "$window",
-  (HeaderDetector, scope, wind) ->
-    header = new HeaderDetector scope
-    scope.navBarCls =
-      "in": header.isWindowUnderHeader()
-    wind.addEventListener "scroll", (->
-      scope.$apply ->
-        scope.navBarCls.in = header.isWindowUnderHeader()
-    ), false
 ])
