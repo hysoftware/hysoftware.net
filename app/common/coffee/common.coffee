@@ -82,9 +82,9 @@ angular.module("common", [
   (HeaderDetector, scope, wind) ->
     header = new HeaderDetector scope
     scope.navBarCls =
-      "out": not header.isWindowUnderHeader()
+      "in": header.isWindowUnderHeader()
     wind.addEventListener "scroll", (->
       scope.$apply ->
-        scope.navBarCls.out = not header.isWindowUnderHeader()
+        scope.navBarCls.in = header.isWindowUnderHeader()
     ), false
 ])

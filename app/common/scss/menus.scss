@@ -8,20 +8,18 @@ nav.main-nav {
   z-index: 10;
   width: 100%;
   height: 45px;
-  background-color: transparent;
-  color: #F6F6F6;
-  opacity: inherit;
+  background-color: #212122;
+  opacity: 0.8;
   transition: background-color 500ms, opacity 500ms, text-shadow 500ms;
   * {
     height: 100%;
     padding: 0;
     margin: 0 5px;;
   }
-  &.out {
-    background-color: #212122;
-    opacity: 0.8;
-  }
-  &:not(.out) {
+  &.in {
+    background-color: transparent;
+    color: #F6F6F6;
+    opacity: inherit;
     text-shadow: 3px 3px 2px black;
   }
   a, md-icon {
