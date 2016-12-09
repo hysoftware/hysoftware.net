@@ -93,22 +93,12 @@
     <div class="sep" data-flex></div>
     <ul>
       {% if request.user.is_authenticated -%}
-        <md-menu data-md-position-mode="target-right target">
-          <button data-md-button data-md-menu-origin class="md-mini md-icon-button" aria-label="Manage"
-            data-ng-click="$mdOpenMenu($event)">
+        <li>
+          <button data-md-button class="md-mini md-icon-button" aria-label="Manage"
+            data-ng-click="sideNav('manageSideNav').toggle()">
               <md-icon class="material-icons">more_vert</md-icon>
           </button>
-          <md-menu-content width="4">
-            {% for menu_item in right_auth_only_menu -%}
-            <md-menu-item>
-              <md-icon data-md-menu-align-target class="{{ menu_item.icon_class }}">
-                {{ menu_item.icon_body }}
-              </md-icon>
-              <p data-flex>{{ menu_item.name }}</p>
-            </md-menu-item>
-            {%- endfor %}
-          </md-menu-content>
-        </md-menu>
+        </li>
       {% else %}
         <li><a href="{{ url('admin:login') }}">Login</a></li>
       {%- endif %}
@@ -151,31 +141,64 @@
       {%- endfor %}
     </md-fab-actions>
   </md-fab-speed-dial>
+  {% if request.user.is_authenticated -%}
+  <md-sidenav class="md-sidenav-right md-whiteframe-4dp"
+    data-md-component-id="manageSideNav">
+     <md-toolbar><h3 class="md-toolbar-tools">Management Menu</h3></md-toolbar>
+     <md-list data-flex>
+       {% for item in right_auth_only_menu | reverse -%}
+       <md-list-item class="md-2-line" data-ng-click="goto('{{ item.url }}')">
+         <md-icon class="{{ item.icon_class }} md-avatar">
+           {{ item.icon_body }}
+         </md-icon>
+         <div class="md-list-item-text" layout="column" data-flex>
+           <h3>{{ item.name }}</h3>
+           <p>{{ item.url }}</p>
+         </div>
+       </md-list-item>
+       {%- endfor %}
+     </md-list>
+  </md-sidenav>
+  {% endif %}
   <footer>
-    <h1>{{_("The MIT License (MIT)")}}</h1>
-    <p>Copyright (c) 2016- {{ settings.TITLE }} (Owner: Hiroaki Yamamoto)</p>
-    <p>{{_("
-      Permission is hereby granted, free of charge, to any person obtaining a
-      copy of this software and associated documentation files
-      (the \"Software\"), to deal in the Software without restriction, including
-      without limitation the rights to use, copy, modify, merge, publish,
-      distribute, sublicense, and/or sell copies of the Software, and to permit
-      persons to whom the Software is furnished to do so, subject to the
-      following conditions:
-    ")}}</p>
-    <p>{{_("
-      The above copyright notice and this permission notice shall be included
-      in all copies or substantial portions of the Software.
-    ")}}</p>
-    <p>{{_("
-      THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-      OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-      MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-      IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-      CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-      TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-      SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-    ")}}</p>
+    <section class="mit">
+      <h1>{{_("The MIT License (MIT)")}}</h1>
+      <p>Copyright (c) 2016- {{ settings.TITLE }} (Owner: Hiroaki Yamamoto)</p>
+      <p>{{_("
+        Permission is hereby granted, free of charge, to any person obtaining a
+        copy of this software and associated documentation files
+        (the \"Software\"), to deal in the Software without restriction, including
+        without limitation the rights to use, copy, modify, merge, publish,
+        distribute, sublicense, and/or sell copies of the Software, and to permit
+        persons to whom the Software is furnished to do so, subject to the
+        following conditions:
+      ")}}</p>
+      <p>{{_("
+        The above copyright notice and this permission notice shall be included
+        in all copies or substantial portions of the Software.
+      ")}}</p>
+      <p>{{_("
+        THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+        OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+        MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+        IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+        CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+        TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+        SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+      ")}}</p>
+    </section>
+    <section class="exception">
+      <h2>{{_("The Exception of Copyrights and Licenses")}}</h1>
+      <p>
+        The code of this website is licensed under the terms of MIT License.
+        However, some assets, including code, might be licensed with a non-free
+        use license. In that case, the decision of the treatments for the copyright
+        of the third party's assets, and the license of the third party's assets
+        depend on their licenses. However, the area of the exception is only
+        the points that the third party assets are used. For details, please
+        visit legal page.
+      </p>
+    </section>
     <p class="legal-link nospace">
       <small><a href="{{ url('legal:index') }}">{{_("Legal")}}</a></small>
     </p>

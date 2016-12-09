@@ -76,4 +76,6 @@ angular.module("common", [
                 wind.removeEventListener("resize", handler)
               )
     ), false
+    root.goto = (url) ->
+      wind.location = url
 ])

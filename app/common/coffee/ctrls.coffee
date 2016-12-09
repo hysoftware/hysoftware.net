@@ -5,9 +5,10 @@ angular.module("common.ctrls", [
   "$scope", "$mdDialog", (scope, dialog) ->
     scope.dialog = dialog
 ]).controller("navBarCtrl", [
-  "HeaderDetector", "$scope", "$window",
-  (HeaderDetector, scope, wind) ->
+  "HeaderDetector", "$mdSidenav", "$scope", "$window",
+  (HeaderDetector, sidenav, scope, wind) ->
     header = new HeaderDetector scope
+    scope.sideNav = sidenav
     scope.navBarCls =
       "in": header.isWindowUnderHeader()
     wind.addEventListener "scroll", (->
