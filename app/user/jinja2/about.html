@@ -1,0 +1,68 @@
+{% extends "base.html" -%}
+{% set users_info_count = view.users_info.count() -%}
+{% import "socials.html" as socials -%}
+{% block title %}{{ _("About") }}{% endblock -%}
+{% block body -%}
+<section class="about" data-ng-controller="aboutCtrl">
+  <header class="page header text-center header-about">
+    <h1 class="vcenter">{{ _("About") }}</h1>
+  </header>
+  <section class="container-large">
+    <header>
+      <h2>{{_("What this website?")}}</h2>
+    </header>
+    <p>{{_n(
+      "This website is a front page of hysoft and it shows proof of my "
+      "technical skills, advantages, and/or disadvantages. If you'd like to"
+      "hire me, the source code of this website would be useful to check my "
+      "skills.",
+      "This website is a front page of hysoft and it shows proof of our "
+      "technical skills, advantages, and/or disadvantages. If you'd like to"
+      "send us jobs, the source code of this website would be useful to check "
+      "our skills.", users_info_count
+    )}}</p>
+    <section>
+      <header>
+        <h3>{{_("What hysoft?")}}</h3>
+      </header>
+      <p>
+        {{_n(
+          "hysoft is a sole proprietorship founded by Hiroaki Yamamoto, a "
+          "software engineer in Japan. the team is just only one person, but "
+          "if it grows big, I will consider corporate somewhere in the world.",
+          "hysoft is a sole proprietorship founded by Hiroaki Yamamoto, a "
+          "software engineer in Japan. the team is small team, but "
+          "if it grows big, we will consider corporate somewhere in the "
+          "world.", users_info_count
+        )}}
+      </p>
+    </section>
+  </section>
+  <section class="text-center container-large">
+    <header>
+      <h2>{{ _n("Who am I?", "Who are we?", users_info_count) }}</h2>
+    </header>
+    {% for row in range(((users_info_count / 4) + 1)|int) -%}
+      <div class="member-row" data-layout="row">
+        <div data-flex></div>
+        {% for info in view.users_info.all()[row * 4: 4 * (row + 1)] -%}
+        <section data-flex="25" class="member-card"
+          data-ng-click="showStaff($event, '{{ info.id }}')">
+          <header>
+            <img class="github-avatar"
+              src="{{ info.github_profile.avatar_url }}"
+              alt="Avatar at Github">
+            <h4>{{ info.user.first_name }} {{ info.user.last_name }}</h4>
+          </header>
+          <p class="social-links text-center">{{ socials.render(info) }}</p>
+          {% if info.github_profile.bio -%}
+          <p>{{ info.github_profile.bio }}</p>
+          {%- endif %}
+        </section>
+        {% endfor %}
+        <div data-flex></div>
+      </div>
+    {%- endfor %}
+  </section>
+</section>
+{% endblock %}

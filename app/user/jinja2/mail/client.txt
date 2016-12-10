@@ -1,0 +1,25 @@
+{{ _("Hi {} !").format(form.instance.primary_name) }}
+=======================================
+
+{{ _n(
+  "Thank you for your interests. I will reply as soon as possible.",
+  "Thank you for your interests. we will reply as soon as possible.",
+  users_info.count()
+)}} {{_n(
+  "However, I am receiving tons of emails, sometimes the reply might be delayed."
+  "(Usually, I can reply your mail in 1-3 business days, however it might be 1 "
+  "or 2 weeks in super-busy season.)",
+  "However, We are receiving tons of emails, sometimes the reply might be delayed."
+  "(Usually, we reply your mail in 1-3 business days, however it might be 1 or "
+  "2 weeks in super-busy season.)", users_info.count()
+)}}
+
+{{ _("Thank you") }}
+
+{{ _("Btw, here is what you wrote...") }}
+
+> {{ form.instance.message.replace("\n", "\n> ") }}
+>
+>
+> {{_("Company name: {}").format(form.instance.company_name) }}
+> {{_("Your email address: {}").format(form.instance.email) }}

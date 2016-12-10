@@ -1,0 +1,30 @@
+{% macro render(info) -%}
+<a href="{{ info.github_profile.html_url }}" target="_blank">
+  <i class="ion-social-github"></i>
+  <md-tooltip data-md-direction="bottom">
+    {{_("View {}'s profile at Github").format(info.user.first_name)}}
+  </md-tooltip>
+</a>
+{% if info.linkedin -%}
+<a href="{{ info.linkedin }}" target="_blank">
+  <md-tooltip data-md-direction="bottom">
+    {{_("View {}'s profile at Linkedin").format(info.user.first_name)}}
+  </md-tooltip>
+  <i class="ion-social-linkedin"></i>
+</a>
+{% endif -%}
+{% if info.angel_co -%}
+<a href="https://angel.co/{{ info.angel_co }}" target="_blank">
+  <md-tooltip data-md-direction="bottom">
+    {{_("View {}'s profile at AngelList").format(info.user.first_name)}}
+  </md-tooltip> <i class="socicon-angellist"></i>
+</a>
+{% endif %}
+{% if info.hacker_rank -%}
+<a href="https://hackerrank.com/{{ info.hacker_rank }}" target="_blank">
+  <md-tooltip data-md-direction="bottom">
+    {{_("View {}'s profile at HackerRank").format(info.user.first_name)}}
+  </md-tooltip> H
+</a>
+{%- endif %}
+{%- endmacro %}

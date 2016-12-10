@@ -1,0 +1,20 @@
+.alert{
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  border-radius: 5px;
+  transition: opacity 250ms;
+  &.success {
+    background: linear-gradient(to bottom, #E8F5E9, #C8E6C9);
+    border: 1px solid #81C784;
+    color: #1B5E20;
+  }
+  &.error {
+    background: linear-gradient(to bottom, #ffebee, #ffcdd2);
+    border: 1px solid #e57373;
+    color: #b71c1c;
+  }
+
+  &.ng-hide {
+    opacity: 0;
+  }
+}

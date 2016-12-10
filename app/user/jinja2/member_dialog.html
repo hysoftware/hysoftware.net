@@ -1,0 +1,100 @@
+{% extends "dialog_base.html" -%}
+{% set full_name =  _("{0} {1}").format(
+  view.user_info.user.first_name,
+  view.user_info.user.last_name
+) -%}
+{% import "socials.html" as socials -%}
+{% block title -%}
+{{ full_name }}
+{%- endblock %}
+{% block body -%}
+<section class="member md-dialog-content" data-ng-controller="staffCtrl">
+  <header>
+    <h2>{{ full_name }}</h2>
+    <p>{{ view.user_info.title }}</p>
+  </header>
+  <div class="social-links">
+    {{ socials.render(view.user_info) }}
+  </div>
+  <div class="availability-section">
+    <div class="status {{ view.user_info.availability }}">
+      {{ view.user_info.availability_choices[view.user_info.availability] }}
+    </div>
+  </div>
+  {% if view.user_info.github_profile.bio -%}
+  <section class="bio">
+    <header>
+      <h3>{{_("Biography")}}</h3>
+    </header>
+    <p>{{ view.user_info.github_profile.bio }}</p>
+  </section>
+  {%- endif %}
+  {% if view.user_info.hobbies.count() -%}
+  <header><h3>Hobbies</h3></header>
+  <ul>
+    {% for hobby in view.user_info.hobbies.all() -%}
+    <li>{{ hobby.hobby }}</li>
+    {%- endfor %}
+  </ul>
+  {%- endif %}
+  {% if view.user_info.coding_languages.count() -%}
+  <section class="coding-lang">
+    <header><h3>{{_("Coding Langauges and Frameworks")}}</h3></header>
+    <md-tabs data-dynamic-height data-md-border-bottom>
+      {% for coding_lang in view.user_info.coding_languages.all() -%}
+        {%
+          set frameworks = view.user_info.frameworks.filter(
+            languages__name__iexact=coding_lang
+          )
+        -%}
+        <md-tab label="{{ coding_lang.name }}">
+          <md-content class="md-padding">
+            <h3>{{_("Frameworks / Libraries / Skills")}}</h3>
+            {% if frameworks.count() -%}
+              {% for row in range(((frameworks.count() / 4) + 1)|int) -%}
+                <div data-layout="row">
+                  <div data-flex></div>
+                  {% for fw in frameworks.all()[row * 4: 4 * (row + 1)] -%}
+                    <section data-flex="25" class="text-center fwcard"
+                      data-ng-click="open('{{ fw.url }}')">
+                      <md-tooltip data-md-direction="top">
+                        Open {{ fw.name }} website ({{ fw.url }})
+                      </md-tooltip>
+                      <header class="framework-header">
+                        <h4 class="framework-icon">
+                          {% if fw.icon_cls -%}
+                          <i class="{{ fw.icon_cls }}">{{ fw.icon_body or "" }}</i>
+                          {%- else -%}
+                          {{ fw.name[0] }}
+                          {%- endif %}
+                        </h4>
+                        <p>{{ fw.name }}</p>
+                      </header>
+                      <p>{{ fw.description }}</p>
+                    </section>
+                  {% endfor %}
+                  <div data-flex></div>
+                </div>
+              {%- endfor %}
+            {%- else %}
+              <p>{{_(
+                "Oops! He can use the language, but he haven't "
+                "used any frameworks."
+              )}}</p>
+            {% endif %}
+          </md-content>
+        </md-tab>
+      {%- endfor %}
+    </md-tabs>
+  </section>
+  {%- endif %}
+</section>
+{%- endblock %}
+
+{% block footer -%}
+  <span data-fle></span>
+  <a data-md-button class="md-raised md-accent" href="{{
+    url('user:contact', kwargs={'info_id': view.user_info.id})
+  -}}">{{_('Contact')}}</a>
+  <button data-md-button data-ng-click="dialog.cancel()">{{_('Close')}}</button>
+{%- endblock %}

@@ -1,0 +1,12 @@
+.header-legal {
+  background: url("{{ url( 'common:assets', kwargs={'filename': 'legal'} ) }}");
+  color: #EFEBE9;
+  text-shadow: 2px 2px 2px #212122;
+  .filter {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.8));
+    opacity: 0.4;
+  }
+}

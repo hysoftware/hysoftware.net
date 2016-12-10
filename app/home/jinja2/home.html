@@ -1,0 +1,149 @@
+{% extends "base.html" -%}
+{% block title %}Welcome{% endblock -%}
+{% block body -%}
+<section class="home text-center">
+  <header class="home-header"
+    data-ng-style="screenFullFill('title', this, 0.2)">
+    <div class="filter"></div>
+    <div class="title text-center vcenter">
+      <h1>{{ settings.TITLE }}</h1>
+      <p>{{ view.pitch }}</p>
+    </div>
+  </header>
+  <div class="container">
+    <section>
+      <header>
+        <h1>
+          {{_n(
+            "Need a software engineer?",
+            "Need software engineers?", view.users_info.count()
+          )}}
+          {{_n(
+            "I can help building your apps", "We can help building your apps",
+            view.users_info.count()
+          )}}
+        </h1>
+      </header>
+      <p>
+        {{_n("
+          Developing products is difficul and App development is one of
+          the most difficult process. Especially, it is very difficult to find
+          good person who has coding and software engineering knowledge.
+          I, {first_name} {last_name}, can help building your apps.
+        ", "
+          Developing products is difficul and App development is one of
+          the most difficult process. Especially, it is very difficult to find
+          good person who has coding and software engineering knowledge.
+          We can help building your apps.
+        ", view.users_info.count()).format(
+          settings.TITLE,
+          first_name=view.users_info.first().user.first_name,
+          last_name=view.users_info.first().user.last_name
+        )}}
+      </p>
+    </section>
+    <section>
+      <header>
+        <h1>{{_n(
+          "Why you need me?",
+          "Why you need us?",
+          view.users_info.count()
+        )}}</h1>
+      </header>
+      <p>
+        {{_n(
+          "My advantages are aimed at the quality of code. As you can see",
+          "Our advantages are aimed at the quality of code.",
+          view.users_info.count()
+        )}}
+        {% if view.users_info.count() > 1 -%}
+          <a href="undefined">{{_("Each developer's github")}}</a>
+        {% else -%}
+          <a href="https://github.com/{{ view.users_info.first().github }}" target="_blank">
+            {{_("{}'s Github").format(view.users_info.first().user.first_name)}}
+          </a>
+        {%- endif %}{{_n(
+          " ,I am coding many software with high testing rate and great quality.
+            This is why you should hire me.",
+          " ,We are coding many software with high testing rate and great quality.
+            This is why you should hire us.", view.users_info.count()
+        )}}
+      </p>
+    </section>
+    <section>
+      <header>
+        <h1>{{_n(
+          "Proof of code. I <i class=\"material-icons\">favorite</i> Open-Source",
+          "Proof of code. We <i class=\"material-icons\">favorite</i> Open-Source",
+          view.users_info.count()
+        )|safe}}</h1>
+      </header>
+      <p>{{_(
+        "While many software engineers don't disclose their code, all staff at "
+        "hysoft are required to have Github account. It means all the software "
+        "engineer at hysoft must write open-source code. As the proof..."
+      )}}</p>
+    </section>
+    <section>
+      <header>
+        <h1>
+          {{_(
+            "This webapp is "
+            "<a href=\"{{ settings.SOURCE_URL }}\" target=\"_blank\">"
+            "open-source</a>"
+          )|safe}}
+        </h1>
+        <div data-layout="row">
+          <h2 data-flex><i class="ion-social-python"></i></h2>
+          <h2 data-flex><i class="ion-social-html5"></i></h2>
+          <h2 data-flex><i class="ion-social-javascript"></i></h2>
+          <h2 data-flex><i class="ion-social-angular"></i></h2>
+          <h2 data-flex><i class="ion-social-css3"></i></h2>
+          <h2 data-flex><i class="ion-social-sass"></i></h2>
+        </div>
+      </header>
+      <p>{{_(
+        "As you can see "
+        "<a href=\"{{ settings.SOURCE_URL }}\" target=\"_blank\">this page</a>,"
+        "this webapp is open-source and there's nothing that is hidden."
+      )|safe}}</p>
+      <p>
+        <a href="{{ settings.SOURCE_URL }}" target="_blank"
+          class="md-raised md-primary text-no-transform impact"
+          data-md-button>
+          <i class="ion-social-github"></i>
+          {{_("Check out this webapp's code on Github")}}
+        </a>
+      </p>
+    </section>
+    <section>
+      <header>
+        <h1>{{_n("Who am I?", "Who are we?", view.users_info.count())}}</h1>
+      </header>
+      <p>{{_n(
+        "For my detail, please visit About page. "
+        "You can see what I can handle, what I can write, and my sample code.",
+        "For individuals detail, please visit About page. "
+        "You can see what we can handle, what we can write, and out sample code.",
+        view.users_info.count()
+      )}}</p>
+      <a href="#" data-md-button class="md-raised md-primary">
+        {{_("Visit About page")}}
+      </a>
+    </section>
+  </div>
+  <section class="interest">
+    <header>
+      <h1>Interesting?</h1>
+    </header>
+    <p>{{_n(
+      "Let's contact me. I'm looking forward to getting know each other.",
+      "Let's contact us. We're looking forward to getting know each other.",
+      view.users_info.count()
+    )}}</p>
+    <a href="#" data-md-button class="md-raised md-warn">
+      {{_n("Contact me!", "Contact us!", view.users_info.count())}}
+    </a>
+  </section>
+</section>
+{% endblock %}

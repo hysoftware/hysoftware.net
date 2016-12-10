@@ -1,8 +1,15 @@
 #!/usr/bin/env python
 # coding=utf-8
 
-"""Homepage module."""
+"""Home module."""
 
-from .bp import route
+from django.conf.urls import url
 
-__all__ = ("route", )
+from .views import HomeView, CSSView
+
+app_name = "home"
+
+urlpatterns = (
+    url(r'^$', HomeView.as_view(), name="index"),
+    url(r"^css$", CSSView.as_view(), name="css")
+)

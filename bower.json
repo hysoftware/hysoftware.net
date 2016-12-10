@@ -1,7 +1,7 @@
 {
   "name": "hysoft",
   "description": "Hysoftware webapp package",
-  "main": "app.coffee",
+  "main": "gulp.js",
   "authors": [
     "Hiroaki Yamamoto"
   ],
@@ -15,21 +15,14 @@
     "**/.*",
     "node_modules",
     "bower_components",
-    "home/static/third_party",
+    "app/common/static/third_party",
     "src/third_party",
     "test",
     "tests"
   ],
   "dependencies": {
-    "angular": "^1.5.7",
-    "bootstrap": "^3.3.6",
-    "detectizr": "^2.2.0",
-    "angular-ui-router": "ui-router#~0.2.18",
-    "angular-resource": "~1.5.7",
-    "angular-mocks": "~1.5.7",
-    "AngularJS-Toaster": "^2.0.0"
-  },
-  "devDependencies": {
-    "Ionicons": "ionicons#~2.0.1"
+    "angular": "^1.5.8",
+    "angular-resource": "^1.5.8",
+    "angular-material": "^1.1.1"
   }
 }

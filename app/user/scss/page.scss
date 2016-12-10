@@ -1,0 +1,84 @@
+.github-avatar {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+}
+.social-links {
+  font: {
+    size: 1.5rem;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+  }
+}
+.member-row {
+  margin: {
+    bottom: 1rem;
+    top: 1rem;
+  }
+}
+.member-card {
+  cursor: pointer;
+  transition: box-shadow 250ms;
+  padding: 1rem;
+  border-radius: 3px;
+  &:hover {
+    box-shadow: 4px 4px 1.2rem #212123;
+  }
+  &:active {
+    box-shadow: 1px 1px 1.2rem #212123;
+  }
+}
+
+.availability-section {
+  margin: 1rem 0;
+}
+
+.member {
+  .status {
+    display: inline-block;
+    padding: 0 0.5rem;
+    font-weight: 500;
+    border-radius: 4px;
+    &.FL {
+      $color: #558B2F;
+      color: $color;
+      border: 1px solid $color;
+    }
+    &.PT {
+      $color: #FF6F00;
+      color: $color;
+      border: 1px solid $color;
+    }
+    &.NA {
+      $color: #d50000;
+      color: $color;
+      border: 1px solid $color;
+    }
+  }
+}
+.coding-lang {
+  h3 {
+    padding: 1rem 0;
+  }
+}
+.fwcard {
+  padding: 1rem;
+  cursor: pointer;
+  transition: box-shadow 250ms;
+  border-radius: 3px;
+  &:hover {
+    box-shadow: 4px 4px 1.2rem #212123;
+  }
+  &:active {
+    box-shadow: 1px 1px 1.2rem #212123;
+  }
+}
+.framework-header {
+  border-bottom: none !important;
+  .framework-icon {
+    font-size: 2rem;
+  }
+}

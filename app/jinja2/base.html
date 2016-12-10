@@ -1,0 +1,207 @@
+{%
+  set transparentMenuEnabled =
+    "true" if getattr(view, 'enable_transparent_menu', True) else "false"
+-%}
+{%
+  set menu = [
+    {
+        "name": _("About"),
+        "url": url("user:about"),
+        "icon_class": "material-icons",
+        "icon_body": "help"
+    }, {
+        "name": _("Contact"),
+        "url": url("user:contact"),
+        "icon_class": "material-icons",
+        "icon_body": "email"
+    }, {
+      "name": _("Github of this webapp"),
+      "url": "https://github.com/hysoftware/hysoftware.net",
+      "icon_class": "ion-social-github",
+      "show_icon_on_header": True,
+      "target": "_blank"
+    }
+  ]
+-%}
+{%
+  set right_auth_only_menu = [
+    {
+        "name": _("Logout"),
+        "url": url("admin:logout"),
+        "icon_class": "material-icons",
+        "icon_body": "cancel"
+    }, {
+        "name": _("Manager"),
+        "url": url("admin:index"),
+        "icon_class": "material-icons",
+        "icon_body": "settings"
+    }
+  ]
+%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}{% endblock %} - {{ settings.TITLE }}</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:300,500,700">
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="https://file.myfontastic.com/n6vo44Re5QaWo8oCKShBs7/icons.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="{{ static('third_party/angular/angular-csp.css') }}">
+  <link rel="stylesheet" href="{{ static('third_party/angular-material/angular-material.min.css') }}">
+  <link href="{{ url('common:css') }}" rel="stylesheet">
+  {% if static_exists(resolve(request.path_info).app_name + ".css") -%}
+  <link href="{{ static(resolve(request.path_info).app_name + ".css") }}" rel="stylesheet">
+  {%- endif %}
+  {% if url_exists(resolve(request.path_info).app_name + ":css") -%}
+  <link href="{{ url(resolve(request.path_info).app_name + ":css") }}" rel="stylesheet">
+  {%- endif %}
+  {% block style_header %}{% endblock -%}
+  <script src="{{ static('third_party.js') }}" charset="utf-8"></script>
+  <script src="{{ url('common:js') }}"></script>
+  {% if static_exists(resolve(request.path_info).app_name + '.js') -%}
+  <script src="{{ static(resolve(request.path_info).app_name + '.js') }}"></script>
+  {% set ind_module_exists = True -%}
+  {%- endif %}
+  {% if url_exists(resolve(request.path_info).app_name + ":js") -%}
+  <script src="{{ url(resolve(request.path_info).app_name + ':js') }}"></script>
+  {% set ind_module_exists = True -%}
+  {%- endif %}
+  {% block script_header %}{% endblock %}
+</head>
+<body data-ng-cloak
+  data-ng-app="{% if ind_module_exists -%}{{ resolve(request.path_info).app_name }}{% else %}common{% endif %}">
+  <nav class="main-nav" data-ng-controller="navBarCtrl"
+    data-ng-init="enableTransparentMenu = {{ transparentMenuEnabled }}"
+    data-ng-class="navBarCls" data-hide-xs data-hide-sm data-layout="row">
+    <ul>
+      <li class="brand"><a href="{{ url('home:index') }}">{{ settings.TITLE }}</a></li>
+      {% for menu_item in menu -%}
+      <li>
+        <a href="{{ menu_item.url }}"
+          {% if menu_item.target %}target="{{ menu_item.target }}"{% endif %}>
+          {% if menu_item.show_icon_on_header -%}
+          <i class="{{ menu_item.icon_class }}">
+            {{ menu_item.icon_body or ""}}
+          </i>
+          {%- endif %}
+          {{menu_item.name}}
+        </a>
+      </li>
+      {%- endfor %}
+    </ul>
+    <div class="sep" data-flex></div>
+    <ul>
+      {% if request.user.is_authenticated -%}
+        <li>
+          <button data-md-button class="md-mini md-icon-button" aria-label="Manage"
+            data-ng-click="sideNav('manageSideNav').toggle()">
+              <md-icon class="material-icons">more_vert</md-icon>
+          </button>
+        </li>
+      {% else %}
+        <li><a href="{{ url('admin:login') }}">Login</a></li>
+      {%- endif %}
+    </ul>
+  </nav>
+  {% block body %}{%endblock -%}
+  <md-fab-speed-dial class="md-scale" data-md-direction="up" data-hide-gt-sm>
+    <md-fab-trigger>
+      <button data-md-button class="md-fab md-primary">
+        <md-icon class="material-icons">menu</md-icon>
+      </button>
+    </md-fab-trigger>
+    <md-fab-actions>
+      <a href="{{ url('home:index') }}" data-md-button class="md-fab md-raised md-mini">
+        <md-tooltip data-md-direction="left">{{ _("home") }}</md-tooltip>
+        <md-icon class="material-icons">home</md-icon>
+      </a>
+      {% if request.user.is_authenticated -%}
+        {% for menu_item in right_auth_only_menu -%}
+        <a href="{{ menu_item.url }}" data-md-button class="md-fab md-raised md-mini"
+          {% if menu_item.target %}target="{{ menu_item.target }}"{% endif %}
+          aria-label="{{ menu_item.name }}">
+          <md-tooltip data-md-direction="left">{{ menu_item.name }}</md-tooltip>
+          <md-icon class="{{ menu_item.icon_class }}">{{ menu_item.icon_body or ""}}</md-icon>
+        </a>
+        {%- endfor %}
+      {%- else -%}
+        <a href="{{ url('admin:login') }}" data-md-button class="md-fab md-raised md-mini">
+          <md-tooltip data-md-direction="left">{{ _("Login") }}</md-tooltip>
+          <md-icon class="material-icons">lock_outline</md-icon>
+        </a>
+      {%- endif %}
+      {% for menu_item in menu -%}
+      <a href="{{ menu_item.url }}" data-md-button class="md-fab md-raised md-mini"
+        {% if menu_item.target %}target="{{ menu_item.target }}"{% endif %}
+        aria-label="{{ menu_item.name }}">
+        <md-tooltip data-md-direction="left">{{ menu_item.name }}</md-tooltip>
+        <md-icon class="{{ menu_item.icon_class }}">{{ menu_item.icon_body or ""}}</md-icon>
+      </a>
+      {%- endfor %}
+    </md-fab-actions>
+  </md-fab-speed-dial>
+  {% if request.user.is_authenticated -%}
+  <md-sidenav class="md-sidenav-right md-whiteframe-4dp"
+    data-md-component-id="manageSideNav">
+     <md-toolbar><h3 class="md-toolbar-tools">Management Menu</h3></md-toolbar>
+     <md-list data-flex>
+       {% for item in right_auth_only_menu | reverse -%}
+       <md-list-item class="md-2-line" data-ng-click="goto('{{ item.url }}')">
+         <md-icon class="{{ item.icon_class }} md-avatar">
+           {{ item.icon_body }}
+         </md-icon>
+         <div class="md-list-item-text" layout="column" data-flex>
+           <h3>{{ item.name }}</h3>
+           <p>{{ item.url }}</p>
+         </div>
+       </md-list-item>
+       {%- endfor %}
+     </md-list>
+  </md-sidenav>
+  {% endif %}
+  <footer>
+    <section class="mit">
+      <h1>{{_("The MIT License (MIT)")}}</h1>
+      <p>Copyright (c) 2016- {{ settings.TITLE }} (Owner: Hiroaki Yamamoto)</p>
+      <p>{{_("
+        Permission is hereby granted, free of charge, to any person obtaining a
+        copy of this software and associated documentation files
+        (the \"Software\"), to deal in the Software without restriction, including
+        without limitation the rights to use, copy, modify, merge, publish,
+        distribute, sublicense, and/or sell copies of the Software, and to permit
+        persons to whom the Software is furnished to do so, subject to the
+        following conditions:
+      ")}}</p>
+      <p>{{_("
+        The above copyright notice and this permission notice shall be included
+        in all copies or substantial portions of the Software.
+      ")}}</p>
+      <p>{{_("
+        THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+        OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+        MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+        IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+        CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+        TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+        SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+      ")}}</p>
+    </section>
+    <section class="exception">
+      <h2>{{_("The Exception of Copyrights and Licenses")}}</h1>
+      <p>
+        The code of this website is licensed under the terms of MIT License.
+        However, some assets, including code, might be licensed with a non-free
+        use license. In that case, the decision of the treatments for the copyright
+        of the third party's assets, and the license of the third party's assets
+        depend on their licenses. However, the area of the exception is only
+        the points that the third party assets are used. For details, please
+        visit legal page.
+      </p>
+    </section>
+    <p class="legal-link nospace">
+      <small><a href="{{ url('legal:index') }}">{{_("Legal")}}</a></small>
+    </p>
+  </footer>
+</body>
+</html>

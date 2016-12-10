@@ -1,137 +1,95 @@
 #!/usr/bin/env python
 # coding=utf-8
 
-"""Admin panel."""
+"""Admin panel for user related models."""
 
-from collections import OrderedDict
-
-import wtforms.fields as fld
-import wtforms.validators as vld
-from wtf_otp import OTPSecretKeyField, OTPCheck
-
-from ..common import AdminModelBase
-from .models import Person
+from celery import current_app as ctask
+from django.contrib import admin
+from .models import (
+    UserInfo, TaskLog, GithubProfile, CodingLanguage, Framework,
+    Hobby, Inbox
+)
 
 
-class CurrentPasswordValidation(object):
-    """Current password validation."""
+class GithubProfileAdminView(admin.TabularInline):
+    """
+    Github Profile Admin panel.
 
-    def __init__(self, fields):
-        """Init obj."""
-        self.fields = fields
+    But, this is readonly.
+    """
 
-    def __call__(self, form, field):
-        """Validate."""
-        model = Person.objects(email=form.email.data).first()
-        if model is None:
-            return
-
-        if all([getattr(form, f).data for f in self.fields]):
-            if not field.data:
-                raise vld.ValidationError("This field is required.")
-            if not model.verify(field.data):
-                raise vld.ValidationError("The password wasn't matched.")
+    model = GithubProfile
+    readonly_fields = ("avatar_url", "html_url", "bio")
 
 
-class ValidateTrue(object):
-    """Validate the value with the specified validator."""
+@admin.register(CodingLanguage)
+class CodingLanguageAdmin(admin.ModelAdmin):
+    """Coding langauge admin panel."""
 
-    def __init__(self, validator, exp, *args, **kwargs):
-        """
-        Initialize the class.
-
-        Parameters:
-            validator: The validator. The value is validated when the exp is
-                Truthy.
-            exp: Expression to check if vaidation is needed. Note that this
-                can be callable with form and field params, and in this case,
-                the exp is evaluated when __call__ is called.
-            *args: Any arguments to be passed to the validator.
-            **kwargs: Any keyword arguments to be passed to the validator.
-        """
-        self.validator = validator
-        self.exp = exp
-        self.args = args
-        self.kwargs = kwargs
-
-    def __call__(self, form, field):
-        """
-        Validate the field.
-
-        Parameters:
-            form: The form
-            field: The field
-        """
-        exp = False
-        try:
-            exp = self.exp(form, field)
-        except TypeError:
-            exp = self.exp
-
-        if exp:
-            validation = self.validator(*self.args, **self.kwargs)
-            return validation(form, field)
+    list_display = ("name", )
+    search_fields = (
+        "name", "users_info__user__email", "users_info__user__first_name",
+        "users_info__user__last_name"
+    )
 
 
-class PersonAdmin(AdminModelBase):
-    """Person admin."""
+@admin.register(Framework)
+class FrameowrkAdmin(admin.ModelAdmin):
+    """Framework admin."""
 
-    form_subdocuments = {
-        "skills": {},
-        "websites": {},
-    }
-    column_exclude_list = ("code", "sacode")
-    form_excluded_columns = ("code", "sacode")
-    form_extra_fields = OrderedDict([
-        (
-            "current_password", fld.PasswordField(
-                validators=[
-                    CurrentPasswordValidation([
-                        "new_password", "confirm_password"
-                    ]),
-                    CurrentPasswordValidation(["sfa_secret"])
-                ]
-            )
-        ),
-        ("new_password", fld.PasswordField()),
-        (
-            "confirm_password",
-            fld.PasswordField(validators=[vld.EqualTo("new_password")])
-        ), (
-            "sfa_secret",
-            OTPSecretKeyField(qrcode_url="/u/qrcode", render_kw={
-                "button_args": {"class": "btn"}
-            }, validators=[
-                ValidateTrue(
-                    vld.InputRequired,
-                    lambda form, field: form.sfa_confirm.data
-                )
-            ])
-        ), (
-            "sfa_confirm", fld.IntegerField(
-                validators=[
-                    ValidateTrue(
-                        vld.Optional,
-                        lambda form, field: not form.sfa_secret.data
-                    ),
-                    ValidateTrue(
-                        vld.InputRequired,
-                        lambda form, field: form.sfa_secret.data
-                    ),
-                    vld.NumberRange(min=0, max=999999),
-                    OTPCheck(lambda form, field: form.sfa_secret.data)
-                ]
-            )
-        )
-    ])
+    list_display = (
+        "name", "icon_cls", "icon_body", "url", "description"
+    )
+    search_fields = list_display + (
+        "languages__name",
+        "users_info__user__email", "users_info__user__first_name",
+        "users_info__user__last_name"
+    )
 
-    def on_model_change(self, form, model, is_created=False):
-        """Apply new password."""
-        password = form.current_password.data
-        sfa_secret = form.sfa_secret.data or model.get_2fa(password)
 
-        if form.confirm_password.data:
-            model.password = form.confirm_password.data
-            password = form.confirm_password.data
+class HobbyPanel(admin.TabularInline):
+    """Member's hobby."""
 
-        model.set_2fa(password, sfa_secret)
+    model = Hobby
+
+
+@admin.register(UserInfo)
+class UserInfoAdmin(admin.ModelAdmin):
+    """User info admin panel."""
+
+    list_display = ("user",)
+    readonly_fields = ("id", )
+    inlines = (GithubProfileAdminView, HobbyPanel)
+
+    def save_model(self, req, obj, form, change):
+        """Save the model and execute user.github.fetch task."""
+        super(UserInfoAdmin, self).save_model(req, obj, form, change)
+        ctask.send_task("user.github.fetch", (str(obj.id), ))
+
+
+@admin.register(TaskLog)
+class TaskLog(admin.ModelAdmin):
+    """Task log form celery."""
+
+    list_display = ("log_date", "user", "title", "message")
+    search_fields = (
+        "user__email", "user__first_name", "user__last_name", "user__username",
+        "title", "message", "log_date"
+    )
+    readonly_fields = ("title", "message", "user", "log_date")
+
+
+@admin.register(Inbox)
+class InboxAdmin(admin.ModelAdmin):
+    """Inbox admin panel."""
+
+    list_display = (
+        "user", "post_time", "primary_name", "company_name", "email"
+    )
+    search_fields = (
+        "user__user__email", "post_time", "primary_name", "company_name",
+        "email", "message"
+    )
+    readonly_fields = (
+        "user", "post_time", "primary_name", "email", "company_name", "message"
+    )

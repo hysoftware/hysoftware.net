@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:300" rel="stylesheet">
+  <title>{% block title %}{% endblock -%}</title>
+  <style>
+    * {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 300;
+    }
+    blockquote {
+      border-left: 0.25rem solid #BDBDBE;
+      color: #616161;
+    }
+  </style>
+  {% block header %}{% endblock -%}
+</head>
+<body>
+  {% block body -%}
+  {% endblock %}
+</body>
+</html>

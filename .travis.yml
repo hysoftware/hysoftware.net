@@ -2,10 +2,12 @@ language: node_js
 sudo: false
 cache:
   apt: true
+  pip: true
   directories:
     - "${HOME}/.npm"
+    - "${HOME}/.nvm"
     - "node_modules"
-    - "app/static"
+    - "app/common/static/third_party"
     - "../venv"
 compiler: g++-4.8
 env:
@@ -14,7 +16,7 @@ env:
     - DEPLOY_REPO=https://hiroaki-yamamoto:${DEPLOY_KEY}@github.com/hysoftware/hysoftware.net-deploy.git
     - node_mode=production
 node_js:
-  - "6.2"
+  - "node"
 addons:
   apt:
     sources:
@@ -42,6 +44,7 @@ script:
 after_success:
   - "source ../venv/bin/activate"
   - "coveralls"
+  - "codeclimate-test-reporter"
   - "deactivate"
 deploy:
   provider: script
