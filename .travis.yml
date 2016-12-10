@@ -45,3 +45,8 @@ after_success:
   - "coveralls"
   - "codeclimate-test-reporter"
   - "deactivate"
+deploy:
+  provider: script
+  script: ./deploy.sh
+  on:
+    tags: true
