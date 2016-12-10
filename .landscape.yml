@@ -1,5 +1,0 @@
-uses:
-    - django
-    - celery
-python-targets:
-  - 3
