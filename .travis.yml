@@ -43,4 +43,5 @@ script:
 after_success:
   - "source ../venv/bin/activate"
   - "coveralls"
+  - "codeclimate-test-reporter"
   - "deactivate"
