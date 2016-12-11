@@ -2,14 +2,11 @@
 [![TravisImage]][TravisLink]
 [![Coverage Status]][Coverage Status Link]
 [![Code Climate]][Code Climate Link]
-[![Code Health]][Code Health Link]
 
 [TravisImage]: https://travis-ci.org/hysoftware/hysoftware.net.svg?branch=master
 [TravisLink]: https://travis-ci.org/hysoftware/hysoftware.net
 [Code Climate]: https://codeclimate.com/github/hysoftware/hysoftware.net/badges/gpa.svg
 [Code Climate Link]: https://codeclimate.com/github/hysoftware/hysoftware.net
-[Code Health]: https://landscape.io/github/hysoftware/hysoftware.net/master/landscape.svg?style=flat
-[Code Health Link]: https://landscape.io/github/hysoftware/hysoftware.net/master
 [Coverage Status]: https://coveralls.io/repos/github/hysoftware/hysoftware.net/badge.svg?branch=master
 [Coverage Status Link]: https://coveralls.io/github/hysoftware/hysoftware.net?branch=master
 
