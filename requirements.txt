@@ -44,4 +44,5 @@ requests==2.12.3
 six==1.10.0
 snowballstemmer==1.2.1
 Sphinx==1.5
+uWSGI==2.0.14
 vine==1.1.3

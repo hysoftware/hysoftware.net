@@ -1,8 +1,6 @@
 uwsgi:
   https2: $(https_info)
   http: $(http)
-  chdir: $(repo)
-  virtualenv: ..
   chmod: 666
   master: 2
   processes: 1
