@@ -14,7 +14,7 @@ mv deploy/.git git
 rsync --delete \
   --delete-excluded \
   --exclude-from=${TRAVIS_BUILD_DIR}/excludelist.txt \
-  -aP ${TRAVIS_BUILD_DIR}/ ${HOME}/deploy > /dev/null 2>&1
+  -aP ${TRAVIS_BUILD_DIR}/ ${HOME}/deploy #> /dev/null 2>&1
 mv git deploy/.git
 
 cd deploy
