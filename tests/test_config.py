@@ -29,7 +29,9 @@ class ProductionConfigTest(TestCase):
             "DB_USER": "test_db_user",
             "DB_PW": "test_db_pw",
             "DB_HOST": "test_db_host",
-            "DB_PORT": "test_db_port"
+            "DB_PORT": "test_db_port",
+            "SQS_REGION": "us-east-1a",
+            "SQS_PREFIX": "test"
         }
         self.sep = re.compile(",\\s.")
         with patch.dict("os.environ", self.environ):
@@ -113,3 +115,10 @@ class ProductionConfigTest(TestCase):
                 "PORT": self.environ["DB_PORT"]
             }
         }, self.conf_p.DATABASES)
+
+    def test_sqs(self):
+        """SQS related settings should be there!."""
+        self.assertEqual({
+            "region": self.environ["SQS_REGION"],
+            "queue_name_prefix": self.environ["SQS_PREFIX"]
+        })
