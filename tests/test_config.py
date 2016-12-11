@@ -3,7 +3,6 @@
 
 """Setting test."""
 
-import re
 from unittest.mock import patch
 
 from django.test import TestCase
@@ -14,6 +13,13 @@ class ProductionConfigTest(TestCase):
 
     def setUp(self):
         """Setup."""
+        self.allowed_hosts = [
+            "allowed.io",
+            "allowed2.io",
+            "allowed3.io",
+            "allowed4.io",
+            ""
+        ]
         self.environ = {
             "SECRET": "test",
             "RECAPTCHA_PUBLIC_KEY": "recaptcha_test_pubkey",
@@ -33,7 +39,6 @@ class ProductionConfigTest(TestCase):
             "SQS_REGION": "us-east-1a",
             "SQS_PREFIX": "test"
         }
-        self.sep = re.compile(",\\s.")
         with patch.dict("os.environ", self.environ):
             from app.settings.public import PublicConfig
             self.conf_p = PublicConfig
@@ -83,7 +88,7 @@ class ProductionConfigTest(TestCase):
         )
         self.assertEqual(
             self.conf_p.ALLOWED_HOSTS,
-            self.sep.split(self.environ["ALLOWED_HOSTS"])
+            self.allowed_hosts
         )
 
     def test_celery_broker(self):
@@ -99,11 +104,6 @@ class ProductionConfigTest(TestCase):
 
     def test_db(self):
         """Database URL should be differ from devel."""
-        # "DB_ENGINE": "test_db_engine",
-        # "DB_NAME": "test_db_name",
-        # "DB_PW": "test_db_pw",
-        # "DB_HOST": "test_db_host",
-        # "DB_PORT": "test_db_port"
         self.assertNotEqual(self.conf_p.DATABASES, self.conf_d.DATABASES)
         self.assertDictEqual({
             "default": {

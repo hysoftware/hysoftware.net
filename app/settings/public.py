@@ -27,7 +27,7 @@ class PublicConfig(DevelConfig):
     RECAPTCHA_PRIVATE_KEY = os.environ["RECAPTCHA_PRIVATE_KEY"]
     MAILGUN_KEY = os.environ["MAILGUN_KEY"]
     MAILGUN_URL = os.environ["MAILGUN_URL"]
-    ALLOWED_HOSTS = re.split(",\\s.", os.environ["ALLOWED_HOSTS"])
+    ALLOWED_HOSTS = re.split(",\\s*", os.environ["ALLOWED_HOSTS"])
     CELERY_BROKER_URL = os.environ["CELERY_BROKER_URL"]
     CELERY_RESULT_BACKEND = None
     CELERY_BROKER_TRANSPORT_OPTIONS = {
