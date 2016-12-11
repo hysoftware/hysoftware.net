@@ -1,0 +1,17 @@
+uwsgi:
+  http: localhost:8000
+  chdir: ..
+  virtualenv: ..
+  chmod: 666
+  master: 2
+  processes: 1
+  threads: 1
+  max-requests: 6000
+  max-requests-delta: 300
+  thunder-lock: true
+  manage-script-name: true
+  plugins: python
+  callalble: application
+  mount: /=app/wsgi.py
+  static-map: /static=staticfiles
+  attach-daemon: celery worker -A app -B -l INFO

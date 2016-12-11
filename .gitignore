@@ -157,3 +157,4 @@ dump.rdb
 
 # Uploaded files
 uploads
+staticfiles

@@ -47,7 +47,7 @@ after_success:
   - "codeclimate-test-reporter"
   - "deactivate"
 deploy:
-  provider: script
-  script: ./deploy.sh
-  on:
-    tags: true
+  - provider: script
+    script: ./deploy.sh
+    on:
+      tags: true
