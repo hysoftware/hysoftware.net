@@ -52,7 +52,7 @@ before_deploy:
   - "git archive --format zip -o ${HOME}/deploy-${TRAVIS_BUILD_ID}.zip HEAD"
   - "cd ${TRAVIS_BUILD_DIR}"
 deploy:
-  - procider: releases
+  - provider: releases
     api_key:
       secure: >-
         fRC2axSQeNogsd0ykyfbhCrFJjjQMkXVVfYBTC045IStw3EStuFvaEM6lXX7LrHBxi1xl/
