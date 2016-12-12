@@ -55,9 +55,9 @@ deploy:
   - provider: releases
     api_key:
       secure: >-
-        fRC2axSQeNogsd0ykyfbhCrFJjjQMkXVVfYBTC045IStw3EStuFvaEM6lXX7LrHBxi1xl/
-        +fXk+HAhr0mLR7FjcKFn94oREPqvTj2j/lUQ48rntgvjWRMEBYCqxpc7xMSHEy2Hg0eRzB
-        8Egh6dC02yD3CigEzs0hjW063xtrSlc=
+        bURRx94lQUE4AslU82ztvCjZ9LhnS00dpjnX1ejiYiyHMLzHg/+efZCSZhLxmnpS2WXDUw
+        7i2qzS0jQa1Rx+yFJrFCn8U3Cab5cLrEFPwzYFpUl0XZZa7uMwDQDqHLdxv9m2KH+LAgaW
+        2u28e1yHtFozDWWi4qfkOkAF+HiSwgc=
     file: "${HOME}/deploy-${TRAVIS_BUILD_ID}.zip"
     skip_cleanup: true
     on:
