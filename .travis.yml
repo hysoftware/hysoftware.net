@@ -46,7 +46,21 @@ after_success:
   - "coveralls"
   - "codeclimate-test-reporter"
   - "deactivate"
+before_deploy:
+  - "./pack.sh"
+  - "cd deploy"
+  - "git archive --format zip -o ${HOME}/deploy.zip HEAD"
+  - "cd ${TRAVIS_BUILD_DIR}"
 deploy:
+  - procider: releases
+    api_key:
+      secure: >-
+        fRC2axSQeNogsd0ykyfbhCrFJjjQMkXVVfYBTC045IStw3EStuFvaEM6lXX7LrHBxi1xl/
+        +fXk+HAhr0mLR7FjcKFn94oREPqvTj2j/lUQ48rntgvjWRMEBYCqxpc7xMSHEy2Hg0eRzB
+        8Egh6dC02yD3CigEzs0hjW063xtrSlc=
+    file: "${HOME}/deploy.zip"
+    on:
+      tags: true
   - provider: script
     script: ./deploy.sh
     on:
