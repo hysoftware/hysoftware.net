@@ -48,8 +48,8 @@ after_success:
   - "deactivate"
 before_deploy:
   - "./pack.sh"
-  - "cd deploy"
-  - "git archive --format zip -o ${HOME}/deploy.zip HEAD"
+  - "cd ${HOME}/deploy"
+  - "git archive --format zip -o ${HOME}/deploy-${TRAVIS_BUILD_ID}.zip HEAD"
   - "cd ${TRAVIS_BUILD_DIR}"
 deploy:
   - procider: releases
@@ -58,7 +58,7 @@ deploy:
         fRC2axSQeNogsd0ykyfbhCrFJjjQMkXVVfYBTC045IStw3EStuFvaEM6lXX7LrHBxi1xl/
         +fXk+HAhr0mLR7FjcKFn94oREPqvTj2j/lUQ48rntgvjWRMEBYCqxpc7xMSHEy2Hg0eRzB
         8Egh6dC02yD3CigEzs0hjW063xtrSlc=
-    file: "${HOME}/deploy.zip"
+    file: "${HOME}/deploy-${TRAVIS_BUILD_ID}.zip"
     on:
       tags: true
   - provider: script
