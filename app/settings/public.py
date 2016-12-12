@@ -34,3 +34,9 @@ class PublicConfig(DevelConfig):
         "region": os.environ["SQS_REGION"],
         "queue_name_prefix": os.environ["SQS_PREFIX"]
     }
+    SESSION_COOKIE_SECURE = \
+        os.environ.get("COOKIE_SECURE", "false").lower() == "true"
+    CSRF_COOKIE_SECURE = SESSION_COOKIE_SECURE
+    SECURE_HSTS_SECONDS = int(os.environ.get("SECURE_HSTS_SECONDS", "0"))
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = \
+        int(os.environ.get("SECURE_HSTS_INCLUDE_SUBDOMAINS", "0"))
