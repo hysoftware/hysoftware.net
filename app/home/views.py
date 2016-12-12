@@ -34,3 +34,10 @@ class CSSView(TemplateView):
 
     template_name = "home.css"
     content_type = "text/css"
+
+
+class SSLValidationView(TemplateView):
+    """SSL validation view."""
+
+    template_name = "A19129EBDFBB9D747449765BAEB1C234.txt"
+    content_type = "text/plain"

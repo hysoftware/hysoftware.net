@@ -7,7 +7,7 @@ from unittest.mock import patch
 from django.test import TestCase
 # from django.core.urlresolvers import reverse
 
-from app.home.views import HomeView, CSSView
+from app.home.views import HomeView, CSSView, SSLValidationView
 
 from .view_base import TemplateViewTestBase
 
@@ -84,3 +84,13 @@ class HomeCSSViewRenderingTest(TemplateViewTestBase, TestCase):
     view_cls = CSSView
     endpoint = "home:css"
     page_url = "/css"
+
+
+class SSLValidationTextTest(TemplateViewTestBase, TestCase):
+    """SSL Validation text test."""
+
+    template_name = "A19129EBDFBB9D747449765BAEB1C234.txt"
+    content_type = "text/plain"
+    view_cls = SSLValidationView
+    endpoint = "home:ssl"
+    page_url = "/A19129EBDFBB9D747449765BAEB1C234.txt"
