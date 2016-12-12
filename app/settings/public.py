@@ -12,6 +12,7 @@ from .devel import DevelConfig
 class PublicConfig(DevelConfig):
     """Config for production."""
 
+    DEBUG = False
     SECRET_KEY = os.environ["SECRET"]
     DATABASES = {
         "default": {
