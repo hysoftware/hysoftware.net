@@ -2,6 +2,8 @@
 
 # Pack hysoftware webapp
 
+rm -rf ${HOME}/deploy
+
 cd ${HOME}
 git clone ${DEPLOY_REPO} deploy #> /dev/null 2>&1
 
