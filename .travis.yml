@@ -59,9 +59,11 @@ deploy:
         +fXk+HAhr0mLR7FjcKFn94oREPqvTj2j/lUQ48rntgvjWRMEBYCqxpc7xMSHEy2Hg0eRzB
         8Egh6dC02yD3CigEzs0hjW063xtrSlc=
     file: "${HOME}/deploy-${TRAVIS_BUILD_ID}.zip"
+    skip_cleanup: true
     on:
       tags: true
   - provider: script
     script: ./deploy.sh
+    skip_cleanup: true
     on:
       tags: true
