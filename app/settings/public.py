@@ -39,4 +39,4 @@ class PublicConfig(DevelConfig):
     CSRF_COOKIE_SECURE = SESSION_COOKIE_SECURE
     SECURE_HSTS_SECONDS = int(os.environ.get("SECURE_HSTS_SECONDS", "0"))
     SECURE_HSTS_INCLUDE_SUBDOMAINS = \
-        int(os.environ.get("SECURE_HSTS_INCLUDE_SUBDOMAINS", "0"))
+        os.environ.get("SECURE_HSTS_INCLUDE_SUBDOMAINS", "false") == "true"
