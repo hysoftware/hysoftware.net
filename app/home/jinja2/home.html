@@ -127,7 +127,7 @@
         "You can see what we can handle, what we can write, and out sample code.",
         view.users_info.count()
       )}}</p>
-      <a href="#" data-md-button class="md-raised md-primary">
+      <a href="{{ url('user:about') }}" data-md-button class="md-raised md-primary">
         {{_("Visit About page")}}
       </a>
     </section>
@@ -141,7 +141,7 @@
       "Let's contact us. We're looking forward to getting know each other.",
       view.users_info.count()
     )}}</p>
-    <a href="#" data-md-button class="md-raised md-warn">
+    <a href="{{ url('user:contact') }}" data-md-button class="md-raised md-warn">
       {{_n("Contact me!", "Contact us!", view.users_info.count())}}
     </a>
   </section>
