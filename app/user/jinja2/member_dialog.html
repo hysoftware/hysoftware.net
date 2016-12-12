@@ -44,7 +44,7 @@
       {% for coding_lang in view.user_info.coding_languages.all() -%}
         {%
           set frameworks = view.user_info.frameworks.filter(
-            languages__name__iexact=coding_lang
+            languages__name__iexact=coding_lang.name
           )
         -%}
         <md-tab label="{{ coding_lang.name }}">
