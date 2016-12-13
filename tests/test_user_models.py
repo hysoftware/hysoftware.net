@@ -6,7 +6,7 @@
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 
-from app.user.models import UserInfo, CodingLanguage
+from app.user.models import UserInfo, CodingLanguage, GithubProfile
 
 
 class UserInfoRepresentationTest(TestCase):
@@ -44,3 +44,20 @@ class CodingLanguageRepresentationTest(TestCase):
     def test_representation(self):
         """The represented text should be proper."""
         self.assertEqual(str(self.lang), self.lang.name)
+
+
+class GithubProfileFieldNamesTest(TestCase):
+    """Github profile model field name fetching test."""
+
+    def setUp(self):
+        """setup."""
+        self.github_cls = GithubProfile
+
+    def test_fields_names(self):
+        """It returns the name of fields."""
+        self.assertSetEqual(
+            self.github_cls.fields_names(), set([
+                fld.name for fld in self.github_cls._meta.get_fields()
+                if fld.name != "id"
+            ])
+        )

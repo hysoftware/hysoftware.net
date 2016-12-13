@@ -16,6 +16,7 @@ from .models import UserInfo, GithubProfile, TaskLog
 def fetch_github_profile(user_info_id=None):
     """Fetch user profile from github."""
     users_info_query = UserInfo.objects
+    github_fld_names = GithubProfile.fields_names()
     if user_info_id is not None:
         users_info_query = users_info_query.filter(id=user_info_id)
 
@@ -31,10 +32,7 @@ def fetch_github_profile(user_info_id=None):
                 user_info=info, defaults={
                     key: value
                     for (key, value) in resp.json().items()
-                    if key in [
-                        fld.name for fld in GithubProfile._meta.get_fields()
-                        if fld.name != "id"
-                    ]
+                    if key in github_fld_names
                 }
             )
             info.github_profile.refresh_from_db()

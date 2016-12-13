@@ -68,6 +68,13 @@ class GithubProfile(db.Model):
     html_url = db.URLField()
     bio = db.CharField(max_length=160, blank=True, null=True)
 
+    @classmethod
+    def fields_names(cls):
+        """Return a list of names of the fileds of this model."""
+        return set([
+            fld.name for fld in cls._meta.get_fields() if fld.name != "id"
+        ])
+
 
 class CodingLanguage(db.Model):
     """Coding language."""
