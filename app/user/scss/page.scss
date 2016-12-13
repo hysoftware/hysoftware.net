@@ -38,24 +38,41 @@
 
 .member {
   .status {
+    $transition_duration: 250ms;
     display: inline-block;
     padding: 0 0.5rem;
     font-weight: 500;
     border-radius: 4px;
+    text-decoration: none;
+    transition:
+      color $transition_duration,
+      background-color $transition_duration;
     &.FL {
       $color: #558B2F;
       color: $color;
       border: 1px solid $color;
+      &:hover {
+        background-color: $color;
+        color: #fafafb;
+      }
     }
     &.PT {
       $color: #FF6F00;
       color: $color;
       border: 1px solid $color;
+      &:hover {
+        background-color: $color;
+        color: #fafafb;
+      }
     }
     &.NA {
       $color: #d50000;
       color: $color;
       border: 1px solid $color;
+      &:hover {
+        background-color: $color;
+        color: #fafafb;
+      }
     }
   }
 }
