@@ -17,10 +17,16 @@
     {{ socials.render(view.user_info) }}
   </div>
   <div class="availability-section">
+    {% if view.user_info.availability != "NA" -%}
     <a href="{{ url('user:contact', kwargs={'info_id': view.user_info.id}) }}"
       class="status {{ view.user_info.availability }}">
       {{ view.user_info.availability_choices[view.user_info.availability] }}
     </a>
+    {%- else -%}
+    <div class="status {{ view.user_info.availability }}">
+      {{ view.user_info.availability_choices[view.user_info.availability] }}
+    </div>
+    {%- endif %}
   </div>
   {% if view.user_info.github_profile.bio -%}
   <section class="bio">

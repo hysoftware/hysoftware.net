@@ -69,10 +69,6 @@
       $color: #d50000;
       color: $color;
       border: 1px solid $color;
-      &:hover {
-        background-color: $color;
-        color: #fafafb;
-      }
     }
   }
 }
