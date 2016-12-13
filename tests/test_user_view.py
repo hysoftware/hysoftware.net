@@ -130,6 +130,10 @@ class ContactPageTest(TemplateViewTestBase, TestCase):
         view.kwargs = {"info_id": str(self.info.id)}
         self.assertEqual(view.user_info, self.info)
 
+    def test_description(self):
+        """The description should be 'Contact Form'."""
+        self.assertEqual(self.view_cls().description, "Contact Form")
+
     @patch("app.user.forms.ContactForm")
     def test_form_get(self, form):
         """It should return view.info."""

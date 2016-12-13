@@ -9,7 +9,9 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404
 from django.views.generic import TemplateView
 from django.utils.functional import cached_property
-from django.utils.translation import ungettext as _n
+from django.utils.translation import (
+    ungettext as _n, ugettext_lazy as _lz
+)
 
 
 class AboutView(TemplateView):
@@ -45,6 +47,7 @@ class ContactView(TemplateView):
     """Contact view."""
 
     template_name = "contact.html"
+    description = _lz("Contact Form")
 
     @cached_property
     def user_info(self):

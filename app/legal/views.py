@@ -5,13 +5,14 @@
 
 from django.views.generic import TemplateView
 from django.utils.functional import cached_property
+from django.utils.translation import ugettext_lazy as _lz
 
 
 class LegalView(TemplateView):
     """Legal view."""
 
     template_name = "legal.html"
-    description = "Legal Statement"
+    description = _lz("Legal Statement")
 
     @cached_property
     def country(self):
