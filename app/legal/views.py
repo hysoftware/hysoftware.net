@@ -11,6 +11,7 @@ class LegalView(TemplateView):
     """Legal view."""
 
     template_name = "legal.html"
+    description = "Legal Statement"
 
     @cached_property
     def country(self):

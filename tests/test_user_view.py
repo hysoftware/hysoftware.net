@@ -25,10 +25,51 @@ class AboutPageTest(TemplateViewTestBase, TestCase):
     view_cls = AboutView
     template_name = "about.html"
 
+    def setUp(self):
+        """Setup."""
+        super(AboutPageTest, self).setUp()
+        self.user = get_user_model().objects.create_user(
+            username="Test Example", password="test"
+        )
+        self.info = UserInfo.objects.create(user=self.user, github="test")
+
     @patch("app.user.models.UserInfo.objects")
     def test_users_info_property(self, objects):
         """User Info property should return the queryset of user info."""
         self.assertIs(self.view_cls().users_info, objects)
+
+    def test_view_description(self):
+        """The description should be 'About me'."""
+        self.assertEqual(self.view_cls().description, "About me")
+
+
+class AboutPageMultipleUserInfoTest(TemplateViewTestBase, TestCase):
+    """Multiple user information test."""
+
+    endpoint = "user:about"
+    page_url = "/u/about"
+    view_cls = AboutView
+    template_name = "about.html"
+
+    def setUp(self):
+        """Setup."""
+        super(AboutPageMultipleUserInfoTest, self).setUp()
+        self.users = [
+            get_user_model().objects.create_user(
+                username=("Test Example {}").format(counter),
+                password="test"
+            ) for counter in range(3)
+        ]
+        self.info = [
+            UserInfo.objects.create(
+                user=user, github=("test {}").format(user.username)
+            )
+            for user in self.users
+        ]
+
+    def test_view_description(self):
+        """The description should be 'About us'."""
+        self.assertEqual(self.view_cls().description, "About us")
 
 
 class MemberPageTest(TemplateViewTestBase, TestCase):

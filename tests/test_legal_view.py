@@ -37,6 +37,10 @@ class LegalViewTest(TemplateViewTestBase, TestCase):
         view = self.view_cls()
         self.assertIs(view.assets_info, objects)
 
+    def test_desc(self):
+        """The description should be 'Legal Statement'."""
+        self.assertEqual(self.view_cls.description, "Legal Statement")
+
 
 class CSSViewTest(TemplateViewTestBase, TestCase):
     """CSS view access test."""

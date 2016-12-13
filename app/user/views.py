@@ -9,12 +9,18 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404
 from django.views.generic import TemplateView
 from django.utils.functional import cached_property
+from django.utils.translation import ungettext as _n
 
 
 class AboutView(TemplateView):
     """About page."""
 
     template_name = "about.html"
+
+    @cached_property
+    def description(self):
+        """Return description of this page."""
+        return _n("About me", "About us", self.users_info.count())
 
     @cached_property
     def users_info(self):
