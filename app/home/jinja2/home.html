@@ -87,11 +87,10 @@
     <section>
       <header>
         <h1>
-          {{_(
-            "This webapp is "
-            "<a href=\"{{ settings.SOURCE_URL }}\" target=\"_blank\">"
-            "open-source</a>"
-          )|safe}}
+          {{_("This webapp is")}}
+          <a href="{{ settings.SOURCE_URL }}" target="_blank">
+            {{ _("open source") }}
+          </a>
         </h1>
         <div data-layout="row">
           <h2 data-flex><i class="ion-social-python"></i></h2>
@@ -102,11 +101,13 @@
           <h2 data-flex><i class="ion-social-sass"></i></h2>
         </div>
       </header>
-      <p>{{_(
-        "As you can see "
-        "<a href=\"{{ settings.SOURCE_URL }}\" target=\"_blank\">this page</a>,"
-        "this webapp is open-source and there's nothing that is hidden."
-      )|safe}}</p>
+      <p>
+        {{_("As you can see")}}
+        <a href="{{ settings.SOURCE_URL }}" target="_blank">
+          {{ _("this page") }}
+        </a>{{_(", ")}}
+        {{ _("this webapp is open-source and there's nothing that is hidden.") }}
+      </p>
       <p>
         <a href="{{ settings.SOURCE_URL }}" target="_blank"
           class="md-raised md-primary text-no-transform impact"
