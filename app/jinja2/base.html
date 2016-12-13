@@ -37,11 +37,21 @@
         "icon_body": "settings"
     }
   ]
-%}
+-%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+  <meta name="Keywords" content="hysoftware,agile,development,software">
+  <meta name="Description" content="Agile software development Professional">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="hysoftware">
+  <meta property="og:image" content="https://avatars2.githubusercontent.com/u/11012469?v=3&amp;s=280">
+  <meta property="og:url" content="https://hysoftware.net">
+  <meta property="og:description" content="{{
+    view.description or _('A frontend page for hysoftware.net') -}}">
+
   <title>{% block title %}{% endblock %} - {{ settings.TITLE }}</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:300,500,700">
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
