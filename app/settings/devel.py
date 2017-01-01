@@ -29,6 +29,7 @@ class DevelConfig(DjangoDefaults):
         'django.contrib.sessions',
         'django.contrib.messages',
         'django.contrib.staticfiles',
+        'django_otp.DjangoOTP',
         'django_countries',
         'captcha',
         "app.common.apps.CommonConfig",
@@ -79,6 +80,8 @@ class DevelConfig(DjangoDefaults):
             'NAME': 'devel.db',
         }
     }
+
+    AUTHENTICATION_BACKENDS = ("django_otp.backends.OTPAuthBackend", )
 
     AUTH_PASSWORD_VALIDATORS = (
         {

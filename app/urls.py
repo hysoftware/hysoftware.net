@@ -18,10 +18,16 @@ from django.conf import settings
 from django.conf.urls import url, include, static
 from django.contrib import admin
 
+from django_otp.admin import OTPAdmin, AdminSite
+
+OTPAdmin.enable()
+admin.site = AdminSite()
+
 urlpatterns = [
     url(r'^c/', include('app.common')),
     url(r'^l/', include('app.legal')),
     url(r'^s/', admin.site.urls),
+    url(r"^qr/", include("django_otp.urls")),
     url(r"^u/", include('app.user')),
     url(r'^', include('app.home'))
 ] + static.static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
