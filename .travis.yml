@@ -31,8 +31,8 @@ addons:
       - python3.5-dev
       - python3.5-venv
 install:
-  - "npm install"
-  - "npm update"
+  - "yarn install"
+  - "yarn upgrade"
   - "npm run update"
   - "pyvenv-3.5 ../venv"
   - "source ../venv/bin/activate"
