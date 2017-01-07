@@ -49,7 +49,7 @@ for name, modPath of modules
     )
     toolbox.sass "#{name}.", modPath, destPath, name
 
-toolbox.python "", "app", null, null, null, ["app/*/migrations"]
+toolbox.python "", "app", undefined, undefined, undefined, ["app/*/migrations"]
 
 g.task "django.test", ["python.mentain"], ->
   q.nfcall(rimraf, "app/**/?(*.pyc|__pycache__)").then(
