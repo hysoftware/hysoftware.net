@@ -1962,8 +1962,8 @@ https-proxy-agent@^1.0.0:
     extend "3"
 
 hyamamoto-job-toolbox@^0.2.6:
-  version "0.2.12"
-  resolved "https://registry.yarnpkg.com/hyamamoto-job-toolbox/-/hyamamoto-job-toolbox-0.2.12.tgz#7c0a2c73f2fe8cbb7802c8d15d6e874dd69cefc7"
+  version "0.2.21"
+  resolved "https://registry.yarnpkg.com/hyamamoto-job-toolbox/-/hyamamoto-job-toolbox-0.2.21.tgz#91fc1e7c4730211ced59470287921d4eca14cfca"
   dependencies:
     chai "^3.5.0"
     coffee-script "^1.11.1"
@@ -3852,8 +3852,8 @@ signal-exit@^3.0.0:
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
 
 simple-process@^1.0.7:
-  version "1.0.12"
-  resolved "https://registry.yarnpkg.com/simple-process/-/simple-process-1.0.12.tgz#0f891c8b79f0ba5f863955eb34a39babaf700ecc"
+  version "1.0.13"
+  resolved "https://registry.yarnpkg.com/simple-process/-/simple-process-1.0.13.tgz#515e5ffda3cae0331f05f9bd196ff64bb831486f"
   dependencies:
     merge "^1.2.0"
 

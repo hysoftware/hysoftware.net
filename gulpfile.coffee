@@ -50,21 +50,20 @@ for name, modPath of modules
     )
     toolbox.sass "#{name}.", modPath, destPath, name
 
-toolbox.python "", "app", undefined, undefined, undefined, ["app/*/migrations"]
+toolbox.python "", "app", [], undefined, undefined, ["app/*/migrations"]
 
 g.task "django.test", ["python.mentain"], ->
-  q.nfcall(rimraf, "app/**/?(*.pyc|__pycache__)").then(
-    -> command.pyvenv "coverage erase"
-  ).then(console.log).then(
-    -> command.pyvenv(
-      "DJANGO_SETTINGS_FACTORY='app.settings.testing.TestConfig'
-       RECAPTCHA_TESTING='True'
-       coverage run --branch --omit '*/migrations/*'
-       --source=app -- manage.py test"
-    )
-  ).then(console.log).then(
-    -> command.pyvenv("coverage report -m ")
-  ).then(console.log).catch(console.error)
+  q.nfcall(rimraf, "app/**/?(*.pyc|__pycache__)").then(-> command.pyvenv(
+    "coverage erase", [], undefined, ("stdio": ["pipe", "inherit", "inherit"]))
+  ).then(-> command.pyvenv(
+    "DJANGO_SETTINGS_FACTORY='app.settings.testing.TestConfig'
+     RECAPTCHA_TESTING='True' coverage run --branch --omit '*/migrations/*'
+     --source=app -- manage.py test", [], undefined,
+     ("stdio": ["pipe", "inherit", "inherit"])
+  )).then(-> command.pyvenv(
+    "coverage report -m", [], undefined,
+    ("stdio": ["pipe", "inherit", "inherit"])
+  ))
 
 init_deps = []
 
