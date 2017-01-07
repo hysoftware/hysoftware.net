@@ -2,6 +2,7 @@ path = require "path"
 
 g = require "gulp"
 toolbox = require "hyamamoto-job-toolbox"
+command = require "simple-process"
 
 plumber = require "gulp-plumber"
 notify = require "gulp-notify"
@@ -53,17 +54,17 @@ toolbox.python "", "app", undefined, undefined, undefined, ["app/*/migrations"]
 
 g.task "django.test", ["python.mentain"], ->
   q.nfcall(rimraf, "app/**/?(*.pyc|__pycache__)").then(
-    -> toolbox.virtualenv(
-      "coverage erase"
-    )
-  ).then(
-    -> toolbox.virtualenv(
+    -> command.pyvenv "coverage erase"
+  ).then(console.log).then(
+    -> command.pyvenv(
       "DJANGO_SETTINGS_FACTORY='app.settings.testing.TestConfig'
        RECAPTCHA_TESTING='True'
        coverage run --branch --omit '*/migrations/*'
        --source=app -- manage.py test"
     )
-  ).then(-> toolbox.virtualenv("coverage report -m "))
+  ).then(console.log).then(
+    -> command.pyvenv("coverage report -m ")
+  ).then(console.log).catch(console.error)
 
 init_deps = []
 
