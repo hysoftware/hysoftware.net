@@ -3,6 +3,7 @@ sudo: false
 cache:
   apt: true
   pip: true
+  yarn: true
   directories:
     - "${HOME}/.npm"
     - "${HOME}/.nvm"
