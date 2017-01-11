@@ -18,6 +18,10 @@
   version "2.53.37"
   resolved "https://registry.yarnpkg.com/@types/selenium-webdriver/-/selenium-webdriver-2.53.37.tgz#34f743c20e53ae7100ede90870fde554df2447f8"
 
+"@types/selenium-webdriver@^2.53.35", "@types/selenium-webdriver@~2.53.39":
+  version "2.53.39"
+  resolved "https://registry.yarnpkg.com/@types/selenium-webdriver/-/selenium-webdriver-2.53.39.tgz#15ff93392c339abd39d6d3a04e715faa9a263cf3"
+
 abbrev@1:
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.0.9.tgz#91b4792588a7738c25f35dd6f63752a2f8776135"
@@ -321,6 +325,14 @@ block-stream@*:
   dependencies:
     inherits "~2.0.0"
 
+blocking-proxy@0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/blocking-proxy/-/blocking-proxy-0.0.2.tgz#f3364b4e5c2b266ba01d69b2a1c96cd89b7680de"
+  dependencies:
+    es6-promise "^4.0.5"
+    minimist "^1.2.0"
+    selenium-webdriver "2.53.3"
+
 bluebird@^3.3.0:
   version "3.4.7"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.4.7.tgz#f72d760be09b7f76d08ed8fae98b289a8d05fab3"
@@ -603,7 +615,7 @@ code-point-at@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
 
-coffee-script@^1.10.0, coffee-script@^1.11.1, coffee-script@~1:
+coffee-script@^1.10.0, coffee-script@^1.12.2, coffee-script@~1:
   version "1.12.2"
   resolved "https://registry.yarnpkg.com/coffee-script/-/coffee-script-1.12.2.tgz#0d4cbdee183f650da95419570c4929d08ef91376"
 
@@ -875,7 +887,7 @@ depd@~1.1.0:
 
 deprecated@^0.0.1:
   version "0.0.1"
-  resolved "http://registry.npmjs.org/deprecated/-/deprecated-0.0.1.tgz#f9c9af5464afa1e7a971458a8bdef2aa94d5bb19"
+  resolved "https://registry.yarnpkg.com/deprecated/-/deprecated-0.0.1.tgz#f9c9af5464afa1e7a971458a8bdef2aa94d5bb19"
 
 detect-file@^0.1.0:
   version "0.1.0"
@@ -1017,7 +1029,7 @@ es6-map@^0.1.3:
     es6-symbol "~3.1.0"
     event-emitter "~0.3.4"
 
-es6-promise@~4.0.3:
+es6-promise@^4.0.5, es6-promise@~4.0.3:
   version "4.0.5"
   resolved "https://registry.yarnpkg.com/es6-promise/-/es6-promise-4.0.5.tgz#7882f30adde5b240ccfa7f7d78c548330951ae42"
 
@@ -1644,7 +1656,7 @@ gulp-cleancss@^0.2.2:
     gulp-util "2.2.17"
     through2 "^0.5.1"
 
-gulp-coffee@^2.3.2:
+gulp-coffee@^2.3.3:
   version "2.3.3"
   resolved "https://registry.yarnpkg.com/gulp-coffee/-/gulp-coffee-2.3.3.tgz#af389bc89ea04ed81294976efbf9d7a7248b9ea7"
   dependencies:
@@ -1664,7 +1676,7 @@ gulp-coffeelint@^0.6.0:
     gulp-util "^3.0.0"
     through2 "^2.0.0"
 
-gulp-concat@^2.6.0:
+gulp-concat@^2.6.1:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/gulp-concat/-/gulp-concat-2.6.1.tgz#633d16c95d88504628ad02665663cee5a4793353"
   dependencies:
@@ -1690,7 +1702,7 @@ gulp-karma-runner@^1.2.0:
     node-kissdi "^1.0.3"
     through2 "^2.0.1"
 
-gulp-less@^3.2.0:
+gulp-less@^3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/gulp-less/-/gulp-less-3.3.0.tgz#d085565da3c810307fde7c7874e86520dc503234"
   dependencies:
@@ -1732,17 +1744,17 @@ gulp-rename@^1.2.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/gulp-rename/-/gulp-rename-1.2.2.tgz#3ad4428763f05e2764dec1c67d868db275687817"
 
-gulp-sass@^2.3.2:
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/gulp-sass/-/gulp-sass-2.3.2.tgz#82b7ab90fe902cdc34c04f180d92f2c34902dd52"
+gulp-sass@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/gulp-sass/-/gulp-sass-3.1.0.tgz#53dc4b68a1f5ddfe4424ab4c247655269a8b74b7"
   dependencies:
     gulp-util "^3.0"
     lodash.clonedeep "^4.3.2"
-    node-sass "^3.4.2"
+    node-sass "^4.2.0"
     through2 "^2.0.0"
     vinyl-sourcemaps-apply "^0.2.0"
 
-gulp-sourcemaps@^2.2.0:
+gulp-sourcemaps@^2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/gulp-sourcemaps/-/gulp-sourcemaps-2.3.1.tgz#e1f1e733b78f378d0238f17990054b6392fbd20b"
   dependencies:
@@ -1783,7 +1795,7 @@ gulp-util@2.2.17:
     through2 "^0.4.0"
     vinyl "^0.2.1"
 
-"gulp-util@>=2.2.14 <4.0.0", gulp-util@^3, gulp-util@^3.0, gulp-util@^3.0.0, gulp-util@^3.0.2, gulp-util@^3.0.6, gulp-util@^3.0.7:
+"gulp-util@>=2.2.14 <4.0.0", gulp-util@^3, gulp-util@^3.0, gulp-util@^3.0.0, gulp-util@^3.0.2, gulp-util@^3.0.6, gulp-util@^3.0.7, gulp-util@^3.0.8:
   version "3.0.8"
   resolved "https://registry.yarnpkg.com/gulp-util/-/gulp-util-3.0.8.tgz#0054e1e744502e27c04c187c3ecc505dd54bbb4f"
   dependencies:
@@ -1941,43 +1953,43 @@ https-proxy-agent@^1.0.0:
     extend "3"
 
 hyamamoto-job-toolbox@^0.2.6:
-  version "0.2.21"
-  resolved "https://registry.yarnpkg.com/hyamamoto-job-toolbox/-/hyamamoto-job-toolbox-0.2.21.tgz#91fc1e7c4730211ced59470287921d4eca14cfca"
+  version "0.2.23"
+  resolved "https://registry.yarnpkg.com/hyamamoto-job-toolbox/-/hyamamoto-job-toolbox-0.2.23.tgz#a657de2b4b8f3601ea2eb6596ff5dd35e49125c2"
   dependencies:
     chai "^3.5.0"
-    coffee-script "^1.11.1"
+    coffee-script "^1.12.2"
     freeport "^1.0.5"
     gulp "^3.9.1"
     gulp-autoprefixer "^3.1.1"
     gulp-cleancss "^0.2.2"
-    gulp-coffee "^2.3.2"
+    gulp-coffee "^2.3.3"
     gulp-coffeelint "^0.6.0"
-    gulp-concat "^2.6.0"
+    gulp-concat "^2.6.1"
     gulp-eslint "^3.0.1"
     gulp-karma-runner "^1.2.0"
-    gulp-less "^3.2.0"
+    gulp-less "^3.3.0"
     gulp-notify "^2.2.0"
     gulp-plumber "^1.1.0"
     gulp-protractor "^3.0.0"
     gulp-rename "^1.2.2"
-    gulp-sass "^2.3.2"
-    gulp-sourcemaps "^2.2.0"
+    gulp-sass "^3.1.0"
+    gulp-sourcemaps "^2.3.1"
     gulp-uglify "^2.0.0"
-    gulp-util "^3.0.7"
+    gulp-util "^3.0.8"
     karma-chai-plugins "^0.8.0"
     karma-chrome-launcher "^2.0.0"
     karma-coffee-preprocessor "^1.0.1"
     karma-firefox-launcher "^1.0.0"
-    karma-mocha "^1.2.0"
+    karma-mocha "^1.3.0"
     karma-phantomjs-launcher "^1.0.2"
     karma-sinon "^1.0.5"
     less-plugin-clean-css "^1.5.1"
-    mocha "^3.1.2"
-    phantomjs-prebuilt "^2.1.13"
-    protractor "^4.0.10"
+    mocha "^3.2.0"
+    phantomjs-prebuilt "^2.1.14"
+    protractor "^5.0.0"
     q "^1.4.1"
-    simple-process "^1.0.7"
-    sinon "^1.17.6"
+    simple-process "^1.0.14"
+    sinon "^1.17.7"
 
 iconv-lite@0.4.13:
   version "0.4.13"
@@ -2166,7 +2178,7 @@ is-path-inside@^1.0.0:
 
 is-posix-bracket@^0.1.0:
   version "0.1.1"
-  resolved "http://registry.npmjs.org/is-posix-bracket/-/is-posix-bracket-0.1.1.tgz#3334dc79774368e92f016e6fbc0a88f5cd6e6bc4"
+  resolved "https://registry.yarnpkg.com/is-posix-bracket/-/is-posix-bracket-0.1.1.tgz#3334dc79774368e92f016e6fbc0a88f5cd6e6bc4"
 
 is-primitive@^2.0.0:
   version "2.0.0"
@@ -2255,6 +2267,13 @@ jasmine@2.4.1:
 jasminewd2@0.0.10:
   version "0.0.10"
   resolved "https://registry.yarnpkg.com/jasminewd2/-/jasminewd2-0.0.10.tgz#94f48ae2bc946cad643035467b4bb7ea9c1075ef"
+
+jasminewd2@~0.1.0:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/jasminewd2/-/jasminewd2-0.1.1.tgz#5adff080d576c0a4b8637ccfb78954d27ecb7cdc"
+  dependencies:
+    jasmine "2.4.1"
+    selenium-webdriver "3.0.1"
 
 jodid25519@^1.0.0:
   version "1.0.2"
@@ -2355,7 +2374,7 @@ karma-firefox-launcher@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/karma-firefox-launcher/-/karma-firefox-launcher-1.0.0.tgz#e08af3ce42e39860c2952ea7b7eaa64d63508bdc"
 
-karma-mocha@^1.2.0:
+karma-mocha@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/karma-mocha/-/karma-mocha-1.3.0.tgz#eeaac7ffc0e201eb63c467440d2b69c7cf3778bf"
   dependencies:
@@ -2706,6 +2725,10 @@ lodash.merge@^4.4.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.0.tgz#69884ba144ac33fe699737a6086deffadd0f89c5"
 
+lodash.mergewith@^4.6.0:
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/lodash.mergewith/-/lodash.mergewith-4.6.0.tgz#150cf0a16791f5903b8891eab154609274bdea55"
+
 lodash.partialright@^4.1.4:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/lodash.partialright/-/lodash.partialright-4.2.1.tgz#0130d80e83363264d40074f329b8a3e7a8a1cc4b"
@@ -2972,7 +2995,7 @@ mkdirp@0.5.1, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.1:
   dependencies:
     minimist "0.0.8"
 
-mocha@^3.1.2:
+mocha@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/mocha/-/mocha-3.2.0.tgz#7dc4f45e5088075171a68896814e6ae9eb7a85e3"
   dependencies:
@@ -3078,9 +3101,9 @@ node-pre-gyp@^0.6.29:
     tar "~2.2.1"
     tar-pack "~3.3.0"
 
-node-sass@^3.4.2:
-  version "3.13.1"
-  resolved "https://registry.yarnpkg.com/node-sass/-/node-sass-3.13.1.tgz#7240fbbff2396304b4223527ed3020589c004fc2"
+node-sass@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/node-sass/-/node-sass-4.2.0.tgz#ef3e686c119118e01b0a3c7345821a0d7400acf2"
   dependencies:
     async-foreach "^0.1.3"
     chalk "^1.1.1"
@@ -3091,6 +3114,7 @@ node-sass@^3.4.2:
     in-publish "^2.0.0"
     lodash.assign "^4.2.0"
     lodash.clonedeep "^4.3.2"
+    lodash.mergewith "^4.6.0"
     meow "^3.7.0"
     mkdirp "^0.5.1"
     nan "^2.3.2"
@@ -3098,6 +3122,7 @@ node-sass@^3.4.2:
     npmlog "^4.0.0"
     request "^2.61.0"
     sass-graph "^2.1.1"
+    stdout-stream "^1.4.0"
 
 node.extend@^1.1.3:
   version "1.1.6"
@@ -3344,7 +3369,7 @@ pend@~1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/pend/-/pend-1.2.0.tgz#7a57eb550a6783f9115331fcf4663d5c8e007a50"
 
-phantomjs-prebuilt@^2.1.13, phantomjs-prebuilt@^2.1.7:
+phantomjs-prebuilt@^2.1.14, phantomjs-prebuilt@^2.1.7:
   version "2.1.14"
   resolved "https://registry.yarnpkg.com/phantomjs-prebuilt/-/phantomjs-prebuilt-2.1.14.tgz#d53d311fcfb7d1d08ddb24014558f1188c516da0"
   dependencies:
@@ -3415,7 +3440,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-"protractor@>=4 <5", protractor@^4.0.10:
+"protractor@>=4 <5":
   version "4.0.14"
   resolved "https://registry.yarnpkg.com/protractor/-/protractor-4.0.14.tgz#efc4a877fac3a182a9dded26cd5869f4762fd172"
   dependencies:
@@ -3434,6 +3459,26 @@ promise@^7.1.1:
     selenium-webdriver "2.53.3"
     source-map-support "~0.4.0"
     webdriver-manager "^10.3.0"
+
+protractor@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/protractor/-/protractor-5.0.0.tgz#0935c487042c5f147d1dd03ab57b839a9d6c3368"
+  dependencies:
+    "@types/node" "^6.0.46"
+    "@types/q" "^0.0.32"
+    "@types/selenium-webdriver" "~2.53.39"
+    blocking-proxy "0.0.2"
+    chalk "^1.1.3"
+    glob "^7.0.3"
+    jasmine "2.4.1"
+    jasminewd2 "~0.1.0"
+    optimist "~0.6.0"
+    q "1.4.1"
+    saucelabs "~1.3.0"
+    selenium-webdriver "3.0.1"
+    source-map-support "~0.4.0"
+    webdriver-js-extender "^0.2.2"
+    webdriver-manager "^11.1.1"
 
 prr@~0.0.0:
   version "0.0.0"
@@ -3515,7 +3560,7 @@ read-pkg@^1.0.0:
     isarray "0.0.1"
     string_decoder "~0.10.x"
 
-"readable-stream@^2.0.0 || ^1.1.13", readable-stream@^2.0.2, readable-stream@^2.1.5, readable-stream@^2.2.2:
+"readable-stream@^2.0.0 || ^1.1.13", readable-stream@^2.0.1, readable-stream@^2.0.2, readable-stream@^2.1.5, readable-stream@^2.2.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-2.2.2.tgz#a9e6fec3c7dda85f8bb1b3ba7028604556fc825e"
   dependencies:
@@ -3597,7 +3642,7 @@ redeyed@~1.0.0:
 
 regex-cache@^0.4.2:
   version "0.4.3"
-  resolved "http://registry.npmjs.org/regex-cache/-/regex-cache-0.4.3.tgz#9b1a6c35d4d0dfcef5711ae651e8e9d3d7114145"
+  resolved "https://registry.yarnpkg.com/regex-cache/-/regex-cache-0.4.3.tgz#9b1a6c35d4d0dfcef5711ae651e8e9d3d7114145"
   dependencies:
     is-equal-shallow "^0.1.3"
     is-primitive "^2.0.0"
@@ -3756,7 +3801,11 @@ sax@0.6.x:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/sax/-/sax-0.6.1.tgz#563b19c7c1de892e09bfc4f2fc30e3c27f0952b9"
 
-selenium-webdriver@2.53.3:
+sax@>=0.6.0:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.1.tgz#7b8e656190b228e81a66aea748480d828cd2d37a"
+
+selenium-webdriver@2.53.3, selenium-webdriver@^2.53.2:
   version "2.53.3"
   resolved "https://registry.yarnpkg.com/selenium-webdriver/-/selenium-webdriver-2.53.3.tgz#d29ff5a957dff1a1b49dc457756e4e4bfbdce085"
   dependencies:
@@ -3765,6 +3814,15 @@ selenium-webdriver@2.53.3:
     tmp "0.0.24"
     ws "^1.0.1"
     xml2js "0.4.4"
+
+selenium-webdriver@3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/selenium-webdriver/-/selenium-webdriver-3.0.1.tgz#a2dea5da4a97f6672e89e7ca7276cefa365147a7"
+  dependencies:
+    adm-zip "^0.4.7"
+    rimraf "^2.5.4"
+    tmp "0.0.30"
+    xml2js "^0.4.17"
 
 "semver@2 || 3 || 4 || 5", "semver@2.x || 3.x || 4 || 5", semver@^5.1.0, semver@^5.3.0, semver@~5.3.0:
   version "5.3.0"
@@ -3814,7 +3872,7 @@ signal-exit@^3.0.0:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
 
-simple-process@^1.0.7:
+simple-process@^1.0.14:
   version "1.0.14"
   resolved "https://registry.yarnpkg.com/simple-process/-/simple-process-1.0.14.tgz#3a5776e17386559732956dab4db985f989cd1d49"
   dependencies:
@@ -3824,7 +3882,7 @@ sinon-chai@^2.8.0:
   version "2.8.0"
   resolved "https://registry.yarnpkg.com/sinon-chai/-/sinon-chai-2.8.0.tgz#432a9bbfd51a6fc00798f4d2526a829c060687ac"
 
-sinon@^1.17.2, sinon@^1.17.6:
+sinon@^1.17.2, sinon@^1.17.7:
   version "1.17.7"
   resolved "https://registry.yarnpkg.com/sinon/-/sinon-1.17.7.tgz#4542a4f49ba0c45c05eb2e9dd9d203e2b8efe0bf"
   dependencies:
@@ -3978,6 +4036,12 @@ sshpk@^1.7.0:
 "statuses@>= 1.3.1 < 2", statuses@~1.3.0:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/statuses/-/statuses-1.3.1.tgz#faf51b9eb74aaef3b3acf4ad5f61abf24cb7b93e"
+
+stdout-stream@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/stdout-stream/-/stdout-stream-1.4.0.tgz#a2c7c8587e54d9427ea9edb3ac3f2cd522df378b"
+  dependencies:
+    readable-stream "^2.0.1"
 
 stream-combiner@~0.0.4:
   version "0.0.4"
@@ -4160,6 +4224,12 @@ tmp@0.0.24:
 tmp@0.0.28:
   version "0.0.28"
   resolved "https://registry.yarnpkg.com/tmp/-/tmp-0.0.28.tgz#172735b7f614ea7af39664fa84cf0de4e515d120"
+  dependencies:
+    os-tmpdir "~1.0.1"
+
+tmp@0.0.30:
+  version "0.0.30"
+  resolved "https://registry.yarnpkg.com/tmp/-/tmp-0.0.30.tgz#72419d4a8be7d6ce75148fd8b324e593a711c2ed"
   dependencies:
     os-tmpdir "~1.0.1"
 
@@ -4376,9 +4446,31 @@ void-elements@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/void-elements/-/void-elements-2.0.1.tgz#c066afb582bb1cb4128d60ea92392e94d5e9dbec"
 
+webdriver-js-extender@^0.2.2:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/webdriver-js-extender/-/webdriver-js-extender-0.2.3.tgz#ad478badab804a65b67c3cdefe540f5708c35c79"
+  dependencies:
+    "@types/selenium-webdriver" "^2.53.35"
+    selenium-webdriver "^2.53.2"
+
 webdriver-manager@^10.3.0:
   version "10.3.0"
   resolved "https://registry.yarnpkg.com/webdriver-manager/-/webdriver-manager-10.3.0.tgz#99314588a0b1dbe688c441d74288c6cb1875fa8b"
+  dependencies:
+    adm-zip "^0.4.7"
+    chalk "^1.1.1"
+    del "^2.2.0"
+    glob "^7.0.3"
+    ini "^1.3.4"
+    minimist "^1.2.0"
+    q "^1.4.1"
+    request "^2.78.0"
+    rimraf "^2.5.2"
+    semver "^5.3.0"
+
+webdriver-manager@^11.1.1:
+  version "11.1.1"
+  resolved "https://registry.yarnpkg.com/webdriver-manager/-/webdriver-manager-11.1.1.tgz#903cd2d081ff95408041d1c3d920ce8bcdd8134f"
   dependencies:
     adm-zip "^0.4.7"
     chalk "^1.1.1"
@@ -4469,9 +4561,18 @@ xml2js@0.4.4:
     sax "0.6.x"
     xmlbuilder ">=1.0.0"
 
-xmlbuilder@>=1.0.0:
-  version "8.2.2"
-  resolved "https://registry.yarnpkg.com/xmlbuilder/-/xmlbuilder-8.2.2.tgz#69248673410b4ba42e1a6136551d2922335aa773"
+xml2js@^0.4.17:
+  version "0.4.17"
+  resolved "https://registry.yarnpkg.com/xml2js/-/xml2js-0.4.17.tgz#17be93eaae3f3b779359c795b419705a8817e868"
+  dependencies:
+    sax ">=0.6.0"
+    xmlbuilder "^4.1.0"
+
+xmlbuilder@>=1.0.0, xmlbuilder@^4.1.0:
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/xmlbuilder/-/xmlbuilder-4.2.1.tgz#aa58a3041a066f90eaa16c2f5389ff19f3f461a5"
+  dependencies:
+    lodash "^4.0.0"
 
 xmlhttprequest-ssl@1.5.1:
   version "1.5.1"
