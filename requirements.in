@@ -20,5 +20,6 @@ msgpack-python
 psycopg2
 Pillow
 pip-tools
+pycurl
 radon
 redis
