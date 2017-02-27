@@ -37,7 +37,10 @@ class ProductionConfigTest(TestCase):
             "DB_HOST": "test_db_host",
             "DB_PORT": "test_db_port",
             "SQS_REGION": "us-east-1a",
-            "SQS_PREFIX": "test"
+            "SQS_PREFIX": "test",
+            "AWS_ACCESS_KEY_ID": "dGVzdGFwaWtleQo=",
+            "AWS_SECRET_ACCESS_KEY": "dGVzdGFwaXNlY3JldAo=",
+            "AWS_STORAGE_BUCKET_NAME": "test_bucket"
         }
         with patch.dict("os.environ", self.environ):
             from app.settings.public import PublicConfig
@@ -122,3 +125,27 @@ class ProductionConfigTest(TestCase):
             "region": self.environ["SQS_REGION"],
             "queue_name_prefix": self.environ["SQS_PREFIX"]
         }, self.conf_p.CELERY_BROKER_TRANSPORT_OPTIONS)
+
+    def test_aws_storage(self):
+        """The storage should be S3."""
+        self.assertIn("storages", self.conf_p.THIRD_PARTY_APPS)
+        self.assertEqual(
+            self.conf_p.DEFAULT_FILE_STORAGE,
+            "storages.backends.s3boto3.S3Boto3Storage"
+        )
+        self.assertEqual(
+            self.conf_p.STATICFILES_STORAGE,
+            "storages.backends.s3boto3.S3Boto3Storage"
+        )
+        self.assertEqual(
+            self.conf_p.AWS_ACCESS_KEY_ID,
+            self.environ["AWS_ACCESS_KEY_ID"]
+        )
+        self.assertEqual(
+            self.conf_p.AWS_SECRET_ACCESS_KEY,
+            self.environ["AWS_SECRET_ACCESS_KEY"]
+        )
+        self.assertEqual(
+            self.conf_p.AWS_STORAGE_BUCKET_NAME,
+            self.environ["AWS_STORAGE_BUCKET_NAME"]
+        )

@@ -22,21 +22,29 @@ class DevelConfig(DjangoDefaults):
     TITLE = "hysoft"
     SOURCE_URL = "https://github.com/hysoftware/hysoftware.net"
 
-    INSTALLED_APPS = (
+    BUILTIN_APPS = [
         'django.contrib.admin',
         'django.contrib.auth',
         'django.contrib.contenttypes',
         'django.contrib.sessions',
         'django.contrib.messages',
         'django.contrib.staticfiles',
+    ]
+
+    THIRD_PARTY_APPS = [
         'django_otp.DjangoOTP',
         'django_countries',
-        'captcha',
+        'captcha'
+    ]
+
+    MODULES = [
         "app.common.apps.CommonConfig",
         "app.home.apps.HomeConfig",
         "app.user.apps.UserConfig",
         "app.legal.apps.LegalConfig"
-    )
+    ]
+
+    INSTALLED_APPS = BUILTIN_APPS + THIRD_PARTY_APPS + MODULES
 
     MIDDLEWARE = (
         'django.middleware.security.SecurityMiddleware',

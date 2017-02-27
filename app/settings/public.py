@@ -13,6 +13,9 @@ class PublicConfig(DevelConfig):
     """Config for production."""
 
     DEBUG = False
+    THIRD_PARTY_APPS = DevelConfig.THIRD_PARTY_APPS + ["storages"]
+    INSTALLED_APPS = \
+        DevelConfig.BUILTIN_APPS + THIRD_PARTY_APPS + DevelConfig.MODULES
     SECRET_KEY = os.environ["SECRET"]
     DATABASES = {
         "default": {
@@ -24,6 +27,13 @@ class PublicConfig(DevelConfig):
             "PORT": os.environ["DB_PORT"]
         }
     }
+
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    AWS_ACCESS_KEY_ID = os.environ["AWS_ACCESS_KEY_ID"]
+    AWS_SECRET_ACCESS_KEY = os.environ["AWS_SECRET_ACCESS_KEY"]
+    AWS_STORAGE_BUCKET_NAME = os.environ["AWS_STORAGE_BUCKET_NAME"]
+
     RECAPTCHA_PUBLIC_KEY = os.environ["RECAPTCHA_PUBLIC_KEY"]
     RECAPTCHA_PRIVATE_KEY = os.environ["RECAPTCHA_PRIVATE_KEY"]
     MAILGUN_KEY = os.environ["MAILGUN_KEY"]
