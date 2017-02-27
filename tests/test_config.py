@@ -134,8 +134,7 @@ class ProductionConfigTest(TestCase):
             "storages.backends.s3boto3.S3Boto3Storage"
         )
         self.assertEqual(
-            self.conf_p.STATICFILES_STORAGE,
-            "storages.backends.s3boto3.S3Boto3Storage"
+            self.conf_p.STATICFILES_STORAGE, self.conf_d.STATICFILES_STORAGE
         )
         self.assertEqual(
             self.conf_p.AWS_ACCESS_KEY_ID,
