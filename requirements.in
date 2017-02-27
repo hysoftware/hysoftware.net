@@ -20,6 +20,6 @@ msgpack-python
 psycopg2
 Pillow
 pip-tools
-pycurl
+requests
 radon
 redis

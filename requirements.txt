@@ -45,7 +45,6 @@ pip-tools==1.8.0
 psycopg2==2.6.2
 pycodestyle==2.2.0        # via flake8
 pycparser==2.17           # via cffi
-pycurl==7.43.0
 pydocstyle==1.1.1         # via flake8-docstrings
 pyflakes==1.3.0           # via flake8
 pyotp==2.2.4              # via django-good-otp
@@ -54,7 +53,7 @@ pytz==2016.10             # via celery
 qrcode==5.3               # via django-good-otp
 radon==1.4.2
 redis==2.10.5
-requests==2.12.4          # via codeclimate-test-reporter, coveralls
+requests==2.12.4
 s3transfer==0.1.10        # via boto3
 six==1.10.0               # via argon2-cffi, pip-tools, python-dateutil, qrcode
 vine==1.1.3               # via amqp
