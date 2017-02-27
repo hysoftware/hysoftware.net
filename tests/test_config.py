@@ -126,25 +126,25 @@ class ProductionConfigTest(TestCase):
             "queue_name_prefix": self.environ["SQS_PREFIX"]
         }, self.conf_p.CELERY_BROKER_TRANSPORT_OPTIONS)
 
-    # def test_aws_storage(self):
-    #     """The storage should be S3."""
-    #     self.assertIn("storages", self.conf_p.THIRD_PARTY_APPS)
-    #     self.assertEqual(
-    #         self.conf_p.DEFAULT_FILE_STORAGE,
-    #         "storages.backends.s3boto3.S3Boto3Storage"
-    #     )
-    #     self.assertEqual(
-    #         self.conf_p.STATICFILES_STORAGE, self.conf_d.STATICFILES_STORAGE
-    #     )
-    #     self.assertEqual(
-    #         self.conf_p.AWS_ACCESS_KEY_ID,
-    #         self.environ["AWS_ACCESS_KEY_ID"]
-    #     )
-    #     self.assertEqual(
-    #         self.conf_p.AWS_SECRET_ACCESS_KEY,
-    #         self.environ["AWS_SECRET_ACCESS_KEY"]
-    #     )
-    #     self.assertEqual(
-    #         self.conf_p.AWS_STORAGE_BUCKET_NAME,
-    #         self.environ["AWS_STORAGE_BUCKET_NAME"]
-    #     )
+    def test_aws_storage(self):
+        """The storage should be S3."""
+        self.assertIn("storages", self.conf_p.THIRD_PARTY_APPS)
+        self.assertEqual(
+            self.conf_p.DEFAULT_FILE_STORAGE,
+            "storages.backends.s3boto3.S3Boto3Storage"
+        )
+        self.assertEqual(
+            self.conf_p.STATICFILES_STORAGE, self.conf_d.STATICFILES_STORAGE
+        )
+        self.assertEqual(
+            self.conf_p.AWS_ACCESS_KEY_ID,
+            self.environ["AWS_ACCESS_KEY_ID"]
+        )
+        self.assertEqual(
+            self.conf_p.AWS_SECRET_ACCESS_KEY,
+            self.environ["AWS_SECRET_ACCESS_KEY"]
+        )
+        self.assertEqual(
+            self.conf_p.AWS_STORAGE_BUCKET_NAME,
+            self.environ["AWS_STORAGE_BUCKET_NAME"]
+        )
