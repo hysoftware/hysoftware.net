@@ -202,14 +202,14 @@
       <small><a href="{{ url('legal:index') }}">{{_("Legal")}}</a></small>
     </p>
   </footer>
-  <script src="{{ static('third_party.js') }}" charset="utf-8" defer></script>
-  <script src="{{ url('common:js') }}"  defer></script>
+  <script src="{{ static('third_party.js') }}" charset="utf-8"></script>
+  <script src="{{ url('common:js') }}"></script>
   {% if static_exists(resolve(request.path_info).app_name + '.js') -%}
-  <script src="{{ static(resolve(request.path_info).app_name + '.js') }}" defer></script>
+  <script src="{{ static(resolve(request.path_info).app_name + '.js') }}"></script>
   {% set ind_module_exists = True -%}
   {%- endif %}
   {% if url_exists(resolve(request.path_info).app_name + ":js") -%}
-  <script src="{{ url(resolve(request.path_info).app_name + ':js') }}"  defer></script>
+  <script src="{{ url(resolve(request.path_info).app_name + ':js') }}"></script>
   {% set ind_module_exists = True -%}
   {%- endif %}
   {% include('analytics.html') -%}
