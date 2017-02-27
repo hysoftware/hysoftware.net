@@ -1,5 +1,5 @@
 argon2-cffi
-boto
+boto3
 celery
 codeclimate-test-reporter
 coverage
