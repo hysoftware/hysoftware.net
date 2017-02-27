@@ -67,18 +67,6 @@
   <link href="{{ url(resolve(request.path_info).app_name + ":css") }}" rel="stylesheet">
   {%- endif %}
   {% block style_header %}{% endblock -%}
-  <script src="{{ static('third_party.js') }}" charset="utf-8" defer></script>
-  <script src="{{ url('common:js') }}"  defer></script>
-  {% if static_exists(resolve(request.path_info).app_name + '.js') -%}
-  <script src="{{ static(resolve(request.path_info).app_name + '.js') }}" defer></script>
-  {% set ind_module_exists = True -%}
-  {%- endif %}
-  {% if url_exists(resolve(request.path_info).app_name + ":js") -%}
-  <script src="{{ url(resolve(request.path_info).app_name + ':js') }}"  defer></script>
-  {% set ind_module_exists = True -%}
-  {%- endif %}
-  {% include('analytics.html') -%}
-  {% block script_header %}{% endblock %}
 </head>
 <body data-ng-cloak
   data-ng-app="{% if ind_module_exists -%}{{ resolve(request.path_info).app_name }}{% else %}common{% endif %}">
@@ -214,5 +202,17 @@
       <small><a href="{{ url('legal:index') }}">{{_("Legal")}}</a></small>
     </p>
   </footer>
+  <script src="{{ static('third_party.js') }}" charset="utf-8" defer></script>
+  <script src="{{ url('common:js') }}"  defer></script>
+  {% if static_exists(resolve(request.path_info).app_name + '.js') -%}
+  <script src="{{ static(resolve(request.path_info).app_name + '.js') }}" defer></script>
+  {% set ind_module_exists = True -%}
+  {%- endif %}
+  {% if url_exists(resolve(request.path_info).app_name + ":js") -%}
+  <script src="{{ url(resolve(request.path_info).app_name + ':js') }}"  defer></script>
+  {% set ind_module_exists = True -%}
+  {%- endif %}
+  {% include('analytics.html') -%}
+  {% block script_footer %}{% endblock -%}
 </body>
 </html>
