@@ -34,15 +34,17 @@ angular.module("user.ctrls", [
       wind.open url
       return true
 ]).controller("contactCtrl", [
-  "ContactResource", "$scope", "$timeout",
-  (Contact, scope, timeout) ->
+  "ContactResource", "$scope", "$timeout", "$window"
+  (Contact, scope, timeout, wind) ->
     scope.model = new Contact()
     scope.sent = false
     scope.send = (form_name)->
       scope.sent = false
       if scope.errors
         delete scope.errors
-      scope.model["g-recaptcha-response"] = grecaptcha.getResponse()
+      grecaptcha.execute()
+    wind.recaptchaCallback = (token) ->
+      scope.model["g-recaptcha-response"] = token
       scope.model.$save().then(
         -> scope.sent = true
       ).catch(
@@ -52,3 +54,8 @@ angular.module("user.ctrls", [
           timeout (-> scope[form_name].$setPristine()), 3000
       )
 ])
+
+# window.recaptchaCallback = (token)->
+#   angular.element(
+#     document.querySelector "[data-ng-controller='contactCtrl']"
+#   ).scope().afterBotCheck token

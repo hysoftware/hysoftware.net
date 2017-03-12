@@ -141,6 +141,6 @@ class DevelConfig(DjangoDefaults):
     )
     DEFAULT_FROM_EMAIL = "no-reply@hysoftware.net"
 
-    RECAPTCHA_PUBLIC_KEY = "6Lc2dSETAAAAAI-VoBJQwjoCS88gmoNhXpcT-Pht"
-    RECAPTCHA_PRIVATE_KEY = "6Lc2dSETAAAAAEl0AHy6OmYZhY7qifnE_04G9az4"
+    RECAPTCHA_PUBLIC_KEY = "6LdamxgUAAAAAA6sgEfYWXaGwflUWbs4fIkak4Zl"
+    RECAPTCHA_PRIVATE_KEY = "6LdamxgUAAAAADBdCnXCKOVYtqp5VSxwZ6KbmIgh"
     NOCAPTCHA = True
