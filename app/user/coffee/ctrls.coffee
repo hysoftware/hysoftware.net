@@ -54,8 +54,3 @@ angular.module("user.ctrls", [
           timeout (-> scope[form_name].$setPristine()), 3000
       )
 ])
-
-# window.recaptchaCallback = (token)->
-#   angular.element(
-#     document.querySelector "[data-ng-controller='contactCtrl']"
-#   ).scope().afterBotCheck token
