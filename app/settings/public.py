@@ -38,12 +38,6 @@ class PublicConfig(DevelConfig):
     MAILGUN_KEY = os.environ["MAILGUN_KEY"]
     MAILGUN_URL = os.environ["MAILGUN_URL"]
     ALLOWED_HOSTS = re.split(",\\s*", os.environ["ALLOWED_HOSTS"])
-    CELERY_BROKER_URL = os.environ["CELERY_BROKER_URL"]
-    CELERY_RESULT_BACKEND = None
-    CELERY_BROKER_TRANSPORT_OPTIONS = {
-        "region": os.environ["SQS_REGION"],
-        "queue_name_prefix": os.environ["SQS_PREFIX"]
-    }
     SESSION_COOKIE_SECURE = \
         os.environ.get("COOKIE_SECURE", "false").lower() == "true"
     CSRF_COOKIE_SECURE = SESSION_COOKIE_SECURE

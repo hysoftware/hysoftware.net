@@ -5,14 +5,14 @@
 
 import json
 import requests
-from celery import current_app
+import zappa.async as zappa_async
 from django.contrib.auth import get_user_model
 from django.conf import settings
 
 from .models import UserInfo, GithubProfile, TaskLog
 
 
-@current_app.task(name="user.github.fetch")
+@zappa_async.task
 def fetch_github_profile(user_info_id=None):
     """Fetch user profile from github."""
     users_info_query = UserInfo.objects
@@ -46,7 +46,7 @@ def fetch_github_profile(user_info_id=None):
             )
 
 
-@current_app.task(name="user.mail")
+@zappa_async.task
 def send_mail(mail_addr, title, html, txt, **kwargs):
     """Send a mail."""
     payload = {

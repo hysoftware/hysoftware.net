@@ -1,7 +1,6 @@
 argon2-cffi
 boto
 boto3
-celery
 codeclimate-test-reporter
 coverage
 coveralls
@@ -16,10 +15,10 @@ flake8
 flake8-docstrings
 Jinja2
 Markdown
-msgpack-python
 psycopg2
 Pillow
 pip-tools
 requests
 radon
 redis
+zappa

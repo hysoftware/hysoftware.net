@@ -3,16 +3,20 @@
 
 """User related forms like ContactForm."""
 
-from celery import current_app as ctask
+from captcha.fields import ReCaptchaField
+
 from django import forms
 from django.conf import settings
 from django.template import loader
 from django.utils.translation import ugettext as _
-from .models import Inbox
-from captcha.fields import ReCaptchaField, ReCaptcha
 
 from django_nghelp.forms import AngularForm
 from django_nghelp.widgets import MDSelect
+
+from zappa import async as zappa_async
+
+from .models import Inbox
+from .tasks import send_mail
 
 
 class ContactForm(AngularForm, forms.ModelForm):
@@ -29,11 +33,11 @@ class ContactForm(AngularForm, forms.ModelForm):
 
         widgets = {"user": MDSelect()}
 
-    nobot = ReCaptchaField(widget=ReCaptcha(attrs={
+    nobot = ReCaptchaField(attrs={
         "callback": "recaptchaCallback",
         "size": "invisible",
         "badge": "inline"
-    }))
+    })
 
     def __init__(self, *args, **kwargs):
         """Init the instance."""
@@ -53,8 +57,8 @@ class ContactForm(AngularForm, forms.ModelForm):
             "form": self,
             "users_info": self.Meta.model._meta.get_field("user").model.objects
         }
-        ctask.send_task(
-            "user.mail", (
+        zappa_async.run(
+            send_mail, (
                 self.instance.email,
                 _("Thanks for your interest!"),
                 loader.render_to_string(
@@ -68,8 +72,8 @@ class ContactForm(AngularForm, forms.ModelForm):
                 "user": self.instance.user.user,
                 "form": self
             }
-            ctask.send_task(
-                "user.mail", (
+            zappa_async.run(
+                send_mail, (
                     self.instance.user.user.email,
                     _("[{}] Someone wants you to contact him").format(
                         settings.TITLE
