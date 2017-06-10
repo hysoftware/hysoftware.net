@@ -1,0 +1,6 @@
+{
+    "prod": {
+        "django_settings": "app.settings.devel",
+        "s3_bucket": "hysoft-lambda"
+    }
+}
