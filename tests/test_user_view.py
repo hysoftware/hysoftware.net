@@ -223,18 +223,18 @@ class ContactPagePostMethodTest(TemplateViewTestBase, TestCase):
         """Teardown."""
         Inbox.objects.all().delete
 
-    @patch("app.user.forms.zappa_async")
+    @patch("app.user.forms.send_mail")
     @patch("app.user.forms.loader")
-    def test_post_correct(self, loader, zappa_async):
+    def test_post_correct(self, loader, send_mail):
         """Test post method with invalid payload."""
         result = self.view(self.request)
         inbox = Inbox.objects.get()
         self.assertEqual(result.status_code, 200)
         self.assertEqual(inbox.user, self.info)
 
-    @patch("app.user.forms.zappa_async")
+    @patch("app.user.forms.send_mail")
     @patch("app.user.forms.loader")
-    def test_post_invalid(self, loader, zappa_async):
+    def test_post_invalid(self, loader, send_mail):
         """Test post method with invalid payload."""
         self.body.pop("g-recaptcha-response", None)
         self.request = RequestFactory().post(

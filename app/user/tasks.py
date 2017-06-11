@@ -50,7 +50,7 @@ def fetch_github_profile(user_info_id=None):
 def send_mail(mail_addr, title, html, txt, **kwargs):
     """Send a mail."""
     payload = {
-        "from": kwargs.pop("from", settings.DEFAULT_FROM_EMAIL),
+        "from": kwargs.pop("sender", settings.DEFAULT_FROM_EMAIL),
         "to": mail_addr,
         "subject": title,
         "html": html,

@@ -13,8 +13,6 @@ from django.utils.translation import ugettext as _
 from django_nghelp.forms import AngularForm
 from django_nghelp.widgets import MDSelect
 
-from zappa import async as zappa_async
-
 from .models import Inbox
 from .tasks import send_mail
 
@@ -57,30 +55,27 @@ class ContactForm(AngularForm, forms.ModelForm):
             "form": self,
             "users_info": self.Meta.model._meta.get_field("user").model.objects
         }
-        zappa_async.run(
-            send_mail, (
-                self.instance.email,
-                _("Thanks for your interest!"),
-                loader.render_to_string(
-                    "mail/client.html", context=cli_context
-                ),
-                loader.render_to_string("mail/client.txt", context=cli_context)
-            )
+        send_mail(
+            self.instance.email,
+            _("Thanks for your interest!"),
+            loader.render_to_string(
+                "mail/client.html", context=cli_context
+            ),
+            loader.render_to_string("mail/client.txt", context=cli_context)
         )
         if self.instance.user.user.email:
             context = {
                 "user": self.instance.user.user,
                 "form": self
             }
-            zappa_async.run(
-                send_mail, (
-                    self.instance.user.user.email,
-                    _("[{}] Someone wants you to contact him").format(
-                        settings.TITLE
-                    ),
-                    loader.render_to_string(
-                        "mail/staff.html", context=context
-                    ),
-                    loader.render_to_string("mail/staff.txt", context=context)
-                ), {"from": self.instance.email}
+            send_mail(
+                self.instance.user.user.email,
+                _("[{}] Someone wants you to contact him").format(
+                    settings.TITLE
+                ),
+                loader.render_to_string(
+                    "mail/staff.html", context=context
+                ),
+                loader.render_to_string("mail/staff.txt", context=context),
+                sender=self.instance.email
             )

@@ -3,7 +3,6 @@
 
 """Admin panel for user related models."""
 
-from zappa import async as zappa_async
 from django.contrib import admin
 from .models import (
     UserInfo, TaskLog, GithubProfile, CodingLanguage, Framework,
@@ -65,7 +64,7 @@ class UserInfoAdmin(admin.ModelAdmin):
     def save_model(self, req, obj, form, change):
         """Save the model and execute user.github.fetch task."""
         super(UserInfoAdmin, self).save_model(req, obj, form, change)
-        zappa_async.run(fetch_github_profile, (str(obj.id), ))
+        fetch_github_profile(str(obj.id))
 
 
 @admin.register(TaskLog)
