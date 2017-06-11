@@ -1,6 +1,25 @@
 {
     "prod": {
-        "django_settings": "app.settings.devel",
-        "s3_bucket": "hysoft-lambda"
+        "s3_bucket": "hysoft-lambda",
+        "remote_env": "s3://hysoft-settings/env_production.json",
+        "aws_region": "us-east-1",
+        "app_function": "lambda_app.application",
+        "events": [
+          {
+            "function": "app.user.tasks.sync_fetch_github_profile",
+            "expression": "rate(3 minutes)"
+          }
+        ],
+        "exclude": [
+          "assets", "etc", "node_modules", "tests", "uploads",
+          ".*", "bower.json", "celerybeat-schedule", "deploy.sh",
+          "devel.db", "excludelist.txt", "gulpfile.coffee", "gulpfile.js",
+          "legal.json", "pack.sh", "package.json", "README.md",
+          "requirements.in", "yarn.lock"
+        ],
+        "vpc_config": {
+          "SubnetIds": ["subnet-4756100e"],
+          "SecurityGroupIds": ["sg-04f8a479"]
+        }
     }
 }

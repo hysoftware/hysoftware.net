@@ -5,19 +5,22 @@
 
 import json
 import requests
+import re
 import zappa.async as zappa_async
 from django.contrib.auth import get_user_model
 from django.conf import settings
 
 from .models import UserInfo, GithubProfile, TaskLog
+from ..common.utils import gen_uuid_pattern
 
 
-@zappa_async.task
-def fetch_github_profile(user_info_id=None):
+def sync_fetch_github_profile(user_info_id=None):
     """Fetch user profile from github."""
     users_info_query = UserInfo.objects
     github_fld_names = GithubProfile.fields_names()
-    if user_info_id is not None:
+    if user_info_id is not None and re.match(
+        gen_uuid_pattern(), str(user_info_id)
+    ):
         users_info_query = users_info_query.filter(id=user_info_id)
 
     for info in users_info_query.all():
@@ -44,6 +47,9 @@ def fetch_github_profile(user_info_id=None):
                     "this error:\ncode:%d\nPayload: %s\nGithubID: %s"
                 ) % (e.response.status_code, e.response.text, info.github)
             )
+
+
+fetch_github_profile = zappa_async.task(sync_fetch_github_profile)
 
 
 @zappa_async.task
