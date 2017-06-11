@@ -158,3 +158,6 @@ dump.rdb
 # Uploaded files
 uploads
 staticfiles
+
+# Lambda template json
+*-template-*.json
