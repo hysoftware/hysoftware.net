@@ -1,4 +1,4 @@
 {
     "analytics": false,
-    "directory": "./app/common/static/third_party"
+    "directory": "./third_party/bower_components"
 }

@@ -144,8 +144,9 @@ jspm_packages
 
 ## Original exclusion
 # They are automatically generated
-app/common/static/third_party
+third_party/bower_components
 app/common/static/third_party.js
+app/common/static/third_party.css
 app/**/jinja2/*.css
 app/**/jinja2/*.js
 

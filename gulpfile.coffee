@@ -10,30 +10,22 @@ notify = require "gulp-notify"
 uglify = require "gulp-uglify"
 concat = require "gulp-concat"
 sourcemaps = require "gulp-sourcemaps"
+webpack = require "webpack"
 
 q = require "q"
 rimraf = require "rimraf"
 
 g.task "third_party", ->
-  prefix = "app/common/static/third_party"
-  files = (path.join(prefix, item) for item in [
-    "angular/angular.js"
-    "angular-animate/angular-animate.js"
-    "angular-aria/angular-aria.js"
-    "angular-messages/angular-messages.js"
-    "angular-resource/angular-resource.js"
-    "angular-material/angular-material.js"
-  ])
-
-  pipe = g.src(files).pipe(
-    plumber "errorHandler": notify.onError '<%= error.message %>'
-  )
-  if not toolbox.helper.isProduction
-    pipe = pipe.pipe sourcemaps.init()
-  pipe = pipe.pipe(concat("third_party.js")).pipe uglify()
-  if not toolbox.helper.isProduction
-    pipe = pipe.pipe sourcemaps.write()
-  pipe.pipe g.dest "app/common/static"
+  q.nfcall(
+    webpack, require(
+      path.resolve(path.join(__dirname, 'third_party', 'webpack.conf.js'))
+    )
+  ).then((stats) ->
+    console.log stats.toString({
+      "colors": true,
+      "chunks": false
+    })
+  ).catch plumber(errorHandler: notify.onError '<%= error.message %>')
 
 modules =
   "common": "app/common"
