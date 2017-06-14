@@ -2,7 +2,7 @@ argon2-cffi
 boto
 boto3
 codeclimate-test-reporter
-coverage
+coverage<4.4,>4.0
 coveralls
 Django
 django-classbasedsettings
