@@ -83,8 +83,14 @@ class DevelConfig(DjangoDefaults):
 
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': 'devel.db',
+            'ENGINE': os.environ.get("DB_DEFAULT_ENGINE") or (
+                'django.db.backends.sqlite3'
+            ),
+            'NAME': os.environ.get("DB_DEFAULT_NAME", 'devel.db'),
+            'USER': os.environ.get("DB_DEFAULT_USER"),
+            'PASSWORD': os.environ.get("DB_DEFAULT_PASSWORD"),
+            'HOST': os.environ.get("DB_DEFAULT_HOST"),
+            'PORT': os.environ.get("DB_DEFAULT_PORT")
         }
     }
 

@@ -1,0 +1,88 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: python:latest
+        environment:
+          DJANGO_SETTINGS_FACTORY: app.settings.testing.TestConfig
+          RECAPTCHA_TESTING: "True"
+          node_mode: production
+          DB_DEFAULT_ENGINE: "django.db.backends.postgresql"
+          DB_DEFAULT_NAME: circleci
+          DB_DEFAULT_USER: circleci
+          DB_DEFAULT_PASSWORD: circleci
+          DB_DEFAULT_HOST: localhost
+          DB_DEFAULT_PORT: 5432
+      - image: postgres:latest
+        environment:
+          POSTGRES_DB: circleci
+          POSTGRES_USER: circleci
+          POSTGRES_PASSWORD: circleci
+    working_directory: ~/hysoftware
+    steps:
+      - checkout
+      - run:
+          name: "Install NodeJS 7 and Yarn"
+          command: |
+            curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+            curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+            echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+            apt-get update -qq
+            apt-get install -y -qq nodejs yarn
+      - restore_cache:
+          keys:
+            - hysoftware-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - hysoftware-{{ .Branch }}-{{ checksum "requirements.txt" }}
+      - run:
+          name: "Install Frontend Dependencies"
+          command: >
+            yarn --ignore-scripts &&
+            npm rebuild node-sass &&
+            yarn run install -- --allow-root
+      - run:
+          name: "Make virtual environemnt"
+          command: "python -m venv venv"
+      - run:
+          name: "Install backend dependencies"
+          command: >
+            source ./venv/bin/activate &&
+            pip install -r requirements.txt
+      - save_cache:
+          key: hysoftware-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          paths:
+            - "~/.yarn-cache"
+      - save_cache:
+          key: hysoftware-{{ .Branch }}-{{ checksum "requirements.txt" }}
+          paths:
+            - "./venv"
+      - run:
+          name: "Migrate"
+          command: >
+            source ./venv/bin/activate &&
+            python manage.py migrate
+      - run:
+          name: "Test&Compile"
+          command: $(npm bin)/gulp
+      - run:
+          name: "Deploy code coverage"
+          command: >
+            source ./venv/bin/activate &&
+            coveralls &&
+            codeclimate-test-reporter &&
+            deactivate
+      - run: mkdir ../test-reports
+      - run:
+          name: "Make tarball"
+          command: >
+            tar czvf ../test-reports/webapp.tar.gz
+            --transform="s/^\./webapp/"
+            --exclude=node_modules
+            --exclude=.git
+            --exclude='*.pyc'
+            --exclude='__pycache__' .
+      - run: cp .coverage ../test-reports
+      - store_artifacts:
+          path: ../test-reports
+          destination: test-reports
+      - store_test_results:
+          path: "test-reports"
