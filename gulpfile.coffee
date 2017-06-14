@@ -27,20 +27,21 @@ g.task "third_party", ->
     })
   ).catch plumber(errorHandler: notify.onError '<%= error.message %>')
 
-modules =
-  "common": "app/common"
-  "home": "app/home"
-  "legal": "app/legal"
-  "user": "app/user"
+modules = ["common", "home", "legal", "user"]
 
-for name, modPath of modules
-  do (name, modPath) ->
-    destPath = path.join(modPath, "jinja2")
-    toolbox.coffee(
-      "#{name}.", modPath, destPath,
-      undefined, undefined, undefined, undefined, undefined, name, false
-    )
-    toolbox.sass "#{name}.", modPath, destPath, name
+for name in modules
+  do (name) ->
+    g.task "#{name}.webpack", ->
+      q.nfcall(
+        webpack, require(
+          path.resolve(path.join(__dirname, "app", name, 'webpack.conf.js'))
+        )
+      ).then((stats) ->
+        console.log stats.toString({
+          "colors": true,
+          "chunks": false
+        })
+      ).catch plumber(errorHandler: notify.onError '<%= error.message %>')
 
 toolbox.python "", "app", [], undefined, undefined, ["app/*/migrations"]
 
@@ -62,17 +63,17 @@ init_deps = []
 if toolbox.helper.isProduction or process.env.node_mode is "init"
   init_deps = init_deps.concat(
     "third_party"
-    ("#{name}.coffee" for name in Object.keys modules)
-    ("#{name}.scss" for name in Object.keys modules)
+    ("#{name}.webpack" for name in modules)
     "django.test"
   )
 
 g.task "default", init_deps, ->
   if not toolbox.helper.isProduction
-    for mod_name, prefix of modules
-      do (mod_name, prefix) ->
-        g.watch [path.join(prefix, "**/*.scss")], ["#{mod_name}.scss"]
+    for mod_name in modules
+      do (mod_name) ->
         g.watch [
-          path.join(prefix, "**/coffee/**/*.coffee")
-        ], ["#{mod_name}.coffee"]
+          path.join("app", mod_name, "**/coffee/**/*.coffee"),
+          path.join("app", mod_name, "**/*.scss"),
+          path.join("app", mod_name, "main.js")
+        ], ["#{mod_name}.webpack"]
     g.watch ["app/**/*.py", "tests/**/*.py"], ["django.test"]

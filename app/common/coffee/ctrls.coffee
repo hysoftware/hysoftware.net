@@ -1,3 +1,4 @@
+require './factories.coffee'
 angular.module("common.ctrls", [
   "ngMaterial"
   "common.factories"
