@@ -74,12 +74,12 @@ jobs:
             codeclimate-test-reporter &&
             deactivate
       - deploy:
-          command: >
+          command: |
             if git rev-parse --quiet --verify gh-pages > /dev/null; then
               git checkout gh-pages
             else
               git checkout -b gh-pages
-            fi
+            fi;
             git merge --no-ff --no-edit ${CIRCLE_BRANCH}
             source ./venv/bin/activate &&
             python manage.py collectstatic &&
