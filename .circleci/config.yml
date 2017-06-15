@@ -18,9 +18,6 @@ jobs:
           POSTGRES_DB: circleci
           POSTGRES_USER: circleci
           POSTGRES_PASSWORD: circleci
-    branches:
-      ignore:
-        - gh-pages
     working_directory: ~/hysoftware
     steps:
       - checkout
@@ -75,19 +72,14 @@ jobs:
             deactivate
       - deploy:
           command: |
-            if git rev-parse --quiet --verify gh-pages > /dev/null; then
-              git checkout gh-pages
-            else
-              git checkout -b gh-pages
-            fi;
-            git merge --no-ff --no-edit ${CIRCLE_BRANCH}
+            git clone https://hiroaki-yamamoto:${STATIC_FILE_DEPLOY_KEY}@github.com/hysoftware/hysoftstaticfiles staticfiles
             source ./venv/bin/activate &&
-            python manage.py collectstatic &&
+            python manage.py collectstatic --noinput &&
             deactivate
-            sed -i -e 's@staticfiles@@g' .gitignore
+            cd ./staticfiles
             git add .
             git config --global user.email "build@circle" > /dev/null 2>&1
             git config --global user.name "Circle CI" > /dev/null 2>&1
             git commit -m "Static files for ${CIRCLE_SHA1}" > /dev/null 2>&1
-            git push https://hiroaki-yamamoto:${STATIC_FILE_DEPLOY_KEY}@github.com/hysoftware/hysoftware.net > /dev/null 2>&1
-            git checkout ${CIRCLE_BRANCH}
+            git push origin master > /dev/null 2>&1
+            cd ..
