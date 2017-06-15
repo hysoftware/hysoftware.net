@@ -1,4 +1,10 @@
 version: 2
+workflows:
+  version: "2"
+  jobs:
+    - build:
+      filters:
+        ignore: gh-pages
 jobs:
   build:
     docker:
@@ -70,19 +76,21 @@ jobs:
             coveralls &&
             codeclimate-test-reporter &&
             deactivate
-      - run: mkdir ../test-reports
-      - run:
-          name: "Make tarball"
-          command: >
-            tar czvf ../test-reports/webapp.tar.gz
-            --transform="s/^\./webapp/"
-            --exclude=node_modules
-            --exclude=.git
-            --exclude='*.pyc'
-            --exclude='__pycache__' .
-      - run: cp .coverage ../test-reports
-      - store_artifacts:
-          path: ../test-reports
-          destination: test-reports
-      - store_test_results:
-          path: "test-reports"
+      - deploy:
+        command: >
+          if git rev-parse --quiet --verify gh-pages > /dev/null; then
+            git checkout gh-pages
+          else
+            git checkout -b gh-pages
+          fi
+          git merge --no-ff --no-edit ${CIRCLE_BRANCH}
+          source ./venv/bin/activate &&
+          python manage.py collectstatic &&
+          deactivate
+          sed -i -e 's@staticfiles@@g' .gitignore
+          git add .
+          git config --global user.email "build@circle" > /dev/null 2>&1
+          git config --global user.name "Circle CI" > /dev/null 2>&1
+          git commit -m "Static files for ${CIRCLE_SHA1}" > /dev/null 2>&1
+          git push https://hiroaki-yamamoto:${STATIC_FILE_DEPLOY_KEY}@github.com/hysoftware/hysoftware.net > /dev/null 2>&1
+          git checkout ${CIRCLE_BRANCH}
