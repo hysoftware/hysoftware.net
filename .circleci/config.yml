@@ -70,16 +70,16 @@ jobs:
             coveralls &&
             codeclimate-test-reporter &&
             deactivate
-      - deploy:
-          command: |
-            git clone https://hiroaki-yamamoto:${STATIC_FILE_DEPLOY_KEY}@github.com/hysoftware/hysoftstaticfiles staticfiles
-            source ./venv/bin/activate &&
-            python manage.py collectstatic --noinput &&
-            deactivate
-            cd ./staticfiles
-            git add .
-            git config --global user.email "build@circle" > /dev/null 2>&1
-            git config --global user.name "Circle CI" > /dev/null 2>&1
-            git commit -m "Static files for ${CIRCLE_SHA1}" > /dev/null 2>&1
-            git push origin master > /dev/null 2>&1
-            cd ..
+      # - deploy:
+      #     command: |
+      #       git clone https://hiroaki-yamamoto:${STATIC_FILE_DEPLOY_KEY}@github.com/hysoftware/hysoftstaticfiles staticfiles
+      #       source ./venv/bin/activate &&
+      #       python manage.py collectstatic --noinput &&
+      #       deactivate
+      #       cd ./staticfiles
+      #       git add .
+      #       git config --global user.email "build@circle" > /dev/null 2>&1
+      #       git config --global user.name "Circle CI" > /dev/null 2>&1
+      #       git commit -m "Static files for ${CIRCLE_SHA1}" > /dev/null 2>&1
+      #       git push origin master > /dev/null 2>&1
+      #       cd ..
