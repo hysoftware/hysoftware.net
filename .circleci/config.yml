@@ -35,7 +35,7 @@ jobs:
             - hysoftware-{{ .Branch }}-{{ checksum "requirements.txt" }}
       - run:
           name: "Install Frontend Dependencies"
-          command: >
+          command: |
             yarn --ignore-scripts &&
             npm rebuild node-sass &&
             yarn run install -- --allow-root
@@ -44,10 +44,11 @@ jobs:
           command: "python -m venv venv"
       - run:
           name: "Install backend dependencies"
-          command: >
+          command: |
             source ./venv/bin/activate &&
-            pip install -r requirements.txt
+            pip install -r requirements.txt &&
             pip install awscli
+            deactivate
       - save_cache:
           key: hysoftware-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
@@ -58,7 +59,7 @@ jobs:
             - "./venv"
       - run:
           name: "Migrate"
-          command: >
+          command: |
             source ./venv/bin/activate &&
             python manage.py migrate
       - run:
@@ -66,7 +67,7 @@ jobs:
           command: $(npm bin)/gulp
       - run:
           name: "Deploy code coverage"
-          command: >
+          command: |
             source ./venv/bin/activate &&
             coveralls &&
             codeclimate-test-reporter &&
