@@ -1,11 +1,12 @@
 version: 2
 workflows:
   version: "2"
-  jobs:
-    - build:
-      filters:
-        branches:
-          ignore: gh-pages
+  build_and_test:
+    jobs:
+      - build:
+        filters:
+          branches:
+            ignore: gh-pages
 jobs:
   build:
     docker:
