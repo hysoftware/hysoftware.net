@@ -19,7 +19,8 @@ jobs:
           POSTGRES_USER: circleci
           POSTGRES_PASSWORD: circleci
     branches:
-      ignore: gh-pages
+      ignore:
+        - gh-pages
     working_directory: ~/hysoftware
     steps:
       - checkout
