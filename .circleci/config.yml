@@ -76,9 +76,9 @@ jobs:
           command: |
             git checkout -b deploy> /dev/null 2>&1
 
-            sed -i \
+            sed -i -E \
               -e '/app\/common\/static\/third_party.(js|css)/d' \
-              -e '/app\/**\/jinja2\/*.(css|js)/d' .gitignore
+              -e '/app\/\*\*\/jinja2\/*.(css|js)/d' .gitignore
             echo "assets" >> .gitignore
 
             git add --all . > /dev/null 2>&1
