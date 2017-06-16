@@ -22,7 +22,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "Install NodeJS 7 and Yarn"
+          name: "Install NodeJS and Yarn"
           command: |
             curl -sL https://deb.nodesource.com/setup_8.x | bash -
             curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
