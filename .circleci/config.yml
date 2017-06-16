@@ -72,3 +72,21 @@ jobs:
             coveralls &&
             codeclimate-test-reporter &&
             deactivate
+      - deploy:
+          command: |
+            git checkout -b deploy> /dev/null 2>&1
+
+            sed -i \
+              -e '/app\/common\/static\/third_party.(js|css)/d' \
+              -e '/app\/**\/jinja2\/*.(css|js)/d' .gitignore
+            echo "assets" >> .gitignore
+
+            git add --all . > /dev/null 2>&1
+            git config --global user.email "build@circleci" > /dev/null 2>&1
+            git config --global user.name "CIRCLE CI" > /dev/null 2>&1
+            git commit -m "Release for ${CIRCLE_SHA1}" > /dev/null 2>&1
+
+            git archive --format zip -o ./deploy-${CIRCLE_BUILD_NUM}.zip HEAD
+      - store_artifacts:
+          path: ./deploy-${CIRCLE_BUILD_NUM}.zip
+          destination: ./deploy-${CIRCLE_BUILD_NUM}.zip
