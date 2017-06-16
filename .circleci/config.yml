@@ -72,6 +72,7 @@ jobs:
             coveralls &&
             codeclimate-test-reporter &&
             deactivate
+      - run: mkdir ../artifacts
       - deploy:
           command: |
             git checkout -b deploy> /dev/null 2>&1
@@ -86,7 +87,7 @@ jobs:
             git config --global user.name "CIRCLE CI" > /dev/null 2>&1
             git commit -m "Release for ${CIRCLE_SHA1}" > /dev/null 2>&1
 
-            git archive --format zip -o ./deploy-${CIRCLE_BUILD_NUM}.zip HEAD
+            git archive --format zip -o ../artifacts/deploy-${CIRCLE_BUILD_NUM}.zip HEAD
       - store_artifacts:
-          path: ./deploy-${CIRCLE_BUILD_NUM}.zip
-          destination: ./deploy-${CIRCLE_BUILD_NUM}.zip
+          path: ../artifacts
+          destination: artifacts
