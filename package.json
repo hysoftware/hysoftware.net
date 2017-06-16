@@ -27,12 +27,26 @@
   },
   "homepage": "https://github.com/hysoftware/hysoftware.net#readme",
   "devDependencies": {
+    "autoprefixer": "^7.1.1",
     "bower": "^1.8.0",
-    "eslint": "^3.11.1",
-    "eslint-config-google": "^0.7.1",
+    "coffee-loader": "^0.7.3",
+    "css-loader": "^0.28.4",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^15.0.1",
+    "eslint-config-airbnb-base": "^11.2.0",
+    "eslint-plugin-import": "^2.3.0",
+    "extract-text-webpack-plugin": "^2.1.2",
+    "file-loader": "^0.11.2",
     "gulp": "^3.9.1",
-    "hyamamoto-job-toolbox": "^0.2.6",
-    "q": "^1.4.1",
-    "rimraf": "^2.5.4"
+    "hyamamoto-job-toolbox": "^0.2.31",
+    "postcss-clean": "^1.0.2",
+    "postcss-loader": "^2.0.5",
+    "q": "^1.5.0",
+    "rimraf": "^2.6.1",
+    "sass-loader": "^6.0.5",
+    "style-loader": "^0.18.2",
+    "uglifyjs-webpack-plugin": "^0.4.3",
+    "url-loader": "^0.5.9",
+    "webpack": "^2.6.1"
   }
 }

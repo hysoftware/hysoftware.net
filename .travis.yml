@@ -30,6 +30,9 @@ addons:
       - python3.5
       - python3.5-dev
       - python3.5-venv
+branches:
+  except:
+    - zappa
 before_script:
   - "npm run update"
   - "pyvenv-3.5 ../venv"

@@ -9,7 +9,7 @@ from django.conf import settings
 from django.template import loader
 from django.utils.translation import ugettext as _
 from .models import Inbox
-from captcha.fields import ReCaptchaField, ReCaptcha
+from captcha.fields import ReCaptchaField
 
 from django_nghelp.forms import AngularForm
 from django_nghelp.widgets import MDSelect
@@ -29,11 +29,11 @@ class ContactForm(AngularForm, forms.ModelForm):
 
         widgets = {"user": MDSelect()}
 
-    nobot = ReCaptchaField(widget=ReCaptcha(attrs={
+    nobot = ReCaptchaField(attrs={
         "callback": "recaptchaCallback",
         "size": "invisible",
         "badge": "inline"
-    }))
+    })
 
     def __init__(self, *args, **kwargs):
         """Init the instance."""

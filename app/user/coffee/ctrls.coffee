@@ -1,3 +1,4 @@
+require './res.coffee'
 angular.module("user.ctrls", [
   "user.res"
 ]).controller("aboutCtrl", [

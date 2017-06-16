@@ -71,7 +71,7 @@ class HomeViewRenderingTest(TemplateViewTestBase, TestCase):
         pitch_objs.choice.assert_called_once_with()
 
     def test_user_property(self):
-        """"A queryset of user info object should be returned."""
+        """Should return a queryset of user info object."""
         from app.user.models import UserInfo
         self.assertIs(self.view_cls().users_info, UserInfo.objects)
 

@@ -57,8 +57,7 @@
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <link rel="stylesheet" href="https://file.myfontastic.com/n6vo44Re5QaWo8oCKShBs7/icons.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="{{ static('third_party/angular/angular-csp.css') }}">
-  <link rel="stylesheet" href="{{ static('third_party/angular-material/angular-material.min.css') }}">
+  <link rel="stylesheet" href="{{ static('third_party.css') }}">
   <link href="{{ url('common:css') }}" rel="stylesheet">
   {% if static_exists(resolve(request.path_info).app_name + ".css") -%}
   <link href="{{ static(resolve(request.path_info).app_name + ".css") }}" rel="stylesheet">
@@ -89,14 +88,14 @@
       <li class="brand"><a href="{{ url('home:index') }}">{{ settings.TITLE }}</a></li>
       {% for menu_item in menu -%}
       <li>
-        <a href="{{ menu_item.url }}"
-          {% if menu_item.target %}target="{{ menu_item.target }}"{% endif %}>
-          {% if menu_item.show_icon_on_header -%}
-          <i class="{{ menu_item.icon_class }}">
-            {{ menu_item.icon_body or ""}}
+        <a href="{{ menu_item.url -}}"
+          {%- if menu_item.target %}target="{{ menu_item.target }}"{% endif -%}>
+          {%- if menu_item.show_icon_on_header -%}
+          <i class="{{ menu_item.icon_class -}}">
+            {{- menu_item.icon_body or "" -}}
           </i>
           {%- endif %}
-          {{menu_item.name}}
+          {{- menu_item.name -}}
         </a>
       </li>
       {%- endfor %}

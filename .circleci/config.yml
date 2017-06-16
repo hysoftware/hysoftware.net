@@ -1,0 +1,93 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: python:latest
+        environment:
+          DJANGO_SETTINGS_FACTORY: app.settings.testing.TestConfig
+          RECAPTCHA_TESTING: "True"
+          node_mode: production
+          DB_DEFAULT_ENGINE: "django.db.backends.postgresql"
+          DB_DEFAULT_NAME: circleci
+          DB_DEFAULT_USER: circleci
+          DB_DEFAULT_PASSWORD: circleci
+          DB_DEFAULT_HOST: localhost
+          DB_DEFAULT_PORT: 5432
+      - image: postgres:latest
+        environment:
+          POSTGRES_DB: circleci
+          POSTGRES_USER: circleci
+          POSTGRES_PASSWORD: circleci
+    working_directory: ~/hysoftware
+    steps:
+      - checkout
+      - run:
+          name: "Install NodeJS and Yarn"
+          command: |
+            curl -sL https://deb.nodesource.com/setup_8.x | bash -
+            curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+            echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+            apt-get update -qq
+            apt-get install -y -qq nodejs yarn
+      - restore_cache:
+          keys:
+            - hysoftware-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - hysoftware-{{ .Branch }}-{{ checksum "requirements.txt" }}
+      - run:
+          name: "Install Frontend Dependencies"
+          command: |
+            yarn --ignore-scripts &&
+            npm rebuild node-sass &&
+            yarn run install -- --allow-root
+      - run:
+          name: "Make virtual environemnt"
+          command: "python -m venv venv"
+      - run:
+          name: "Install backend dependencies"
+          command: |
+            source ./venv/bin/activate &&
+            pip install -r requirements.txt &&
+            pip install awscli
+            deactivate
+      - save_cache:
+          key: hysoftware-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          paths:
+            - "~/.yarn-cache"
+      - save_cache:
+          key: hysoftware-{{ .Branch }}-{{ checksum "requirements.txt" }}
+          paths:
+            - "./venv"
+      - run:
+          name: "Migrate"
+          command: |
+            source ./venv/bin/activate &&
+            python manage.py migrate
+      - run:
+          name: "Test&Compile"
+          command: $(npm bin)/gulp
+      - run:
+          name: "Deploy code coverage"
+          command: |
+            source ./venv/bin/activate &&
+            coveralls &&
+            codeclimate-test-reporter &&
+            deactivate
+      - run: mkdir ../artifacts
+      - deploy:
+          command: |
+            git checkout -b deploy> /dev/null 2>&1
+
+            sed -i -E \
+              -e '/app\/common\/static\/third_party.(js|css)/d' \
+              -e '/app\/\*\*\/jinja2\/*.(css|js)/d' .gitignore
+            echo "assets" >> .gitignore
+
+            git add --all . > /dev/null 2>&1
+            git config --global user.email "build@circleci" > /dev/null 2>&1
+            git config --global user.name "CIRCLE CI" > /dev/null 2>&1
+            git commit -m "Release for ${CIRCLE_SHA1}" > /dev/null 2>&1
+
+            git archive --format zip -o ../artifacts/deploy-${CIRCLE_BUILD_NUM}.zip HEAD
+      - store_artifacts:
+          path: ../artifacts
+          destination: artifacts

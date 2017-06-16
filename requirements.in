@@ -3,7 +3,7 @@ boto
 boto3
 celery
 codeclimate-test-reporter
-coverage
+coverage<4.4,>4.0
 coveralls
 Django
 django-classbasedsettings
@@ -16,7 +16,6 @@ flake8
 flake8-docstrings
 Jinja2
 Markdown
-msgpack-python
 psycopg2
 Pillow
 pip-tools

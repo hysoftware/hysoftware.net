@@ -19,5 +19,4 @@ git add --all . > /dev/null 2>&1
 git config --global user.email "build@travis" > /dev/null 2>&1
 git config --global user.name "Travis CI" > /dev/null 2>&1
 git commit -m "Release for ${TRAVIS_TAG}" > /dev/null 2>&1
-git tag -a ${TRAVIS_TAG} -m ${TRAVIS_TAG} > /dev/null 2>&1
-cd ${TRAVIS_BUILD_DIR}
+git tag -a ${TRAVIS_TAG} -m ${TRAVIS_TAG} > /dev/null 2>&1}

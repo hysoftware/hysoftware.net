@@ -1,10 +1,10 @@
 # hysoftware.net webapp
-[![TravisImage]][TravisLink]
+[![CircleCI]][CircleCILink]
 [![Coverage Status]][Coverage Status Link]
 [![Code Climate]][Code Climate Link]
 
-[TravisImage]: https://travis-ci.org/hysoftware/hysoftware.net.svg?branch=master
-[TravisLink]: https://travis-ci.org/hysoftware/hysoftware.net
+[CircleCI]: https://circleci.com/gh/hysoftware/hysoftware.net/tree/master.svg?style=svg
+[CircleCILink]: https://circleci.com/gh/hysoftware/hysoftware.net/tree/master
 [Code Climate]: https://codeclimate.com/github/hysoftware/hysoftware.net/badges/gpa.svg
 [Code Climate Link]: https://codeclimate.com/github/hysoftware/hysoftware.net
 [Coverage Status]: https://coveralls.io/repos/github/hysoftware/hysoftware.net/badge.svg?branch=master

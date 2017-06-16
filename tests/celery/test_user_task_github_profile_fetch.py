@@ -82,7 +82,7 @@ class GithubFetchTaskTest(TestCase):
         UserInfo.objects.all().delete()
 
     def task_name_check(self):
-        """The name of the task should be 'user.github.fetch'."""
+        """Has proper name 'user.github.fetch'."""
         self.assertEqual(fetch_github_profile.name, "user.github.fetch")
 
     @patch("requests.get")

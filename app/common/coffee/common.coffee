@@ -1,3 +1,5 @@
+require './ctrls.coffee'
+
 angular.module("common", [
   "ngMaterial"
   "ngResource"
