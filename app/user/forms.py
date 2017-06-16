@@ -3,18 +3,16 @@
 
 """User related forms like ContactForm."""
 
-from captcha.fields import ReCaptchaField
-
+from celery import current_app as ctask
 from django import forms
 from django.conf import settings
 from django.template import loader
 from django.utils.translation import ugettext as _
+from .models import Inbox
+from captcha.fields import ReCaptchaField
 
 from django_nghelp.forms import AngularForm
 from django_nghelp.widgets import MDSelect
-
-from .models import Inbox
-from .tasks import send_mail
 
 
 class ContactForm(AngularForm, forms.ModelForm):
@@ -55,27 +53,30 @@ class ContactForm(AngularForm, forms.ModelForm):
             "form": self,
             "users_info": self.Meta.model._meta.get_field("user").model.objects
         }
-        send_mail(
-            self.instance.email,
-            _("Thanks for your interest!"),
-            loader.render_to_string(
-                "mail/client.html", context=cli_context
-            ),
-            loader.render_to_string("mail/client.txt", context=cli_context)
+        ctask.send_task(
+            "user.mail", (
+                self.instance.email,
+                _("Thanks for your interest!"),
+                loader.render_to_string(
+                    "mail/client.html", context=cli_context
+                ),
+                loader.render_to_string("mail/client.txt", context=cli_context)
+            )
         )
         if self.instance.user.user.email:
             context = {
                 "user": self.instance.user.user,
                 "form": self
             }
-            send_mail(
-                self.instance.user.user.email,
-                _("[{}] Someone wants you to contact him").format(
-                    settings.TITLE
-                ),
-                loader.render_to_string(
-                    "mail/staff.html", context=context
-                ),
-                loader.render_to_string("mail/staff.txt", context=context),
-                sender=self.instance.email
+            ctask.send_task(
+                "user.mail", (
+                    self.instance.user.user.email,
+                    _("[{}] Someone wants you to contact him").format(
+                        settings.TITLE
+                    ),
+                    loader.render_to_string(
+                        "mail/staff.html", context=context
+                    ),
+                    loader.render_to_string("mail/staff.txt", context=context)
+                ), {"from": self.instance.email}
             )

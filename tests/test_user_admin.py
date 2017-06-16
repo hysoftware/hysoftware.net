@@ -26,10 +26,12 @@ class GithubTaskSendTest(TestCase):
         )
         self.admin = UserInfoAdmin(self.user_info, None)
 
-    @patch("app.user.admin.fetch_github_profile")
-    def test_task_send(self, fetch_github_profile):
-        """Should call fetch_github_profile."""
+    @patch("app.user.admin.ctask")
+    def test_task_send(self, ctask):
+        """Celery should send task to fetch github profile."""
         obj = MagicMock()
         obj.id = uuid.uuid4
         self.admin.save_model(None, obj, None, None)
-        fetch_github_profile.assert_called_once_with(str(obj.id))
+        ctask.send_task.assert_called_once_with(
+            "user.github.fetch", (str(obj.id),)
+        )

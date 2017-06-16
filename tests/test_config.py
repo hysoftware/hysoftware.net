@@ -29,6 +29,7 @@ class ProductionConfigTest(TestCase):
             "ALLOWED_HOSTS": (
                 "allowed.io, allowed2.io,allowed3.io, allowed4.io,"
             ),
+            "CELERY_BROKER_URL": "test_broker",
             "DB_ENGINE": "test_db_engine",
             "DB_NAME": "test_db_name",
             "DB_USER": "test_db_user",
@@ -93,6 +94,17 @@ class ProductionConfigTest(TestCase):
             self.allowed_hosts
         )
 
+    def test_celery_broker(self):
+        """Celery broker should be differ from devel env."""
+        self.assertNotEqual(
+            self.conf_p.CELERY_BROKER_URL,
+            self.conf_d.CELERY_BROKER_URL
+        )
+        self.assertEqual(
+            self.conf_p.CELERY_BROKER_URL,
+            self.environ["CELERY_BROKER_URL"]
+        )
+
     def test_db(self):
         """Database URL should be differ from devel."""
         self.assertNotEqual(self.conf_p.DATABASES, self.conf_d.DATABASES)
@@ -106,6 +118,13 @@ class ProductionConfigTest(TestCase):
                 "PORT": self.environ["DB_PORT"]
             }
         }, self.conf_p.DATABASES)
+
+    def test_sqs(self):
+        """SQS related settings should be there!."""
+        self.assertDictEqual({
+            "region": self.environ["SQS_REGION"],
+            "queue_name_prefix": self.environ["SQS_PREFIX"]
+        }, self.conf_p.CELERY_BROKER_TRANSPORT_OPTIONS)
 
     def test_aws_storage(self):
         """The storage should be S3."""

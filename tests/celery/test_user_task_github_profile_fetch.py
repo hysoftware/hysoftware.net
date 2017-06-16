@@ -81,10 +81,9 @@ class GithubFetchTaskTest(TestCase):
         get_user_model().objects.all().delete()
         UserInfo.objects.all().delete()
 
-    def test_task_check(self):
-        """Wrap with zappa.async.task."""
-        self.assertEqual(fetch_github_profile.service, "lambda")
-        self.assertIsNotNone(fetch_github_profile.sync)
+    def task_name_check(self):
+        """Has proper name 'user.github.fetch'."""
+        self.assertEqual(fetch_github_profile.name, "user.github.fetch")
 
     @patch("requests.get")
     def test_task_normal_call(self, get):

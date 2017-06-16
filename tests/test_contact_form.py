@@ -42,10 +42,10 @@ class ContactFormTest(TestCase):
         field = form.fields["user"]
         self.assertEqual(field.initial, self.info_id)
 
-    @patch("app.user.forms.send_mail")
+    @patch("app.user.forms.ctask")
     @patch("app.user.forms.loader")
-    def test_save(self, loader, send_mail):
-        """Save function should send send_mail task asynchronously."""
+    def test_save(self, loader, ctask):
+        """Save function should send celery task asynchronously."""
         def render_to_string_side_effect(name, *args, **kwargs):
             """Get template side effect."""
             return "client_html" if name == "mail/client.html" \
@@ -58,7 +58,7 @@ class ContactFormTest(TestCase):
 
         self.form.save()
         self.assertEqual(loader.render_to_string.call_count, 4)
-        self.assertEqual(send_mail.call_count, 2)
+        self.assertEqual(ctask.send_task.call_count, 2)
         staff_context = {
             "user": self.form.instance.user.user,
             "form": self.form
@@ -73,18 +73,22 @@ class ContactFormTest(TestCase):
             call("mail/staff.html", context=staff_context),
             call("mail/staff.txt", context=staff_context)
         ])
-        send_mail.assert_has_calls([
+        ctask.send_task.assert_has_calls([
             call(
-                self.form.instance.email,
-                "Thanks for your interest!",
-                "client_html", "client_txt"
+                "user.mail", (
+                    self.form.instance.email,
+                    "Thanks for your interest!",
+                    "client_html", "client_txt"
+                )
             ),
             call(
-                self.info.user.email,
-                ("[{}] Someone wants you to contact him").format(
-                    settings.TITLE
-                ), "staff_html", "staff_txt",
-                sender=self.form.instance.email
+                "user.mail", (
+                    self.info.user.email,
+                    ("[{}] Someone wants you to contact him").format(
+                        settings.TITLE
+                    ),
+                    "staff_html", "staff_txt"
+                ), {"from": self.form.instance.email}
             )
         ])
 
@@ -112,10 +116,10 @@ class ContactFormWithoutEmailTest(TestCase):
         self.field = self.form.fields["user"]
         self.assertTrue(self.form.is_valid(), self.form.errors)
 
-    @patch("app.user.forms.send_mail")
+    @patch("app.user.forms.ctask")
     @patch("app.user.forms.loader")
-    def test_save_without_staff_email(self, loader, send_mail):
-        """Save function should send send_mail task without staff email."""
+    def test_save_without_staff_email(self, loader, ctask):
+        """Save function should send celery task without staff email."""
         def render_to_string_side_effect(name, *args, **kwargs):
             """Get template side effect."""
             return "client_html" if name == "mail/client.html" \
@@ -126,7 +130,7 @@ class ContactFormWithoutEmailTest(TestCase):
 
         self.form.save()
         self.assertEqual(loader.render_to_string.call_count, 2)
-        self.assertEqual(send_mail.call_count, 1)
+        self.assertEqual(ctask.send_task.call_count, 1)
         cli_context = {
             "form": self.form,
             "users_info": UserInfo.objects
@@ -135,8 +139,10 @@ class ContactFormWithoutEmailTest(TestCase):
             call("mail/client.html", context=cli_context),
             call("mail/client.txt", context=cli_context)
         ])
-        send_mail.assert_called_once_with(
-            self.form.instance.email,
-            "Thanks for your interest!",
-            "client_html", "client_txt"
+        ctask.send_task.assert_called_once_with(
+            "user.mail", (
+                self.form.instance.email,
+                "Thanks for your interest!",
+                "client_html", "client_txt"
+            )
         )

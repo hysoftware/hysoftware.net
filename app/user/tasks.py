@@ -5,22 +5,19 @@
 
 import json
 import requests
-import re
-import zappa.async as zappa_async
+from celery import current_app
 from django.contrib.auth import get_user_model
 from django.conf import settings
 
 from .models import UserInfo, GithubProfile, TaskLog
-from ..common.utils import gen_uuid_pattern
 
 
-def sync_fetch_github_profile(user_info_id=None):
+@current_app.task(name="user.github.fetch")
+def fetch_github_profile(user_info_id=None):
     """Fetch user profile from github."""
     users_info_query = UserInfo.objects
     github_fld_names = GithubProfile.fields_names()
-    if user_info_id is not None and re.match(
-        gen_uuid_pattern(), str(user_info_id)
-    ):
+    if user_info_id is not None:
         users_info_query = users_info_query.filter(id=user_info_id)
 
     for info in users_info_query.all():
@@ -49,14 +46,11 @@ def sync_fetch_github_profile(user_info_id=None):
             )
 
 
-fetch_github_profile = zappa_async.task(sync_fetch_github_profile)
-
-
-@zappa_async.task
+@current_app.task(name="user.mail")
 def send_mail(mail_addr, title, html, txt, **kwargs):
     """Send a mail."""
     payload = {
-        "from": kwargs.pop("sender", settings.DEFAULT_FROM_EMAIL),
+        "from": kwargs.pop("from", settings.DEFAULT_FROM_EMAIL),
         "to": mail_addr,
         "subject": title,
         "html": html,

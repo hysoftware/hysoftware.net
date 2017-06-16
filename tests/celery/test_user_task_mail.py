@@ -16,17 +16,16 @@ from app.user.tasks import send_mail
 from app.user.models import TaskLog
 
 
-class MailTaskTest(TestCase):
-    """Mail task wrap test."""
+class MailTaskNameTest(TestCase):
+    """Mail task name test."""
 
     def setUp(self):
         """Setup."""
         self.mail = send_mail
 
     def test_task_name(self):
-        """Should be wrapped with task."""
-        self.assertEqual(self.mail.service, "lambda")
-        self.assertIsNotNone(self.mail.sync)
+        """The task name should be 'user.mail'."""
+        self.assertEqual(self.mail.name, "user.mail")
 
 
 class MailSendTest(TestCase):

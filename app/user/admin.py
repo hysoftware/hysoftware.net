@@ -3,12 +3,12 @@
 
 """Admin panel for user related models."""
 
+from celery import current_app as ctask
 from django.contrib import admin
 from .models import (
     UserInfo, TaskLog, GithubProfile, CodingLanguage, Framework,
     Hobby, Inbox
 )
-from .tasks import fetch_github_profile
 
 
 class GithubProfileAdminView(admin.TabularInline):
@@ -64,12 +64,12 @@ class UserInfoAdmin(admin.ModelAdmin):
     def save_model(self, req, obj, form, change):
         """Save the model and execute user.github.fetch task."""
         super(UserInfoAdmin, self).save_model(req, obj, form, change)
-        fetch_github_profile(str(obj.id))
+        ctask.send_task("user.github.fetch", (str(obj.id), ))
 
 
 @admin.register(TaskLog)
 class TaskLog(admin.ModelAdmin):
-    """Task log form zappa_async worker."""
+    """Task log form celery."""
 
     list_display = ("log_date", "user", "title", "message")
     search_fields = (

@@ -72,10 +72,3 @@ jobs:
             coveralls &&
             codeclimate-test-reporter &&
             deactivate
-      - deploy:
-          command: |
-            source ./venv/bin/activate &&
-            python manage.py collectstatic --noinput &&
-            rm staticfiles/flags/*.gif
-            aws s3 cp staticfiles s3://hysoft-static --recursive
-            deactivate
