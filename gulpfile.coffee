@@ -1,5 +1,12 @@
 path = require "path"
 
+http = require "http"
+qs = require "querystring"
+url = require "url"
+fs = require "fs"
+mime = require "mime-types"
+colors = require "colors"
+
 g = require "gulp"
 toolbox = require "hyamamoto-job-toolbox"
 command = require "simple-process"
@@ -57,6 +64,76 @@ g.task "django.test", ["python.mentain"], ->
     "coverage report -m", [], undefined,
     ("stdio": ["pipe", "inherit", "inherit"])
   ))
+
+g.task "upload.githubRelease", ->
+  errHandler = plumber(errorHandler: notify.onError '<%= error.message %>')
+  q.nfcall(
+    ->
+      if not (
+        process.env.CIRCLE_TAG and
+        process.env.RELEASE_USER_NAME and
+        process.env.RELEASE_TOKEN
+      )
+        throw new Error(
+          "MUST have proper environemnt arguments:
+            CIRCLE_TAG, RELEASE_USER_NAME, RELEASE_TOKEN"
+        )
+      if not process.argv[2]
+        throw new Error("File name to deploy is needed")
+  ).then(
+    ->
+      http.get(
+        "https://api.github.com/repos/hysoftware/\
+         hysoftware.net/releases/tags/#{process.env.CIRCLE_TAG}",
+        (res) ->
+          if not (200 <= res.statusCode < 300)
+            q.reject(new Error("#{res.statusCode}: #{res.statusMessage}"))
+          res.setEncoding("utf-8")
+          raw = ''
+          res.on("data", (chunk) -> raw += chunk)
+          res.on("end", ->
+            try
+              prase = JSON.parse(raw)
+              ret.done(parse)
+            catch e
+              ret.reject(e)
+          )
+       ).on("error", ret.reject)
+      return ret
+  ).then(
+    (parse) ->
+      ret = q.defer()
+      targetFile = fs.createReadStream(process.argv[2])
+      q.nfcall(fs.stat, targetFile.path).then(
+        (stat) -> ret.done([targetFile, stat, parse])
+      ).catch(ret.reject)
+      return ret
+  ).then(
+    (value) ->
+      ret = q.defer()
+      [targetFile, stat, parse] = value
+      uploadUrl = url.parse(parse.uploadUrl.replace(
+        /\{\?name\,label\}$/g,
+        "?" + qs.stringify({name: targetFile.path})
+      ))
+      uploadUrl.method = "POST"
+      uploadUrl.auth = "#{RELEASE_USER_NAME}:#{RELEASE_TOKEN}"
+      uploadUrl.headers = {
+        "Content-Type": mime.lookup(targetFile.path),
+        "Content-Length": stat.size
+      }
+      post = http.method(uploadUrl, (res) ->
+        if not (200 <= res.statusCode < 300)
+          ret.reject(new Error("#{res.statusCode}: #{res.statusMessage}"))
+        res.on("end", ->
+          console.log("Done!".green)
+          readable.close()
+          q.done()
+        )
+      ).on("error", ret.reject)
+      readable.pipe(post)
+      return ret
+  ).catch((e) -> errorHandler(e))
 
 init_deps = []
 
