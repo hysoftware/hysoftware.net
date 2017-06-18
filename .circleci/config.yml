@@ -87,10 +87,10 @@ jobs:
             git config --global user.name "CIRCLE CI" > /dev/null 2>&1
             git commit -m "Release for ${CIRCLE_SHA1}" > /dev/null 2>&1
 
-            if [ -n "$(git describe --tags)" ]; then
+            if [ -n "${CIRCLE_TAG}" ]; then
               git archive --format zip \
-                -o ../artifacts/deploy-${git describe --tags}.zip HEAD
-              gulp upload.githubRelease ../artifacts/deploy-${git describe --tags}.zip
+                -o ../artifacts/deploy-${CIRCLE_TAG}.zip HEAD
+              gulp upload.githubRelease ../artifacts/deploy-${CIRCLE_TAG}.zip
             else
               git archive --format zip \
                 -o ../artifacts/deploy-${CIRCLE_BUILD_NUM}.zip HEAD
