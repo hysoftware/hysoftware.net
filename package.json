@@ -2,7 +2,7 @@
   "name": "hysoft",
   "version": "1.0.0",
   "description": "Hysoftware webapp package",
-  "main": "app.coffee",
+  "main": "index.js",
   "scripts": {
     "install": "npm run bower -- install",
     "update": "npm run bower -- update",
@@ -28,8 +28,11 @@
   "homepage": "https://github.com/hysoftware/hysoftware.net#readme",
   "devDependencies": {
     "autoprefixer": "^7.1.1",
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.0.0",
+    "babel-preset-env": "^1.5.2",
+    "babili-webpack-plugin": "^0.1.1",
     "bower": "^1.8.0",
-    "coffee-loader": "^0.7.3",
     "css-loader": "^0.28.4",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^15.0.1",
@@ -46,7 +49,6 @@
     "rimraf": "^2.6.1",
     "sass-loader": "^6.0.5",
     "style-loader": "^0.18.2",
-    "uglifyjs-webpack-plugin": "^0.4.3",
     "url-loader": "^0.5.9",
     "webpack": "^2.6.1"
   }

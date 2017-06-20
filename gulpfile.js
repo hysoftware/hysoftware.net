@@ -1,5 +1,7 @@
 /* eslint no-console: ["error", { allow: ["log", "warn", "error"] }] */
-/* eslint no-restricted-syntax: "off" */
+/* eslint no-restricted-syntax: [
+  "error", "FunctionExpression", "WithStatement",
+] */
 ((r) => {
   const path = r('path');
 
@@ -174,6 +176,7 @@
         ((name) => {
           g.watch([
             path.join('app', name, '**/coffee/**/*.coffee'),
+            path.join('app', name, '**/es6/**/*.es6'),
             path.join('app', name, '**/*.scss'),
             path.join('app', name, 'main.js'),
           ], [`${name}.webpack`]);

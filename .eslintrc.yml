@@ -24,3 +24,8 @@ rules:
     - devDependencies: true
       optionalDependencies: true
       peerDependencies: true
+  no-param-reassign:
+    - "error"
+    - props: true
+      ignorePropertyModificationsFor:
+        - "scope"
