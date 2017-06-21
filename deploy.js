@@ -16,7 +16,7 @@
   );
   releaseOpt.method = 'POST';
   releaseOpt.auth =
-  `${process.env.RELEASE_USER_NAME}:${process.env.RELEASE_TOKEN}`;
+    `${process.env.RELEASE_USER_NAME}:${process.env.RELEASE_TOKEN}`;
   releaseOpt.headers = {
     'Content-Type': 'application/json',
     'Content-Length': releaseBody.length,
@@ -39,14 +39,17 @@
     const defer = q.defer();
     const req = https.request(
       releaseOpt, (res) => {
-        if (!(res.statusCode >= 200 && res.statusCode < 300)) {
-          defer.reject(new Error(`${res.statusCode}: ${res.statusMessage}`));
-        }
         res.setEncoding('utf-8');
         let raw = '';
         res.on('data', (chunk) => { raw += chunk; });
         res.on('end', () => {
           try {
+            if (!(res.statusCode >= 200 && res.statusCode < 300)) {
+              defer.reject(
+                new Error(`${res.statusCode}: ${res.statusMessage}, ${raw}`)
+              );
+              return
+            }
             defer.done(JSON.parse(raw));
           } catch (e) {
             defer.reject(e);
@@ -78,12 +81,14 @@
       'Content-Length': stat.size,
     };
     const post = https.method(uploadUrl, (res) => {
-      if (!(res.statusCode >= 200 && res.statusCode < 300)) {
-        postPromise.reject(
-          new Error(`${res.statusCode}: ${res.statusMessage}`)
-        );
-      }
+      let raw = '';
+      res.on('data', (chunk) => { raw += chunk; });
       res.on('end', () => {
+        if (!(res.statusCode >= 200 && res.statusCode < 300)) {
+          postPromise.reject(
+            new Error(`${res.statusCode}: ${res.statusMessage}, ${raw}`)
+          );
+        }
         console.log('Done.');
         targetFile.close();
         postPromise.resolve();
