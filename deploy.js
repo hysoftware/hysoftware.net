@@ -48,7 +48,7 @@
               defer.reject(
                 new Error(`${res.statusCode}: ${res.statusMessage}, ${raw}`)
               );
-              return
+              return;
             }
             defer.done(JSON.parse(raw));
           } catch (e) {
