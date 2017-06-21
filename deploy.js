@@ -70,7 +70,7 @@
   }).then((value) => {
     const postPromise = q.defer();
     const [targetFile, stat, parse] = value;
-    const uploadUrl = url.parse(parse.uploadUrl.replace(
+    const uploadUrl = url.parse(parse.upload_url.replace(
       /\{\?name,label\}$/g,
       `?${qs.stringify({ name: targetFile.path })}`
     ));
