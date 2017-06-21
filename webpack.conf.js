@@ -3,11 +3,9 @@
 
   const webpack = require('webpack');
 
-  const Uglify = require('uglifyjs-webpack-plugin');
   const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
+  const Babili = require('babili-webpack-plugin');
   const toolbox = require('hyamamoto-job-toolbox');
-  const isProd = toolbox.helper.isProduction;
 
   module.exports = (entry, modulePath, outpath = 'static') => ({
     entry,
@@ -17,7 +15,7 @@
     },
     plugins: [
       new webpack.SourceMapDevToolPlugin(),
-      new Uglify({ sourceMap: !isProd }),
+      new Babili({}, { sourceMap: !toolbox.helper.isProduction }),
       new ExtractTextPlugin('[name].css'),
     ],
     target: 'web',

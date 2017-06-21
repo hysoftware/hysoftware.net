@@ -5,8 +5,13 @@
   module.exports = {
     rules: [
       {
-        test: /\.coffee$/,
-        use: [{ loader: 'coffee-loader', options: { sourceMap: !isProd } }],
+        test: /\.es6$/,
+        use: [{
+          loader: 'babel-loader',
+          options: {
+            presets: ['env'],
+          },
+        }],
       }, {
         test: /\.scss$/,
         use: ExtractTextPlugin.extract({
