@@ -97,7 +97,6 @@
       });
     }).on('error', postPromise.reject);
     targetFile.pipe(post);
-    post.end();
     return postPromise.promise;
   })
   .catch((e) => {
