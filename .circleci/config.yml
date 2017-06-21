@@ -73,7 +73,8 @@ jobs:
             codeclimate-test-reporter &&
             deactivate
       - run: mkdir ../artifacts
-      - deploy:
+      - run:
+          name: "Making Relase ZIP"
           command: |
             git checkout -b deploy> /dev/null 2>&1
 
@@ -90,7 +91,6 @@ jobs:
             if [ -n "${CIRCLE_TAG}" ]; then
               git archive --format zip \
                 -o ../artifacts/deploy-${CIRCLE_TAG}.zip HEAD
-              gulp upload.githubRelease ../artifacts/deploy-${CIRCLE_TAG}.zip
             else
               git archive --format zip \
                 -o ../artifacts/deploy-${CIRCLE_BUILD_NUM}.zip HEAD
@@ -98,3 +98,8 @@ jobs:
       - store_artifacts:
           path: ../artifacts
           destination: artifacts
+deployment:
+  release:
+    tag: /.*/
+    commands:
+      - gulp upload.githubRelease ../artifacts/deploy-${CIRCLE_TAG}.zip
