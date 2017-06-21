@@ -10,7 +10,7 @@
 
   const releaseArtifact = process.argv.splice(2, 1);
 
-  q.nfcall(() => {
+  q.fcall(() => {
     if (!(
       process.env.CIRCLE_TAG &&
       process.env.RELEASE_USER_NAME &&
