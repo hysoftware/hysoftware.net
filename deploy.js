@@ -82,7 +82,7 @@
       'Content-Length': stat.size,
       'User-Agent': 'circle ci deploy',
     };
-    const post = https.method(uploadUrl, (res) => {
+    const post = https.request(uploadUrl, (res) => {
       let raw = '';
       res.on('data', (chunk) => { raw += chunk; });
       res.on('end', () => {
