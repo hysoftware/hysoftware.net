@@ -51,7 +51,7 @@
               );
               return;
             }
-            defer.done(JSON.parse(raw));
+            defer.resolve(JSON.parse(raw));
           } catch (e) {
             defer.reject(e);
           }
