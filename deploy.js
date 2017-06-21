@@ -10,7 +10,7 @@
 
   const releaseArtifact = process.argv.splice(2, 1);
 
-  const ret = q.nfcall(() => {
+  q.nfcall(() => {
     if (!(
       process.env.CIRCLE_TAG &&
       process.env.RELEASE_USER_NAME &&
@@ -42,7 +42,7 @@
             defer.reject(e);
           }
         });
-      }).on('error', ret.reject);
+      }).on('error', defer.reject);
     return defer.promise;
   }).then((parse) => {
     const targetFile = fs.createReadStream(releaseArtifact[0]);
@@ -80,5 +80,8 @@
     targetFile.pipe(post);
     return postPromise.promise;
   })
-  .catch((e) => { throw e; });
+  .catch((e) => {
+    console.error(e);
+    throw e;
+  });
 })(require);
