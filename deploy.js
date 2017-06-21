@@ -20,6 +20,7 @@
   releaseOpt.headers = {
     'Content-Type': 'application/json',
     'Content-Length': releaseBody.length,
+    'User-Agent': 'circle ci deploy',
   };
 
   q.fcall(() => {
@@ -79,6 +80,7 @@
     uploadUrl.headers = {
       'Content-Type': mime.lookup(targetFile.path),
       'Content-Length': stat.size,
+      'User-Agent': 'circle ci deploy',
     };
     const post = https.method(uploadUrl, (res) => {
       let raw = '';
