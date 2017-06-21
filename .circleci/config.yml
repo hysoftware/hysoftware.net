@@ -76,6 +76,7 @@ jobs:
       - run:
           name: "Making Relase ZIP"
           command: |
+            #!/bin/sh -e
             git checkout -b deploy> /dev/null 2>&1
 
             sed -i -E \

@@ -1,7 +1,7 @@
 /* eslint no-console: ["error", { allow: ["log", "warn", "error"] }] */
 
 ((require) => {
-  const http = require('http');
+  const https = require('https');
   const qs = require('querystring');
   const url = require('url');
   const fs = require('fs');
@@ -25,7 +25,7 @@
     }
   }).then(() => {
     const defer = q.defer();
-    http.get(
+    https.get(
       `https://api.github.com/repos/hysoftware/\
        hysoftware.net/releases/tags/${process.env.CIRCLE_TAG}`,
       (res) => {
@@ -65,7 +65,7 @@
       'Content-Type': mime.lookup(targetFile.path),
       'Content-Length': stat.size,
     };
-    const post = http.method(uploadUrl, (res) => {
+    const post = https.method(uploadUrl, (res) => {
       if (!(res.statusCode >= 200 && res.statusCode < 300)) {
         postPromise.reject(
           new Error(`${res.statusCode}: ${res.statusMessage}`)
