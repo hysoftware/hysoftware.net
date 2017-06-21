@@ -91,6 +91,7 @@ jobs:
             if [ -n "${CIRCLE_TAG}" ]; then
               git archive --format zip \
                 -o ../artifacts/deploy-${CIRCLE_TAG}.zip HEAD
+              gulp upload.githubRelease ../artifacts/deploy-${CIRCLE_TAG}.zip
             else
               git archive --format zip \
                 -o ../artifacts/deploy-${CIRCLE_BUILD_NUM}.zip HEAD
@@ -102,4 +103,4 @@ deployment:
   release:
     tag: /.*/
     commands:
-      - gulp upload.githubRelease ../artifacts/deploy-${CIRCLE_TAG}.zip
+      - ;
