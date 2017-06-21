@@ -5,12 +5,6 @@
 ((r) => {
   const path = r('path');
 
-  const http = r('http');
-  const qs = r('querystring');
-  const url = r('url');
-  const fs = r('fs');
-  const mime = r('mime-types');
-
   const g = r('gulp');
   const toolbox = r('hyamamoto-job-toolbox');
   const command = r('simple-process');
@@ -83,82 +77,6 @@
       return ret;
     });
     return taskPromise;
-  });
-
-  const releaseArtifact = process.argv.splice(2, 1);
-  g.task('upload.githubRelease', () => {
-    const ret = q.nfcall(() => {
-      if (!(
-        process.env.CIRCLE_TAG &&
-        process.env.RELEASE_USER_NAME &&
-        process.env.RELEASE_TOKEN
-      )) {
-        throw new Error(
-          `MUST have proper environemnt arguments:
-          CIRCLE_TAG, RELEASE_USER_NAME, RELEASE_TOKEN`);
-      }
-      if (!releaseArtifact.length) {
-        throw new Error('File name to deploy is needed');
-      }
-    }).then(() => {
-      const defer = q.defer();
-      http.get(
-        `https://api.github.com/repos/hysoftware/\
-         hysoftware.net/releases/tags/${process.env.CIRCLE_TAG}`,
-        (res) => {
-          if (!(res.statusCode >= 200 && res.statusCode < 300)) {
-            defer.reject(new Error(`${res.statusCode}: ${res.statusMessage}`));
-          }
-          res.setEncoding('utf-8');
-          let raw = '';
-          res.on('data', (chunk) => { raw += chunk; });
-          res.on('end', () => {
-            try {
-              defer.done(JSON.parse(raw));
-            } catch (e) {
-              defer.reject(e);
-            }
-          });
-        }).on('error', ret.reject);
-      return defer.promise;
-    }).then((parse) => {
-      const defer = q.defer();
-      const targetFile = fs.createReadStream(releaseArtifact[0]);
-      q.nfcall(fs.stat, targetFile.path).then((stat) => {
-        defer.done([targetFile, stat, parse]);
-      }).catch(defer.reject);
-      return defer.promise;
-    }).then((value) => {
-      const postPromise = q.defer();
-      const [targetFile, stat, parse] = value;
-      const uploadUrl = url.parse(parse.uploadUrl.replace(
-        /\{\?name,label\}$/g,
-        `?${qs.stringify({ name: targetFile.path })}`
-      ));
-      uploadUrl.method = 'POST';
-      uploadUrl.auth =
-      `${process.env.RELEASE_USER_NAME}:${process.env.RELEASE_TOKEN}`;
-      uploadUrl.headers = {
-        'Content-Type': mime.lookup(targetFile.path),
-        'Content-Length': stat.size,
-      };
-      const post = http.method(uploadUrl, (res) => {
-        if (!(res.statusCode >= 200 && res.statusCode < 300)) {
-          postPromise.reject(
-            new Error(`${res.statusCode}: ${res.statusMessage}`)
-          );
-        }
-        res.on('end', () => {
-          console.log('Done.');
-          targetFile.close();
-          postPromise.resolve();
-        });
-      }).on('error', postPromise.reject);
-      targetFile.pipe(post);
-      return postPromise.promise;
-    })
-    .catch(errorHandler);
-    return ret;
   });
 
   const initDeps = [];
