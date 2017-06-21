@@ -22,3 +22,4 @@ pip-tools
 requests
 radon
 redis
+msgpack-python

@@ -9,7 +9,7 @@ argon2-cffi==16.3.0
 billiard==3.5.0.2         # via celery
 boto3==1.4.4
 boto==2.47.0
-botocore==1.5.69          # via boto3, s3transfer
+botocore==1.5.72          # via boto3, s3transfer
 celery==4.0.2
 certifi==2017.4.17        # via requests
 cffi==1.10.0              # via argon2-cffi
@@ -41,6 +41,7 @@ mando==0.6.4              # via radon
 markdown==2.6.8
 markupsafe==1.0           # via jinja2
 mccabe==0.6.1             # via flake8
+msgpack-python==0.4.8
 olefile==0.44             # via pillow
 pillow==4.1.1
 pip-tools==1.9.0
