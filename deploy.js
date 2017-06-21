@@ -10,6 +10,18 @@
 
   const releaseArtifact = process.argv.splice(2, 1);
 
+  const releaseBody = JSON.stringify({ tag_name: process.env.CIRCLE_TAG });
+  const releaseOpt = url.parse(
+    'https://api.github.com/repos/hysoftware/hysoftware.net/releases'
+  );
+  releaseOpt.method = 'POST';
+  releaseOpt.auth =
+  `${process.env.RELEASE_USER_NAME}:${process.env.RELEASE_TOKEN}`;
+  releaseOpt.headers = {
+    'Content-Type': 'application/json',
+    'Content-Length': releaseBody.length,
+  };
+
   q.fcall(() => {
     if (!(
       process.env.CIRCLE_TAG &&
@@ -25,10 +37,8 @@
     }
   }).then(() => {
     const defer = q.defer();
-    https.get(
-      `https://api.github.com/repos/hysoftware/\
-       hysoftware.net/releases/tags/${process.env.CIRCLE_TAG}`,
-      (res) => {
+    const req = https.request(
+      releaseOpt, (res) => {
         if (!(res.statusCode >= 200 && res.statusCode < 300)) {
           defer.reject(new Error(`${res.statusCode}: ${res.statusMessage}`));
         }
@@ -43,6 +53,8 @@
           }
         });
       }).on('error', defer.reject);
+    req.setDefaultEncoding('utf-8');
+    req.write(releaseBody);
     return defer.promise;
   }).then((parse) => {
     const targetFile = fs.createReadStream(releaseArtifact[0]);
