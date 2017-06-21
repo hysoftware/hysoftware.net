@@ -85,6 +85,7 @@
     return taskPromise;
   });
 
+  const releaseArtifact = process.argv.splice(2, 1);
   g.task('upload.githubRelease', () => {
     const ret = q.nfcall(() => {
       if (!(
@@ -96,7 +97,7 @@
           `MUST have proper environemnt arguments:
           CIRCLE_TAG, RELEASE_USER_NAME, RELEASE_TOKEN`);
       }
-      if (!process.argv[2]) {
+      if (!releaseArtifact.length) {
         throw new Error('File name to deploy is needed');
       }
     }).then(() => {
@@ -122,7 +123,7 @@
       return defer.promise;
     }).then((parse) => {
       const defer = q.defer();
-      const targetFile = fs.createReadStream(process.argv[2]);
+      const targetFile = fs.createReadStream(releaseArtifact[0]);
       q.nfcall(fs.stat, targetFile.path).then((stat) => {
         defer.done([targetFile, stat, parse]);
       }).catch(defer.reject);
