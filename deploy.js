@@ -53,8 +53,8 @@
           }
         });
       }).on('error', defer.reject);
-    req.setDefaultEncoding('utf-8');
     req.write(releaseBody);
+    req.end();
     return defer.promise;
   }).then((parse) => {
     const targetFile = fs.createReadStream(releaseArtifact[0]);
@@ -90,6 +90,7 @@
       });
     }).on('error', postPromise.reject);
     targetFile.pipe(post);
+    post.end();
     return postPromise.promise;
   })
   .catch((e) => {
