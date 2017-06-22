@@ -82,7 +82,7 @@ jobs:
               -e '/app\/common\/static\/third_party\.(js|css)/d' \
               -e '/app\/\*\*\/jinja2\/\*\.(css|js)/d' .gitignore
             echo "assets" >> .gitignore
-            echo "app/**.es6" >> .gitignore
+            echo "app/**/*.es6" >> .gitignore
             echo "app/**/*.scss" >> .gitignore
 
             git add --all . > /dev/null 2>&1
