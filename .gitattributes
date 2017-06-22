@@ -1,6 +1,8 @@
 assets export-ignore
 *.es6 export-ignore
 *.scss export-ignore
+es6 export-ignore
+scss export-ignore
 gulpfile.js export-ignore
 package.json export-ignore
 bower.json export-ignore
@@ -12,6 +14,7 @@ module_rules.js export-ignore
 postcss.config.js export-ignore
 yarn.lock export-ignore
 **/webpack.conf.js export-ignore
+third_party export-ignore
 
 .gitignore export-ignore
-.gitarchive export-ignore
+.gitattributes export-ignore
