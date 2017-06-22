@@ -19,6 +19,6 @@
       new ExtractTextPlugin('[name].css'),
     ],
     target: 'web',
-    module: require('./module_rulse.js'),
+    module: require('./module_rules.js'),
   });
 })(require);
