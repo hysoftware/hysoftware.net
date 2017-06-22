@@ -81,20 +81,6 @@ jobs:
             sed -i -E \
               -e '/app\/common\/static\/third_party\.(js|css)/d' \
               -e '/app\/\*\*\/jinja2\/\*\.(css|js)/d' .gitignore
-            echo "assets" >> .gitignore
-            echo "*.es6" >> .gitignore
-            echo "*.scss" >> .gitignore
-            echo "gulpfile.js" >> .gitignore
-            echo "package.json" >> .gitignore
-            echo "bower.json" >> .gitignore
-            echo ".bowerrc" >> .gitignore
-            echo ".codeclimate.yml" >> .gitignore
-            echo ".eslintrc.yml" >> .gitignore
-            echo "deploy.js" >> .gitignore
-            echo "module_rules.js" >> .gitignore
-            echo "postcss.config.js" >> .gitignore
-            echo "yarn.lock" >> .gitignore
-            echo "webpack.conf.js" >> .gitignore
 
             git add --all . > /dev/null 2>&1
             git config --global user.email "build@circleci" > /dev/null 2>&1

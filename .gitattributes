@@ -1,0 +1,17 @@
+assets export-ignore
+*.es6 export-ignore
+*.scss export-ignore
+gulpfile.js export-ignore
+package.json export-ignore
+bower.json export-ignore
+.bowerrc export-ignore
+.codeclimate.yml export-ignore
+.eslintrc.yml export-ignore
+deploy.js export-ignore
+module_rules.js export-ignore
+postcss.config.js export-ignore
+yarn.lock export-ignore
+**/webpack.conf.js export-ignore
+
+.gitignore export-ignore
+.gitarchive export-ignore
