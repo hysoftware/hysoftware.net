@@ -3,7 +3,7 @@
 
 """Config for public."""
 
-import json
+# import json
 import re
 import os
 
@@ -41,9 +41,9 @@ class PublicConfig(DevelConfig):
     ALLOWED_HOSTS = re.split(",\\s*", os.environ["ALLOWED_HOSTS"])
     CELERY_BROKER_URL = os.environ["CELERY_BROKER_URL"]
     CELERY_RESULT_BACKEND = os.environ.get("CELERY_RESULT_BACKEND")
-    CELERY_BROKER_TRANSPORT_OPTIONS = json.loads(
-        os.environ.get("CELERY_BROKER_TRANSPORT_OPTIONS") or "null"
-    )
+    # CELERY_BROKER_TRANSPORT_OPTIONS = json.loads(
+    #     os.environ.get("CELERY_BROKER_TRANSPORT_OPTIONS") or "null"
+    # )
     SESSION_COOKIE_SECURE = \
         os.environ.get("COOKIE_SECURE", "false").lower() == "true"
     CSRF_COOKIE_SECURE = SESSION_COOKIE_SECURE

@@ -123,6 +123,7 @@ class ProductionConfigTest(TestCase):
             }
         }, self.conf_p.DATABASES)
 
+    @skip
     def test_sqs(self):
         """SQS related settings should be there!."""
         self.assertEqual(
