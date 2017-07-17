@@ -1,6 +1,6 @@
 uwsgi:
-  https2: $(PORT)
-  http: $(http)
+  # https2: $(https_info)
+  http: :$(PORT)
   chmod: 666
   master: 1
   processes: 2
