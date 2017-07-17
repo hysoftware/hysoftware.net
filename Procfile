@@ -1,2 +1,2 @@
-web: uwsgi -y ./etc/uwsgi_public.yml
+web: uwsgi -y ./etc/heroku.yml
 worker: celery worker -B -A app
