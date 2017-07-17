@@ -95,6 +95,16 @@ jobs:
               git archive --format zip \
                 -o ../artifacts/deploy-${CIRCLE_BUILD_NUM}.zip HEAD
             fi
+      - run: bash .circleci/setup-heroku.sh
+        - add_ssh_keys:
+            fingerprints:
+              - "b0:97:fb:d3:79:2c:a8:28:56:d7:51:65:e6:49:04:15"
+      - deploy:
+          name: Deploy Master to Heroku
+          command: |
+            if [ -n "${CIRCLE_TAG}" ]; then
+              git push heroku ${CIRCLE_TAG}
+            fi
       - store_artifacts:
           path: ../artifacts
           destination: artifacts
@@ -103,7 +113,3 @@ deployment:
     tag: /.*/
     commands:
       - ;
-  heroku_deploy:
-    tag: /.*/
-    heroku:
-      appname: hysoftware
