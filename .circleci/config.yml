@@ -103,7 +103,7 @@ jobs:
           name: Deploy Master to Heroku
           command: |
             if [ -n "${CIRCLE_TAG}" ]; then
-              git push heroku ${CIRCLE_TAG}
+              git push heroku master
             fi
       - store_artifacts:
           path: ../artifacts
