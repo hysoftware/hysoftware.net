@@ -13,7 +13,6 @@ uwsgi:
   callalble: application
   mount: /=app/wsgi.py
   static-map: /static=staticfiles
-  env: CELERY_BROKER_URL=redis://
   env: COOKIE_SECURE=true
   env: DB_ENGINE=django.db.backends.postgresql
   env: SECURE_HSTS_INCLUDE_SUBDOMAINS=true
