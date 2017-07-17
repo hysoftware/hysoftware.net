@@ -96,9 +96,9 @@ jobs:
                 -o ../artifacts/deploy-${CIRCLE_BUILD_NUM}.zip HEAD
             fi
       - run: bash .circleci/setup-heroku.sh
-        - add_ssh_keys:
-            fingerprints:
-              - "b0:97:fb:d3:79:2c:a8:28:56:d7:51:65:e6:49:04:15"
+      - add_ssh_keys:
+          fingerprints:
+            - "b0:97:fb:d3:79:2c:a8:28:56:d7:51:65:e6:49:04:15"
       - deploy:
           name: Deploy Master to Heroku
           command: |
