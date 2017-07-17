@@ -103,3 +103,5 @@ deployment:
     tag: /.*/
     commands:
       - ;
+    heroku:
+      appname: hysoftware
