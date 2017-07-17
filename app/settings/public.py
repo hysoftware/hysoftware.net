@@ -40,7 +40,7 @@ class PublicConfig(DevelConfig):
     MAILGUN_URL = os.environ["MAILGUN_URL"]
     ALLOWED_HOSTS = re.split(",\\s*", os.environ["ALLOWED_HOSTS"])
     CELERY_BROKER_URL = os.environ["CELERY_BROKER_URL"]
-    CELERY_RESULT_BACKEND = None
+    CELERY_RESULT_BACKEND = os.environ.get("CELERY_RESULT_BACKEND")
     CELERY_BROKER_TRANSPORT_OPTIONS = json.loads(
         os.environ.get("CELERY_BROKER_TRANSPORT_OPTIONS") or "null"
     )
