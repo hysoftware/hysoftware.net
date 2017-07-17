@@ -3,6 +3,7 @@
 
 """Setting test."""
 
+import json
 from unittest.mock import patch
 
 from django.test import TestCase
@@ -36,8 +37,10 @@ class ProductionConfigTest(TestCase):
             "DB_PW": "test_db_pw",
             "DB_HOST": "test_db_host",
             "DB_PORT": "test_db_port",
-            "SQS_REGION": "us-east-1a",
-            "SQS_PREFIX": "test",
+            "CELERY_BROKER_TRANSPORT_OPTIONS": json.dumps({
+                "SQS_REGION": "us-east-1a",
+                "SQS_PREFIX": "test",
+            }),
             "AWS_ACCESS_KEY_ID": "dGVzdGFwaWtleQo=",
             "AWS_SECRET_ACCESS_KEY": "dGVzdGFwaXNlY3JldAo=",
             "AWS_STORAGE_BUCKET_NAME": "test_bucket"
@@ -121,10 +124,10 @@ class ProductionConfigTest(TestCase):
 
     def test_sqs(self):
         """SQS related settings should be there!."""
-        self.assertDictEqual({
-            "region": self.environ["SQS_REGION"],
-            "queue_name_prefix": self.environ["SQS_PREFIX"]
-        }, self.conf_p.CELERY_BROKER_TRANSPORT_OPTIONS)
+        self.assertEqual(
+            self.conf_p.CELERY_BROKER_TRANSPORT_OPTIONS,
+            json.loads(self.environ['CELERY_BROKER_TRANSPORT_OPTIONS'])
+        )
 
     def test_aws_storage(self):
         """The storage should be S3."""
