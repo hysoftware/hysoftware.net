@@ -5,5 +5,5 @@
   const packageTemplate = require('../../webpack.conf.js');
   module.exports = packageTemplate({
     home: path.join(pathHere, 'main.js'),
-  }, pathHere, 'jinja2');
+  }, pathHere, 'static');
 })(require);

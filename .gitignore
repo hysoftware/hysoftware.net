@@ -149,6 +149,8 @@ app/common/static/third_party.js
 app/common/static/third_party.css
 app/**/jinja2/*.css
 app/**/jinja2/*.js
+app/**/static/*.css
+app/**/static/*.js
 
 # SQLite Database file for development
 devel.db

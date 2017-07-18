@@ -42,7 +42,10 @@
           ],
         }),
       },
-      { test: /\.(?:woff|eot|ttf|svg)/, use: [{ loader: 'url-loader' }] },
+      {
+        test: /\.(?:woff|eot|ttf|svg|jpg|png)/,
+        use: [{ loader: 'url-loader' }],
+      },
     ],
   };
 })(require);

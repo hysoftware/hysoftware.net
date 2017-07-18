@@ -3,15 +3,17 @@
 
 """Controllers for legal notation."""
 
+from django.core.urlresolvers import reverse
 from django.views.generic import TemplateView
 from django.utils.functional import cached_property
-from django.utils.translation import ugettext_lazy as _lz
+from django.utils.translation import ugettext_lazy as _lz, ugettext as _
 
 
 class LegalView(TemplateView):
     """Legal view."""
 
     template_name = "legal.html"
+    ng_app = "legal"
     description = _lz("Legal Statement")
 
     @cached_property
@@ -29,19 +31,34 @@ class LegalView(TemplateView):
     @cached_property
     def assets_info(self):
         """Retrn third party asset model."""
-        from ..common.models import ThirdPartyAssets
-        return ThirdPartyAssets.objects
-
-
-class CSSView(TemplateView):
-    """CSS view."""
-
-    template_name = "legal.css"
-    content_type = "text/css"
-
-
-class JSView(TemplateView):
-    """JS View."""
-
-    template_name = "legal.js"
-    content_type = "application/javascript"
+        return [
+            {
+              "name": _("Homepage Title Background"),
+              "page": reverse("home:index"),
+              "license": "CC0",
+              "source": "http://alana.io/downloads/apple-macbook-laptop/",
+              "license_url": "http://alana.io/license/",
+              "check_date": "2017-07-18"
+            }, {
+              "name": _("Legal Page Title Background"),
+              "page": reverse("legal:index"),
+              "license": "CC0",
+              "source": "http://alana.io/downloads/book-3/",
+              "license_url": "http://alana.io/license/",
+              "check_date": "2017-07-18"
+            }, {
+              "name": _("About Page Title Background"),
+              "page": reverse("user:about"),
+              "license": "CC0",
+              "source": "http://alana.io/downloads/menu-2",
+              "license_url": "http://alana.io/license/",
+              "check_date": "2017-07-18"
+            }, {
+              "name": _("Contact Page Title Background"),
+              "page": reverse("user:contact"),
+              "license": "CC0",
+              "source": "http://alana.io/downloads/iphone/",
+              "license_url": "http://alana.io/license/",
+              "check_date": "2017-07-18"
+            }
+        ]

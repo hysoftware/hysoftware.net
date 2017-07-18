@@ -29,13 +29,6 @@ class HomeView(TemplateView):
         ), None) or pitch.text
 
 
-class CSSView(TemplateView):
-    """Home stylesheet view."""
-
-    template_name = "home.css"
-    content_type = "text/css"
-
-
 class SSLValidationView(TemplateView):
     """SSL validation view."""
 

@@ -18,6 +18,7 @@ class AboutView(TemplateView):
     """About page."""
 
     template_name = "about.html"
+    ng_app = "user"
 
     @cached_property
     def description(self):
@@ -47,6 +48,7 @@ class ContactView(TemplateView):
     """Contact view."""
 
     template_name = "contact.html"
+    ng_app = "user"
     description = _lz("Contact Form")
 
     @cached_property

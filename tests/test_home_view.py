@@ -7,7 +7,7 @@ from unittest.mock import patch
 from django.test import TestCase
 # from django.core.urlresolvers import reverse
 
-from app.home.views import HomeView, CSSView, SSLValidationView
+from app.home.views import HomeView, SSLValidationView
 
 from .view_base import TemplateViewTestBase
 
@@ -74,16 +74,6 @@ class HomeViewRenderingTest(TemplateViewTestBase, TestCase):
         """Should return a queryset of user info object."""
         from app.user.models import UserInfo
         self.assertIs(self.view_cls().users_info, UserInfo.objects)
-
-
-class HomeCSSViewRenderingTest(TemplateViewTestBase, TestCase):
-    """Home stylesheet view rendering test."""
-
-    template_name = "home.css"
-    content_type = "text/css"
-    view_cls = CSSView
-    endpoint = "home:css"
-    page_url = "/css"
 
 
 class SSLValidationTextTest(TemplateViewTestBase, TestCase):

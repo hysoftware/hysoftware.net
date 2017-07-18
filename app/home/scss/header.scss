@@ -1,8 +1,6 @@
 .home-header {
   position: relative;
-  background:
-    url("{{ url( 'common:assets', kwargs={'filename': 'home'} ) }}")
-    no-repeat;
+  background: url("./assets/title.jpg") no-repeat;
   background-size: cover;
   .filter {
     position: absolute;

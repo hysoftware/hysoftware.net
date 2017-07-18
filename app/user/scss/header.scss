@@ -1,11 +1,11 @@
 .header-about {
-  background: url("{{ url('common:assets', kwargs={'filename': 'about'}) }}");
+  background: url("./assets/about.jpg");
   background-position: 0% 50%;
   color: #E8F5E9;
   text-shadow: 2px 2px 4px #212122;
 }
 .header.contact {
-  background: url("{{ url('common:assets', kwargs={'filename': 'contact'}) }}");
+  background: url("./assets/contact.jpg");
   background-position: 0% 60%;
   color: #fff;
   text-shadow: 2px 2px 4px #3E2723;

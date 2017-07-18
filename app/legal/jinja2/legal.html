@@ -82,13 +82,10 @@
           </tr>
         </thead>
         <tbody>
-          {% for asset in view.assets_info.all() -%}
+          {% for asset in view.assets_info -%}
             <tr>
               <td>
-                <a target="_blank"
-                  href="{{ url('common:assets', kwargs={'filename': asset.filename}) }}">
-                  {{ asset.filename }}
-                </a>
+                <a target="_blank" href="{{ asset.page }}">{{ asset.name }}</a>
               </td>
               <td>
                 <a href="{{ asset.source }}" target="_blank">
