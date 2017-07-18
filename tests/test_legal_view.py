@@ -34,8 +34,7 @@ class LegalViewTest(TemplateViewTestBase, TestCase):
         view = self.view_cls()
         self.assertIs(view.users_info, objects)
 
-    @patch("app.common.models.ThirdPartyAssets.objects")
-    def test_third_party_asset_info(self, objects):
+    def test_third_party_asset_info(self):
         """Test Third Party Asset information fetch."""
         view = self.view_cls()
         self.assertEqual(

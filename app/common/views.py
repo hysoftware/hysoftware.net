@@ -3,10 +3,7 @@
 
 """Common module views."""
 
-from django.http import HttpResponse
-from django.shortcuts import get_object_or_404
-from django.utils.functional import cached_property
-from django.views.generic import TemplateView, View
+from django.views.generic import TemplateView
 
 
 class JSView(TemplateView):
@@ -21,20 +18,3 @@ class CSSView(TemplateView):
 
     template_name = "common.css"
     content_type = "text/css"
-
-
-class ImageView(View):
-    """Home Title Image View."""
-
-    @cached_property
-    def image(self):
-        """Load Image from the db."""
-        from ..common.models import ThirdPartyAssets
-        return get_object_or_404(
-            ThirdPartyAssets, filename=self.kwargs["filename"]
-        )
-
-    def get(self, request, filename):
-        """Show title image."""
-        obj = self.image
-        return HttpResponse(obj.image.read(), content_type="image/jpeg")

@@ -5,7 +5,6 @@
 
 import json
 from unittest.mock import patch
-from unittest import skip
 
 from django.test import TestCase
 
@@ -42,6 +41,7 @@ class ProductionConfigTest(TestCase):
                 "SQS_REGION": "us-east-1a",
                 "SQS_PREFIX": "test",
             }),
+            "DEFAULT_FILE_STORAGE": "storages.backends.s3boto3.S3Boto3Storage",
             "AWS_ACCESS_KEY_ID": "dGVzdGFwaWtleQo=",
             "AWS_SECRET_ACCESS_KEY": "dGVzdGFwaXNlY3JldAo=",
             "AWS_STORAGE_BUCKET_NAME": "test_bucket"
@@ -123,7 +123,6 @@ class ProductionConfigTest(TestCase):
             }
         }, self.conf_p.DATABASES)
 
-    @skip
     def test_sqs(self):
         """SQS related settings should be there!."""
         self.assertEqual(
@@ -131,7 +130,6 @@ class ProductionConfigTest(TestCase):
             json.loads(self.environ['CELERY_BROKER_TRANSPORT_OPTIONS'])
         )
 
-    @skip
     def test_aws_storage(self):
         """The storage should be S3."""
         self.assertIn("storages", self.conf_p.THIRD_PARTY_APPS)
