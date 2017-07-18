@@ -7,6 +7,7 @@ import json
 import re
 import os
 
+from django.conf import global_settings as default
 from .devel import DevelConfig
 
 
@@ -31,7 +32,7 @@ class PublicConfig(DevelConfig):
 
     DEFAULT_FILE_STORAGE = \
         os.environ.get("DEFAULT_FILE_STORAGE") or \
-        DevelConfig.DEFAULT_FILE_STORAGE
+        default.DEFAULT_FILE_STORAGE
     AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
     AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
     AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
@@ -45,7 +46,7 @@ class PublicConfig(DevelConfig):
     CELERY_RESULT_BACKEND = os.environ.get("CELERY_RESULT_BACKEND")
     CELERY_BROKER_TRANSPORT_OPTIONS = json.loads(
         os.environ.get("CELERY_BROKER_TRANSPORT_OPTIONS") or "null"
-    ) or DevelConfig.CELERY_BROKER_TRANSPORT_OPTIONS
+    ) or {}
     SESSION_COOKIE_SECURE = \
         os.environ.get("COOKIE_SECURE", "false").lower() == "true"
     CSRF_COOKIE_SECURE = SESSION_COOKIE_SECURE
