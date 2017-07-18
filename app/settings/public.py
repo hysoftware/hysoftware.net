@@ -3,7 +3,7 @@
 
 """Config for public."""
 
-# import json
+import json
 import re
 import os
 
@@ -29,10 +29,12 @@ class PublicConfig(DevelConfig):
         }
     }
 
-    # DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-    # AWS_ACCESS_KEY_ID = os.environ["AWS_ACCESS_KEY_ID"]
-    # AWS_SECRET_ACCESS_KEY = os.environ["AWS_SECRET_ACCESS_KEY"]
-    # AWS_STORAGE_BUCKET_NAME = os.environ["AWS_STORAGE_BUCKET_NAME"]
+    DEFAULT_FILE_STORAGE = \
+        os.environ.get("DEFAULT_FILE_STORAGE") or \
+        DevelConfig.DEFAULT_FILE_STORAGE
+    AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+    AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
 
     RECAPTCHA_PUBLIC_KEY = os.environ["RECAPTCHA_PUBLIC_KEY"]
     RECAPTCHA_PRIVATE_KEY = os.environ["RECAPTCHA_PRIVATE_KEY"]
@@ -41,14 +43,13 @@ class PublicConfig(DevelConfig):
     ALLOWED_HOSTS = re.split(",\\s*", os.environ["ALLOWED_HOSTS"])
     CELERY_BROKER_URL = os.environ["CELERY_BROKER_URL"]
     CELERY_RESULT_BACKEND = os.environ.get("CELERY_RESULT_BACKEND")
-    # CELERY_BROKER_TRANSPORT_OPTIONS = json.loads(
-    #     os.environ.get("CELERY_BROKER_TRANSPORT_OPTIONS") or "null"
-    # )
+    CELERY_BROKER_TRANSPORT_OPTIONS = json.loads(
+        os.environ.get("CELERY_BROKER_TRANSPORT_OPTIONS") or "null"
+    ) or DevelConfig.CELERY_BROKER_TRANSPORT_OPTIONS
     SESSION_COOKIE_SECURE = \
         os.environ.get("COOKIE_SECURE", "false").lower() == "true"
     CSRF_COOKIE_SECURE = SESSION_COOKIE_SECURE
     SECURE_HSTS_SECONDS = int(os.environ.get("SECURE_HSTS_SECONDS", "0"))
-    SECURE_HSTS_INCLUDE_SUBDOMAINS = \
-        os.environ.get(
-            "SECURE_HSTS_INCLUDE_SUBDOMAINS", "false"
-        ).lower() == "true"
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = os.environ.get(
+        "SECURE_HSTS_INCLUDE_SUBDOMAINS", "false"
+    ).lower() == "true"
