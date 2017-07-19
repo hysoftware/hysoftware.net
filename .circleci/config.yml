@@ -22,13 +22,13 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "Install Libarchive, Rsync, NodeJS and Yarn"
+          name: "Install unzip, Rsync, NodeJS and Yarn"
           command: |
             curl -sL https://deb.nodesource.com/setup_8.x | bash -
             curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
             echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
             apt-get update -qq
-            apt-get install -y -qq nodejs yarn rsync libarchive
+            apt-get install -y -qq nodejs yarn rsync unzip
       - restore_cache:
           keys:
             - hysoftware-{{ .Branch }}-{{ checksum "yarn.lock" }}
@@ -108,9 +108,9 @@ jobs:
               mkdir hysoftware-b
               cd hysoftware-b
               if [ -n "${CIRCLE_TAG}" ]; then
-                bsdtar xf ../artifacts/deploy-${CIRCLE_TAG}.zip
+                unzip ../artifacts/deploy-${CIRCLE_TAG}.zip
               else
-                bsdtar xf ../artifacts/deploy-${CIRCLE_BUILD_NUM}.zip
+                unzip ../artifacts/deploy-${CIRCLE_BUILD_NUM}.zip
               fi
               rsync --delete -aP . ../heroku-deploy
               cd ../heroku-deploy
