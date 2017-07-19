@@ -120,8 +120,8 @@ jobs:
               git config --global user.email "build@circleci" > /dev/null 2>&1
               git config --global user.name "CIRCLE CI" > /dev/null 2>&1
               git add --all . > /dev/null 2>&1
+              git commit -m "Release for ${CIRCLE_SHA1}" > /dev/null 2>&1
               if [ ${?} -eq 0 ]; then
-                git commit -m "Release for ${CIRCLE_SHA1}" > /dev/null 2>&1
                 git push origin master
               else
                 echo "Skipping Heroku Deploy: No changes"
