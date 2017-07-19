@@ -125,6 +125,7 @@ jobs:
                 git push origin master
               else
                 echo "Skipping Heroku Deploy: No changes"
+                exit 0;
               fi
             # fi
       - store_artifacts:
