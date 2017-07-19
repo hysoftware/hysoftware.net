@@ -79,9 +79,7 @@ jobs:
             git checkout -b deploy> /dev/null 2>&1
 
             sed -i -E \
-              -e '/app\/common\/static\/third_party\.(js|css)/d' \
-              -e '/app\/\*\*\/jinja2\/\*\.(css|js)/d' \
-              -e '/app\/\*\*\/static\/\*\.(css|js)/d' .gitignore
+              -e '/app\/\*\*\/(jinja2|static)\/\*\.(css|js)/d' .gitignore
 
             git add --all . > /dev/null 2>&1
             git config --global user.email "build@circleci" > /dev/null 2>&1
@@ -105,9 +103,7 @@ jobs:
           command: |
             # if [ -n "${CIRCLE_TAG}" ]; then
               sed -i -E \
-                -e '/app\/common\/static\/third_party\.(js|css)/d' \
-                -e '/app\/\*\*\/jinja2\/\*\.(css|js)/d' \
-                -e '/app\/\*\*\/static\/\*\.(css|js)/d' .gitignore
+                -e '/app\/\*\*\/(jinja2|static)\/\*\.(css|js)/d' .gitignore
 
               git add --all . > /dev/null 2>&1
               git config --global user.email "build@circleci" > /dev/null 2>&1
