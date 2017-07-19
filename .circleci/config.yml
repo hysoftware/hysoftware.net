@@ -102,13 +102,9 @@ jobs:
           name: Deploy Master to Heroku
           command: |
             # if [ -n "${CIRCLE_TAG}" ]; then
-              sed -i -E \
-                -e '/app\/\*\*\/(jinja2|static)\/\*\.(css|js)/d' .gitignore
-
-              git add --all . > /dev/null 2>&1
-              git config --global user.email "build@circleci" > /dev/null 2>&1
-              git config --global user.name "CIRCLE CI" > /dev/null 2>&1
-              git commit -m "Release for ${CIRCLE_SHA1}" > /dev/null 2>&1
+              # cd ../
+              # git clone https://git.heroku.com/hysoftware.git heroku-deploy
+              # cd heroku-deploy
               git push heroku master
             # fi
       - store_artifacts:
