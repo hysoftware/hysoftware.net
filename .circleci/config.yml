@@ -115,11 +115,12 @@ jobs:
               rsync --delete -aP . ../heroku-deploy
               cd ../heroku-deploy
               rm -fr ../hysoftware-b
+              mv ../git ./.git
               git add --all . > /dev/null 2>&1
               git config --global user.email "build@circleci" > /dev/null 2>&1
               git config --global user.name "CIRCLE CI" > /dev/null 2>&1
               git commit -m "Release for ${CIRCLE_SHA1}" > /dev/null 2>&1
-              # git push origin master
+              git push origin master
             # fi
       - store_artifacts:
           path: ../artifacts
