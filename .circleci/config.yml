@@ -123,6 +123,8 @@ jobs:
               git commit -m "Release for ${CIRCLE_SHA1}" > /dev/null 2>&1
               if [ ${?} = 0 ]; then
                 git push origin master
+              else
+                echo "Skipping Heroku Deploy: No changes"
               fi
             # fi
       - store_artifacts:
