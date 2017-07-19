@@ -116,6 +116,7 @@ jobs:
               cd ../heroku-deploy
               rm -fr ../hysoftware-b
               mv ../git ./.git
+              rm -rf .gitignore
               git add --all . > /dev/null 2>&1
               git config --global user.email "build@circleci" > /dev/null 2>&1
               git config --global user.name "CIRCLE CI" > /dev/null 2>&1
