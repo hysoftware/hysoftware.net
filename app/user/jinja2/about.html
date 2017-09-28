@@ -47,6 +47,14 @@
         <div data-flex></div>
         {% for info in view.users_info.all()[row * 4: 4 * (row + 1)] -%}
         <section data-flex="25" class="member-card"
+          data-ng-class="{
+            'md-whiteframe-2dp': state.curIndex!={{ loop.index0 + (4 * row) }} || state.mousedown,
+            'md-whiteframe-8dp': state.curIndex=={{ loop.index0 + (4 * row) }}  &amp;&amp; !state.mousedown,
+          }"
+          data-ng-mouseenter="state.curIndex = {{ loop.index0 + (4 * row) }}"
+          data-ng-mouseleave="state.curIndex = null; state.mousedown = false"
+          data-ng-mousedown="state.mousedown = true"
+          data-ng-mouseup="state.mousedown = false"
           data-ng-click="showStaff($event, '{{ info.id }}')">
           <header>
             <img class="github-avatar"
