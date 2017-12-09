@@ -5,7 +5,7 @@
 
 # from unittest.mock import patch
 
-from django.core.urlresolvers import reverse, resolve
+from django.urls import reverse, resolve
 from django.test import RequestFactory
 from django.views.generic import TemplateView
 

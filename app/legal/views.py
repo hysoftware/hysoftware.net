@@ -3,7 +3,7 @@
 
 """Controllers for legal notation."""
 
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.views.generic import TemplateView
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _lz, ugettext as _

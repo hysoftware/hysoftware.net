@@ -5,7 +5,7 @@
 
 from unittest.mock import patch
 from django.test import TestCase
-# from django.core.urlresolvers import reverse
+# from django.urls import reverse
 
 from app.home.views import HomeView, SSLValidationView
 

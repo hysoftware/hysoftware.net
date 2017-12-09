@@ -25,14 +25,14 @@ class DictTest(TestCase):
 
     def test_reverse(self):
         """The options should have 'url' funciton."""
-        from django.core.urlresolvers import reverse
+        from django.urls import reverse
         self.assertDictContainsSubset({
             "url": reverse
         }, self.options.globals)
 
     def test_resolve(self):
         """The options should have 'resolve' function."""
-        from django.core.urlresolvers import resolve
+        from django.urls import resolve
         from app.jinja_env import url_exists
         self.assertDictContainsSubset(
             {"resolve": resolve, "url_exists": url_exists},

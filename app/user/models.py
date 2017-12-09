@@ -27,7 +27,7 @@ class UserInfo(db.Model):
         ("NA", _lz("Busy"))
     ))
     id = db.UUIDField(primary_key=True, default=uuid.uuid4)
-    user = db.OneToOneField(settings.AUTH_USER_MODEL)
+    user = db.OneToOneField(settings.AUTH_USER_MODEL, on_delete=db.CASCADE)
     title = db.CharField(max_length=40, db_index=True)
     github = db.CharField(max_length=39, unique=True)
     linkedin = db.URLField(db_index=True, blank=True, null=True)
@@ -56,14 +56,18 @@ class Hobby(db.Model):
 
         verbose_name_plural = _lz("Hobbies")
 
-    user = db.ForeignKey(UserInfo, db_index=True, related_name="hobbies")
+    user = db.ForeignKey(
+        UserInfo, db_index=True, related_name="hobbies", on_delete=db.CASCADE
+    )
     hobby = db.CharField(max_length=140, db_index=True)
 
 
 class GithubProfile(db.Model):
     """Github profile."""
 
-    user_info = db.OneToOneField(UserInfo, related_name="github_profile")
+    user_info = db.OneToOneField(
+        UserInfo, related_name="github_profile", on_delete=db.CASCADE
+    )
     avatar_url = db.URLField()
     html_url = db.URLField()
     bio = db.CharField(max_length=160, blank=True, null=True)
@@ -102,7 +106,9 @@ class Framework(db.Model):
 class Inbox(db.Model):
     """Inbox model."""
 
-    user = db.ForeignKey(UserInfo, verbose_name="To", db_index=True)
+    user = db.ForeignKey(
+        UserInfo, verbose_name="To", db_index=True, on_delete=db.CASCADE
+    )
     post_time = db.DateTimeField(auto_now_add=True, db_index=True)
     primary_name = db.CharField(
         max_length=100, db_index=True, verbose_name=_lz("Your Name")
@@ -117,7 +123,9 @@ class Inbox(db.Model):
 class TaskLog(db.Model):
     """Celery task logs."""
 
-    user = db.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True)
+    user = db.ForeignKey(
+        settings.AUTH_USER_MODEL, blank=True, null=True, on_delete=db.CASCADE
+    )
     log_date = db.DateTimeField(auto_now_add=True)
     title = db.CharField(max_length=250)
     message = db.TextField()

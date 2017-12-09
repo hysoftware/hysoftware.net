@@ -26,7 +26,9 @@ class RecognizedCountry(db.Model):
 class Act(db.Model):
     """Act list."""
 
-    country = db.ForeignKey(RecognizedCountry, null=True, blank=True)
+    country = db.ForeignKey(
+        RecognizedCountry, null=True, blank=True, on_delete=db.CASCADE
+    )
     name = db.CharField(max_length=400)
     description = db.TextField()
 
@@ -34,6 +36,6 @@ class Act(db.Model):
 class NotationTable(db.Model):
     """Notation table list."""
 
-    act = db.ForeignKey(Act)
+    act = db.ForeignKey(Act, on_delete=db.CASCADE)
     name = db.CharField(max_length=200)
     text = db.TextField()

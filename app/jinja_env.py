@@ -10,7 +10,7 @@ from urllib.parse import urlparse
 from django.conf import settings
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.contrib.staticfiles.finders import find
-from django.core.urlresolvers import reverse, resolve
+from django.urls import reverse, resolve
 from django.urls import NoReverseMatch
 from django.utils.translation import ugettext, ungettext
 
