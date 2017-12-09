@@ -63,6 +63,14 @@
                   <div data-flex></div>
                   {% for fw in frameworks.all()[row * 4: 4 * (row + 1)] -%}
                     <section data-flex="25" class="text-center fwcard"
+                      data-ng-class="{
+                        'md-whiteframe-2dp': state.curIndex!={{ loop.index0 + (4 * row) }} || state.mousedown,
+                        'md-whiteframe-8dp': state.curIndex=={{ loop.index0 + (4 * row) }}  &amp;&amp; !state.mousedown,
+                      }"
+                      data-ng-mouseenter="state.curIndex = {{ loop.index0 + (4 * row) }}"
+                      data-ng-mouseleave="state.curIndex = null; state.mousedown = false"
+                      data-ng-mousedown="state.mousedown = true"
+                      data-ng-mouseup="state.mousedown = false"
                       data-ng-click="open('{{ fw.url }}')">
                       <md-tooltip data-md-direction="top">
                         Open {{ fw.name }} website ({{ fw.url }})

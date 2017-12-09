@@ -46,6 +46,7 @@ export default angular.module('user.ctrls', [
   },
 ]).controller('staffCtrl', [
   '$scope', '$window', (scope, wind) => {
+    scope.state = {}
     scope.open = (url) => {
       wind.open(url);
       return true;

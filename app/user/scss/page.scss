@@ -77,12 +77,7 @@
   cursor: pointer;
   transition: box-shadow 250ms;
   border-radius: 3px;
-  &:hover {
-    box-shadow: 4px 4px 1.2rem #212123;
-  }
-  &:active {
-    box-shadow: 1px 1px 1.2rem #212123;
-  }
+  margin: 0 5px;
 }
 .framework-header {
   border-bottom: none !important;
