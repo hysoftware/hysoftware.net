@@ -4,104 +4,128 @@
 ] */
 ((r) => {
   const path = r('path');
+  const _ = r('lodash');
 
   const g = r('gulp');
   const toolbox = r('hyamamoto-job-toolbox');
+  const { webpack: Webpack, python: Python } = toolbox;
   const command = r('simple-process');
-
-  const plumber = r('gulp-plumber');
-  const notify = r('gulp-notify');
-
-  const webpack = r('webpack');
 
   const q = r('q');
   const rimraf = r('rimraf');
 
-  const errorHandler = plumber({
-    errorHandler: notify.onError('<%= error.message %>'),
+  g.on('error', (err) => {
+    if (!_.isEmpty(err)) {
+      if (err.stats) {
+        console.error(err.stats);
+      }
+      toolbox.helper.notifyError(err.error);
+    }
   });
 
-  const makeWebPack = (webpackPath) => {
-    const packPromise = q.nfcall(webpack, r(webpackPath)).then((stats) => {
-      console.log(stats.toString({
-        colors: true,
-        chunks: false,
-      }));
-    }).catch(errorHandler);
-    return packPromise;
+  const adjustWebpackEntries = (modulePath, webPackEntries) => {
+    const entries = _.cloneDeep(webPackEntries);
+    Object.entries(entries).forEach((el) => {
+      const [key, scriptPath] = el;
+      entries[key] =
+        path.resolve(__dirname, path.join(modulePath, scriptPath));
+    });
+    return entries;
   };
 
-  g.task('third_party', () => {
-    const pack = makeWebPack(
-      path.resolve(path.join(__dirname, 'third_party', 'webpack.conf.js'))
-    );
-    return pack;
-  });
+  g.registry(new Webpack(
+    adjustWebpackEntries(
+      path.resolve(path.join(__dirname, 'third_party')),
+      r('./third_party/packfile.json')
+    ),
+    'app/common',
+    {
+      taskPrefix: 'third_party.',
+      webPackConfigToMerge: {
+        mode: 'production',
+        resolve: {
+          modules: [
+            path.resolve(path.join(
+              __dirname,
+              'third_party',
+              'bower_components'
+            )),
+          ],
+        },
+      },
+    }
+  ));
 
-  const modules = ['common', 'home', 'legal', 'user'];
-  for (const n of modules) {
-    ((name) => {
-      g.task(`${name}.webpack`, () => {
-        const webpackPath =
-          path.resolve(path.join(__dirname, 'app', name, 'webpack.conf.js'));
-        return makeWebPack(webpackPath);
-      });
-    })(n);
+  const modules = [
+    ['common', 'jinja2'],
+    ['home', 'static'],
+    ['legal', 'static'],
+    ['user', 'jinja2'],
+  ];
+  for (const [name, outPath] of modules) {
+    g.registry(new Webpack(
+      adjustWebpackEntries(
+        path.join(__dirname, 'app', name),
+        r(`./app/${name}/packfile.json`)
+      ),
+      path.join(__dirname, 'app', name),
+      {
+        outPath,
+        taskPrefix: `${name}.`,
+        webPackConfigToMerge: {
+          mode: 'production',
+        },
+      }
+    ));
   }
 
-  toolbox.python('', 'app', [], undefined, undefined, ['app/*/migrations']);
+  g.registry(new Python('app', { additionalExclude: ['app/*/migrations'] }));
 
-  g.task('django.test', ['python.mentain'], () => {
-    const taskPromise = q.nfcall(
-      rimraf,
-      'app/**/?(*.pyc|__pycache__)'
-    ).then(() => {
-      const ret = command.pyvenv('coverage erase', [], undefined, {
-        stdio: ['pipe', 'inherit', 'inherit'],
-      });
-      return ret;
-    }).then(() => {
-      const ret = command.pyvenv(
-        `DJANGO_SETTINGS_FACTORY='app.settings.testing.TestConfig'
-         RECAPTCHA_TESTING='True' coverage run --branch \
-         --omit '*/migrations/*' --source=app -- manage.py test`,
-         [], undefined, {
-           stdio: ['pipe', 'inherit', 'inherit'],
-         });
-      return ret;
-    }).then(() => {
-      const ret = command.pyvenv(
-        'coverage report -m', [], undefined, {
+  g.task('django.test', g.series(
+    'python.syntax',
+    'python.complex',
+    'python.maintain',
+    () => {
+      const taskPromise = q.nfcall(
+        rimraf,
+        'app/**/?(*.pyc|__pycache__)'
+      ).then(() => {
+        const ret = command.pyvenv('coverage erase', [], undefined, {
           stdio: ['pipe', 'inherit', 'inherit'],
         });
-      return ret;
-    });
-    return taskPromise;
-  });
+        return ret;
+      }).then(() => {
+        const ret = command.pyvenv(
+          `DJANGO_SETTINGS_FACTORY='app.settings.testing.TestConfig'
+           RECAPTCHA_TESTING='True' coverage run --branch \
+           --omit '*/migrations/*' --source=app -- manage.py test`,
+          [], undefined, { stdio: ['pipe', 'inherit', 'inherit'] }
+        );
+        return ret;
+      }).then(() => command.pyvenv('coverage report -m', [], undefined, {
+        stdio: ['pipe', 'inherit', 'inherit'],
+      }));
+      return taskPromise;
+    }
+  ));
 
-  const initDeps = [];
-  if (toolbox.helper.isProduction || process.env.node_mode === 'init') {
-    initDeps.push('third_party');
-    for (const n of modules) {
-      ((name) => {
-        initDeps.push(`${name}.webpack`);
-      })(n);
+  g.task('watch', () => {
+    for (const [name] of modules) {
+      g.watch([
+        path.join('app', name, '**/coffee/**/*.coffee'),
+        path.join('app', name, '**/es6/**/*.es6'),
+        path.join('app', name, '**/*.scss'),
+        path.join('app', name, 'main.js'),
+      ], g.series(`${name}.webpack`));
     }
-    initDeps.push('django.test');
-  }
-  g.task('default', initDeps, () => {
-    if (!toolbox.helper.isProduction) {
-      for (const n of modules) {
-        ((name) => {
-          g.watch([
-            path.join('app', name, '**/coffee/**/*.coffee'),
-            path.join('app', name, '**/es6/**/*.es6'),
-            path.join('app', name, '**/*.scss'),
-            path.join('app', name, 'main.js'),
-          ], [`${name}.webpack`]);
-        })(n);
-      }
-      g.watch(['app/**/*.py', 'tests/**/*.py'], ['django.test']);
-    }
+    g.watch(['app/**/*.py', 'tests/**/*.py'], g.series('django.test'));
   });
+  const defaultTasks =
+    (toolbox.helper.isProduction || process.env.node_mode === 'init') ?
+      g.parallel.apply(
+        g.parallel,
+        ['third_party.webpack']
+          .concat(modules.map(item => `${item[0]}.webpack`))
+      ) : g.series('watch');
+  g.task('default', defaultTasks);
 })(require);

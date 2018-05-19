@@ -1,7 +1,6 @@
 extends: airbnb-base
 plugins:
   - import
-installedESLint: true
 parserOptions:
   ecmaVersion: 6
   sourceType: module

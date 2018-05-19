@@ -4,18 +4,16 @@
   const webpack = require('webpack');
 
   const ExtractTextPlugin = require('extract-text-webpack-plugin');
-  const Babili = require('babili-webpack-plugin');
   const toolbox = require('hyamamoto-job-toolbox');
 
   module.exports = (entry, modulePath, outpath = 'static') => ({
+    mode: (toolbox.helper.isProduction) ? 'production' : 'development',
     entry,
     output: {
       path: path.resolve(path.join(modulePath, outpath)),
       filename: '[name].js',
     },
     plugins: [
-      new webpack.SourceMapDevToolPlugin(),
-      new Babili({}, { sourceMap: !toolbox.helper.isProduction }),
       new ExtractTextPlugin('[name].css'),
     ],
     target: 'web',
