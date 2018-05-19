@@ -77,7 +77,7 @@ jobs:
       - run:
           name: "Unhook & send coverage report to code climate"
           command: |
-            ./cc-test-reporter after-build --exit-code=${?}
+            ./cc-test-reporter after-build -t coverage.py --exit-code=${?}
       - run: mkdir ../artifacts
       - run:
           name: "Making Relase ZIP"
