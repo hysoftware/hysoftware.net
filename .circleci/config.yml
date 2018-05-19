@@ -72,11 +72,14 @@ jobs:
           command: $(npm bin)/gulp
       - run:
           name: "[Backend] Test"
-          command: $(npm bin)/gulp django.test
+          command: |
+            $(npm bin)/gulp django.test
+            ./cc-test-reporter format-coverage --output "../coverage/backend.json"
       - run:
           name: "Unhook & send coverage report to code climate"
           command: |
-            ./cc-test-reporter after-build --exit-code $EXIT_CODE
+            ./cc-test-reporter sum-coverage --output - --parts 1 ../coverage/*.json | \
+            ./cc-test-reporter upload-coverage --input -
       - run: mkdir ../artifacts
       - run:
           name: "Making Relase ZIP"
