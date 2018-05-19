@@ -74,7 +74,7 @@ jobs:
           name: "[Backend] Test"
           command: |
             $(npm bin)/gulp django.test
-            ./cc-test-reporter format-coverage --output "../coverage/backend.json"
+            ./cc-test-reporter format-coverage ./.coverage --output "../coverage/backend.json"
       - run:
           name: "Unhook & send coverage report to code climate"
           command: |
