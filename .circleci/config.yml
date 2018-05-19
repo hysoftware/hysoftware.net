@@ -74,11 +74,10 @@ jobs:
           name: "[Backend] Test"
           command: |
             $(npm bin)/gulp django.test
-            export EXIT_CODE=${?}
       - run:
           name: "Unhook & send coverage report to code climate"
           command: |
-            ./cc-test-reporter after-build --exit-code ${EXIT_CODE}
+            ./cc-test-reporter after-build --exit-code=${?}
       - run: mkdir ../artifacts
       - run:
           name: "Making Relase ZIP"
