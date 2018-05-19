@@ -22,8 +22,10 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "Install unzip, Rsync, NodeJS and Yarn"
+          name: "Install codeclimate-reporter, unzip, Rsync, NodeJS and Yarn"
           command: |
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
             curl -sL https://deb.nodesource.com/setup_8.x | bash -
             curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
             echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
@@ -63,18 +65,18 @@ jobs:
             source ./venv/bin/activate &&
             python manage.py migrate
       - run:
+          name: "Hook Codeclimate Coverage Reporter"
+          command: ./cc-test-reporter before-build
+      - run:
           name: "[Frontend] Test&Compile"
           command: $(npm bin)/gulp
       - run:
           name: "[Backend] Test"
           command: $(npm bin)/gulp django.test
       - run:
-          name: "Deploy code coverage"
+          name: "Unhook & send coverage report to code climate"
           command: |
-            source ./venv/bin/activate &&
-            coveralls &&
-            codeclimate-test-reporter &&
-            deactivate
+            ./cc-test-reporter after-build --exit-code $EXIT_CODE
       - run: mkdir ../artifacts
       - run:
           name: "Making Relase ZIP"

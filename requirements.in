@@ -2,9 +2,7 @@ argon2-cffi
 boto
 boto3
 celery
-codeclimate-test-reporter
-coverage<4.4,>4.0
-coveralls
+coverage
 Django
 django-classbasedsettings
 django-countries
