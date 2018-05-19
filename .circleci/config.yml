@@ -65,21 +65,17 @@ jobs:
             source ./venv/bin/activate &&
             python manage.py migrate
       - run:
-          name: "Hook Codeclimate Coverage Reporter"
-          command: ./cc-test-reporter before-build
-      - run:
           name: "[Frontend] Test&Compile"
           command: $(npm bin)/gulp
       - run:
           name: "[Backend] Test"
           command: |
+            ./cc-test-reporter before-build
             $(npm bin)/gulp django.test
             export EXIT_CODE=${?}
-      - run:
-          name: "Unhook & send coverage report to code climate"
-          command: |
             source ./venv/bin/activate
             coverage xml
+            deactivate
             ./cc-test-reporter after-build -t coverage.py --exit-code=${EXIT_CODE}
       - run: mkdir ../artifacts
       - run:
