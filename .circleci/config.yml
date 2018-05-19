@@ -64,9 +64,9 @@ jobs:
           command: |
             source ./venv/bin/activate &&
             python manage.py migrate
-      - run:
-          name: "Hook Codeclimate Coverage Reporter"
-          command: ./cc-test-reporter before-build
+      # - run:
+      #     name: "Hook Codeclimate Coverage Reporter"
+      #     command: ./cc-test-reporter before-build
       - run:
           name: "[Frontend] Test&Compile"
           command: $(npm bin)/gulp
