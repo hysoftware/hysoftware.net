@@ -64,9 +64,9 @@ jobs:
           command: |
             source ./venv/bin/activate &&
             python manage.py migrate
-      # - run:
-      #     name: "Hook Codeclimate Coverage Reporter"
-      #     command: ./cc-test-reporter before-build
+      - run:
+          name: "Hook Codeclimate Coverage Reporter"
+          command: ./cc-test-reporter before-build
       - run:
           name: "[Frontend] Test&Compile"
           command: $(npm bin)/gulp
@@ -74,12 +74,11 @@ jobs:
           name: "[Backend] Test"
           command: |
             $(npm bin)/gulp django.test
-            ./cc-test-reporter format-coverage ./.coverage -t coverage.py --output "../coverage/backend.json"
+            export EXIT_CODE=${?}
       - run:
           name: "Unhook & send coverage report to code climate"
           command: |
-            ./cc-test-reporter sum-coverage --output - --parts 1 ../coverage/*.json | \
-            ./cc-test-reporter upload-coverage --input -
+            ./cc-test-reporter after-build --exit-code ${EXIT_CODE}
       - run: mkdir ../artifacts
       - run:
           name: "Making Relase ZIP"
