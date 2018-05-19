@@ -78,6 +78,7 @@ jobs:
       - run:
           name: "Unhook & send coverage report to code climate"
           command: |
+            source ./venv/bin/activate
             coverage xml
             ./cc-test-reporter after-build -t coverage.py --exit-code=${EXIT_CODE}
       - run: mkdir ../artifacts
