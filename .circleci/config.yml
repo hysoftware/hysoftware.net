@@ -49,7 +49,7 @@ jobs:
     working_directory: ~/hysoftware
     steps:
       - attach_workspace:
-          at: ../hysoftware
+          at: ../
       - run:
           name: "ls -l"
           command: "pwd; ls -l"
@@ -139,9 +139,7 @@ jobs:
     working_directory: ~/hysoftware
     steps:
       - attach_workspace:
-          at: ../hysoftware
-      - attach_workspace:
-          at: ../artifacts
+          at: ../
       - run: bash .circleci/setup-heroku.sh
       - add_ssh_keys:
           fingerprints:
