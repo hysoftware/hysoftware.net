@@ -95,7 +95,7 @@ jobs:
             - hysoftware
   artifact:
     docker:
-      - image: ubuntu:latest
+      - image: node:latest
     working_directory: ~/hysoftware
     steps:
       - attach_workspace:
@@ -132,7 +132,7 @@ jobs:
             - artifacts
   deploy:
     docker:
-      - image: ubuntu:latest
+      - image: node:latest
     working_directory: ~/hysoftware
     steps:
       - attach_workspace:
