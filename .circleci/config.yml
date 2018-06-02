@@ -46,7 +46,7 @@ jobs:
           POSTGRES_DB: circleci
           POSTGRES_USER: circleci
           POSTGRES_PASSWORD: circleci
-    working_directory: /tmp/hysoftware
+    working_directory: ~/hysoftware
     steps:
       - attach_workspace:
           at: ../hysoftware
