@@ -49,7 +49,7 @@ jobs:
     working_directory: /tmp/hysoftware
     steps:
       - attach_workspace:
-          at: ../
+          at: ../hysoftware
       - run:
           name: "Install codeclimate-reporter and nodejs"
           command: |
@@ -99,7 +99,7 @@ jobs:
     working_directory: ~/hysoftware
     steps:
       - attach_workspace:
-          at: ../
+          at: ../hysoftware
       - run: mkdir ../artifacts
       - run:
           name: "Making release zip"
@@ -136,7 +136,9 @@ jobs:
     working_directory: ~/hysoftware
     steps:
       - attach_workspace:
-          at: ../
+          at: ../hysoftware
+      - attach_workspace:
+          at: ../artifacts
       - run: bash .circleci/setup-heroku.sh
       - add_ssh_keys:
           fingerprints:
