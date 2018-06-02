@@ -51,10 +51,12 @@ jobs:
       - attach_workspace:
           at: ../
       - run:
-          name: "Install codeclimate-reporter, unzip, Rsync"
+          name: "Install codeclimate-reporter and nodejs"
           command: |
             curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
             chmod +x ./cc-test-reporter
+            curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+            apt-get install -qq -y nodejs
       - restore_cache:
           keys:
             - hysoftware-{{ .Branch }}-{{ checksum "requirements.txt" }}
