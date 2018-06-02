@@ -1,34 +1,34 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/hysoftware
     docker:
       - image: node:latest
         environment:
           node_mode: production
-        steps:
-          - checkout
-          - restore_cache:
-              keys:
-                - hysoftware-{{ .Branch }}-{{ checksum "yarn.lock" }}
-          - run:
-              name: "Install Frontend Dependencies"
-              command: |
-                yarn --ignore-scripts &&
-                npm rebuild node-sass &&
-                yarn run install -- --allow-root
-          - save_cache:
-              key: hysoftware-{{ .Branch }}-{{ checksum "yarn.lock" }}
-              paths:
-                - "~/.yarn-cache"
-                - "/tmp/hysoftware/node_modules"
-          - run:
-              name: "Build the script"
-              command: npm run test
-          - persist_to_workspace:
-              root: ../
-              paths:
-                - hysoftware
+    working_directory: ~/hysoftware
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - hysoftware-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      - run:
+          name: "Install Frontend Dependencies"
+          command: |
+            yarn --ignore-scripts &&
+            npm rebuild node-sass &&
+            yarn run install -- --allow-root
+      - save_cache:
+          key: hysoftware-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          paths:
+            - "~/.yarn-cache"
+            - "/tmp/hysoftware/node_modules"
+      - run:
+          name: "Build the script"
+          command: npm run test
+      - persist_to_workspace:
+          root: ../
+          paths:
+            - hysoftware
   backend_test:
     docker:
       - image: python:latest
