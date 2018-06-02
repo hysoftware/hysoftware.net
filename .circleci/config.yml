@@ -51,9 +51,6 @@ jobs:
       - attach_workspace:
           at: ../
       - run:
-          name: "ls -l"
-          command: "pwd; ls -l"
-      - run:
           name: "Install codeclimate-reporter and nodejs"
           command: |
             curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
@@ -102,7 +99,7 @@ jobs:
     working_directory: ~/hysoftware
     steps:
       - attach_workspace:
-          at: ../hysoftware
+          at: ../
       - run: mkdir ../artifacts
       - run:
           name: "Making release zip"
