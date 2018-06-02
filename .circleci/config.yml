@@ -5,7 +5,7 @@ jobs:
       - image: node:latest
         environment:
           node_mode: production
-    working_directory: /tmp/hysoftware
+    working_directory: ~/hysoftware
     steps:
       - checkout
       - restore_cache:
@@ -26,7 +26,7 @@ jobs:
           name: "Build the script"
           command: npm run test
       - persist_to_workspace:
-          root: /tmp
+          root: ../
           paths:
             - hysoftware
   backend_test:
@@ -46,10 +46,10 @@ jobs:
           POSTGRES_DB: circleci
           POSTGRES_USER: circleci
           POSTGRES_PASSWORD: circleci
-    working_directory: /tmp/hysoftware
+    working_directory: ~/hysoftware
     steps:
       - attach_workspace:
-          at: /tmp/hysoftware
+          at: ../hysoftware
       - run:
           name: "Install codeclimate-reporter and nodejs"
           command: |
@@ -90,16 +90,16 @@ jobs:
             deactivate
             ./cc-test-reporter after-build -t coverage.py --exit-code=${EXIT_CODE}
       - persist_to_workspace:
-          root: /tmp
+          root: ../
           paths:
             - hysoftware
   artifact:
     docker:
       - image: ubuntu:latest
-    working_directory: /tmp/hysoftware
+    working_directory: ~/hysoftware
     steps:
       - attach_workspace:
-          at: /tmp/hysoftware
+          at: ../hysoftware
       - run: mkdir ../artifacts
       - run:
           name: "Making release zip"
@@ -133,12 +133,12 @@ jobs:
   deploy:
     docker:
       - image: ubuntu:latest
-    working_directory: /tmp/hysoftware
+    working_directory: ~/hysoftware
     steps:
       - attach_workspace:
-          at: /tmp/hysoftware
+          at: ../hysoftware
       - attach_workspace:
-          at: /tmp/artifacts
+          at: ../artifacts
       - run: bash .circleci/setup-heroku.sh
       - add_ssh_keys:
           fingerprints:
