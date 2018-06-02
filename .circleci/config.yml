@@ -48,7 +48,6 @@ jobs:
           POSTGRES_PASSWORD: circleci
     working_directory: ~/hysoftware
     steps:
-      - checkout
       - attach_workspace:
           at: ../hysoftware
       - run:
@@ -99,7 +98,6 @@ jobs:
       - image: ubuntu:latest
     working_directory: ~/hysoftware
     steps:
-      - checkout
       - attach_workspace:
           at: ../hysoftware
       - run: mkdir ../artifacts
@@ -137,7 +135,6 @@ jobs:
       - image: ubuntu:latest
     working_directory: ~/hysoftware
     steps:
-      - checkout
       - attach_workspace:
           at: ../hysoftware
       - attach_workspace:
