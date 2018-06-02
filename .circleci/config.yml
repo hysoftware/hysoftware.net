@@ -52,7 +52,7 @@ jobs:
           at: ../hysoftware
       - run:
           name: "ls -l"
-          command: "ls -l"
+          command: "pwd; ls -l"
       - run:
           name: "Install codeclimate-reporter and nodejs"
           command: |
