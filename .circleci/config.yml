@@ -51,6 +51,9 @@ jobs:
       - attach_workspace:
           at: ../hysoftware
       - run:
+          name: "ls -l"
+          command: "ls -l"
+      - run:
           name: "Install codeclimate-reporter and nodejs"
           command: |
             curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
