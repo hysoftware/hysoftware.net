@@ -41,6 +41,7 @@ jobs:
           DB_DEFAULT_PASSWORD: circleci
           DB_DEFAULT_HOST: localhost
           DB_DEFAULT_PORT: 5432
+          DATA_VERSION: 0.0.17
       - image: postgres:latest
         environment:
           POSTGRES_DB: circleci
@@ -68,7 +69,8 @@ jobs:
           command: |
             source ./venv/bin/activate &&
             pip install -r requirements.txt &&
-            pip install awscli
+            pip install awscli &&
+            pip install https://${DATA_PUBKEY}:${DATA_PRVKEY}@github.com/hiroaki-yamamoto/hysoftware.net-data/releases/download/${DATA_VERSION}/hysoftware.net-data-${DATA_VERSION}.tar.gz &&
             deactivate
       - save_cache:
           key: hysoftware-{{ .Branch }}-{{ checksum "requirements.txt" }}
