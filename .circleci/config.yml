@@ -70,7 +70,7 @@ jobs:
             source ./venv/bin/activate &&
             pip install -r requirements.txt &&
             pip install awscli &&
-            pip install https://${DATA_PUBKEY}:${DATA_PRVKEY}@github.com/hiroaki-yamamoto/hysoftware.net-data/releases/download/${DATA_VERSION}/hysoftware.net-data-${DATA_VERSION}.tar.gz &&
+            pip install https://${DATA_PUBKEY}:${DATA_PRVKEY}@github.com/hiroaki-yamamoto/hysoftware.net-data/releases/download/${DATA_VERSION}/hysoftware.net-data-${DATA_VERSION}.tar.gz > /dev/null 2>&1 &&
             deactivate
       - save_cache:
           key: hysoftware-{{ .Branch }}-{{ checksum "requirements.txt" }}
