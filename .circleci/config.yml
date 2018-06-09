@@ -71,7 +71,7 @@ jobs:
             pip install -r requirements.txt
             pip install awscli
             export DATA_PATH=$(download hiroaki-yamamoto/hysoftware.net-data tags/${DATA_VERSION})
-            pip install ${DATA_DIR}
+            pip install ${DATA_PATH}
             deactivate
       - run:
           name: "Migrate"
