@@ -12,6 +12,7 @@ django-recaptcha
 django-storages
 flake8
 flake8-docstrings
+github-release-ci
 Jinja2
 Markdown
 psycopg2
