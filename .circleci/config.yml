@@ -171,36 +171,51 @@ jobs:
             git commit -m "Release for ${CIRCLE_SHA1}" > /dev/null 2>&1
             git push origin master
 
+release_filter: &release_filter
+  tags:
+    only: /^(?:[0-9]+\.){2}[0-9].*/
+  branches:
+    ignore: /.*/
+
+dev_filter: &dev_filter
+  tags:
+    ignore: /^(?:[0-9]+\.){2}[0-9].*/
+
 workflows:
   version: 2
   default:
     jobs:
       - build:
           filters:
-            tags:
-              ignore: /^(?:[0-9]+\.){2}[0-9].*/
+            << : *dev_filter
       - backend_test:
           requires:
             - build
+          filters:
+            << : *dev_filter
       - artifact:
           requires:
             - build
             - backend_test
+          filters:
+            << : *dev_filter
   version_tag:
     jobs:
       - build:
           filters:
-            tags:
-              only: /^(?:[0-9]+\.){2}[0-9].*/
-            branches:
-              ignore: /.*/
+            << : *release_filter
       - backend_test:
           requires:
             - build
+          filters:
+            << : *release_filter
       - artifact:
           requires:
-            - build
             - backend_test
+          filters:
+            << : *release_filter
       - deploy:
           requires:
             - artifact
+          filters:
+            << : *release_filter
