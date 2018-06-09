@@ -72,6 +72,7 @@ jobs:
             pip install awscli
             export DATA_PATH=$(download hiroaki-yamamoto/hysoftware.net-data tags/${DATA_VERSION})
             pip install ${DATA_PATH}
+            rm -rf ${DATA_PATH}
             deactivate
       - run:
           name: "Migrate"
@@ -93,7 +94,6 @@ jobs:
           command: |
             source ./venv/bin/activate
             pip uninstall -y hysoftware.net-data
-            rm -rf ${DATA_PATH}
             deactivate
       - save_cache:
           key: hysoftware-{{ .Branch }}-{{ checksum "requirements.txt" }}
