@@ -110,6 +110,10 @@ jobs:
     steps:
       - attach_workspace:
           at: ../
+      - run:
+          name: Remove Un-needed files
+          command: |
+            rm cc-test-reporter
       - run: mkdir ../artifacts
       - run:
           name: "Making release zip"
