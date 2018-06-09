@@ -41,7 +41,7 @@ jobs:
           DB_DEFAULT_PASSWORD: circleci
           DB_DEFAULT_HOST: localhost
           DB_DEFAULT_PORT: 5432
-          DATA_VERSION: 0.0.17
+          DATA_VERSION: 0.0.28
       - image: postgres:latest
         environment:
           POSTGRES_DB: circleci
