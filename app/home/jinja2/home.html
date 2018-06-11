@@ -16,7 +16,7 @@
         <h1>
           {{_n(
             "Need a software engineer?",
-            "Need software engineers?", view.users_info.count()
+            "Need software engineers?", view.users_info | length
           )}}
           {{_n(
             "I can help building your apps", "We can help building your apps",
@@ -37,8 +37,8 @@
           We can help building your apps.
         ", view.users_info.count()).format(
           settings.TITLE,
-          first_name=view.users_info.first().user.first_name,
-          last_name=view.users_info.first().user.last_name
+          first_name=view.users_info[0].first_name,
+          last_name=view.users_info[0].last_name
         )}}
       </p>
     </section>
@@ -60,7 +60,7 @@
           <a href="undefined">{{_("Each developer's github")}}</a>
         {% else -%}
           <a href="https://github.com/{{ view.users_info.first().github }}" target="_blank">
-            {{_("{}'s Github").format(view.users_info.first().user.first_name)}}
+            {{_("{}'s Github").format(view.users_info[0].first_name)}}
           </a>
         {%- endif %}{{_n(
           " ,I am coding many software with high testing rate and great quality.

@@ -14,6 +14,7 @@ from .devel import DevelConfig
 class PublicConfig(DevelConfig):
     """Config for production."""
 
+    NAME = "prod"
     DEBUG = json.loads(os.environ.get("DEBUG") or "false") or False
     THIRD_PARTY_APPS = DevelConfig.THIRD_PARTY_APPS + ["storages"]
     INSTALLED_APPS = \

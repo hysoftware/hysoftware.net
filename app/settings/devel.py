@@ -11,6 +11,7 @@ from cbsettings import DjangoDefaults
 class DevelConfig(DjangoDefaults):
     """Config for devleopment."""
 
+    NAME = "devel"
     BASE_DIR = os.path.dirname(os.path.dirname(
         os.path.dirname(os.path.abspath(__file__))
     ))

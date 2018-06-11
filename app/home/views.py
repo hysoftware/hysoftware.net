@@ -3,30 +3,28 @@
 
 """Home views."""
 
-from django.utils.functional import cached_property
-from django.utils.translation import get_language_from_request
+from django.conf import settings
 from django.views.generic import TemplateView
+from hysoftware_data.home import pitch as subtitles
+from hysoftware_data.users import Users
 
 
 class HomeView(TemplateView):
     """Home Template View."""
 
     template_name = "home.html"
+    users = Users(settings.NAME)
+    pitches = subtitles.Pitch()
 
-    @cached_property
+    @property
     def users_info(self):
         """Get users info."""
-        from ..user.models import UserInfo
-        return UserInfo.objects
+        return self.users
 
-    @cached_property
+    @property
     def pitch(self):
         """Get pitch."""
-        from .models import Pitch
-        pitch = Pitch.objects.choice()
-        return getattr(pitch, ("text_{}").format(
-            get_language_from_request(self.request).replace("-", "_")
-        ), None) or pitch.text
+        return self.pitches.choice
 
 
 class SSLValidationView(TemplateView):
