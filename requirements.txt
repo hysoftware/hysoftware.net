@@ -10,7 +10,7 @@ billiard==3.5.0.3         # via celery
 boto3==1.7.35
 boto==2.48.0
 botocore==1.10.35         # via boto3, s3transfer
-celery==4.1.1
+celery==4.2.0
 certifi==2018.4.16        # via requests
 cffi==1.11.5              # via argon2-cffi
 chardet==3.0.4            # via requests
