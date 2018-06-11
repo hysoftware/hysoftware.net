@@ -26,33 +26,32 @@
       </header>
       <md-input-container>
         <md-select data-ng-model="model.country"
-          data-ng-init="setCountry('{{ view.country.first().country.code }}')"
+          data-ng-init="setCountry('{{ view.regulations.countries | first }}')"
           aria-label="{{_('Recognized Country')}}"
           data-placeholder="{{_('Select Country')}}">
-          {% for item in  view.country.all() -%}
-            <md-option value="{{ item.country.code }}">
-              {{ item.country.name }}
+          {% for item in  view.regulations.countries -%}
+            <md-option value="{{ item }}">
+              {{ item }}
             </md-option>
           {%- endfor%}
         </md-select>
       </md-input-container>
-      {% for country_item in view.country.all() -%}
-        <md-tabs data-ng-if="model.country == '{{ country_item.country.code }}'"
+      {% for (country, acts) in view.regulations.items() -%}
+        <md-tabs data-ng-if="model.country == '{{ country }}'"
           data-md-dynamic-height data-md-border-bottom>
-          {% for act in country_item.act_set.all() -%}
+          {% for act in acts -%}
           <md-tab data-label="{{ act.name }}">
             <section>
               <header>
                 <h3><strong>{{ act.name }}</strong></h3>
-                <p>{{ act.description }}</p>
               </header>
               <table>
                 <thead>
                   <tr><th>{{_("Name")}}</th><th>{{_("description")}}</th></tr>
                 </thead>
                 <tbody>
-                  {% for note in act.notationtable_set.all() -%}
-                  <tr><td>{{ note.name }}</td><td>{{ note.text | markdown | safe}}</td></tr>
+                  {% for (note_name, note_text) in act.items() -%}
+                  <tr><td>{{ note_name }}</td><td>{{ note_text | markdown | safe}}</td></tr>
                   {%- endfor %}
                 </tbody>
               </table>
