@@ -118,7 +118,11 @@
         path.join('app', name, 'main.js'),
       ], g.series(`${name}.webpack`));
     }
-    g.watch(['app/**/*.py', 'tests/**/*.py'], g.series('django.test'));
+    g.watch([
+      'app/**/*.py',
+      'app/**/jinja2/**/*.html',
+      'tests/**/*.py',
+    ], g.series('django.test'));
   });
   const defaultTasks =
     (toolbox.helper.isProduction || process.env.node_mode === 'init') ?
