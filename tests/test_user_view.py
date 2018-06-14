@@ -9,6 +9,7 @@ from unittest.mock import patch
 
 from django.contrib.auth import get_user_model
 from django.test import TestCase, RequestFactory
+from hysoftware_data.users import Users
 
 from app.user.views import (
     AboutView, CSSView, MemberDialog, JSView, ContactView
@@ -32,15 +33,6 @@ class AboutPageTest(TemplateViewTestBase, TestCase):
             username="Test Example", password="test"
         )
         self.info = UserInfo.objects.create(user=self.user, github="test")
-
-    @patch("app.user.models.UserInfo.objects")
-    def test_users_info_property(self, objects):
-        """User Info property should return the queryset of user info."""
-        self.assertIs(self.view_cls().users_info, objects)
-
-    def test_view_description(self):
-        """The description should be 'About me'."""
-        self.assertEqual(self.view_cls().description, "About me")
 
 
 class AboutPageMultipleUserInfoTest(TemplateViewTestBase, TestCase):
@@ -78,30 +70,18 @@ class MemberPageTest(TemplateViewTestBase, TestCase):
     endpoint = "user:staff"
     view_cls = MemberDialog
     template_name = "member_dialog.html"
-    info_id = uuid.uuid4()
-    page_url = ("/u/staff/{}").format(str(info_id))
-    url_kwargs = {"info_id": str(info_id)}
+    user = Users("devel")[0]
 
     def setUp(self):
         """SetUp."""
-        self.user = get_user_model().objects.create_user(
-            username="test", password="test"
-        )
-        self.info = UserInfo.objects.create(
-            id=self.info_id, user=self.user, github="octocat"
-        )
-        self.page_url = ("/u/staff/{}").format(str(self.info.id))
-
-    def tearDown(self):
-        """Teardown."""
-        get_user_model().objects.all().delete()
-        UserInfo.objects.all().delete()
+        self.url_kwargs = {"info_id": self.user.id}
+        self.page_url = ("/u/staff/{}").format(self.url_kwargs["info_id"])
 
     def test_user_info_property(self):
         """It should return user information."""
         view = self.view_cls()
-        view.kwargs = {"info_id": str(self.info.id)}
-        self.assertEqual(view.user_info, self.info)
+        view.kwargs = {"info_id": str(self.url_kwargs["info_id"])}
+        self.assertEqual(view.user_info, self.user)
 
 
 class ContactPageTest(TemplateViewTestBase, TestCase):
@@ -169,12 +149,6 @@ class ContactPageWithoutInfoIDTest(TemplateViewTestBase, TestCase):
     template_name = "contact.html"
     page_url = "/u/contact/"
     view_cls = ContactView
-
-    @patch("app.user.models.UserInfo.objects")
-    def test_users_info_property(self, objects):
-        """It should return user information."""
-        view = self.view_cls()
-        self.assertEqual(view.users_info, objects)
 
     @patch("app.user.forms.ContactForm")
     def test_form_get(self, form):

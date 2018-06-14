@@ -42,7 +42,7 @@
     transition:
       color $transition_duration,
       background-color $transition_duration;
-    &.FL {
+    &.free_full {
       $color: #558B2F;
       color: $color;
       border: 1px solid $color;
@@ -51,7 +51,7 @@
         color: #fafafb;
       }
     }
-    &.PT {
+    &.free_part {
       $color: #FF6F00;
       color: $color;
       border: 1px solid $color;
@@ -60,7 +60,7 @@
         color: #fafafb;
       }
     }
-    &.NA {
+    &.busy {
       $color: #d50000;
       color: $color;
       border: 1px solid $color;
