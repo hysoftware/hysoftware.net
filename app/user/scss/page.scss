@@ -66,6 +66,31 @@
       border: 1px solid $color;
     }
   }
+  md-list-item.skill {
+    h3 {
+      padding: 0;
+      margin: 0;
+    }
+  }
+  ul.tags {
+    margin: 0;
+    li.tag {
+      display: inline-block;
+      font-size: 0.8rem;
+      margin: {
+        right: 0.5rem;
+        left: 0.5rem;
+      }
+      padding: {
+        top: 0;
+        bottom: 0;
+        right: 0.5rem;
+        left: 0.5rem;
+      }
+      border: 1px solid black;
+      border-radius: 10%;
+    }
+  }
 }
 .coding-lang {
   h3 {

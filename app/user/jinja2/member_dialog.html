@@ -33,7 +33,7 @@
     </div>
     {%- endif %}
   </div>
-  {% if view.user_info.github.bio -%}
+  {% if view.user_info.github and view.user_info.github.bio -%}
   <section class="bio">
     <header>
       <h3>{{_("Biography")}}</h3>
@@ -41,18 +41,43 @@
     <p>{{ view.user_info.github.bio }}</p>
   </section>
   {%- endif %}
-  {% if view.user_info.hobbies.count() -%}
+  {% if view.user_info.hobbies -%}
   <header><h3>Hobbies</h3></header>
   <ul>
-    {% for hobby in view.user_info.hobbies.all() -%}
-    <li>{{ hobby.hobby }}</li>
+    {% for hobby in view.user_info.hobbies -%}
+    <li>{{ hobby }}</li>
     {%- endfor %}
   </ul>
   {%- endif %}
   {% if view.user_info.skills -%}
   <section class="coding-lang">
     <header><h3>{{_("Coding Langauges and Frameworks")}}</h3></header>
-    <md-tabs data-dynamic-height data-md-border-bottom>
+    <md-content>
+      <md-list>
+        {% for skill in view.user_info.skills -%}
+        <md-list-item class="skill md-3-line" data-ng-click="null">
+          <div class="md-list-item-text" data-layout="column">
+            {% if skill.tags -%}
+            <div data-layout="row" data-layout-align="none center">
+              <h3>{{ skill.name }}</h3>
+              <div data-flex></div>
+              <ul class="tags">
+                {% for tag in skill.tags -%}
+                <li class="tag">{{ tag }}</li>
+                {%- endfor %}
+              </ul>
+            </div>
+            {%- else %}
+            <h3>{{ skill.name }}</h3>
+            {%- endif %}
+            <h4>{{ skill.description }}</h4>
+            <p>{{ skill.url }}</p>
+          </div>
+        </md-list-item>
+        {%- endfor %}
+      </md-list>
+    </md-content>
+    {# <md-tabs data-dynamic-height data-md-border-bottom>
       {% for coding_lang in view.user_info.coding_languages.all() -%}
         {%
           set frameworks = view.user_info.frameworks.filter(
@@ -62,40 +87,7 @@
         <md-tab label="{{ coding_lang.name }}">
           <md-content class="md-padding">
             <h3>{{_("Frameworks / Libraries / Skills")}}</h3>
-            {% if frameworks.count() -%}
-              {% for row in range(((frameworks.count() / 4) + 1)|int) -%}
-                <div data-layout="row">
-                  <div data-flex></div>
-                  {% for fw in frameworks.all()[row * 4: 4 * (row + 1)] -%}
-                    <section data-flex="25" class="text-center fwcard"
-                      data-ng-class="{
-                        'md-whiteframe-2dp': state.curIndex!={{ loop.index0 + (4 * row) }} || state.mousedown,
-                        'md-whiteframe-8dp': state.curIndex=={{ loop.index0 + (4 * row) }}  &amp;&amp; !state.mousedown,
-                      }"
-                      data-ng-mouseenter="state.curIndex = {{ loop.index0 + (4 * row) }}"
-                      data-ng-mouseleave="state.curIndex = null; state.mousedown = false"
-                      data-ng-mousedown="state.mousedown = true"
-                      data-ng-mouseup="state.mousedown = false"
-                      data-ng-click="open('{{ fw.url }}')">
-                      <md-tooltip data-md-direction="top">
-                        Open {{ fw.name }} website ({{ fw.url }})
-                      </md-tooltip>
-                      <header class="framework-header">
-                        <h4 class="framework-icon">
-                          {% if fw.icon_cls -%}
-                          <i class="{{ fw.icon_cls }}">{{ fw.icon_body or "" }}</i>
-                          {%- else -%}
-                          {{ fw.name[0] }}
-                          {%- endif %}
-                        </h4>
-                        <p>{{ fw.name }}</p>
-                      </header>
-                      <p>{{ fw.description }}</p>
-                    </section>
-                  {% endfor %}
-                  <div data-flex></div>
-                </div>
-              {%- endfor %}
+            {% if frameworks -%}
             {%- else %}
               <p>{{_(
                 "Oops! He can use the language, but he haven't "
@@ -105,7 +97,7 @@
           </md-content>
         </md-tab>
       {%- endfor %}
-    </md-tabs>
+    </md-tabs> #}
   </section>
   {%- endif %}
 </section>
