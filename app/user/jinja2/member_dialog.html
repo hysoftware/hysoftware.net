@@ -52,52 +52,31 @@
   {% if view.user_info.skills -%}
   <section class="coding-lang">
     <header><h3>{{_("Coding Langauges and Frameworks")}}</h3></header>
-    <md-content>
-      <md-list>
-        {% for skill in view.user_info.skills -%}
-        <md-list-item class="skill md-3-line" data-ng-click="null">
+    <md-content data-layout-padding>
+      <div><md-input-container>
+        <label for="skillFilterInput">Filter</label>
+        <input type="text" name="skillFilterInput" data-ng-model="model.filter">
+      </md-input-container></div>
+      <md-list data-ng-init='model.skills = {{ view.user_info.skills | tojson }}'>
+        <md-list-item class="skill md-3-line"
+          data-ng-repeat="skill in model.skills | filter: model.filter track by $index"
+          data-ng-click="null">
           <div class="md-list-item-text" data-layout="column">
-            {% if skill.tags -%}
-            <div data-layout="row" data-layout-align="none center">
-              <h3>{{ skill.name }}</h3>
+            <div data-layout="row" data-layout-align="none center"
+              data-ng-if="skill.tags &amp;&amp; skill.tags.length > 0">
+              <h3>{{ '{{ skill.name }}' }}</h3>
               <div data-flex></div>
               <ul class="tags">
-                {% for tag in skill.tags -%}
-                <li class="tag">{{ tag }}</li>
-                {%- endfor %}
+                <li class="tag" data-ng-repeat="tag in skill.tags">{{ '{{ tag }}' }}</li>
               </ul>
             </div>
-            {%- else %}
-            <h3>{{ skill.name }}</h3>
-            {%- endif %}
-            <h4>{{ skill.description }}</h4>
-            <p>{{ skill.url }}</p>
+            <h3 data-ng-if="!skill.tags || skill.tags.length < 1">{{ '{{ skill.name }}' }}</h3>
+            <h4>{{ '{{ skill.description }}' }}</h4>
+            <p>{{ '{{ skill.url }}' }}</p>
           </div>
         </md-list-item>
-        {%- endfor %}
       </md-list>
     </md-content>
-    {# <md-tabs data-dynamic-height data-md-border-bottom>
-      {% for coding_lang in view.user_info.coding_languages.all() -%}
-        {%
-          set frameworks = view.user_info.frameworks.filter(
-            languages__name__iexact=coding_lang.name
-          )
-        -%}
-        <md-tab label="{{ coding_lang.name }}">
-          <md-content class="md-padding">
-            <h3>{{_("Frameworks / Libraries / Skills")}}</h3>
-            {% if frameworks -%}
-            {%- else %}
-              <p>{{_(
-                "Oops! He can use the language, but he haven't "
-                "used any frameworks."
-              )}}</p>
-            {% endif %}
-          </md-content>
-        </md-tab>
-      {%- endfor %}
-    </md-tabs> #}
   </section>
   {%- endif %}
 </section>
