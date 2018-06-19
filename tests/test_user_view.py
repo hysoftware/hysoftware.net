@@ -89,45 +89,39 @@ class ContactPageTest(TemplateViewTestBase, TestCase):
 
     endpoint = "user:contact"
     template_name = "contact.html"
-    info_id = uuid.uuid4()
-    page_url = ("/u/contact/{}").format(info_id)
-    url_kwargs = {"info_id": str(info_id)}
     view_cls = ContactView
 
     def setUp(self):
         """SetUp."""
-        self.user = get_user_model().objects.create_user(
-            username="test", password="test"
+        self.user = Users("devel")[0]
+        self.url_kwargs = {
+            "info_id": self.user.id
+        }
+        self.page_url = ("/u/contact/{}").format(
+            str(self.url_kwargs["info_id"])
         )
-        self.info = UserInfo.objects.create(
-            id=self.info_id, user=self.user, github="octocat"
-        )
-        self.page_url = ("/u/contact/{}").format(str(self.info.id))
 
     def test_user_info_property(self):
         """It should return user information."""
         view = self.view_cls()
-        view.kwargs = {"info_id": str(self.info.id)}
-        self.assertEqual(view.user_info, self.info)
+        view.kwargs = self.url_kwargs
+        self.assertEqual(view.user_info, self.user)
 
     def test_description(self):
         """The description should be 'Contact Form'."""
         self.assertEqual(self.view_cls().description, "Contact Form")
 
     @patch("app.user.forms.ContactForm")
-    def test_form_get(self, form):
+    def test_method(self, form):
         """It should return view.info."""
-        view = self.view_cls()
-        view.request = self.request
-        view.kwargs = self.url_kwargs
-        self.assertIs(view.form, form.return_value)
-        form.assert_called_once_with(info_id=str(self.info_id))
+        super(ContactPageTest, self).test_method()
+        form.assert_called_once_with(info_id=str(self.url_kwargs["info_id"]))
 
     @patch("app.user.forms.ContactForm")
     def test_form_post(self, form):
         """It should return view.info."""
         body = {
-            "user": str(self.info_id),
+            "user": str(self.url_kwargs["info_id"]),
             "company_name": "Test Corp",
             "primary_name": "Test Name",
             "email": "test@example.com",
@@ -154,7 +148,7 @@ class ContactPageWithoutInfoIDTest(TemplateViewTestBase, TestCase):
     def test_form_get(self, form):
         """It should return view.info."""
         view = self.view_cls()
-        view.request = self.request
+        view.request = self.make_request()
         view.kwargs = {"info_id": None}
         self.assertIs(view.form, form.return_value)
         form.assert_called_once_with()
@@ -188,8 +182,8 @@ class ContactPagePostMethodTest(TemplateViewTestBase, TestCase):
             id=self.info_id, user=self.user, github="octocat"
         )
         self.page_url = ("/u/contact/{}").format(str(self.info.id))
-        self.request = RequestFactory().post(
-            '/u/contact/', data=json.dumps(self.body),
+        self.set_client_kwargs(
+            data=json.dumps(self.body),
             content_type="application/json"
         )
 
@@ -199,25 +193,32 @@ class ContactPagePostMethodTest(TemplateViewTestBase, TestCase):
 
     @patch("app.user.forms.ctask")
     @patch("app.user.forms.loader")
-    def test_post_correct(self, loader, ctask):
-        """Test post method with invalid payload."""
-        result = self.view(self.request)
-        inbox = Inbox.objects.get()
-        self.assertEqual(result.status_code, 200)
-        self.assertEqual(inbox.user, self.info)
+    def test_method(self, loader, ctask):
+        """Test method."""
+        resp = super(ContactPagePostMethodTest, self).test_method()
+        return resp
 
-    @patch("app.user.forms.ctask")
-    @patch("app.user.forms.loader")
-    def test_post_invalid(self, loader, ctask):
-        """Test post method with invalid payload."""
+
+class ContactPagePostMethodInvalidPayloadTest(ContactPagePostMethodTest):
+    """Contact page POST method test with invalid payload."""
+
+    status_code = 417
+
+    def setUp(self):
+        """Setup."""
+        super(ContactPagePostMethodInvalidPayloadTest, self).setUp()
         self.body.pop("g-recaptcha-response", None)
-        self.request = RequestFactory().post(
-            '/u/contact/', data=json.dumps(self.body),
+        self.set_client_kwargs(
+            data=json.dumps(self.body),
             content_type="application/json"
         )
-        result = self.view(self.request)
-        content = json.loads(result.content.decode("utf-8"))
-        self.assertEqual(result.status_code, 417)
+
+    def test_method(self):
+        """Test post method with invalid payload."""
+        resp = super(
+            ContactPagePostMethodInvalidPayloadTest, self
+        ).test_method()
+        content = json.loads(resp.content.decode("utf-8"))
         self.assertDictEqual({"nobot": ["This field is required."]}, content)
 
 
