@@ -3,18 +3,16 @@
 
 """User view tests."""
 
-import uuid
 import json
 from unittest.mock import patch
 
-from django.contrib.auth import get_user_model
+from django.conf import settings
 from django.test import TestCase, RequestFactory
 from hysoftware_data.users import Users
 
 from app.user.views import (
     AboutView, CSSView, MemberDialog, JSView, ContactView
 )
-from app.user.models import UserInfo, Inbox
 from .view_base import TemplateViewTestBase
 
 
@@ -29,10 +27,7 @@ class AboutPageTest(TemplateViewTestBase, TestCase):
     def setUp(self):
         """Setup."""
         super(AboutPageTest, self).setUp()
-        self.user = get_user_model().objects.create_user(
-            username="Test Example", password="test"
-        )
-        self.info = UserInfo.objects.create(user=self.user, github="test")
+        self.user = Users(settings.NAME)[0]
 
 
 class AboutPageMultipleUserInfoTest(TemplateViewTestBase, TestCase):
@@ -46,18 +41,7 @@ class AboutPageMultipleUserInfoTest(TemplateViewTestBase, TestCase):
     def setUp(self):
         """Setup."""
         super(AboutPageMultipleUserInfoTest, self).setUp()
-        self.users = [
-            get_user_model().objects.create_user(
-                username=("Test Example {}").format(counter),
-                password="test"
-            ) for counter in range(3)
-        ]
-        self.info = [
-            UserInfo.objects.create(
-                user=user, github=("test {}").format(user.username)
-            )
-            for user in self.users
-        ]
+        self.users = Users(settings.NAME)
 
     def test_view_description(self):
         """The description should be 'About us'."""
@@ -70,7 +54,7 @@ class MemberPageTest(TemplateViewTestBase, TestCase):
     endpoint = "user:staff"
     view_cls = MemberDialog
     template_name = "member_dialog.html"
-    user = Users("devel")[0]
+    user = Users(settings.NAME)[0]
 
     def setUp(self):
         """SetUp."""
@@ -93,7 +77,7 @@ class ContactPageTest(TemplateViewTestBase, TestCase):
 
     def setUp(self):
         """SetUp."""
-        self.user = Users("devel")[0]
+        self.user = Users(settings.NAME)[0]
         self.url_kwargs = {
             "info_id": self.user.id
         }
@@ -159,37 +143,26 @@ class ContactPagePostMethodTest(TemplateViewTestBase, TestCase):
 
     endpoint = "user:contact"
     template_name = "contact.html"
-    info_id = uuid.uuid4()
-    page_url = ("/u/contact/{}").format(info_id)
     view_cls = ContactView
     method = "post"
-    url_kwargs = {"info_id": str(info_id)}
 
     def setUp(self):
         """SetUp."""
+        self.user = Users(settings.NAME)[0]
+        self.url_kwargs = {"info_id": str(self.user.id)}
+        self.page_url = ("/u/contact/{}").format(self.url_kwargs["info_id"])
         self.body = {
-            "user": str(self.info_id),
+            "user": str(self.user.id),
             "company_name": "Test Corp",
             "primary_name": "Test Name",
             "email": "test@example.com",
             "message": "This is a test",
             "g-recaptcha-response": "PASSED"
         }
-        self.user = get_user_model().objects.create_user(
-            username="test", password="test"
-        )
-        self.info = UserInfo.objects.create(
-            id=self.info_id, user=self.user, github="octocat"
-        )
-        self.page_url = ("/u/contact/{}").format(str(self.info.id))
         self.set_client_kwargs(
             data=json.dumps(self.body),
             content_type="application/json"
         )
-
-    def tearDown(self):
-        """Teardown."""
-        Inbox.objects.all().delete
 
     @patch("app.user.forms.ctask")
     @patch("app.user.forms.loader")
