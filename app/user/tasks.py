@@ -3,47 +3,23 @@
 
 """User tasks."""
 
-import json
+# import json
 import requests
 from celery import current_app
-from django.contrib.auth import get_user_model
 from django.conf import settings
 
-from .models import UserInfo, GithubProfile, TaskLog
+from hysoftware_data.users import Users
 
 
 @current_app.task(name="user.github.fetch")
 def fetch_github_profile(user_info_id=None):
     """Fetch user profile from github."""
-    users_info_query = UserInfo.objects
-    github_fld_names = GithubProfile.fields_names()
+    users = Users(settings.NAME)
     if user_info_id is not None:
-        users_info_query = users_info_query.filter(id=user_info_id)
+        users = [users[user_info_id]]
 
-    for info in users_info_query.all():
-        resp = requests.get(
-            "https://api.github.com/users/%s" % info.github,
-            headers={"Accept": "application/vnd.github.v3+json"},
-            timeout=(10.0, 10.0)
-        )
-        try:
-            resp.raise_for_status()
-            GithubProfile.objects.update_or_create(
-                user_info=info, defaults={
-                    key: value
-                    for (key, value) in resp.json().items()
-                    if key in github_fld_names
-                }
-            )
-            info.github_profile.refresh_from_db()
-        except requests.HTTPError as e:
-            TaskLog.objects.create(
-                user=info.user, title="Github Profile Fetch Failed",
-                message=(
-                    "Fetching github profile failed because of "
-                    "this error:\ncode:%d\nPayload: %s\nGithubID: %s"
-                ) % (e.response.status_code, e.response.text, info.github)
-            )
+    for user in users:
+        user.get_github_profile(disable_cache=True)
 
 
 @current_app.task(name="user.mail")
@@ -63,21 +39,23 @@ def send_mail(mail_addr, title, html, txt, **kwargs):
     try:
         resp.raise_for_status()
     except requests.HTTPError as e:
-        msg = None
-        user = get_user_model().objects.filter(email=mail_addr).first()
-        try:
-            msg = json.dumps(e.response.json(), indent=2)
-        except json.JSONDecodeError:
-            msg = e.response.text
-        TaskLog.objects.create(
-            user=user,
-            title=("Mail Send Task Failure(To: {})").format(mail_addr),
-            message=(
-                "The mail couldn't be sent successfully. Here's the record. \n"
-                "\nRequest Payload:\n{}\n\nResponse Code: {}\n"
-                "Response Payload:\n{}"
-            ).format(
-                json.dumps(payload, indent=2), e.response.status_code,
-                msg
-            )
-        )
+        pass
+        # msg = None
+        # user = get_user_model().objects.filter(email=mail_addr).first()
+        # try:
+        #     msg = json.dumps(e.response.json(), indent=2)
+        # except json.JSONDecodeError:
+        #     msg = e.response.text
+        # TaskLog.objects.create(
+        #     user=user,
+        #     title=("Mail Send Task Failure(To: {})").format(mail_addr),
+        #     message=(
+        #         "The mail couldn't be sent successfully. Here's the record.
+        #         \n"
+        #         "\nRequest Payload:\n{}\n\nResponse Code: {}\n"
+        #         "Response Payload:\n{}"
+        #     ).format(
+        #         json.dumps(payload, indent=2), e.response.status_code,
+        #         msg
+        #     )
+        # )
