@@ -32,30 +32,7 @@ def send_mail(mail_addr, title, html, txt, **kwargs):
         "html": html,
         "text": txt
     }
-    resp = requests.post(
+    requests.post(
         settings.MAILGUN_URL + "/messages",
         auth=("api", settings.MAILGUN_KEY), data=payload
-    )
-    try:
-        resp.raise_for_status()
-    except requests.HTTPError as e:
-        pass
-        # msg = None
-        # user = get_user_model().objects.filter(email=mail_addr).first()
-        # try:
-        #     msg = json.dumps(e.response.json(), indent=2)
-        # except json.JSONDecodeError:
-        #     msg = e.response.text
-        # TaskLog.objects.create(
-        #     user=user,
-        #     title=("Mail Send Task Failure(To: {})").format(mail_addr),
-        #     message=(
-        #         "The mail couldn't be sent successfully. Here's the record.
-        #         \n"
-        #         "\nRequest Payload:\n{}\n\nResponse Code: {}\n"
-        #         "Response Payload:\n{}"
-        #     ).format(
-        #         json.dumps(payload, indent=2), e.response.status_code,
-        #         msg
-        #     )
-        # )
+    ).raise_for_status()
