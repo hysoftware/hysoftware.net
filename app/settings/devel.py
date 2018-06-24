@@ -24,16 +24,12 @@ class DevelConfig(DjangoDefaults):
     SOURCE_URL = "https://github.com/hysoftware/hysoftware.net"
 
     BUILTIN_APPS = [
-        'django.contrib.admin',
-        'django.contrib.auth',
-        'django.contrib.contenttypes',
         'django.contrib.sessions',
         'django.contrib.messages',
         'django.contrib.staticfiles',
     ]
 
     THIRD_PARTY_APPS = [
-        'django_otp.DjangoOTP',
         'django_countries',
         'captcha'
     ]
@@ -52,7 +48,6 @@ class DevelConfig(DjangoDefaults):
         'django.contrib.sessions.middleware.SessionMiddleware',
         'django.middleware.common.CommonMiddleware',
         'django.middleware.csrf.CsrfViewMiddleware',
-        'django.contrib.auth.middleware.AuthenticationMiddleware',
         'django.contrib.messages.middleware.MessageMiddleware',
         'django.middleware.clickjacking.XFrameOptionsMiddleware'
     )
@@ -74,7 +69,6 @@ class DevelConfig(DjangoDefaults):
                 'context_processors': [
                     'django.template.context_processors.debug',
                     'django.template.context_processors.request',
-                    'django.contrib.auth.context_processors.auth',
                     'django.contrib.messages.context_processors.messages',
                 ],
             },
@@ -83,31 +77,7 @@ class DevelConfig(DjangoDefaults):
 
     WSGI_APPLICATION = 'app.wsgi.application'
 
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': 'devel.db',
-        }
-    }
-
-    AUTHENTICATION_BACKENDS = ("django_otp.backends.OTPAuthBackend", )
-
-    AUTH_PASSWORD_VALIDATORS = (
-        {
-            "NAME": ("django.contrib.auth.password_validation.%s") % cls_name
-        } for cls_name in [
-            "UserAttributeSimilarityValidator",
-            "MinimumLengthValidator",
-            "CommonPasswordValidator",
-            "NumericPasswordValidator"
-        ]
-    )
-
-    PASSWORD_HASHERS = (
-        "django.contrib.auth.hashers.Argon2PasswordHasher",
-        "django.contrib.auth.hashers.PBKDF2PasswordHasher",
-        "django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher"
-    )
+    DATABASES = {}
 
     LANGUAGE_CODE = 'en-us'
     TIME_ZONE = 'UTC'

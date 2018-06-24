@@ -23,21 +23,6 @@
     }
   ]
 -%}
-{%
-  set right_auth_only_menu = [
-    {
-        "name": _("Logout"),
-        "url": url("admin:logout"),
-        "icon_class": "material-icons",
-        "icon_body": "cancel"
-    }, {
-        "name": _("Manager"),
-        "url": url("admin:index"),
-        "icon_class": "material-icons",
-        "icon_body": "settings"
-    }
-  ]
--%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -100,19 +85,6 @@
       </li>
       {%- endfor %}
     </ul>
-    <div class="sep" data-flex></div>
-    <ul>
-      {% if request.user.is_authenticated -%}
-        <li>
-          <button data-md-button class="md-mini md-icon-button" aria-label="Manage"
-            data-ng-click="sideNav('manageSideNav').toggle()">
-              <md-icon class="material-icons">more_vert</md-icon>
-          </button>
-        </li>
-      {% else %}
-        <li><a href="{{ url('admin:login') }}">Login</a></li>
-      {%- endif %}
-    </ul>
   </nav>
   {% block body %}{%endblock -%}
   <md-fab-speed-dial class="md-scale" data-md-direction="up" data-hide-gt-sm>
@@ -126,21 +98,6 @@
         <md-tooltip data-md-direction="left">{{ _("home") }}</md-tooltip>
         <md-icon class="material-icons">home</md-icon>
       </a>
-      {% if request.user.is_authenticated -%}
-        {% for menu_item in right_auth_only_menu -%}
-        <a href="{{ menu_item.url }}" data-md-button class="md-fab md-raised md-mini"
-          {% if menu_item.target %}target="{{ menu_item.target }}"{% endif %}
-          aria-label="{{ menu_item.name }}">
-          <md-tooltip data-md-direction="left">{{ menu_item.name }}</md-tooltip>
-          <md-icon class="{{ menu_item.icon_class }}">{{ menu_item.icon_body or ""}}</md-icon>
-        </a>
-        {%- endfor %}
-      {%- else -%}
-        <a href="{{ url('admin:login') }}" data-md-button class="md-fab md-raised md-mini">
-          <md-tooltip data-md-direction="left">{{ _("Login") }}</md-tooltip>
-          <md-icon class="material-icons">lock_outline</md-icon>
-        </a>
-      {%- endif %}
       {% for menu_item in menu -%}
       <a href="{{ menu_item.url }}" data-md-button class="md-fab md-raised md-mini"
         {% if menu_item.target %}target="{{ menu_item.target }}"{% endif %}
@@ -151,25 +108,6 @@
       {%- endfor %}
     </md-fab-actions>
   </md-fab-speed-dial>
-  {% if request.user.is_authenticated -%}
-  <md-sidenav class="md-sidenav-right md-whiteframe-4dp"
-    data-md-component-id="manageSideNav">
-     <md-toolbar><h3 class="md-toolbar-tools">Management Menu</h3></md-toolbar>
-     <md-list data-flex>
-       {% for item in right_auth_only_menu | reverse -%}
-       <md-list-item class="md-2-line" data-ng-click="goto('{{ item.url }}')">
-         <md-icon class="{{ item.icon_class }} md-avatar">
-           {{ item.icon_body }}
-         </md-icon>
-         <div class="md-list-item-text" layout="column" data-flex>
-           <h3>{{ item.name }}</h3>
-           <p>{{ item.url }}</p>
-         </div>
-       </md-list-item>
-       {%- endfor %}
-     </md-list>
-  </md-sidenav>
-  {% endif %}
   <footer>
     <section class="mit">
       <h1>{{_("The MIT License (MIT)")}}</h1>

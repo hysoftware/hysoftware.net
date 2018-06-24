@@ -95,12 +95,17 @@
         });
         return ret;
       }).then(() => {
+        process.env.DJANGO_SETTINGS_FACTORY = 'app.settings.testing.TestConfig';
+        process.env.RECAPTCHA_TESTING = 'True';
         const ret = command.pyvenv(
-          `DJANGO_SETTINGS_FACTORY='app.settings.testing.TestConfig'
-           RECAPTCHA_TESTING='True' coverage run --branch \
-           --omit '*/migrations/*' --source=app -- manage.py test`,
+          [
+            'coverage run --branch --omit \'*/migrations/*\' ',
+            '--source=app -- manage.py test',
+          ].join(' '),
           [], undefined, { stdio: ['pipe', 'inherit', 'inherit'] }
         );
+        delete process.env.DJANGO_SETTINGS_FACTORY;
+        delete process.env.RECAPTCHA_TESTING;
         return ret;
       }).then(() => command.pyvenv('coverage report -m', [], undefined, {
         stdio: ['pipe', 'inherit', 'inherit'],

@@ -7,7 +7,6 @@
 
 import json
 
-from django.contrib.auth import get_user
 from django.urls import reverse, resolve
 from django.test import Client, RequestFactory
 from django.views.generic import TemplateView
@@ -48,7 +47,6 @@ class URLAssignmentTestBase(object):
             self.page_url, **self.cli_kwargs
         )
         request.session = self.client.session
-        request.user = get_user(request)
         return request
 
     def set_client_kwargs(self, **kwargs):
