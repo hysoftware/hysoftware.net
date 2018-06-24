@@ -35,18 +35,7 @@ jobs:
         environment:
           DJANGO_SETTINGS_FACTORY: app.settings.testing.TestConfig
           RECAPTCHA_TESTING: "True"
-          DB_DEFAULT_ENGINE: "django.db.backends.postgresql"
-          DB_DEFAULT_NAME: circleci
-          DB_DEFAULT_USER: circleci
-          DB_DEFAULT_PASSWORD: circleci
-          DB_DEFAULT_HOST: localhost
-          DB_DEFAULT_PORT: 5432
           DATA_VERSION: 0.0.42
-      - image: postgres:latest
-        environment:
-          POSTGRES_DB: circleci
-          POSTGRES_USER: circleci
-          POSTGRES_PASSWORD: circleci
     working_directory: ~/hysoftware
     steps:
       - attach_workspace:
@@ -74,11 +63,6 @@ jobs:
             pip install ${DATA_PATH}
             rm -rf ${DATA_PATH}
             deactivate
-      - run:
-          name: "Migrate"
-          command: |
-            source ./venv/bin/activate &&
-            python manage.py migrate
       - run:
           name: "Test"
           command: |
