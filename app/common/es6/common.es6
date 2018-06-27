@@ -50,9 +50,10 @@ export default angular.module('common', [
         const computedStyle = (
           minHeight instanceof Element
         ) ? wind.getComputedStyle(minHeight) : undefined;
-        const minHeightPriv = (computedStyle ? parseInt(
-          computedStyle.height.replace(/px/, ''), 10
-        ) : minHeight) * minHeightRate;
+        const minHeightPriv = (
+          computedStyle ? parseInt(computedStyle.height.replace(/px/, ''), 10)
+            : minHeight
+        ) * minHeightRate;
         const expectedHeight = wind.innerHeight * (1 - diffRate);
         const height = (
           expectedHeight >= minHeightPriv
@@ -60,6 +61,7 @@ export default angular.module('common', [
         root.scrFullFillPrevState[id].height = height;
         return { height: `${height}px` };
       };
+    root.particles = (tagId, param) => wind.particlesJS(tagId, param);
     wind.addEventListener('resize', () => {
       root.$apply(() => {
         for (const el in root.scrFullFillPrevState) {

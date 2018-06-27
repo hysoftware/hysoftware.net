@@ -1,10 +1,11 @@
 {% extends "base.html" -%}
 {% block title %}Welcome{% endblock -%}
 {% block body -%}
-<section class="home text-center">
+<section class="home text-center" data-ng-controller="homeCtrl">
   <header class="home-header"
-    data-ng-style="screenFullFill('title', this, 0.2)">
-    <div class="filter"></div>
+    data-ng-style="screenFullFill('title', this, 0.2)"
+    data-ng-init="startHeaderParticle()">
+    <div class="filter" id="particles-js"></div>
     <div class="title text-center vcenter">
       <h1>{{ settings.TITLE }}</h1>
       <p>{{ view.pitch }}</p>

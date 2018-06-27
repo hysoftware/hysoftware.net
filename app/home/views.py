@@ -15,6 +15,7 @@ class HomeView(TemplateView):
     template_name = "home.html"
     users = Users(settings.NAME)
     pitches = subtitles.Pitch()
+    ng_app = "home"
 
     @property
     def users_info(self):

@@ -7,9 +7,9 @@ export default angular.module('common.factories', [
       this.header = rootElem[0].querySelector('header');
     }
     height() {
-      return parseFloat(
-        wind.getComputedStyle(this.header).height.replace(/[^0-9.]/g, '')
-      );
+      return parseFloat(wind
+        .getComputedStyle(this.header)
+        .height.replace(/[^0-9.]/g, ''));
     }
     isWindowUnderHeader() {
       if (this.scope.enableTransparentMenu) {
