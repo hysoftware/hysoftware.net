@@ -4,10 +4,8 @@
 {% block title %}{{ _("Contact") }}{% endblock -%}
 {% block body %}
 <section class="contactForm" data-ng-controller="contactCtrl">
-  <header class="page header text-center contact">
-    <div class="vcenter">
-      <h1 class="vcenter">Contact</h1>
-    </div>
+  <header class="page header contact" data-layout="column" data-layout-align="center center">
+    <h1>Contact</h1>
   </header>
   <p class="text-center">{{_n(
     (

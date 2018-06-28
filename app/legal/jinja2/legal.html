@@ -2,9 +2,11 @@
 {% block title %}Legal{% endblock title -%}
 {% block body -%}
 <section data-ng-controller="legalCtrl" class="legal-page">
-  <header class="page header text-center header-legal">
+  <header class="page header header-legal">
     <div class="filter"></div>
-    <h1 class="vcenter">Legal</h1>
+    <div class="header-text-area" data-layout="column" data-layout-align="center center">
+      <h1>Legal</h1>
+    </div>
   </header>
   <section class="container-large">
     <header><h2>{{ _("What and Why This Page?") }}</h2></header>
