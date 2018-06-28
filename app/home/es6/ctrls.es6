@@ -2,15 +2,23 @@
 
 export default angular.module('homeCtrls', [])
   .controller('homeCtrl', [
-    '$scope', (scope) => {
+    '$scope', '$window', (scope, wind) => {
+      wind.addEventListener(
+        'load',
+        () => { scope.startHeaderParticle(); },
+        {
+          once: true,
+          capture: false,
+        }
+      );
       scope.startHeaderParticle = () => {
         scope.particles('particles-js', {
           particles: {
             number: {
-              value: 50,
-              density: { enable: true, value_area: 3000 },
+              value: 10,
+              density: { enable: false },
             },
-            color: { value: '#004400' },
+            color: { value: '#3C65C2' },
             shape: {
               type: 'polygon',
               stroke: { width: 0, color: '#000' },
@@ -27,7 +35,7 @@ export default angular.module('homeCtrls', [])
               },
             },
             size: {
-              value: 150,
+              value: 50,
               random: true,
               anim: {
                 enable: true,
@@ -43,7 +51,7 @@ export default angular.module('homeCtrls', [])
               direction: 'none',
               random: true,
               straight: false,
-              out_mode: 'bounce',
+              out_mode: 'out',
               bounce: false,
               attract: { enable: false },
             },
