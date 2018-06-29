@@ -5,9 +5,15 @@
   <header class="home-header"
     data-ng-style="screenFullFill('title', this, 0.2)">
     <div class="filter" id="particles-js"></div>
-    <div class="header-text-area title" data-layout="column" data-layout-align="center center">
-      <h1>{{ settings.TITLE }}</h1>
-      <p>{{ view.pitch }}</p>
+    <div class="header-text-area title"
+      data-layout="column"
+      data-layout-align="center start">
+      <h1 data-ng-class="{'active': particlesLoaded}">{{ _n(
+        "Freelance software engineer is here",
+        "Freelance software engineers are here",
+        view.users_info.count()
+      ) }}</h1>
+      <p data-ng-class="{'active': particlesLoaded}">{{ view.pitch }}</p>
     </div>
   </header>
   <div class="container">

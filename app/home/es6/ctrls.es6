@@ -3,6 +3,7 @@
 export default angular.module('homeCtrls', [])
   .controller('homeCtrl', [
     '$scope', '$window', (scope, wind) => {
+      scope.particlesLoaded = false;
       wind.addEventListener(
         'load',
         () => { scope.startHeaderParticle(); },
@@ -64,6 +65,7 @@ export default angular.module('homeCtrls', [])
           },
           retina_detect: true,
         });
+        scope.particlesLoaded = true;
       };
     },
   ]);
