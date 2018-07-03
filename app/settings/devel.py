@@ -29,10 +29,7 @@ class DevelConfig(DjangoDefaults):
         'django.contrib.staticfiles',
     ]
 
-    THIRD_PARTY_APPS = [
-        'django_countries',
-        'captcha'
-    ]
+    THIRD_PARTY_APPS = ['captcha']
 
     MODULES = [
         "app.common.apps.CommonConfig",

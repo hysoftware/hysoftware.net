@@ -5,7 +5,6 @@ celery
 coverage
 Django
 django-classbasedsettings
-django-countries
 django-good-otp
 django-nghelp
 django-recaptcha
