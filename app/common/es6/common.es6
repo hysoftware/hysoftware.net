@@ -22,7 +22,7 @@ export default angular.module('common', [
     res.defaults.stripTrailingSlashes = false;
   },
 ]).run([
-  '$rootScope', '$window', (root, wind) => {
+  '$rootScope', '$timeout', '$window', (root, timeout, wind) => {
     // Form / Model Related Stuff
     root.sendBtnCap = (form) => {
       const ret = form.$submitted || form.$invalid || form.$pristine;
@@ -61,7 +61,8 @@ export default angular.module('common', [
         root.scrFullFillPrevState[id].height = height;
         return { height: `${height}px` };
       };
-    root.particles = (tagId, param) => wind.particlesJS(tagId, param);
+    root.particles = (tagId, param) =>
+      timeout(() => wind.particlesJS(tagId, param), 0);
     wind.addEventListener('resize', () => {
       root.$apply(() => {
         for (const el in root.scrFullFillPrevState) {

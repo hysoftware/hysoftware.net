@@ -4,14 +4,6 @@ export default angular.module('homeCtrls', [])
   .controller('homeCtrl', [
     '$scope', '$window', (scope, wind) => {
       scope.particlesLoaded = false;
-      wind.addEventListener(
-        'load',
-        () => { scope.startHeaderParticle(); },
-        {
-          once: true,
-          capture: false,
-        }
-      );
       scope.startHeaderParticle = () => {
         scope.particles('particles-js', {
           particles: {
@@ -67,5 +59,12 @@ export default angular.module('homeCtrls', [])
         });
         scope.particlesLoaded = true;
       };
+      wind.addEventListener(
+        'load', scope.startHeaderParticle,
+        {
+          once: true,
+          capture: false,
+        }
+      );
     },
   ]);
