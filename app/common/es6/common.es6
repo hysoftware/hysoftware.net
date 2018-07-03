@@ -6,7 +6,7 @@
 /* eslint no-restricted-syntax: [
   "error", "FunctionExpression", "WithStatement",
 ] */
-/* globals angular, Element */
+/* globals angular */
 
 import './ctrls.es6';
 
@@ -22,7 +22,8 @@ export default angular.module('common', [
     res.defaults.stripTrailingSlashes = false;
   },
 ]).run([
-  '$rootScope', '$timeout', '$window', (root, timeout, wind) => {
+  '$document', '$rootScope', '$timeout', '$window',
+  (doc, root, timeout, wind) => {
     // Form / Model Related Stuff
     root.sendBtnCap = (form) => {
       const ret = form.$submitted || form.$invalid || form.$pristine;
@@ -40,49 +41,17 @@ export default angular.module('common', [
       const isDirty = fld.$dirty && fld.$invalid;
       return isDirty;
     };
-    // Full-screen functionality
-    root.scrFullFillPrevState = {};
-    root.screenFullFill =
-      (id, scope, diffRate, minHeight = 0, minHeightRate = 1) => {
-        root.scrFullFillPrevState[id] = {
-          diffRate, minHeight, minHeightRate, scope,
-        };
-        const computedStyle = (
-          minHeight instanceof Element
-        ) ? wind.getComputedStyle(minHeight) : undefined;
-        const minHeightPriv = (
-          computedStyle ? parseInt(computedStyle.height.replace(/px/, ''), 10)
-            : minHeight
-        ) * minHeightRate;
-        const expectedHeight = wind.innerHeight * (1 - diffRate);
-        const height = (
-          expectedHeight >= minHeightPriv
-        ) ? expectedHeight : minHeightPriv;
-        root.scrFullFillPrevState[id].height = height;
-        return { height: `${height}px` };
-      };
-    root.particles = (tagId, param) =>
-      timeout(() => wind.particlesJS(tagId, param), 0);
-    wind.addEventListener('resize', () => {
-      root.$apply(() => {
-        for (const el in root.scrFullFillPrevState) {
-          if ({}.hasOwnProperty.call(root.scrFullFillPrevState, el)) {
-            ((elem, state) => {
-              root.screenFullFill(
-                elem, state.scope, state.diffRate,
-                state.minHeight, state.minHeightRate
-              );
-              if (!state.scope.unregistDestroy) {
-                state.scope.unregistDestroy =
-                  state.scope.$on('$destroy', () => {
-                    wind.removeEventListener('resize', wind);
-                  });
-              }
-            })(el, root.scrFullFillPrevState[el]);
+    root.particles = (tagId, param) => {
+      const unwatch = root.$watch(
+        () => doc[0].styleSheets,
+        (data) => {
+          if (data.length > 0) {
+            unwatch();
+            wind.particlesJS(tagId, param);
           }
         }
-      });
-    }, false);
+      );
+    };
     root.goto = (url) => { wind.location = url; };
   },
 ]);

@@ -5,6 +5,7 @@
 
 from datetime import timedelta
 import os
+import re
 from cbsettings import DjangoDefaults
 
 
@@ -19,7 +20,8 @@ class DevelConfig(DjangoDefaults):
     ISSUE_TXT = ""
     SECRET_KEY = 'si0%k#galmbd0vzpp817e!1v*a=lu!!$b&3b4l8$^4-3!-aj!s'
     DEBUG = True
-    ALLOWED_HOSTS = ('localhost', '127.0.0.1')
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1'] + \
+        re.split(",\\s*", os.environ.get("ALLOWED_HOSTS", ""))
     TITLE = "hysoft"
     SOURCE_URL = "https://github.com/hysoftware/hysoftware.net"
 

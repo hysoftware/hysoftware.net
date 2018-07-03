@@ -1,4 +1,4 @@
-/* globals angular*/
+/* globals angular, Event*/
 
 export default angular.module('homeCtrls', [])
   .controller('homeCtrl', [
@@ -60,7 +60,7 @@ export default angular.module('homeCtrls', [])
         scope.particlesLoaded = true;
       };
       wind.addEventListener(
-        'load', scope.startHeaderParticle,
+        'load', () => { scope.startHeaderParticle(); },
         {
           once: true,
           capture: false,

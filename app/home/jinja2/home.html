@@ -3,11 +3,12 @@
 {% block body -%}
 <section class="home text-center" data-ng-controller="homeCtrl">
   <header class="home-header"
-    data-ng-style="screenFullFill('title', this, 0.2)">
+    data-layout="column"
+    data-layout-align="center start">
     <div class="filter" id="particles-js"></div>
-    <div class="header-text-area title"
-      data-layout="column"
-      data-layout-align="center start">
+    <div class="title" data-layout="column"
+      data-layout-align="center start"
+      data-layout-align-xs="center center">
       <h1 data-ng-class="{'active': particlesLoaded}">{{ _n(
         "Freelance software engineer is here",
         "Freelance software engineers are here",
@@ -20,14 +21,7 @@
     <section>
       <header>
         <h1>
-          {{_n(
-            "Need a software engineer?",
-            "Need software engineers?", view.users_info | length
-          )}}
-          {{_n(
-            "I can help building your apps", "We can help building your apps",
-            view.users_info.count()
-          )}}
+          {{_n("What I do", "What we do", view.users_info | length)}}
         </h1>
       </header>
       <p>
