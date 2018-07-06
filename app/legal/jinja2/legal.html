@@ -8,102 +8,104 @@
       <h1>Legal</h1>
     </div>
   </header>
-  <section class="container-large">
-    <header><h2>{{ _("What and Why This Page?") }}</h2></header>
-    <p>{{_(
-      "{} is currently a sole proprietorship in Japan and there are acts "
-      "to require business (including corp, llc, and sole proprietorship) "
-      "to show some notations. This page shows the notations to make them "
-      " clear."
-    ).format(settings.TITLE)}}</p>
-    <section>
-      <header>
-        <h3>{{_("Select Country")}}</h3>
-        <p>{{_n(
-          "If the country is not listed, it is not recognized by me. In that case,
-           please let me know.",
-           "If the country is not listed, it is not recognized by us. In that case,
-            please let us know.", view.users_info.count()
-        )}}</p>
-      </header>
-      <md-input-container>
-        <md-select data-ng-model="model.country"
-          data-ng-init="setCountry('{{ view.regulations.countries | first }}')"
-          aria-label="{{_('Recognized Country')}}"
-          data-placeholder="{{_('Select Country')}}">
-          {% for item in  view.regulations.countries -%}
-            <md-option value="{{ item }}">
-              {{ item }}
-            </md-option>
-          {%- endfor%}
-        </md-select>
-      </md-input-container>
-      {% for (country, acts) in view.regulations.items() -%}
-        <md-tabs data-ng-if="model.country == '{{ country }}'"
-          data-md-dynamic-height data-md-border-bottom>
-          {% for act in acts -%}
-          <md-tab data-label="{{ act.name }}">
-            <section>
-              <header>
-                <h3><strong>{{ act.name }}</strong></h3>
-              </header>
-              <table>
-                <thead>
-                  <tr><th>{{_("Name")}}</th><th>{{_("description")}}</th></tr>
-                </thead>
-                <tbody>
-                  {% for (note_name, note_text) in act.items() -%}
-                  <tr><td>{{ note_name }}</td><td>{{ note_text | markdown | safe}}</td></tr>
-                  {%- endfor %}
-                </tbody>
-              </table>
-            </section>
-          </md-tab>
-          {%- endfor %}
-        </md-tabs>
-      {%- endfor %}
-    </section>
-    <section class="copyrights">
-      <header><h2>Copyrights</h2></header>
-      <p>
-        {{_(
-          "As footer shows, this website is licensed under "
-          "the terms of The MIT License. However, the assets created by third "
-          "party might not be licensed under The MIT License. For details, "
-          "please visit the following links:"
-        )}}
-      </p>
-      <table>
-        <thead>
-          <tr>
-            <th>File Name</th>
-            <th>Source</th>
-            <th>License</th>
-            <th>Check Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for asset in view.assets_info -%}
+  <div data-layout="row" data-layout-align="center none">
+    <section class="container-large">
+      <header><h2>{{ _("What and Why This Page?") }}</h2></header>
+      <p>{{_(
+        "{} is currently a sole proprietorship in Japan and there are acts "
+        "to require business (including corp, llc, and sole proprietorship) "
+        "to show some notations. This page shows the notations to make them "
+        " clear."
+      ).format(settings.TITLE)}}</p>
+      <section>
+        <header>
+          <h3>{{_("Select Country")}}</h3>
+          <p>{{_n(
+            "If the country is not listed, it is not recognized by me. In that case,
+             please let me know.",
+             "If the country is not listed, it is not recognized by us. In that case,
+              please let us know.", view.users_info.count()
+          )}}</p>
+        </header>
+        <md-input-container>
+          <md-select data-ng-model="model.country"
+            data-ng-init="setCountry('{{ view.regulations.countries | first }}')"
+            aria-label="{{_('Recognized Country')}}"
+            data-placeholder="{{_('Select Country')}}">
+            {% for item in  view.regulations.countries -%}
+              <md-option value="{{ item }}">
+                {{ item }}
+              </md-option>
+            {%- endfor%}
+          </md-select>
+        </md-input-container>
+        {% for (country, acts) in view.regulations.items() -%}
+          <md-tabs data-ng-if="model.country == '{{ country }}'"
+            data-md-dynamic-height data-md-border-bottom>
+            {% for act in acts -%}
+            <md-tab data-label="{{ act.name }}">
+              <section>
+                <header>
+                  <h3><strong>{{ act.name }}</strong></h3>
+                </header>
+                <table>
+                  <thead>
+                    <tr><th>{{_("Name")}}</th><th>{{_("description")}}</th></tr>
+                  </thead>
+                  <tbody>
+                    {% for (note_name, note_text) in act.items() -%}
+                    <tr><td>{{ note_name }}</td><td>{{ note_text | markdown | safe}}</td></tr>
+                    {%- endfor %}
+                  </tbody>
+                </table>
+              </section>
+            </md-tab>
+            {%- endfor %}
+          </md-tabs>
+        {%- endfor %}
+      </section>
+      <section class="copyrights">
+        <header><h2>Copyrights</h2></header>
+        <p>
+          {{_(
+            "As footer shows, this website is licensed under "
+            "the terms of The MIT License. However, the assets created by third "
+            "party might not be licensed under The MIT License. For details, "
+            "please visit the following links:"
+          )}}
+        </p>
+        <table>
+          <thead>
             <tr>
-              <td>
-                <a target="_blank" href="{{ asset.page }}">{{ asset.name }}</a>
-              </td>
-              <td>
-                <a href="{{ asset.source }}" target="_blank">
-                  {{ urlparse(asset.source).netloc }}
-                </a>
-              </td>
-              <td>
-                <a href="{{ asset.license_url }}" target="_blank">
-                  {{ asset.license }}
-                </a>
-              </td>
-              <td>{{ asset.check_date }}</td>
+              <th>File Name</th>
+              <th>Source</th>
+              <th>License</th>
+              <th>Check Date</th>
             </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {% for asset in view.assets_info -%}
+              <tr>
+                <td>
+                  <a target="_blank" href="{{ asset.page }}">{{ asset.name }}</a>
+                </td>
+                <td>
+                  <a href="{{ asset.source }}" target="_blank">
+                    {{ urlparse(asset.source).netloc }}
+                  </a>
+                </td>
+                <td>
+                  <a href="{{ asset.license_url }}" target="_blank">
+                    {{ asset.license }}
+                  </a>
+                </td>
+                <td>{{ asset.check_date }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </section>
     </section>
-  </section>
+  </div>
 </section>
 {%- endblock %}

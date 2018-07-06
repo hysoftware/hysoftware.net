@@ -50,6 +50,7 @@
               'third_party',
               'bower_components'
             )),
+            path.resolve(path.join(__dirname, 'node_modules')),
           ],
         },
       },

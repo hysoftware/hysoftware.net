@@ -1,5 +1,14 @@
 .home {
   position: relative;
+  .subheader {
+    margin: 2rem 0;
+    h1, p {
+      margin: 0.1rem 0;
+    }
+    p {
+      color: #757575;
+    }
+  }
 }
 .interest {
   color: #E3F2FD;
