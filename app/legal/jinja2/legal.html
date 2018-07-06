@@ -87,7 +87,9 @@
             {% for asset in view.assets_info -%}
               <tr>
                 <td>
+                  {% if asset.page -%}
                   <a target="_blank" href="{{ asset.page }}">{{ asset.name }}</a>
+                  {%- endif %}
                 </td>
                 <td>
                   <a href="{{ asset.source }}" target="_blank">

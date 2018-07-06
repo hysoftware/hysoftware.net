@@ -31,11 +31,11 @@ jobs:
             - hysoftware
   backend_test:
     docker:
-      - image: python:latest
+      - image: python:3.6
         environment:
           DJANGO_SETTINGS_FACTORY: app.settings.testing.TestConfig
           RECAPTCHA_TESTING: "True"
-          DATA_VERSION: 0.0.44
+          DATA_VERSION: 0.0.47
     working_directory: ~/hysoftware
     steps:
       - attach_workspace:

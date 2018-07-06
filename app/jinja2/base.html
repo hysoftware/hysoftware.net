@@ -148,6 +148,15 @@
       </p>
     </section>
     <p class="legal-link nospace">
+      {%
+        set externalLinks = [
+          { 'url': 'https://fontawesome.com/', 'title': 'Font Awesome' },
+          { 'url': 'https://icons8.com/', 'title': 'Icons8' },
+        ]
+      -%}
+      {% for item in externalLinks -%}
+      <small><a href="{{ item.url }}" target="_blank">{{ item.title }}</a></small>
+      {%- endfor %}
       <small><a href="{{ url('legal:index') }}">{{_("Legal")}}</a></small>
     </p>
   </footer>
