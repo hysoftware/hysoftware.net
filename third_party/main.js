@@ -5,3 +5,6 @@ import 'particles.js/particles.js';
 import 'angular/angular-csp.css';
 import 'angular-material/angular-material.css';
 import '@fortawesome/fontawesome-free/scss/fontawesome.scss';
+import '@fortawesome/fontawesome-free/scss/fa-brands.scss';
+import '@fortawesome/fontawesome-free/scss/fa-regular.scss';
+import '@fortawesome/fontawesome-free/scss/fa-solid.scss';
