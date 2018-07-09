@@ -1,7 +1,8 @@
 {% extends "base.html" -%}
+{% import "feature_card.html" as featureCard -%}
 {% block title %}Welcome{% endblock -%}
 {% block body -%}
-<section class="home text-center" data-ng-controller="homeCtrl">
+<section class="home" data-ng-controller="homeCtrl">
   <header class="home-header"
     data-layout="column"
     data-layout-align="center start">
@@ -20,7 +21,7 @@
   <div data-layout="row" data-layout-align="center none">
     <div class="container">
       <section>
-        <header class="subheader" data-layout="column" data-layout-align="center none">
+        <header class="subheader" data-layout="column" data-layout-align="center center">
           <h1>{{_n("What I do", "What we do", view.users_info | length)}}</h1>
           <p>{{ _n(
             "My work is not only coding.", "Our works are not only coding.",
@@ -28,18 +29,41 @@
           ) }}</p>
         </header>
         <div data-layout="row">
-          <section class="feature-text"></section>
-          <div data-flex=""></div>
-          <div class="large" data-layout="column" data-layout-align="center none">
-            <div data-layout="row" data-layout-align="center none">
-              <i class="fab fa-python"></i>
-              <i class="fab fa-node-js"></i>
-            </div>
-            <div data-layout="row" data-layout-align="center none">
-              <i class="fas fa-code"></i>
-              <i class="fab fa-sass"></i>
-            </div>
-          </div>
+          {% call featureCard.render('<i class="fas fa-terminal"></i>', _("Software Development")) -%}
+          <p class="text-center">{{ _n(
+            "As you can see this website, I have software development "
+            "skills that you need.",
+            "As you can see this website, we have software development "
+            "skills that you need.", view.users_info | length
+          ) }}</p>
+          {%- endcall %}
+          {% call featureCard.render('<i class="fas fa-globe"></i>', _("Translation")) -%}
+          <p class="text-center">{{ _n(
+            "In addition to the software development, I localize your apps as needed.",
+            "In addition to the software development, we localize your apps as needed.",
+            view.users_info | length
+          ) }}</p>
+          <small>{{ _n(
+            "Note: I can only handle translation from English into Japanese at this time.",
+            "Note: We can only handle translation from English into Japanese at this time.",
+            view.users_info | length
+          ) }}</small>
+          {%- endcall %}
+          {% if view.users_info | length > 1 -%}
+          {% set user_icon = 'fa-users' %}
+          {%- else %}
+          {% set user_icon = 'fa-user' %}
+          {%- endif %}
+          {% call featureCard.render(
+            ('<i class="fas {}"></i>').format(user_icon),
+            _("Consultant"))
+          -%}
+          <p class="text-center">{{ _n(
+            "I can give you some advices about software development, including chatting.",
+            "We can give you some advices about software development, including chatting.",
+            view.users_info | length
+          ) }}</p>
+          {%- endcall %}
         </div>
       </section>
       <section>

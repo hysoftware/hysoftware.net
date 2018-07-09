@@ -5,9 +5,17 @@
     h1, p {
       margin: 0.1rem 0;
     }
-    p {
-      color: #757575;
-    }
+  }
+  p {
+    color: #757575;
+    margin: 0.5rem 0;
+  }
+  small {
+    color: #757575;
+    font-size: 0.7rem;
+  }
+  .icon {
+    color: #757575;
   }
 }
 .interest {

@@ -1,0 +1,13 @@
+{% macro render(icon_tag, title) -%}
+<div data-layout="column" data-flex>
+  <div class="large icon" data-layout="column" data-layout-align="none center">
+    {{ icon_tag | safe }}
+  </div>
+  <section class="feature-text">
+    <header data-layout="column" data-layout-align="none center">
+      <h2>{{ title }}</h2>
+    </header>
+    {{ caller() }}
+  </section>
+</div>
+{%- endmacro %}
