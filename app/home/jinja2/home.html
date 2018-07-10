@@ -49,18 +49,12 @@
             view.users_info | length
           ) }}</small>
           {%- endcall %}
-          {% if view.users_info | length > 1 -%}
-          {% set user_icon = 'fa-users' %}
-          {%- else %}
-          {% set user_icon = 'fa-user' %}
-          {%- endif %}
-          {% call featureCard.render(
-            ('<i class="fas {}"></i>').format(user_icon),
-            _("Consultant"))
-          -%}
+          {% call featureCard.render('<i class="far fa-comments"></i>', _("Etc etc...")) -%}
           <p class="text-center">{{ _n(
-            "I can give you some advices about software development, including chatting.",
-            "We can give you some advices about software development, including chatting.",
+            "Even if your demand is out of my area, I can surely study about it and "
+            "I will be able to handle it, or I can give you advice.",
+            "Even if your demand is out of our area, we can surely study about it and "
+            "we will be able to handle it, or we can give you advice.",
             view.users_info | length
           ) }}</p>
           {%- endcall %}
