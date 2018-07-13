@@ -60,34 +60,93 @@
           {%- endcall %}
         </div>
       </section>
-      <section>
-        <header>
-          <h1>{{_n(
-            "Why you need me?",
-            "Why you need us?",
-            view.users_info.count()
-          )}}</h1>
-        </header>
-        <p>
-          {{_n(
-            "My advantages are aimed at the quality of code. As you can see",
-            "Our advantages are aimed at the quality of code.",
-            view.users_info.count()
-          )}}
-          {% if view.users_info.count() > 1 -%}
-            <a href="undefined">{{_("Each developer's github")}}</a>
-          {% else -%}
-            <a href="https://github.com/{{ view.users_info.first().github }}" target="_blank">
-              {{_("{}'s Github").format(view.users_info[0].first_name)}}
-            </a>
-          {%- endif %}{{_n(
-            " ,I am coding many software with high testing rate and great quality.
-              This is why you should hire me.",
-            " ,We are coding many software with high testing rate and great quality.
-              This is why you should hire us.", view.users_info.count()
-          )}}
-        </p>
-      </section>
+      <div data-layout="column" data-layout-align="none center">
+        <div data-layout="row" class="container">
+          <div data-layout="column" data-layout-align="center center" class="ultra-large banner icon">
+            <i class="fas fa-circle-notch"></i>
+          </div>
+          <section>
+            <header>
+              <h1>{{_n(
+                "Why you need me?",
+                "Why you need us?",
+                view.users_info.count()
+              )}}</h1>
+            </header>
+            <ul>
+              <li>
+                {{_n(
+                  "I can write hight-quality code as you can see",
+                  "I can write hight-quality code as you can see",
+                  view.users_info.count()
+                )}}
+                {% if view.users_info.count() > 1 -%}
+                  <a href="{{ url('user:about') }}">{{_("Each developer's github")}}</a>
+                {% else -%}
+                  <a href="https://github.com/{{ view.users_info.first().github }}" target="_blank">
+                    {{_("{}'s Github").format(view.users_info[0].first_name)}}
+                  </a>
+                {%- endif %}
+              </li>
+              <li>{{_n(
+                "I'm usually writing code with following Agile style. This is also known as "
+                "'Test/Behavior driven development' that means I write the test to check "
+                "whether the code works properly or not before I write the actual code. "
+                "By doing this, the number of the bug will be incredibly reduced.",
+                "We're usually writing code with following Agile style. This is also known as "
+                "'Test/Behavior driven development' that means we write the test to check "
+                "whether the code works properly or not before we write the actual code. "
+                "By doing this, the number of the bug will be incredibly reduced.",
+                view.users_info.count()
+              )}}</li>
+              <li>
+                {{ _n(
+                  "In addition to high quality code, I can also write good-translations.",
+                  "In addition to high quality code, we can also write good-translations.",
+                  view.users_info.count()
+                ) }}
+              </li>
+            </ul>
+            {#
+            <p>
+              {{_n(
+                "My advantages are aimed at the quality of code. As you can see",
+                "Our advantages are aimed at the quality of code. As you can see",
+                view.users_info.count()
+              )}}
+              {% if view.users_info.count() > 1 -%}
+                <a href="{{ url('user:about') }}">{{_("Each developer's github")}}</a>
+              {% else -%}
+                <a href="https://github.com/{{ view.users_info.first().github }}" target="_blank">
+                  {{_("{}'s Github").format(view.users_info[0].first_name)}}
+                </a>
+              {%- endif %}{{_n(
+                " ,I am coding many software with high testing rate and great quality.",
+                " ,We are coding many software with high testing rate and great quality.",
+                view.users_info.count()
+              )}}
+            </p>
+            <p>
+              {{ _n(
+                "In additoin to this, I'm coding with following Agile Style. "
+                "Agile Style is also known as 'Test/Behavior Driven Development'. "
+                "As you can imagine from the words, I usually write a test to "
+                "check whether the code can do what I expected before I code the "
+                "actual product. By doing this, the bug of the software will incredibly "
+                "be reduced.",
+                "In additoin to this, We're coding with following Agile Style. "
+                "Agile Style is also known as 'Test/Behavior Driven Development'. "
+                "As you can imagine from the words, we usually write a test to "
+                "check whether the code can do what we expected before we code the "
+                "actual product. By doing this, the bug of the software will incredibly "
+                "be reduced.",
+                view.users_info.count()
+              ) }}
+            </p>
+            #}
+          </section>
+        </div>
+      </div>
       <section>
         <header>
           <h1>{{_n(
