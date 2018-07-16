@@ -53,8 +53,10 @@
           <p class="text-center">{{ _n(
             "Even if your demand is out of my area, I can surely study about it and "
             "I will be able to handle it, or I can give you advice.",
+
             "Even if your demand is out of our area, we can surely study about it and "
             "we will be able to handle it, or we can give you advice.",
+
             view.users_info | length
           ) }}</p>
           {%- endcall %}
@@ -65,6 +67,7 @@
           <div data-layout="column" data-layout-align="center center" class="ultra-large banner icon">
             <i class="fas fa-circle-notch"></i>
           </div>
+          <div data-flex></div>
           <section>
             <header>
               <h1>{{_n(
@@ -77,7 +80,7 @@
               <li>
                 {{_n(
                   "I can write hight-quality code as you can see",
-                  "I can write hight-quality code as you can see",
+                  "We can write hight-quality code as you can see",
                   view.users_info.count()
                 )}}
                 {% if view.users_info.count() > 1 -%}
@@ -93,10 +96,12 @@
                 "'Test/Behavior driven development' that means I write the test to check "
                 "whether the code works properly or not before I write the actual code. "
                 "By doing this, the number of the bug will be incredibly reduced.",
+
                 "We're usually writing code with following Agile style. This is also known as "
                 "'Test/Behavior driven development' that means we write the test to check "
                 "whether the code works properly or not before we write the actual code. "
                 "By doing this, the number of the bug will be incredibly reduced.",
+
                 view.users_info.count()
               )}}</li>
               <li>
@@ -107,93 +112,56 @@
                 ) }}
               </li>
             </ul>
-            {#
+          </section>
+        </div>
+        <div data-layout="row" class="container">
+          <section>
+            <header>
+              <h1>{{_n(
+                'I <i class="fas fa-heart"></i> Open-Source',
+                'We <i class="fas fa-heart"></i> Open-Source',
+                view.users_info.count()
+              ) | safe}}</h1>
+            </header>
+            <p>{{_(
+              "While many software engineers don't disclose their code, all staff at "
+              "hysoft are required to have Github account. It means all the software "
+              "engineer at hysoft must have the activities of open source software "
+              "development."
+            )}}</p>
+          </section>
+          <div data-flex></div>
+          <div data-layout="column" data-layout-align="center center" class="ultra-large banner icon">
+            <i class="fab fa-osi"></i>
+          </div>
+        </div>
+        <div data-layout="row" class="container">
+          <div data-layout="column" data-layout-align="center center" class="ultra-large banner icon">
+            <i class="fab fa-github"></i>
+          </div>
+          <div data-flex></div>
+          <section>
+            <header>
+              <h1>{{ _("This webapp is open source") }}</h1>
+            </header>
             <p>
-              {{_n(
-                "My advantages are aimed at the quality of code. As you can see",
-                "Our advantages are aimed at the quality of code. As you can see",
-                view.users_info.count()
-              )}}
-              {% if view.users_info.count() > 1 -%}
-                <a href="{{ url('user:about') }}">{{_("Each developer's github")}}</a>
-              {% else -%}
-                <a href="https://github.com/{{ view.users_info.first().github }}" target="_blank">
-                  {{_("{}'s Github").format(view.users_info[0].first_name)}}
-                </a>
-              {%- endif %}{{_n(
-                " ,I am coding many software with high testing rate and great quality.",
-                " ,We are coding many software with high testing rate and great quality.",
-                view.users_info.count()
-              )}}
+              {{_("As you can see")}}
+              <a href="{{ settings.SOURCE_URL }}" target="_blank">
+                {{ _("this page") }}
+              </a>{{_(", ")}}
+              {{ _("this webapp is open-source and there's nothing that is hidden.") }}
             </p>
             <p>
-              {{ _n(
-                "In additoin to this, I'm coding with following Agile Style. "
-                "Agile Style is also known as 'Test/Behavior Driven Development'. "
-                "As you can imagine from the words, I usually write a test to "
-                "check whether the code can do what I expected before I code the "
-                "actual product. By doing this, the bug of the software will incredibly "
-                "be reduced.",
-                "In additoin to this, We're coding with following Agile Style. "
-                "Agile Style is also known as 'Test/Behavior Driven Development'. "
-                "As you can imagine from the words, we usually write a test to "
-                "check whether the code can do what we expected before we code the "
-                "actual product. By doing this, the bug of the software will incredibly "
-                "be reduced.",
-                view.users_info.count()
-              ) }}
+              <a href="{{ settings.SOURCE_URL }}" target="_blank"
+                class="md-raised md-primary text-no-transform impact"
+                data-md-button>
+                <i class="ion-social-github"></i>
+                {{_("Check out this webapp's code on Github")}}
+              </a>
             </p>
-            #}
           </section>
         </div>
       </div>
-      <section>
-        <header>
-          <h1>{{_n(
-            "Proof of code. I <i class=\"material-icons\">favorite</i> Open-Source",
-            "Proof of code. We <i class=\"material-icons\">favorite</i> Open-Source",
-            view.users_info.count()
-          )|safe}}</h1>
-        </header>
-        <p>{{_(
-          "While many software engineers don't disclose their code, all staff at "
-          "hysoft are required to have Github account. It means all the software "
-          "engineer at hysoft must write open-source code. As the proof..."
-        )}}</p>
-      </section>
-      <section>
-        <header>
-          <h1>
-            {{_("This webapp is")}}
-            <a href="{{ settings.SOURCE_URL }}" target="_blank">
-              {{ _("open source") }}
-            </a>
-          </h1>
-          <div data-layout="row">
-            <h2 data-flex><i class="ion-social-python"></i></h2>
-            <h2 data-flex><i class="ion-social-html5"></i></h2>
-            <h2 data-flex><i class="ion-social-javascript"></i></h2>
-            <h2 data-flex><i class="ion-social-angular"></i></h2>
-            <h2 data-flex><i class="ion-social-css3"></i></h2>
-            <h2 data-flex><i class="ion-social-sass"></i></h2>
-          </div>
-        </header>
-        <p>
-          {{_("As you can see")}}
-          <a href="{{ settings.SOURCE_URL }}" target="_blank">
-            {{ _("this page") }}
-          </a>{{_(", ")}}
-          {{ _("this webapp is open-source and there's nothing that is hidden.") }}
-        </p>
-        <p>
-          <a href="{{ settings.SOURCE_URL }}" target="_blank"
-            class="md-raised md-primary text-no-transform impact"
-            data-md-button>
-            <i class="ion-social-github"></i>
-            {{_("Check out this webapp's code on Github")}}
-          </a>
-        </p>
-      </section>
       <section>
         <header>
           <h1>{{_n("Who am I?", "Who are we?", view.users_info.count())}}</h1>
