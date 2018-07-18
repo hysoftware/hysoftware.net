@@ -16,6 +16,7 @@
   }
   li {
     color: #757575;
+    margin: 0.1rem;
   }
   small {
     color: #757575;
@@ -31,8 +32,26 @@
     margin-right: 1rem;
   }
 }
+.feature {
+  margin: 1rem;
+}
 .interest {
   color: #E3F2FD;
   background-color: #2980b9;
   padding: 2rem;
+  h1 {
+    margin: 0.1rem 0;
+  }
+  p {
+    color: #E3F2FD;
+  }
+}
+
+a:not([data-md-button]) {
+  text-decoration: none;
+  color: #000;
+  &:hover {
+    color: #0000ff;
+    text-decoration: underline;
+  }
 }

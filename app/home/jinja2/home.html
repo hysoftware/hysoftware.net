@@ -28,7 +28,7 @@
             view.users_info | length
           ) }}</p>
         </header>
-        <div data-layout="row">
+        <div data-layout="row" data-layout-xs="column">
           {% call featureCard.render('<i class="fas fa-terminal"></i>', _("Software Development")) -%}
           <p class="text-center">{{ _n(
             "As you can see this website, I have software development "
@@ -153,33 +153,41 @@
             </p>
             <p>
               <a href="{{ settings.SOURCE_URL }}" target="_blank"
-                class="md-raised md-primary text-no-transform impact"
+                class="md-raised md-primary"
                 data-md-button>
-                <i class="ion-social-github"></i>
+                <i class="fab fa-github"></i>
                 {{_("Check out this webapp's code on Github")}}
               </a>
             </p>
           </section>
         </div>
+        <div data-layout="row" class="container">
+          <section>
+            <header>
+              <h1>{{_n("Who am I?", "Who are we?", view.users_info.count())}}</h1>
+            </header>
+            <p>{{_n(
+              "For my detail, please visit About page. "
+              "You can see what I can handle, what I can write, and my sample code.",
+              "For individuals detail, please visit About page. "
+              "You can see what we can handle, what we can write, and out sample code.",
+              view.users_info.count()
+            )}}</p>
+            <div data-layout="row" data-layout-align="center none">
+              <a href="{{ url('user:about') }}" data-md-button class="md-raised md-primary">
+                {{_("Visit About page")}}
+              </a>
+            </div>
+          </section>
+          <div data-flex></div>
+          <div data-layout="column" data-layout-align="center center" class="ultra-large banner icon">
+            <i class="fas fa-users"></i>
+          </div>
+        </div>
       </div>
-      <section>
-        <header>
-          <h1>{{_n("Who am I?", "Who are we?", view.users_info.count())}}</h1>
-        </header>
-        <p>{{_n(
-          "For my detail, please visit About page. "
-          "You can see what I can handle, what I can write, and my sample code.",
-          "For individuals detail, please visit About page. "
-          "You can see what we can handle, what we can write, and out sample code.",
-          view.users_info.count()
-        )}}</p>
-        <a href="{{ url('user:about') }}" data-md-button class="md-raised md-primary">
-          {{_("Visit About page")}}
-        </a>
-      </section>
     </div>
   </div>
-  <section class="interest">
+  <section class="interest" data-layout="column" data-layout-align="center center">
     <header>
       <h1>Interesting?</h1>
     </header>
