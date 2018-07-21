@@ -12,7 +12,7 @@ nav.main-nav {
   opacity: 0.8;
   transition: background-color 500ms, opacity 500ms, text-shadow 500ms;
   * {
-    height: 100%;
+    // height: 100%;
     padding: 0;
     margin: 0 5px;;
   }
@@ -26,18 +26,8 @@ nav.main-nav {
     color: #F6F6F6;
     text-decoration: none;
   }
-  ul {
-    display: inline-table;
-    li {
-      display: table-cell;
-      vertical-align: middle;
-      padding: inherit 0.5rem;
-      &.brand * {
-        padding: inherit 1rem;
-        font: {
-          weight: 500;
-        }
-      }
-    }
+  .brand {
+    font-weight: 500;
+    margin: 0 1rem;
   }
 }

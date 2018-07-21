@@ -2,7 +2,7 @@
 {% for url in info.urls -%}
 {% if url.type == 'github' -%}
 <a href="{{ url.url }}" target="_blank">
-  <i class="ion-social-github"></i>
+  <i class="fab fa-github"></i>
   <md-tooltip data-md-direction="bottom">
     {{_("View {}'s profile at Github").format(info.first_name)}}
   </md-tooltip>
@@ -13,14 +13,14 @@
   <md-tooltip data-md-direction="bottom">
     {{_("View {}'s profile at Linkedin").format(info.first_name)}}
   </md-tooltip>
-  <i class="ion-social-linkedin"></i>
+  <i class="fab fa-linkedin"></i>
 </a>
 {% endif -%}
 {% if url.type == 'angellist' -%}
 <a href="url.url" target="_blank">
   <md-tooltip data-md-direction="bottom">
     {{_("View {}'s profile at AngelList").format(info.first_name)}}
-  </md-tooltip> <i class="socicon-angellist"></i>
+  </md-tooltip> <i class="fab fa-angellist"></i>
 </a>
 {% endif %}
 {% if url.type == 'hackerrank' -%}
