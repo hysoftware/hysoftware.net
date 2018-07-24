@@ -63,19 +63,24 @@
         </div>
       </section>
       <div data-layout="column" data-layout-align="none center">
-        <div data-layout="row" class="container">
-          <div data-layout="column" data-layout-align="center center" class="ultra-large banner icon">
+        <div data-layout="row" data-layout-xs="column" class="container">
+          <div data-layout="column" data-layout-align="center center" class="ultra-large banner icon" data-hide-xs>
             <i class="fas fa-circle-notch"></i>
           </div>
-          <div data-flex></div>
+          <div data-flex data-flex-xs="0"></div>
           <section>
             <header>
-              <h1>{{_n(
-                "Why you need me?",
-                "Why you need us?",
-                view.users_info.count()
-              )}}</h1>
+              {% set YUNeedUs = _n(
+                  "Why you need me?",
+                  "Why you need us?",
+                  view.users_info.count()
+              ) -%}
+              <h1 data-hide-xs>{{ YUNeedUs }}</h1>
+              <h1 class="text-center" data-hide-gt-xs>{{ YUNeedUs }}</h1>
             </header>
+            <div data-layout="column" data-layout-align="center center" class="ultra-large banner icon" data-hide-gt-xs>
+              <i class="fas fa-circle-notch"></i>
+            </div>
             <ul>
               <li>
                 {{_n(
@@ -92,18 +97,18 @@
                 {%- endif %}
               </li>
               <li>{{_n(
-                "I'm usually writing code with following Agile style. This is also known as "
+                "I'm usually writing code with following <strong>Agile style</strong>. This is also known as "
                 "'Test/Behavior driven development' that means I write the test to check "
                 "whether the code works properly or not before I write the actual code. "
                 "By doing this, the number of the bug will be incredibly reduced.",
 
-                "We're usually writing code with following Agile style. This is also known as "
+                "We're usually writing code with following <strong>Agile style</strong>. This is also known as "
                 "'Test/Behavior driven development' that means we write the test to check "
                 "whether the code works properly or not before we write the actual code. "
                 "By doing this, the number of the bug will be incredibly reduced.",
 
                 view.users_info.count()
-              )}}</li>
+              ) | safe }}</li>
               <li>
                 {{ _n(
                   "In addition to high quality code, I can also write good-translations.",
@@ -114,15 +119,20 @@
             </ul>
           </section>
         </div>
-        <div data-layout="row" class="container">
+        <div data-layout="row" data-layout-xs="column" class="container">
           <section>
             <header>
-              <h1>{{_n(
+              {% set iLoveOSS = _n(
                 'I <i class="fas fa-heart"></i> Open-Source',
                 'We <i class="fas fa-heart"></i> Open-Source',
                 view.users_info.count()
-              ) | safe}}</h1>
+              ) -%}
+              <h1 data-hide-xs>{{ iLoveOSS | safe }}</h1>
+              <h1 class="text-center" data-hide-gt-xs>{{ iLoveOSS | safe }}</h1>
             </header>
+            <div data-layout="column" data-layout-align="center center" class="ultra-large banner icon" data-hide-gt-xs>
+              <i class="fab fa-osi"></i>
+            </div>
             <p>{{_(
               "While many software engineers don't disclose their code, all staff at "
               "hysoft are required to have Github account. It means all the software "
@@ -131,19 +141,24 @@
             )}}</p>
           </section>
           <div data-flex></div>
-          <div data-layout="column" data-layout-align="center center" class="ultra-large banner icon">
+          <div data-layout="column" data-layout-align="center center" class="ultra-large banner icon" data-hide-xs>
             <i class="fab fa-osi"></i>
           </div>
         </div>
-        <div data-layout="row" class="container">
-          <div data-layout="column" data-layout-align="center center" class="ultra-large banner icon">
+        <div data-layout="row" data-layout-xs="column" class="container">
+          <div data-layout="column" data-hide-xs data-layout-align="center center" class="ultra-large banner icon">
             <i class="fab fa-github"></i>
           </div>
           <div data-flex></div>
           <section>
             <header>
-              <h1>{{ _("This webapp is open source") }}</h1>
+              {% set thisWebAppIsOSS = _("This webapp is open source") -%}
+              <h1 data-hide-xs>{{ thisWebAppIsOSS }}</h1>
+              <h1 class="text-center" data-hide-gt-xs>{{ thisWebAppIsOSS }}</h1>
             </header>
+            <div data-layout="column" data-hide-gt-xs data-layout-align="center center" class="ultra-large banner icon">
+              <i class="fab fa-github"></i>
+            </div>
             <p>
               {{_("As you can see")}}
               <a href="{{ settings.SOURCE_URL }}" target="_blank">
@@ -155,17 +170,24 @@
               <a href="{{ settings.SOURCE_URL }}" target="_blank"
                 class="md-raised md-primary"
                 data-md-button>
-                <i class="fab fa-github"></i>
-                {{_("Check out this webapp's code on Github")}}
+                <i data-hide-xs class="fab fa-github"></i>
+                <i data-hide-gt-xs class="semi-large fab fa-github"></i>
+                <br data-hide-gt-xs>
+                {{_("Read the code at Github")}}
               </a>
             </p>
           </section>
         </div>
-        <div data-layout="row" class="container">
+        <div data-layout="row" data-layout-xs="column" class="container">
           <section>
             <header>
-              <h1>{{_n("Who am I?", "Who are we?", view.users_info.count())}}</h1>
+              {% set whoami = _n("Who am I?", "Who are we?", view.users_info.count()) -%}
+              <h1 data-hide-xs>{{ whoami }}</h1>
+              <h1 data-hide-gt-xs class="text-center">{{ whoami }}</h1>
             </header>
+            <div data-layout="column" data-layout-align="center center" class="ultra-large banner icon" data-hide-gt-xs>
+              <i class="fas fa-users"></i>
+            </div>
             <p>{{_n(
               "For my detail, please visit About page. "
               "You can see what I can handle, what I can write, and my sample code.",
@@ -180,7 +202,7 @@
             </div>
           </section>
           <div data-flex></div>
-          <div data-layout="column" data-layout-align="center center" class="ultra-large banner icon">
+          <div data-layout="column" data-layout-align="center center" class="ultra-large banner icon" data-hide-xs>
             <i class="fas fa-users"></i>
           </div>
         </div>

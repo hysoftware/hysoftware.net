@@ -39,6 +39,9 @@
       text-decoration: underline;
     }
   }
+  a > i[data-hide-gt-xs].fab.fa-github {
+    margin-top: 0.5rem;
+  }
 }
 .feature {
   margin: 1rem;

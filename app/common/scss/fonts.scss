@@ -18,7 +18,7 @@ title {
 }
 strong, b {
   font: {
-    weight: 400
+    weight: 600
   }
 }
 h1 {font-size: 2rem;}
@@ -28,9 +28,10 @@ h2 {font-size: 1.82rem;}
   text-transform: capitalize;
 }
 .large {
-  font: {
-    size: 4rem;
-  }
+  font: { size: 4rem; }
+}
+.semi-large {
+  font: { size: 3rem; }
 }
 .ultra-large {
   font: { size: 8rem; }
