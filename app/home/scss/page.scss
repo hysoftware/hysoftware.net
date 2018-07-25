@@ -42,6 +42,20 @@
   a > i[data-hide-gt-xs].fab.fa-github {
     margin-top: 0.5rem;
   }
+  .descriptoin-area {
+    h1 {
+      margin: 0;
+    }
+    .description-area-item {
+      margin: 2rem 0;
+    }
+  }
+  ul.reason-items-mob {
+    list-style-position: inside;
+    li {
+      margin: 0.5rem 0;
+    }
+  }
 }
 .feature {
   margin: 1rem;
