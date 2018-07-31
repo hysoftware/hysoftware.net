@@ -39,7 +39,7 @@
       text-decoration: underline;
     }
   }
-  a > i[data-hide-gt-xs].fab.fa-github {
+  a > i.fab.fa-github {
     margin-top: 0.5rem;
   }
   .descriptoin-area {
@@ -50,10 +50,13 @@
       margin: 2rem 0;
     }
   }
-  ul.reason-items-mob {
-    list-style-position: inside;
-    li {
-      margin: 0.5rem 0;
+  @media only screen and (max-width: 599px) {
+    ul.reason-items-mob-xs {
+      list-style-position: inside;
+      padding: 0;
+      li {
+        margin: 0.5rem 0;
+      }
     }
   }
 }

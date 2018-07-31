@@ -70,54 +70,77 @@
           <div data-flex data-flex-xs="0"></div>
           <section>
             <header>
-              {% set YUNeedUs = _n(
-                  "Why you need me?",
-                  "Why you need us?",
-                  view.users_info.count()
-              ) -%}
               {% set shortP =  _n(
                 'There\'s reasons why you need me',
                 'There\'s reasons why you need us',
                 view.users_info.count()
               ) -%}
-              <h1 data-hide-xs>{{ YUNeedUs }}</h1>
-              <h1 class="text-center" data-hide-gt-xs>{{ YUNeedUs }}</h1>
-              <p data-hide-xs>{{ shortP }}</p>
-              <p class="text-center" data-hide-gt-xs>{{ shortP }}</p>
+              <h1 class="text-center-xs">{{ _n("Why you need me?", "Why you need us?", view.users_info.count()) }}</h1>
+              <p class="text-center-xs">{{ _n(
+                'There\'s reasons why you need me',
+                'There\'s reasons why you need us',
+                view.users_info.count()
+              ) }}</p>
             </header>
             <div data-layout="column" data-layout-align="center center" class="ultra-large banner icon" data-hide-gt-xs>
               <i class="fas fa-circle-notch"></i>
             </div>
-            <ul data-hide-xs>
-              {% include('reason_items.html') -%}
+            <ul class="text-center-xs reason-items-mob-xs">
+              <li>
+                {{_n(
+                  "I can write hight-quality code as you can see",
+                  "We can write hight-quality code as you can see",
+                  view.users_info.count()
+                )}}
+                {% if view.users_info.count() > 1 -%}
+                  <a href="{{ url('user:about') }}">{{_("Each developer's github")}}</a>
+                {% else -%}
+                  <a href="https://github.com/{{ view.users_info.first().github }}" target="_blank">
+                    {{_("{}'s Github").format(view.users_info[0].first_name)}}
+                  </a>
+                {%- endif %}
+              </li>
+              <li>{{_n(
+                "I'm usually writing code with following <strong>Agile style</strong>. This is also known as "
+                "'Test/Behavior driven development' that means I write the test to check "
+                "whether the code works properly or not before I write the actual code. "
+                "By doing this, the number of the bug will be incredibly reduced.",
+
+                "We're usually writing code with following <strong>Agile style</strong>. This is also known as "
+                "'Test/Behavior driven development' that means we write the test to check "
+                "whether the code works properly or not before we write the actual code. "
+                "By doing this, the number of the bug will be incredibly reduced.",
+
+                view.users_info.count()
+              ) | safe }}</li>
+              <li>
+                {{ _n(
+                  "In addition to high quality code, I can also write good-translations.",
+                  "In addition to high quality code, we can also write good-translations.",
+                  view.users_info.count()
+                ) }}
+              </li>
             </ul>
-            <ol data-hide-gt-xs class="text-center reason-items-mob">
-              {% include('reason_items.html') -%}
-            </ol>
           </section>
         </div>
         <div data-layout="row" data-layout-xs="column" class="container description-area-item">
           <section>
             <header>
-              {% set iLoveOSS = _n(
+              <h1 class="text-center-xs">{{ _n(
                 'I <i class="fas fa-heart"></i> Open-Source',
                 'We <i class="fas fa-heart"></i> Open-Source',
                 view.users_info.count()
-              ) -%}
-              <h1 data-hide-xs>{{ iLoveOSS | safe }}</h1>
-              <h1 class="text-center" data-hide-gt-xs>{{ iLoveOSS | safe }}</h1>
+              ) | safe }}</h1>
             </header>
             <div data-layout="column" data-layout-align="center center" class="ultra-large banner icon" data-hide-gt-xs>
               <i class="fab fa-osi"></i>
             </div>
-            {% set description =  _(
+            <p class="text-center-xs">{{ _(
               "While many software engineers don't disclose their code, all staff at "
               "hysoft are required to have Github account. It means all the software "
               "engineer at hysoft must have the activities of open source software "
               "development."
-            ) -%}
-            <p data-hide-xs>{{ description }}}</p>
-            <p data-hide-gt-xs class="text-center">{{ description }}}</p>
+            ) }}}</p>
           </section>
           <div data-flex></div>
           <div data-layout="column" data-layout-align="center center" class="ultra-large banner icon" data-hide-xs>
@@ -131,28 +154,23 @@
           <div data-flex></div>
           <section>
             <header>
-              {% set thisWebAppIsOSS = _("This webapp is open source") -%}
-              <h1 data-hide-xs>{{ thisWebAppIsOSS }}</h1>
-              <h1 class="text-center" data-hide-gt-xs>{{ thisWebAppIsOSS }}</h1>
+              <h1 class="text-center-xs">{{ _("This webapp is open source") }}</h1>
             </header>
             <div data-layout="column" data-hide-gt-xs data-layout-align="center center" class="ultra-large banner icon">
               <i class="fab fa-github"></i>
             </div>
-            {% macro description() -%}
+            <p class="text-center-xs">
               {{_("As you can see")}}
               <a href="{{ settings.SOURCE_URL }}" target="_blank">
                 {{ _("this page") }}
               </a>{{_(", ")}}
               {{ _("this webapp is open-source and there's nothing that is hidden.") }}
-            {%- endmacro %}
-            <p data-hide-xs>{{ description() }}</p>
-            <p class="text-center" data-hide-gt-xs>{{ description() }}</p>
+            </p>
             <p>
               <a href="{{ settings.SOURCE_URL }}" target="_blank"
                 class="md-raised md-primary"
                 data-md-button>
-                <i data-hide-xs class="fab fa-github"></i>
-                <i data-hide-gt-xs class="semi-large fab fa-github"></i>
+                <i class="fab fa-github semi-large-xs"></i>
                 <br data-hide-gt-xs>
                 {{_("Read the code at Github")}}
               </a>
@@ -162,22 +180,18 @@
         <div data-layout="row" data-layout-xs="column" class="container description-area-item">
           <section>
             <header>
-              {% set whoami = _n("Who am I?", "Who are we?", view.users_info.count()) -%}
-              <h1 data-hide-xs>{{ whoami }}</h1>
-              <h1 data-hide-gt-xs class="text-center">{{ whoami }}</h1>
+              <h1 class="text-center-xs">{{ _n("Who am I?", "Who are we?", view.users_info.count()) }}</h1>
             </header>
             <div data-layout="column" data-layout-align="center center" class="ultra-large banner icon" data-hide-gt-xs>
               <i class="fas fa-users"></i>
             </div>
-            {% set description =  _n(
+            <p class="text-center-xs">{{ _n(
               "For my detail, please visit About page. "
               "You can see what I can handle, what I can write, and my sample code.",
               "For individuals detail, please visit About page. "
               "You can see what we can handle, what we can write, and our sample code.",
               view.users_info.count()
-            ) -%}
-            <p data-hide-xs>{{ description }}</p>
-            <p class="text-center" data-hide-gt-xs>{{ description }}</p>
+            ) }}</p>
             <div data-layout="row" data-layout-align="center none">
               <a href="{{ url('user:about') }}" data-md-button class="md-raised md-primary">
                 {{_("Visit About page")}}

@@ -33,6 +33,11 @@ h2 {font-size: 1.82rem;}
 .semi-large {
   font: { size: 3rem; }
 }
+@media only screen and (max-width: 599px) {
+  .semi-large-xs {
+    font: { size: 3rem; }
+  }
+}
 .ultra-large {
   font: { size: 8rem; }
 }
