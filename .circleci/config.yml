@@ -35,7 +35,7 @@ jobs:
         environment:
           DJANGO_SETTINGS_FACTORY: app.settings.testing.TestConfig
           RECAPTCHA_TESTING: "True"
-          DATA_VERSION: 0.0.48
+          DATA_VERSION: 0.0.50
     working_directory: ~/hysoftware
     steps:
       - attach_workspace:
