@@ -10,12 +10,12 @@
     <div class="title" data-layout="column"
       data-layout-align="center start"
       data-layout-align-xs="center center">
-      <h1 data-ng-class="{'active': particlesLoaded}">{{ _n(
+      <h1 data-ng-class="{'active': particlesLoaded}" class="text-center-xs">{{ _n(
         "Freelance software engineer is here",
         "Freelance software engineers are here",
         view.users_info.count()
       ) }}</h1>
-      <p data-ng-class="{'active': particlesLoaded}">{{ view.pitch }}</p>
+      <p data-ng-class="{'active': particlesLoaded}" class="text-center-xs">{{ view.pitch }}</p>
     </div>
   </header>
   <div data-layout="row" data-layout-align="center none">
@@ -64,7 +64,7 @@
       </section>
       <div data-layout="column" data-layout-align="none center" class="descriptoin-area">
         <div data-layout="row" data-layout-xs="column" class="container description-area-item">
-          <div data-layout="column" data-layout-align="center center" class="ultra-large banner icon" data-hide-xs>
+          <div data-layout="column" data-layout-align="center center" class="ultra-large icon" data-hide-xs>
             <i class="fas fa-circle-notch"></i>
           </div>
           <div data-flex data-flex-xs="0"></div>
@@ -82,7 +82,7 @@
                 view.users_info.count()
               ) }}</p>
             </header>
-            <div data-layout="column" data-layout-align="center center" class="ultra-large banner icon" data-hide-gt-xs>
+            <div data-layout="column" data-layout-align="center center" class="ultra-large icon" data-hide-gt-xs>
               <i class="fas fa-circle-notch"></i>
             </div>
             <ul class="text-center-xs reason-items-mob-xs">
@@ -132,7 +132,7 @@
                 view.users_info.count()
               ) | safe }}</h1>
             </header>
-            <div data-layout="column" data-layout-align="center center" class="ultra-large banner icon" data-hide-gt-xs>
+            <div data-layout="column" data-layout-align="center center" class="ultra-large icon" data-hide-gt-xs>
               <i class="fab fa-osi"></i>
             </div>
             <p class="text-center-xs">{{ _(
@@ -143,12 +143,12 @@
             ) }}}</p>
           </section>
           <div data-flex></div>
-          <div data-layout="column" data-layout-align="center center" class="ultra-large banner icon" data-hide-xs>
+          <div data-layout="column" data-layout-align="center center" class="ultra-large icon" data-hide-xs>
             <i class="fab fa-osi"></i>
           </div>
         </div>
         <div data-layout="row" data-layout-xs="column" class="container  description-area-item">
-          <div data-layout="column" data-hide-xs data-layout-align="center center" class="ultra-large banner icon">
+          <div data-layout="column" data-hide-xs data-layout-align="center center" class="ultra-large icon">
             <i class="fab fa-github"></i>
           </div>
           <div data-flex></div>
@@ -156,7 +156,7 @@
             <header>
               <h1 class="text-center-xs">{{ _("This webapp is open source") }}</h1>
             </header>
-            <div data-layout="column" data-hide-gt-xs data-layout-align="center center" class="ultra-large banner icon">
+            <div data-layout="column" data-hide-gt-xs data-layout-align="center center" class="ultra-large icon">
               <i class="fab fa-github"></i>
             </div>
             <p class="text-center-xs">
@@ -166,13 +166,13 @@
               </a>{{_(", ")}}
               {{ _("this webapp is open-source and there's nothing that is hidden.") }}
             </p>
-            <p>
+            <p class="text-center-xs">
               <a href="{{ settings.SOURCE_URL }}" target="_blank"
                 class="md-raised md-primary"
                 data-md-button>
                 <i class="fab fa-github semi-large-xs"></i>
                 <br data-hide-gt-xs>
-                {{_("Read the code at Github")}}
+                {{_("Read the code")}}
               </a>
             </p>
           </section>
@@ -182,7 +182,7 @@
             <header>
               <h1 class="text-center-xs">{{ _n("Who am I?", "Who are we?", view.users_info.count()) }}</h1>
             </header>
-            <div data-layout="column" data-layout-align="center center" class="ultra-large banner icon" data-hide-gt-xs>
+            <div data-layout="column" data-layout-align="center center" class="ultra-large icon" data-hide-gt-xs>
               <i class="fas fa-users"></i>
             </div>
             <p class="text-center-xs">{{ _n(
@@ -199,7 +199,7 @@
             </div>
           </section>
           <div data-flex></div>
-          <div data-layout="column" data-layout-align="center center" class="ultra-large banner icon" data-hide-xs>
+          <div data-layout="column" data-layout-align="center center" class="ultra-large icon" data-hide-xs>
             <i class="fas fa-users"></i>
           </div>
         </div>

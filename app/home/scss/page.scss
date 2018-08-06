@@ -24,12 +24,10 @@
   }
   .icon {
     color: #757575;
+    margin: 1rem;
     .fas.fa-circle-notch {
       animation: spin 2s linear infinite;
     }
-  }
-  .banner {
-    margin-right: 1rem;
   }
   a:not([data-md-button]) {
     text-decoration: none;
