@@ -7,7 +7,6 @@ import json
 import re
 import os
 
-from django.conf import global_settings as default
 from .devel import DevelConfig
 
 
@@ -30,13 +29,6 @@ class PublicConfig(DevelConfig):
             "PORT": os.environ["DB_PORT"]
         }
     }
-
-    DEFAULT_FILE_STORAGE = \
-        os.environ.get("DEFAULT_FILE_STORAGE") or \
-        default.DEFAULT_FILE_STORAGE
-    AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
-    AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
-    AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
 
     RECAPTCHA_PUBLIC_KEY = os.environ["RECAPTCHA_PUBLIC_KEY"]
     RECAPTCHA_PRIVATE_KEY = os.environ["RECAPTCHA_PRIVATE_KEY"]
