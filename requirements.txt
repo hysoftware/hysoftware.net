@@ -34,7 +34,6 @@ mccabe==0.6.1             # via flake8
 msgpack-python==0.5.6
 pillow==5.2.0
 pip-tools==2.0.2
-psycopg2==2.7.5
 pycodestyle==2.3.1        # via flake8
 pydocstyle==2.1.1         # via flake8-docstrings
 pyflakes==1.6.0           # via flake8
@@ -47,5 +46,4 @@ requests==2.19.1
 six==1.11.0               # via mando, pip-tools, pydocstyle, qrcode
 snowballstemmer==1.2.1    # via pydocstyle
 urllib3==1.23             # via requests
-uwsgi==2.0.17.1
 vine==1.1.4               # via amqp

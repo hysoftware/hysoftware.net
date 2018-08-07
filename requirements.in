@@ -11,11 +11,9 @@ flake8-docstrings
 github-release-ci
 Jinja2
 Markdown
-psycopg2
 Pillow
 pip-tools
 requests
 radon
 redis
 msgpack-python
-uwsgi
