@@ -1,0 +1,59 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: node:latest
+    working_directory: ~/hysoftware
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - hysoftware-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      - run:
+          name: "Install Frontend Dependencies"
+          command: |
+            npm i -g @angular/cli
+            yarn
+      - save_cache:
+          key: hysoftware-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          paths:
+            - "./node_modules"
+      - run:
+          name: "Build the script"
+          command: npm run build
+      - store_artifacts:
+          path: ./dist
+          destination: dist
+
+release_filter: &release_filter
+  tags:
+    only: /^(?:[0-9]+\.){2}[0-9].*/
+  branches:
+    ignore: /.*/
+
+dev_filter: &dev_filter
+  tags:
+    ignore: /^(?:[0-9]+\.){2}[0-9].*/
+
+workflows:
+  version: 2
+  default:
+    jobs:
+      - build:
+          filters:
+            << : *dev_filter
+      # - backend_test:
+      #     requires:
+      #       - build
+      #     filters:
+      #       << : *dev_filter
+  version_tag:
+    jobs:
+      - build:
+          filters:
+            << : *release_filter
+      # - backend_test:
+      #     requires:
+      #       - build
+      #     filters:
+      #       << : *release_filter
