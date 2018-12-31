@@ -1,5 +1,7 @@
 div.page {
-  height: 100%;
+  position: relative;
+  min-height: 100vh;
+  padding: 1rem;
 }
 a.withIcon {
   padding: 0.5rem;
