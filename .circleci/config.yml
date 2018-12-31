@@ -42,7 +42,7 @@ jobs:
           command: aws s3 sync ./dist/hysoftware/ s3://hysoftware/ --exact-timestamps --delete
       - run:
           name: "Invalidate CDN"
-          command: aws cloudfront create-invalidation --distribution-id E1XIAMN4P1JC49 --paths '*'
+          command: aws cloudfront create-invalidation --distribution-id E1XIAMN4P1JC49 --paths '/*'
 
 release_filter: &release_filter
   tags:
