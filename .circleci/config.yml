@@ -24,6 +24,23 @@ jobs:
       - store_artifacts:
           path: ./dist
           destination: dist
+      - persist_to_workspace:
+          root: .
+          paths:
+            - dist/hysoftware
+  deploy:
+    docker:
+      - image: python:latest
+    working_directory: ~/hysoftware
+    steps:
+      - attach_workspace:
+          at: dist/hysoftware
+      - run:
+          name: "Install AWS CLI"
+          command: pip install awscli
+      - run:
+          name: "Upload"
+          command: aws s3 dist/hysoftware/ s3://hysoftware --exact-timestamps --delete
 
 release_filter: &release_filter
   tags:
@@ -42,18 +59,18 @@ workflows:
       - build:
           filters:
             << : *dev_filter
-      # - backend_test:
-      #     requires:
-      #       - build
-      #     filters:
-      #       << : *dev_filter
+      - deploy:
+          requires:
+            - build
+          filters:
+            << : *dev_filter
   version_tag:
     jobs:
       - build:
           filters:
             << : *release_filter
-      # - backend_test:
-      #     requires:
-      #       - build
-      #     filters:
-      #       << : *release_filter
+      - deploy:
+          requires:
+            - build
+          filters:
+            << : *release_filter
