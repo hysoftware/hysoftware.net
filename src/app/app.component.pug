@@ -1,0 +1,40 @@
+div(fxLayout='column' fxLayoutAlign="none center")
+  section.container
+    header
+      h1 Hiroaki Yamamoto
+      p Coder / Hacker / Software &amp; Web Engineer / Translator / etc...
+    section
+      header
+        h2 SNS
+      a.withIcon(
+        mat-raised-button
+        '*ngFor'='let item of snsList'
+        '[href]'='item.link' target='_blank'
+      )
+        | #[i.slg('[ngClass]'='item.icon')] #[br] {{ item.name }}
+    section
+      header
+        h2 Misc
+      a.withIcon(
+        mat-raised-button
+        '*ngFor'='let item of misc'
+        '[href]'='item.link' target='_blank'
+      )
+        | #[i.slg('[ngClass]'='item.icon')] #[br] {{ item.name }}
+    section
+      header
+        h3 Where is hysoftware.net using Django?
+      p.
+        After I launched my website, I found launching webapp wan't really
+        effective to get jobs.
+      p.
+        If you want to see the webapp, check
+        #[a(href="https://github.com/hysoftware/hysoftware.net/tree/legacy-2018" target="_blank") this].
+    section
+      header
+        h3 How to contact me
+      p.
+        If you want to contact me, use SNS or email me directly. The reason why
+        I don't disclose my email address on surface is to avoid insincere
+        job scouts / offerings. However you can get my email address very easily
+        as long as you are familar with this world.

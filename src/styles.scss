@@ -1,0 +1,17 @@
+@import '@fortawesome/fontawesome-free/css/fontawesome.css';
+@import '@fortawesome/fontawesome-free/css/brands.css';
+@import '@fortawesome/fontawesome-free/css/solid.css';
+
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #282C34;
+  color: #eeeef0
+}
+.container {
+  width: 80%;
+}
+a {
+  color: white;
+}
