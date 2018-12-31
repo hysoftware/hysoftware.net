@@ -1,14 +1,11 @@
 # hysoftware.net webapp
 [![CircleCI]][CircleCILink]
-[![Test Coverage]][Test Coverage Link]
 [![Code Climate]][Code Climate Link]
 
 [CircleCI]: https://circleci.com/gh/hysoftware/hysoftware.net/tree/master.svg?style=svg
 [CircleCILink]: https://circleci.com/gh/hysoftware/hysoftware.net/tree/master
 [Code Climate]: https://codeclimate.com/github/hysoftware/hysoftware.net/badges/gpa.svg
 [Code Climate Link]: https://codeclimate.com/github/hysoftware/hysoftware.net
-[Test Coverage]: https://api.codeclimate.com/v1/badges/b57a7bcc3b1fafbc8529/test_coverage
-[Test Coverage Link]: https://codeclimate.com/github/hysoftware/hysoftware.net/test_coverage
 
 ## What this?
 This is a website of [hysoftware].
