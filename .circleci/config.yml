@@ -48,8 +48,8 @@ jobs:
           command: >
             curl -X DELETE \
               -H 'Content-Type:application/json' \
-              -H 'X-Auth-Key:${FLARE_API}' \
-              -H 'X-Auth-Email:${FLARE_EMAIL}' \
+              -H "X-Auth-Key:${FLARE_API}" \
+              -H "X-Auth-Email:${FLARE_EMAIL}" \
               https://api.cloudflare.com/client/v4/zones/${FLARE_ZONE}/purge_cache
 
 release_filter: &release_filter
