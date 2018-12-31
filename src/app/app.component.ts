@@ -17,6 +17,11 @@ export class AppComponent {
       icon: 'fas fa-file-pdf',
       link: '../assets/resume.pdf',
       name: 'Resume (PDF)'
+    },
+    {
+      icon: 'fas fa-file-code',
+      link: 'https://github.com/hysoftware/hysoftware.net',
+      name: 'Code of This Page'
     }
   ];
   public snsList: Link[] = [
