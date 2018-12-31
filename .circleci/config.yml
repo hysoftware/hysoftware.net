@@ -40,7 +40,7 @@ jobs:
           command: pip install awscli
       - run:
           name: "Upload"
-          command: aws s3 sync dist/hysoftware/ s3://hysoftware --exact-timestamps --delete
+          command: cd dist/hysoftware && aws s3 sync . s3://hysoftware/ --exact-timestamps --delete
 
 release_filter: &release_filter
   tags:
