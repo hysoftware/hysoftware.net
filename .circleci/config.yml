@@ -34,7 +34,7 @@ jobs:
     working_directory: ~/hysoftware
     steps:
       - attach_workspace:
-          at: dist/hysoftware
+          at: .
       - run:
           name: "Install AWS CLI"
           command: pip install awscli
