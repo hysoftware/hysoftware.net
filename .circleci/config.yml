@@ -46,9 +46,9 @@ jobs:
       - run:
           name: "Invalidate CDN (2)"
           command: >
-            curl -x DELETE
-              -H 'X-Auth-Key: ${FLARE_API}'
-              -H 'X-Auth-Email: ${FLARE_EMAIL}'
+            curl -x DELETE \
+              -H 'X-Auth-Key: ${FLARE_API}' \
+              -H 'X-Auth-Email: ${FLARE_EMAIL}' \
               https://api.cloudflare.com/client/v4/zones/${FLARE_ZONE}/purge_cache
 
 release_filter: &release_filter
