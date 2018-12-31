@@ -20,7 +20,7 @@ jobs:
             - "./node_modules"
       - run:
           name: "Build the script"
-          command: npm run build --prod
+          command: ng run build --prod
       - store_artifacts:
           path: ./dist
           destination: dist
