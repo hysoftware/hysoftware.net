@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FlexModule } from '@angular/flex-layout';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MatButtonModule } from '@angular/material';
 
@@ -16,7 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FlexModule,
+    FlexLayoutModule,
     MatButtonModule,
   ],
   providers: [],

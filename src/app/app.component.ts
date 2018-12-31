@@ -12,14 +12,14 @@ class Link {
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  protected misc: Link[] = [
+  public misc: Link[] = [
     {
       icon: 'fas fa-file-pdf',
       link: '../assets/resume.pdf',
       name: 'Resume (PDF)'
     }
   ];
-  protected snsList: Link[] = [
+  public snsList: Link[] = [
     {
       icon: 'fab fa-github',
       link: 'https://github.com/hiroaki-yamamoto',
