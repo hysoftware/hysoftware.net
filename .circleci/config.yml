@@ -12,7 +12,6 @@ jobs:
       - run:
           name: "Install Frontend Dependencies"
           command: |
-            npm i -g @angular/cli
             yarn
       - save_cache:
           key: hysoftware-{{ .Branch }}-{{ checksum "yarn.lock" }}
@@ -20,7 +19,7 @@ jobs:
             - "./node_modules"
       - run:
           name: "Build the script"
-          command: ng build --prod
+          command: npm run build -- --prod
       - store_artifacts:
           path: ./dist
           destination: dist
