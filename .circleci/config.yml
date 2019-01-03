@@ -8,13 +8,13 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - hysoftware-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - hysoftware-{{ .Branch }}-{{ checksum "package-lock.lock" }}
       - run:
           name: "Install Frontend Dependencies"
           command: |
-            yarn
+            npm i
       - save_cache:
-          key: hysoftware-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          key: hysoftware-{{ .Branch }}-{{ checksum "package-lock.lock" }}
           paths:
             - "./node_modules"
       - run:
