@@ -12,7 +12,7 @@ jobs:
       - run:
           name: "Install Frontend Dependencies"
           command: |
-            npm i
+            npm i && npm run postinstall
       - save_cache:
           key: hysoftware-{{ .Branch }}-{{ checksum "package-lock.lock" }}
           paths:
