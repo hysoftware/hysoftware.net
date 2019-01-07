@@ -13,7 +13,7 @@ This is a website of [hysoftware].
 ## License
 
 The MIT License (MIT)
-Copyright (c) 2016- Hiroaki Yamamoto
+Copyright (c) 2019- Hiroaki Yamamoto
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
