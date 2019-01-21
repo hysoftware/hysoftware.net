@@ -26,8 +26,8 @@ jobs:
       - run:
           name: "Test"
           command: |
-            ../cc-test-reporter before-build
-            npm run test
+            ../cc-test-reporter before-build;
+            npm run test;
             ../cc-test-reporter after-build -t lcov --exit-code ${?} ./coverage/lconv.info
       - run:
           name: "E2E Test"
