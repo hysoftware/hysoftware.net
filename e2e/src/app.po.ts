@@ -5,7 +5,11 @@ export class AppPage {
     return browser.get('/');
   }
 
-  getTitleText() {
-    return element(by.css('app-root h1')).getText();
+  getSNSLinks() {
+    return element.all(by.exactRepeater('let item of snsList'));
+  }
+
+  getMiscLinks() {
+    return element.all(by.exactRepeater('let item of misc'));
   }
 }
