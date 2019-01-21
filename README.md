@@ -1,7 +1,6 @@
 # hysoftware.net webapp
 [![CircleCI]][CircleCILink]
 [![Code Climate]][Code Climate Link]
-
 [![Test Coverage]][Test Coverage Link]
 
 [CircleCI]: https://circleci.com/gh/hysoftware/hysoftware.net/tree/master.svg?style=svg
