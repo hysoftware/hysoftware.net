@@ -13,7 +13,8 @@ jobs:
           name: "Download Code Climate tool"
           command: |
             curl 'https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64' \
-              -o ../cc-test-reporter
+              -o ../cc-test-reporter &&
+            chmod u+x ../cc-test-reporter
       - run:
           name: "Install Frontend Dependencies"
           command: |
