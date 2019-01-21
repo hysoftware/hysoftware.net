@@ -10,6 +10,11 @@ jobs:
           keys:
             - hysoftware-{{ .Branch }}-{{ checksum "package-lock.json" }}
       - run:
+          name: "Download Code Climate tool"
+          command: |
+            curl 'https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64' \
+              -o ../cc-test-reporter
+      - run:
           name: "Install Frontend Dependencies"
           command: |
             npm i && npm run postinstall
@@ -19,7 +24,13 @@ jobs:
             - "./node_modules"
       - run:
           name: "Test"
-          command: npm run test && npm run e2e
+          command: |
+          ../cc-test-reporter before-build &&
+          npm run test
+          ../cc-test-reporter after-build --exit-code ${?}
+      - run:
+          name: "E2E Test"
+          command: npm run e2e
       - run:
           name: "Build the script"
           command: npm run build -- --prod
