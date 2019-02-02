@@ -26,13 +26,13 @@
     "@fortawesome/fontawesome-free": "^5.6.3",
     "core-js": "^2.6.2",
     "ng-cli-pug-loader": "^0.1.7",
-    "rxjs": "~6.3.3",
+    "rxjs": "~6.4.0",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.28"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.12.2",
-    "@angular/cli": "~7.2.2",
+    "@angular-devkit/build-angular": "~0.13.0",
+    "@angular/cli": "~7.3.0",
     "@angular/compiler-cli": "~7.2.1",
     "@angular/language-service": "~7.2.1",
     "@types/jasmine": "~3.3.7",
@@ -52,6 +52,6 @@
     "pug-loader": "^2.4.0",
     "ts-node": "~8.0.0",
     "tslint": "~5.12.1",
-    "typescript": "3.2.4"
+    "typescript": "3.3.1"
   }
 }
