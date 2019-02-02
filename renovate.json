@@ -23,6 +23,6 @@
   },
   "packageRules": {
     "packageNames": ["typescript"],
-    "allowedVersions": "<3.3",
+    "allowedVersions": "<3.3"
   }
 }
