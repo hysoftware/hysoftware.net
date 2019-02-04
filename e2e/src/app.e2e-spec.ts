@@ -26,4 +26,12 @@ describe('workspace-project App', () => {
         .toBeTruthy('Need to be displayed');
     });
   });
+  it('taget=_blank vlun check', () => {
+    page.getTargetBlankLinks().each(el => {
+      el.getAttribute('rel').then(val => {
+        expect(val.split(/\s+/)).toContain('noopener');
+        expect(val.split(/\s+/)).toContain('noreferrer');
+      });
+    });
+  });
 });

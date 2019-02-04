@@ -12,4 +12,8 @@ export class AppPage {
   getMiscLinks() {
     return element.all(by.exactRepeater('let item of misc'));
   }
+
+  getTargetBlankLinks() {
+    return element.all(by.css('[target="_blank"]'));
+  }
 }
