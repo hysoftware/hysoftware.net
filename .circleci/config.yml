@@ -24,6 +24,9 @@ jobs:
           paths:
             - "./node_modules"
       - run:
+          name: "Lint"
+          command: npm run lint
+      - run:
           name: "Test"
           command: |
             ../cc-test-reporter before-build;
