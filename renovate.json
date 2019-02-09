@@ -6,13 +6,7 @@
   "rangeStrategy": "replace",
   "lockFileMaintenance": {
     "enabled": true,
-    "schedule": "every weekend",
-    "packageRules": [
-      {
-        "packageNames": ["typescript"],
-        "allowedVersions": "<3.3.0"
-      }
-    ]
+    "schedule": "every weekend"
   },
   "vulnerabilityAlerts": {
     "enabled": true,
@@ -30,6 +24,7 @@
   "packageRules": [
     {
       "packageNames": ["typescript"],
+      "groupName": "typescript",
       "allowedVersions": "<3.3.0"
     }
   ]
