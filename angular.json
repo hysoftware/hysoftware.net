@@ -126,7 +126,7 @@
               "devServerTarget": "hysoftware:serve:production"
             },
             "ci": {
-              "devServerTarget": "hysoftware:serve"
+              "devServerTarget": "hysoftware:serve:ci"
             }
           }
         },
