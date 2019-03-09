@@ -5,8 +5,7 @@
   ],
   "rangeStrategy": "replace",
   "lockFileMaintenance": {
-    "enabled": true,
-    "schedule": "every weekend"
+    "enabled": false
   },
   "vulnerabilityAlerts": {
     "enabled": true,
