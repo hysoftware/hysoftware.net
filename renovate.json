@@ -40,7 +40,7 @@
         "groupName": "typescript",
         "allowedVersions": "<3.3.0"
       }
-    ],
+    ]
   },
   "packageRules": [
     {
