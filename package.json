@@ -28,7 +28,7 @@
     "ng-cli-pug-loader": "^0.1.7",
     "rxjs": "~6.4.0",
     "tslib": "^1.9.0",
-    "typescript": "^3.1.6",
+    "typescript": "^3.2.4",
     "undefined": "^0.1.0",
     "zone.js": "~0.8.28"
   },

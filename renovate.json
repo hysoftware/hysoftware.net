@@ -33,7 +33,14 @@
   "major": {
     "automerge": false,
     "groupName": "Major Updates",
-    "schedule": "every weekend"
+    "schedule": "every weekend",
+    "packageRules": [
+      {
+        "packageNames": ["typescript"],
+        "groupName": "typescript",
+        "allowedVersions": "<3.3.0"
+      }
+    ],
   },
   "packageRules": [
     {
