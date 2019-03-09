@@ -6,11 +6,25 @@
   "rangeStrategy": "replace",
   "lockFileMaintenance": {
     "enabled": true,
-    "schedule": "every weekend"
+    "schedule": "every weekend",
+    "packageRules": [
+      {
+        "packageNames": ["typescript"],
+        "groupName": "typescript",
+        "allowedVersions": "<3.3.0"
+      }
+    ]
   },
   "vulnerabilityAlerts": {
     "enabled": true,
-    "schedule": "every weekend"
+    "schedule": "every weekend",
+    "packageRules": [
+      {
+        "packageNames": ["typescript"],
+        "groupName": "typescript",
+        "allowedVersions": "<3.3.0"
+      }
+    ]
   },
   "assignees": ["hiroaki-yamamoto"],
   "reviewers": ["hiroaki-yamamoto"],
