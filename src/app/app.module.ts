@@ -8,10 +8,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { VulModule } from './vul/vul.module';
+import { NormalComponent } from './normal/normal.component';
+import { LinksComponent } from './links/links.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NormalComponent,
+    LinksComponent
   ],
   imports: [
     BrowserModule,
