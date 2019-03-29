@@ -10,12 +10,14 @@ import { AppComponent } from './app.component';
 import { VulModule } from './vul/vul.module';
 import { NormalComponent } from './normal/normal.component';
 import { LinksComponent } from './links/links.component';
+import { DeadComponent } from './dead/dead.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NormalComponent,
-    LinksComponent
+    LinksComponent,
+    DeadComponent
   ],
   imports: [
     BrowserModule,
