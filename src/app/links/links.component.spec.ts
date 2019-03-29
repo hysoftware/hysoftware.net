@@ -24,7 +24,6 @@ describe('LinksComponent', () => {
   });
 
   it('should have as misc the list of misc links', () => {
-    const fixture = TestBed.createComponent(LinksComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app.misc).toEqual([
       {
@@ -41,7 +40,6 @@ describe('LinksComponent', () => {
   });
 
   it(`should have as snsList the list of my sns`, () => {
-    const fixture = TestBed.createComponent(LinksComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app.snsList).toEqual([
       {
