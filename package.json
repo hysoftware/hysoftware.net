@@ -26,7 +26,7 @@
     "@fortawesome/fontawesome-free": "^5.8.1",
     "core-js": "^2.6.5",
     "ng-cli-pug-loader": "^0.1.7",
-    "rxjs": "~6.4.0",
+    "rxjs": "~6.5.0",
     "tslib": "^1.9.0",
     "typescript": "^3.2.4",
     "undefined": "^0.1.0",
