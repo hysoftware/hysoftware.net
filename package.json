@@ -27,7 +27,7 @@
     "core-js": "^3.0.0",
     "ng-cli-pug-loader": "^0.1.7",
     "node-sass": "^4.12.0",
-    "rxjs": "^6.5.1",
+    "rxjs": "^6.5.2",
     "tslib": "^1.9.3",
     "typescript": "^3.4.5",
     "undefined": "^0.1.0",
