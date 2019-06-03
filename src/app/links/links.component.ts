@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-class Link {
-  public icon: string | string[];
-  public link: string;
-  public name: string;
+interface Link {
+  icon: string | string[];
+  link: string;
+  name: string;
 }
 
 @Component({
