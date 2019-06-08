@@ -2,12 +2,12 @@
   "name": "hysoftware",
   "version": "0.0.0",
   "scripts": {
-    "ng": "$(npm bin)/ng",
-    "start": "$(npm bin)/ng serve",
-    "build": "$(npm bin)/ng build",
-    "test": "$(npm bin)/ng test",
-    "lint": "$(npm bin)/ng lint",
-    "e2e": "$(npm bin)/ng e2e"
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
