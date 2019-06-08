@@ -32,9 +32,9 @@ jobs:
             ../cc-test-reporter before-build;
             npm run test -- --no-progress;
             ../cc-test-reporter after-build -t lcov --exit-code ${?} ./coverage/lconv.info
-      - run:
-          name: "E2E Test"
-          command: npm run e2e -- -c ci
+      # - run:
+      #     name: "E2E Test"
+      #     command: npm run e2e -- -c ci
       - run:
           name: "Build the script"
           command: npm run build -- --prod --no-progress
