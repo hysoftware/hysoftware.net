@@ -15,11 +15,6 @@ export class LinksComponent implements OnInit {
 
   public misc: Link[] = [
     {
-      icon: 'fas fa-file-pdf',
-      link: '../assets/resume.pdf',
-      name: 'Resume (PDF)'
-    },
-    {
       icon: 'fas fa-file-code',
       link: 'https://github.com/hysoftware/hysoftware.net',
       name: 'Code of This Page'
