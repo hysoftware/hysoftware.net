@@ -1,0 +1,12 @@
+version: "3.7"
+services:
+  app:
+    build:
+      context: '.'
+    stop_signal: SIGINT
+    restart: unless-stopped
+    ports:
+      - 4200:4200
+    volumes:
+      - .:/code
+      - /code/node_modules
