@@ -1,21 +1,21 @@
 {
   extends: ["config:base", "schedule:weekends"],
-  "rangeStrategy": "replace",
-  "lockFileMaintenance": {"enabled": false},
-  "vulnerabilityAlerts": {"enabled": true, "schedule": "every weekend"},
-  "assignees": ["hiroaki-yamamoto"],
-  "reviewers": ["hiroaki-yamamoto"],
-  "groupName": "Updates",
-  "automerge": true,
-  "major": {
-    "automerge": false,
-    "groupName": "Major Updates",
-    "schedule": "every weekend"
+  rangeStrategy: "replace",
+  lockFileMaintenance: {"enabled": false},
+  vulnerabilityAlerts: {"enabled": true, "schedule": "every weekend"},
+  assignees: ["hiroaki-yamamoto"],
+  reviewers: ["hiroaki-yamamoto"],
+  groupName: "Updates",
+  automerge: true,
+  major: {
+    automerge: false,
+    groupName: "Major Updates",
+    schedule: "every weekend"
   },
-  // "packageRules": [
+  // packageRules: [
   //   {
-  //     "packageNames": ["typescript"],
-  //     "allowedVersions": "<3.3.0"
+  //     packageNames: ["typescript"],
+  //     allowedVersions: "<3.3.0"
   //   }
   // ]
 }
