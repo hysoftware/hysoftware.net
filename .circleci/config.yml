@@ -17,26 +17,26 @@ jobs:
             chmod u+x ../cc-test-reporter
       - run:
           name: "Install Frontend Dependencies"
-          command: npm i
+          command: yarn install
       - save_cache:
           key: hysoftware-{{ .Branch }}-{{ checksum "package-lock.json" }}
           paths:
             - "./node_modules"
       - run:
           name: "Lint"
-          command: npm run lint
+          command: yarn run lint
       - run:
           name: "Test"
           command: |
             ../cc-test-reporter before-build;
-            npm run test -- --no-progress;
+            yarn run test -- --no-progress;
             ../cc-test-reporter after-build -t lcov --exit-code ${?} ./coverage/lconv.info
       # - run:
       #     name: "E2E Test"
       #     command: npm run e2e -- -c ci
       - run:
           name: "Build the script"
-          command: npm run build -- --prod --no-progress
+          command: yarn run build -- --prod --no-progress
       - store_artifacts:
           path: ./dist
           destination: dist

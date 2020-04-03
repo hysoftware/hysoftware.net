@@ -1,4 +1,4 @@
-const AngularCompilerPlugin = require('@ngtools/webpack/src');
+const {AngularCompilerPlugin} = require('@ngtools/webpack/src');
 
 module.exports = (config) => {
   config.module.rules.unshift(
@@ -11,14 +11,16 @@ module.exports = (config) => {
   );
 
   const index = config.plugins.findIndex(
-    p => p instanceof AngularCompilerPlugin.AngularCompilerPlugin,
+    p => {
+      return p instanceof AngularCompilerPlugin
+    },
   );
-  const oldOptions = config.plugins[index]._options;
+  const oldOptions = config.plugins[index].options;
   oldOptions.directTemplateLoading = false;
   config.plugins.splice(index);
 
   config.plugins.push(
-    new AngularCompilerPlugin.AngularCompilerPlugin(oldOptions)
+    new AngularCompilerPlugin(oldOptions)
   );
 
   return config;
