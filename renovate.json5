@@ -15,7 +15,7 @@
   packageRules: [
     {
       packageNames: ["typescript"],
-      allowedVersions: ">=3.9.2,<4.0.0"
+      allowedVersions: "<4.0.0"
     }
   ]
 }
