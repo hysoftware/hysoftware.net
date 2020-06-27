@@ -12,10 +12,10 @@
     groupName: "Major Updates",
     schedule: "every weekend"
   },
-  // packageRules: [
-  //   {
-  //     packageNames: ["typescript"],
-  //     allowedVersions: "<3.3.0"
-  //   }
-  // ]
+  packageRules: [
+    {
+      packageNames: ["typescript"],
+      allowedVersions: ">=3.9.2,<4.0.0"
+    }
+  ]
 }
