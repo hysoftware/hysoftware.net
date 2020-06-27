@@ -8,7 +8,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - hysoftware-{{ .Branch }}-{{ checksum "package-lock.json" }}
+            - hysoftware-{{ .Branch }}-{{ checksum "yarn.lock" }}
       - run:
           name: "Download Code Climate tool"
           command: |
@@ -19,7 +19,7 @@ jobs:
           name: "Install Frontend Dependencies"
           command: yarn install
       - save_cache:
-          key: hysoftware-{{ .Branch }}-{{ checksum "package-lock.json" }}
+          key: hysoftware-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
             - "./node_modules"
       - run:
