@@ -29,7 +29,7 @@
     "tslib": "^2.0.0",
     "typescript": "^3.9",
     "undefined": "^0.1.0",
-    "zone.js": "~0.10.3"
+    "zone.js": "~0.11.0"
   },
   "devDependencies": {
     "@angular-builders/custom-webpack": "^10.0.0",
