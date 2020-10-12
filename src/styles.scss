@@ -27,11 +27,6 @@ $frontend-dark-theme: mat-dark-theme($frontend-primary, $frontend-accent, $front
 // that you are using.
 @include angular-material-theme($frontend-light-theme);
 
-
-@import '@fortawesome/fontawesome-free/css/fontawesome.css';
-@import '@fortawesome/fontawesome-free/css/brands.css';
-@import '@fortawesome/fontawesome-free/css/solid.css';
-
 html, body { height: 100%; }
 body {
   margin: 0;

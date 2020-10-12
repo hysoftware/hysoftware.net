@@ -11,6 +11,7 @@ import { VulModule } from './vul/vul.module';
 import { NormalComponent } from './normal/normal.component';
 import { LinksComponent } from './links/links.component';
 import { DeadComponent } from './dead/dead.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { DeadComponent } from './dead/dead.component';
     BrowserAnimationsModule,
     FlexLayoutModule,
     MatButtonModule,
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
