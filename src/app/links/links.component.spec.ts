@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LinksComponent } from './links.component';
+import { faFileCode } from '@fortawesome/free-solid-svg-icons';
+import { faGithub, faGitlab, faLinkedin, faAngellist, faKeybase } from '@fortawesome/free-brands-svg-icons';
 
 describe('LinksComponent', () => {
   let component: LinksComponent;
@@ -27,7 +29,7 @@ describe('LinksComponent', () => {
     const app = fixture.debugElement.componentInstance;
     expect(app.misc).toEqual([
       {
-        icon: 'fas fa-file-code',
+        icon: faFileCode,
         link: 'https://github.com/hysoftware/hysoftware.net',
         name: 'Code of This Page'
       }
@@ -38,27 +40,27 @@ describe('LinksComponent', () => {
     const app = fixture.debugElement.componentInstance;
     expect(app.snsList).toEqual([
       {
-        icon: 'fab fa-github',
+        icon: faGithub,
         link: 'https://github.com/hiroaki-yamamoto',
         name: 'Github',
       },
       {
-        icon: 'fab fa-gitlab',
+        icon: faGitlab,
         link: 'https://gitlab.com/hiroaki-yamamoto',
         name: 'Gitlab',
       },
       {
-        icon: 'fab fa-linkedin',
+        icon: faLinkedin,
         link: 'https://www.linkedin.com/in/hyamatan',
         name: 'Linkedin'
       },
       {
-        icon: 'fab fa-angellist',
+        icon: faAngellist,
         link: 'https://angel.co/hiroaki-yamamoto',
         name: 'Angel List'
       },
       {
-        icon: 'fab fa-keybase',
+        icon: faKeybase,
         link: 'https://keybase.io/hyamamoto',
         name: 'Keybase'
       }
