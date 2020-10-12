@@ -1,19 +1,20 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LinksComponent } from './links.component';
 import { faFileCode } from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faGitlab, faLinkedin, faAngellist, faKeybase } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 describe('LinksComponent', () => {
   let component: LinksComponent;
   let fixture: ComponentFixture<LinksComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ LinksComponent ]
-    })
-    .compileComponents();
-  }));
+      imports: [FontAwesomeModule],
+      declarations: [ LinksComponent ],
+    }).compileComponents();
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(LinksComponent);

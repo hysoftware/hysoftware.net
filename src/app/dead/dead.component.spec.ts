@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DeadComponent } from './dead.component';
 import { LinksComponent } from '../links/links.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 describe('DeadComponent', () => {
   let component: DeadComponent;
@@ -9,7 +10,8 @@ describe('DeadComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [DeadComponent, LinksComponent ]
+      declarations: [DeadComponent, LinksComponent ],
+      imports: [FontAwesomeModule],
     })
     .compileComponents();
   }));
