@@ -3,7 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 @Component({
   selector: 'app-dead',
   styleUrls: ['./dead.component.scss'],
-  templateUrl: './dead.component.pug',
+  templateUrl: './dead.component.html',
 })
 export class DeadComponent implements OnInit {
 

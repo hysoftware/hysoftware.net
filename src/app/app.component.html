@@ -1,0 +1,4 @@
+<div class="page" fxLayout='row' fxLayoutAlign.gt-xs="center center">
+  <app-normal-mode *ngIf="!dead" fxFlex.gt-md="34"></app-normal-mode>
+  <app-dead *ngIf='dead' [rip]='dead' fxFlex.gt-md="34"></app-dead>
+</div>

@@ -1,0 +1,27 @@
+<section>
+  <header><h2>SNS</h2></header>
+  <a class="withIcon"
+    mat-raised-button
+    [href]="item.link"
+    target="_blank"
+    *ngFor="let item of snsList">
+      <i class="slg" [ngClass]='item.icon'></i>
+      <br>
+      {{ item.name }}
+  </a>
+</section>
+
+<section>
+  <header>
+    <h2>Misc</h2>
+  </header>
+  <a class="withIcon"
+    mat-raised-button
+    [href]="item.link"
+    target="_blank"
+    *ngFor="let item of misc">
+      <i class="slg" [ngClass]='item.icon'></i>
+      <br>
+      {{ item.name }}
+  </a>
+</section>

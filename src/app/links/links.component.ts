@@ -9,7 +9,7 @@ interface Link {
 @Component({
   selector: 'app-links',
   styleUrls: ['./links.component.scss'],
-  templateUrl: './links.component.pug',
+  templateUrl: './links.component.html',
 })
 export class LinksComponent implements OnInit {
 
