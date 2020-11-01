@@ -16,6 +16,10 @@
     {
       packageNames: ["typescript"],
       allowedVersions: "<4.0.0"
+    },
+    {
+      packageNames: ["node-sass"],
+      allowedVersions: "<5.0.0"
     }
   ]
 }
