@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { faFileCode } from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faGitlab, faLinkedin, faAngellist, faKeybase } from '@fortawesome/free-brands-svg-icons';
@@ -14,7 +14,7 @@ interface Link {
   styleUrls: ['./links.component.scss'],
   templateUrl: './links.component.html',
 })
-export class LinksComponent implements OnInit {
+export class LinksComponent {
 
   public misc: Link[] = [
     {
@@ -52,8 +52,5 @@ export class LinksComponent implements OnInit {
   ];
 
   constructor() { }
-
-  ngOnInit() {
-  }
 
 }
