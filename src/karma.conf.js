@@ -19,7 +19,7 @@ module.exports = function (config) {
       dir: require('path').join(__dirname, '../coverage'),
       reporters: [
         {type: 'html', subdir: './html'},
-        {type: 'lcovonly', subdir: './', file: 'lconv.info'},
+        {type: 'lcovonly', subdir: './', file: 'lcov.info'},
         {type: 'text-summary'},
       ],
       fixWebpackSourcePaths: true
