@@ -17,10 +17,14 @@ module.exports = function (config) {
     },
     coverageReporter: {
       dir: require('path').join(__dirname, '../coverage'),
-      reports: ['html', 'lcovonly', 'text-summary'],
+      reporters: [
+        {type: 'html', subdir: './html'},
+        {type: 'lcovonly', subdir: './', file: 'lconv.info'},
+        {type: 'text-summary'},
+      ],
       fixWebpackSourcePaths: true
     },
-    reporters: ['progress', 'kjhtml', 'coverage'],
+    reporters: ['progress', 'kjhtml'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
