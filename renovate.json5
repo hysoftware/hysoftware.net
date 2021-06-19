@@ -17,5 +17,9 @@
     //   packageNames: ["karma"],
     //   allowedVersions: "<6.0.0"
     // }
+    {
+      packageName: ["typescript"],
+      allowedVersions: "<4.3.0"
+    }
   ]
 }
