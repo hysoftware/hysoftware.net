@@ -13,9 +13,9 @@
     schedule: "every weekend"
   },
   packageRules: [
-    {
-      packageNames: ["karma"],
-      allowedVersions: "<6.0.0"
-    }
+    // {
+    //   packageNames: ["karma"],
+    //   allowedVersions: "<6.0.0"
+    // }
   ]
 }
