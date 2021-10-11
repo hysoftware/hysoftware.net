@@ -13,13 +13,13 @@
     schedule: "every weekend"
   },
   packageRules: [
-    // {
-    //   packageNames: ["karma"],
-    //   allowedVersions: "<6.0.0"
-    // }
     {
       packageNames: ["typescript"],
       allowedVersions: "<4.3.0"
+    },
+    {
+      packageNames: ["eslint"],
+      allowedVersions: "<8.0.0"
     }
   ]
 }
