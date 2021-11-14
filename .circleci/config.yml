@@ -36,7 +36,7 @@ jobs:
           command: yarn run e2e
       - run:
           name: "Build the script"
-          command: yarn run build -- --prod --no-progress
+          command: yarn run build -- --configuration production --no-progress
       - store_artifacts:
           path: ./dist
           destination: dist
