@@ -71,8 +71,7 @@
           "configurations": {
             "production": {
               "browserTarget": "hysoftware:build:production"
-            },
-            "ci": {"progress": false}
+            }
           }
         },
         "extract-i18n": {
@@ -119,7 +118,7 @@
               "devServerTarget": "hysoftware:serve:production"
             },
             "ci": {
-              "devServerTarget": "hysoftware:serve:ci"
+              "devServerTarget": "hysoftware:serve"
             }
           }
         }
