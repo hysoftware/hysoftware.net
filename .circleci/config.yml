@@ -33,7 +33,7 @@ jobs:
             ../cc-test-reporter after-build -t lcov --exit-code ${?} ./coverage/lconv.info
       - run:
           name: "E2E Test"
-          command: npm run e2e -- -c ci
+          command: yarn run e2e
       - run:
           name: "Build the script"
           command: yarn run build -- --prod --no-progress
