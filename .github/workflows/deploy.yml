@@ -34,7 +34,7 @@ jobs:
       - name: Install AWS Client
         run: pip install awscli
       - name: Upload
-        run: aws s3 sync ./dist/hysoftware/ s3://hysoftware/ --exact-timestamps --delete
+        run: aws s3 sync hysoftware/ s3://hysoftware/ --exact-timestamps --delete
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
