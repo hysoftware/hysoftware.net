@@ -17,10 +17,19 @@ jobs:
         run: pnpm i -s
       - name: Build
         run: pnpm run build -- --configuration production --no-progress
+      - name: Store built files
+        use: actions/upload-artifact@v2
+        with:
+          name: hysoftware-dist
+          path: dist
   deploy:
     runs-on: ubuntu-latest
     needs: build
     steps:
+      - name: "Download built files"
+        uses: actions/download-artifact@v2
+        with:
+          name: hysoftware-dist
       - uses: actions/setup-python@v2
       - name: Install AWS Client
         run: pip install awscli
