@@ -44,4 +44,6 @@ jobs:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
 
       - name: e2e
-        run: pnpm run e2e
+        run: |
+          export CHROME_BIN=$(which chromium-browser)
+          pnpm run e2e
