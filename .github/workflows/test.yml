@@ -28,7 +28,7 @@ jobs:
           cache: pnpm
           cache-dependency-path: pnpm-lock.yaml
       - name: Install Dependencies
-        run: su - chromium -c pnpm i -s
+        run: su - chromium -c 'pnpm i -s'
       - name: Lint
         run: su - chromium -c pnpm run lint
       - name: Test
