@@ -34,14 +34,14 @@ jobs:
           export GIT_COMMITTED_AT=$(date +%s)
           export GIT_BRANCH=$(basename ${{ github.repository }} ${{ github.repository_owner }})
           ../cc-test-reporter before-build
-          pnpm run test -- --no-progress
+          pnpm run test -- --no-progress --no-sandbox
           ../cc-test-reporter after-build -t lcov --exit-code ${?} ./coverage/lconv.info
         env:
           GIT_COMMIT_SHA: ${{ github.sha }}
           CI_NAME: "Github Action"
           CI_BUILD_ID: ${{ github.run_number }}
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-          CHROME_BIN: /usr/bin/chromium-browser --no-sandbox
+          CHROME_BIN: /usr/bin/chromium-browser
 
       - name: e2e
         run: pnpm run e2e
