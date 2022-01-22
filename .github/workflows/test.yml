@@ -20,24 +20,22 @@ jobs:
           curl -o ../cc-test-reporter \
               -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
           chmod u+x ../cc-test-reporter
-      - name: "Create a user for sandbox"
-        run: adduser -D chromium
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
           cache: pnpm
           cache-dependency-path: pnpm-lock.yaml
       - name: Install Dependencies
-        run: su - chromium -c 'pnpm i -s'
+        run: pnpm i -s
       - name: Lint
-        run: su - chromium -c 'pnpm run lint'
+        run: pnpm run lint
       - name: Test
         run: |
           export GIT_COMMITTED_AT=$(date +%s)
           export GIT_BRANCH=$(basename ${{ github.repository }} ${{ github.repository_owner }})
           export CHROME_BIN=$(which chromium-browser)
           ../cc-test-reporter before-build
-          su - chromium -c 'pnpm run test -- --no-progress'
+          pnpm run test -- --no-progress --browsers ChromeHeadlessNoSandbox
           ../cc-test-reporter after-build -t lcov --exit-code ${?} ./coverage/lconv.info
         env:
           GIT_COMMIT_SHA: ${{ github.sha }}
@@ -46,4 +44,4 @@ jobs:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
 
       - name: e2e
-        run: su - chromium -c 'pnpm run e2e'
+        run: pnpm run e2e

@@ -30,6 +30,12 @@ module.exports = function (config) {
     logLevel: config.LOG_INFO,
     autoWatch: (process.env.CI || '').toLowerCase() !== 'true',
     browsers: ['ChromeHeadless'],
+    customLaunchers: {
+      ChromeHeadlessNoSandbox: {
+        base: 'ChromeHeadless',
+        flags: ['--no-sandbox']
+      }
+    },
     singleRun: (process.env.CI || '').toLowerCase() === 'true'
   });
 };
