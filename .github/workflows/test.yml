@@ -16,7 +16,7 @@ jobs:
         run: corepack enable
       - name: Install essential tools
         run: |
-          apk update && apk add curl git chromium
+          apk update && apk add curl git chromium unzip
           curl -o ../cc-test-reporter \
               -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
           chmod u+x ../cc-test-reporter
