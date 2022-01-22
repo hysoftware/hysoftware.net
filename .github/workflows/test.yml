@@ -43,7 +43,6 @@ jobs:
           CI_NAME: "Github Action"
           CI_BUILD_ID: ${{ github.run_number }}
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-          CHROME_BIN: /usr/bin/chromium-browser
 
       - name: e2e
         run: |
