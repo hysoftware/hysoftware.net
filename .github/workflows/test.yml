@@ -28,16 +28,16 @@ jobs:
           cache: pnpm
           cache-dependency-path: pnpm-lock.yaml
       - name: Install Dependencies
-        run: su chromium -c pnpm i -s
+        run: su - chromium -c pnpm i -s
       - name: Lint
-        run: su chromium -c pnpm run lint
+        run: su - chromium -c pnpm run lint
       - name: Test
         run: |
           export GIT_COMMITTED_AT=$(date +%s)
           export GIT_BRANCH=$(basename ${{ github.repository }} ${{ github.repository_owner }})
           export CHROME_BIN=$(which chromium-browser)
           ../cc-test-reporter before-build
-          su chromium -c pnpm run test -- --no-progress
+          su - chromium -c pnpm run test -- --no-progress
           ../cc-test-reporter after-build -t lcov --exit-code ${?} ./coverage/lconv.info
         env:
           GIT_COMMIT_SHA: ${{ github.sha }}
@@ -46,4 +46,4 @@ jobs:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
 
       - name: e2e
-        run: pnpm run e2e
+        run: su - chromium -c pnpm run e2e
