@@ -20,6 +20,10 @@ jobs:
           curl -o ../cc-test-reporter \
               -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
           chmod u+x ../cc-test-reporter
+      - name: "Create a user for sandbox"
+        run: |
+          addgroup -S chromium
+          adduser -S -g chromium chromium
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
@@ -31,12 +35,14 @@ jobs:
         run: pnpm run lint
       - name: Test
         run: |
-          export GIT_COMMITTED_AT=$(date +%s)
-          export GIT_BRANCH=$(basename ${{ github.repository }} ${{ github.repository_owner }})
-          export CHROME_BIN=$(which chromium-browser)
-          ../cc-test-reporter before-build
-          pnpm run test -- --no-progress
-          ../cc-test-reporter after-build -t lcov --exit-code ${?} ./coverage/lconv.info
+          sudo -u chromium {
+            export GIT_COMMITTED_AT=$(date +%s)
+            export GIT_BRANCH=$(basename ${{ github.repository }} ${{ github.repository_owner }})
+            export CHROME_BIN=$(which chromium-browser)
+            ../cc-test-reporter before-build
+            pnpm run test -- --no-progress
+            ../cc-test-reporter after-build -t lcov --exit-code ${?} ./coverage/lconv.info
+          }
         env:
           GIT_COMMIT_SHA: ${{ github.sha }}
           CI_NAME: "Github Action"
