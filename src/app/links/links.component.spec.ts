@@ -51,16 +51,6 @@ describe('LinksComponent', () => {
         name: 'Gitlab',
       },
       {
-        icon: faLinkedin,
-        link: 'https://www.linkedin.com/in/hyamatan',
-        name: 'Linkedin'
-      },
-      {
-        icon: faAngellist,
-        link: 'https://angel.co/hiroaki-yamamoto',
-        name: 'Angel List'
-      },
-      {
         icon: faKeybase,
         link: 'https://keybase.io/hyamamoto',
         name: 'Keybase'
