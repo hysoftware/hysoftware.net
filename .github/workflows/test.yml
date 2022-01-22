@@ -22,8 +22,7 @@ jobs:
           chmod u+x ../cc-test-reporter
       - name: "Create a user for sandbox"
         run: |
-          addgroup -S chromium
-          adduser -S -g chromium chromium
+          useradd chromium
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
