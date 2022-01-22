@@ -16,11 +16,10 @@ jobs:
         run: corepack enable
       - name: Install essential tools
         run: |
-          apk update && apk add curl git
+          apk update && apk add curl git chromium
           curl -o ../cc-test-reporter \
               -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
           chmod u+x ../cc-test-reporter
-      - uses: browser-actions/setup-chrome@latest
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
@@ -34,7 +33,7 @@ jobs:
         run: |
           export GIT_COMMITTED_AT=$(date +%s)
           export GIT_BRANCH=$(basename ${{ github.repository }} ${{ github.repository_owner }})
-          export CHROMIUM_BIN=$(which chrome)
+          export $(which chromium-browser)
           ../cc-test-reporter before-build
           pnpm run test -- --no-progress
           ../cc-test-reporter after-build -t lcov --exit-code ${?} ./coverage/lconv.info
@@ -45,6 +44,4 @@ jobs:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
 
       - name: e2e
-        run: |
-          export CHROMIUM_BIN=$(which chrome)
-          pnpm run e2e
+        run: pnpm run e2e
