@@ -21,8 +21,7 @@ jobs:
               -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
           chmod u+x ../cc-test-reporter
       - name: "Create a user for sandbox"
-        run: |
-          adduser chromium
+        run: adduser -D chromium
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
