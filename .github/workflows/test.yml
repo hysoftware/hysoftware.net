@@ -33,7 +33,7 @@ jobs:
         run: |
           export GIT_COMMITTED_AT=$(date +%s)
           export GIT_BRANCH=$(basename ${{ github.repository }} ${{ github.repository_owner }})
-          export $(which chromium-browser)
+          export CHROME_BIN=$(which chromium-browser)
           ../cc-test-reporter before-build
           pnpm run test -- --no-progress
           ../cc-test-reporter after-build -t lcov --exit-code ${?} ./coverage/lconv.info
