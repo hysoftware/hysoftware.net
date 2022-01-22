@@ -18,7 +18,7 @@ jobs:
       - name: Build
         run: pnpm run build -- --configuration production --no-progress
       - name: Store built files
-        use: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v2
         with:
           name: hysoftware-dist
           path: dist
