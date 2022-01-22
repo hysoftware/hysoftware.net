@@ -55,3 +55,4 @@ jobs:
             https://api.cloudflare.com/client/v4/zones/${FLARE_ZONE}/purge_cache
         env:
           CF_TOKEN: ${{ secrets.CLOUD_FLARE_TOKEN }}
+          FLARE_ZONE: ${{ secrets.FLARE_ZONE }}
