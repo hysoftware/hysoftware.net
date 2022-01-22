@@ -22,16 +22,16 @@ jobs:
           chmod u+x ../cc-test-reporter
       - name: "Create a user for sandbox"
         run: |
-          useradd chromium
+          adduser chromium
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
           cache: pnpm
           cache-dependency-path: pnpm-lock.yaml
       - name: Install Dependencies
-        run: pnpm i -s
+        run: su chromium -c pnpm i -s
       - name: Lint
-        run: pnpm run lint
+        run: su chromium -c pnpm run lint
       - name: Test
         run: |
           export GIT_COMMITTED_AT=$(date +%s)
