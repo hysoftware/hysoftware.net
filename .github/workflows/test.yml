@@ -1,0 +1,44 @@
+name: Test
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    container: node:alpine
+    steps:
+      - name: "Enable pnpm"
+        run: corepack enable
+      - name: Install essential tools
+        run: |
+          apk update && apk add curl git
+          curl -o ../cc-test-reporter \
+              -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
+          chmod u+x ../cc-test-reporter
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '>=17.4.0'
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+      - name: Lint
+        run: pnpm run lint
+      - name: Test
+        run: |
+          export GIT_COMMITTED_AT=$(date +%s)
+          export GIT_BRANCH=$(basename ${{ github.repository }} ${{ github.repository_owner }})
+          ../cc-test-reporter before-build
+          pnpm run test -- --no-progress
+          ../cc-test-reporter after-build -t lcov --exit-code ${?} ./coverage/lconv.info
+        env:
+          GIT_COMMIT_SHA: ${{ github.sha }}
+          CI_NAME: "Github Action"
+          CI_BUILD_ID: ${{ github.run_number }}
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+
+      - name: e2e
+        run: pnpm run e2e
