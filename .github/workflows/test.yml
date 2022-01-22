@@ -9,7 +9,8 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    container: node:alpine
+    container:
+      image: node:alpine
     steps:
       - name: "Enable pnpm"
         run: corepack enable
@@ -40,7 +41,7 @@ jobs:
           CI_NAME: "Github Action"
           CI_BUILD_ID: ${{ github.run_number }}
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-          CHROME_BIN: /usr/bin/chromium-browser
+          CHROME_BIN: /usr/bin/chromium-browser --no-sandbox
 
       - name: e2e
         run: pnpm run e2e
