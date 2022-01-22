@@ -1,0 +1,33 @@
+
+name: Deploy
+on:
+  push: { tags: ['*'] }
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+      - name: Install AWS Client
+        run: pip install awscli
+      - name: Upload
+        run: aws s3 sync ./dist/hysoftware/ s3://hysoftware/ --exact-timestamps --delete
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+          AWS_SECRET_ACCESS_KEY: ${{ AWS_SECRET_ACCESS_KEY }}
+      - name: Invalidate Cloudfront CDN
+        run: aws cloudfront create-invalidation --distribution-id ${CF_ID} --paths '/*'
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+          AWS_SECRET_ACCESS_KEY: ${{ AWS_SECRET_ACCESS_KEY }}
+      - name: Invalidate Cloudflare CDN
+        run: >
+          curl -X POST \
+            -H 'Content-Type:application/json' \
+            -H "Authorization: Bearer ${CF_TOKEN}" \
+            --data '{"purge_everything":true}' \
+            https://api.cloudflare.com/client/v4/zones/${FLARE_ZONE}/purge_cache
+        env:
+          CF_TOKEN: ${{ secrets.CLOUD_FLARE_TOKEN }}
