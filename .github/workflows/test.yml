@@ -15,10 +15,12 @@ jobs:
         with:
           node-version: 17
           check-latest: true,
-          cache: pnpm
-          cache-dependency-path: pnpm-lock.yaml
       - name: "Enable pnpm"
         run: corepack enable
+      - uses: actions/setup-node@v2
+        with:
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
       - name: Install Dependencies
         run: pnpm i -s
       - name: Lint
