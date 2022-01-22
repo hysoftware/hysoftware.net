@@ -16,7 +16,7 @@ jobs:
       - name: Install Dependencies
         run: pnpm i -s
       - name: Build
-        run: pnpm run build --configuration production --no-progress
+        run: pnpm run build -- --configuration production --no-progress
   deploy:
     runs-on: ubuntu-latest
     needs: build
