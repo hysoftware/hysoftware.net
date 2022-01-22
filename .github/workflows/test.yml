@@ -21,6 +21,12 @@ jobs:
         with:
           cache: pnpm
           cache-dependency-path: pnpm-lock.yaml
+      - uses: browser-actions/setup-chrome@latest
+      - name: Install essential tools
+        run: |
+          curl -o ../cc-test-reporter \
+              -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
+          chmod u+x ../cc-test-reporter
       - name: Install Dependencies
         run: pnpm i -s
       - name: Lint
@@ -29,7 +35,7 @@ jobs:
         run: |
           export GIT_COMMITTED_AT=$(date +%s)
           export GIT_BRANCH=$(basename ${{ github.repository }} ${{ github.repository_owner }})
-          export CHROME_BIN=$(which chromium-browser)
+          export CHROME_BIN=$(which chrome)
           ../cc-test-reporter before-build
           pnpm run test -- --no-progress --browsers ChromeHeadlessNoSandbox
           ../cc-test-reporter after-build -t lcov --exit-code ${?} ./coverage/lconv.info
@@ -41,5 +47,5 @@ jobs:
 
       - name: e2e
         run: |
-          export CHROME_BIN=$(which chromium-browser)
+          export CHROME_BIN=$(which chrome)
           pnpm run e2e
