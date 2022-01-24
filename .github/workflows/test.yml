@@ -21,6 +21,13 @@ jobs:
         with:
           cache: pnpm
           cache-dependency-path: pnpm-lock.yaml
+      - uses: actions/cache@v2
+        with:
+          key: ${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
+          path: |
+            ./node_modules
+            ~/.pnpm-store
+            ~/.cache/pnpm
       - uses: browser-actions/setup-chrome@latest
       - name: Install essential tools
         run: |
@@ -34,7 +41,7 @@ jobs:
       - name: Test
         run: |
           export GIT_COMMITTED_AT=$(date +%s)
-          export GIT_BRANCH=$(basename ${{ github.repository }} ${{ github.repository_owner }})
+          export GIT_BRANCH=${{ github.ref_name }}
           export CHROME_BIN=$(which chrome)
           ../cc-test-reporter before-build
           pnpm run test -- --no-progress --browsers ChromeHeadlessNoSandbox
