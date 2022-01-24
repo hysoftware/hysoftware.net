@@ -10,20 +10,20 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@latest
-      - uses: pnpm/action-setup@latest
-      - uses: actions/setup-node@latest
+      - uses: actions/checkout
+      - uses: pnpm/action-setup
+      - uses: actions/setup-node
         with:
           node-version: 17
           check-latest: true
           cache: pnpm
           cache-dependency-path: pnpm-lock.yaml
-      - uses: actions/cache@latest
+      - uses: actions/cache
         with:
           key: ${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
           path: |
             ./node_modules
-      - uses: browser-actions/setup-chrome@latest
+      - uses: browser-actions/setup-chrome
       - name: Install essential tools
         run: |
           curl -o ../cc-test-reporter \
