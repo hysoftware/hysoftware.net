@@ -15,19 +15,15 @@ jobs:
         with:
           node-version: 17
           check-latest: true
-      - name: "Enable pnpm"
-        run: corepack enable
-      - uses: actions/setup-node@v2
-        with:
           cache: pnpm
           cache-dependency-path: pnpm-lock.yaml
+      - name: "Enable pnpm"
+        run: corepack enable
       - uses: actions/cache@v2
         with:
           key: ${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
           path: |
             ./node_modules
-            ~/.pnpm-store
-            ~/.cache/pnpm
       - uses: browser-actions/setup-chrome@latest
       - name: Install essential tools
         run: |
