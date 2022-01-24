@@ -10,16 +10,15 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@latest
+      - uses: pnpm/action-setup@latest
+      - uses: actions/setup-node@latest
         with:
           node-version: 17
           check-latest: true
           cache: pnpm
           cache-dependency-path: pnpm-lock.yaml
-      - name: "Enable pnpm"
-        run: corepack enable
-      - uses: actions/cache@v2
+      - uses: actions/cache@latest
         with:
           key: ${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
           path: |
