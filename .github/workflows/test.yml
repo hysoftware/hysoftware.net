@@ -40,7 +40,6 @@ jobs:
           export GIT_COMMITTED_AT=$(date +%s)
           export GIT_BRANCH=${{ github.ref_name }}
           export CHROME_BIN=${RUNNER_TOOL_CACHE}/chromium/latest/x64/chrome
-          echo ${CHROME_BIN}
           ../cc-test-reporter before-build
           pnpm run test -- --no-progress --browsers ChromeHeadlessNoSandbox
           ../cc-test-reporter after-build -t lcov --exit-code ${?} ./coverage/lconv.info
