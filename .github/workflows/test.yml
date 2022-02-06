@@ -52,5 +52,5 @@ jobs:
 
       - name: e2e
         run: |
-          export CHROME_BIN=$(which chrome)/chromium/latest/x64/chrome
+          export CHROME_BIN=${RUNNER_TOOL_CACHE}/chromium/latest/x64/chrome
           pnpm run e2e
