@@ -111,7 +111,8 @@
           "options": {
             "devServerTarget": "hysoftware:serve",
             "watch": false,
-            "headless": true
+            "headless": true,
+            "video": false
           },
           "configurations": {
             "production": {
@@ -134,7 +135,8 @@
           "builder": "@cypress/schematic:cypress",
           "options": {
             "watch": true,
-            "headless": false
+            "headless": false,
+            "video": false
           }
         }
       }
