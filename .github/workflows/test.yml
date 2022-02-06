@@ -34,7 +34,6 @@ jobs:
           chmod u+x ../cc-test-reporter
       - name: Install Dependencies
         run: pnpm i -s
-      - run: $(pnpm bin)/cypress install
       - name: Lint
         run: pnpm run lint
       - name: Test
