@@ -32,9 +32,9 @@ jobs:
           curl -o ../cc-test-reporter \
               -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
           chmod u+x ../cc-test-reporter
-          cypress install
       - name: Install Dependencies
         run: pnpm i -s
+      - run: $(pnpm bin)/cypress install
       - name: Lint
         run: pnpm run lint
       - name: Test
