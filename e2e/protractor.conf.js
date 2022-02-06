@@ -15,7 +15,6 @@ exports.config = {
       args: [ "--headless" ]
     }
   },
-  chromeDriver: join(dirname(process.env.CHROME_BIN), 'chromedriver'),
   directConnect: true,
   baseUrl: 'http://localhost:4200/',
   framework: 'jasmine',
