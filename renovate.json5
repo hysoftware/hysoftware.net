@@ -15,7 +15,7 @@
   packageRules: [
     {
       matchPackageNames: ["typescript"],
-      allowedVersions: ">=4.5.0,<4.6.0"
+      allowedVersions: "<4.6.0"
     },
     {
       matchPackageNames: ["eslint"],
