@@ -3,8 +3,8 @@
   rangeStrategy: "replace",
   lockFileMaintenance: {"enabled": false},
   vulnerabilityAlerts: {"enabled": true, "schedule": "every weekend"},
-  assignees: ["hiroaki-yamamoto"],
-  reviewers: ["hiroaki-yamamoto"],
+  assigneesFromCodeOwners: false,
+  reviewersFromCodeOwners: false,
   groupName: "Updates",
   automerge: true,
   major: {
@@ -14,12 +14,21 @@
   },
   packageRules: [
     {
-      packageNames: ["typescript"],
-      allowedVersions: "<4.5.0"
+      matchPackageNames: ["typescript"],
+      allowedVersions: ">=4.5.0,<4.6.0"
     },
     {
-      packageNames: ["eslint"],
+      matchPackageNames: ["eslint"],
       allowedVersions: "<8.0.0"
+    },
+    {
+      matchLanguages: ['javascript'],
+      matchPackageNames: [
+        "@fortawesome/free-brands-svg-icons",
+        "@fortawesome/free-regular-svg-icons",
+        "@fortawesome/free-solid-svg-icons",
+      ],
+      allowedVersions: "<6.0"
     }
   ]
 }
