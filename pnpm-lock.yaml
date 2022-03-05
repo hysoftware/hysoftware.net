@@ -47,7 +47,7 @@ specifiers:
   karma-jasmine-html-reporter: ^1.5.4
   protractor: ^7.0.0
   rxjs: ^7.4.0
-  ts-node: ~10.5.0
+  ts-node: ~10.6.0
   tslib: ^2.0.3
   tslint: ^6.1.3
   typescript: <4.5.6
@@ -97,7 +97,7 @@ devDependencies:
   '@typescript-eslint/parser': 5.12.1_eslint@7.32.0+typescript@4.4.4
   apply-loader: 2.0.0
   codelyzer: 6.0.2_tslint@6.1.3
-  cypress: 9.5.0
+  cypress: 9.5.1
   eslint: 7.32.0
   jasmine-core: 4.0.0
   jasmine-spec-reporter: 7.0.0
@@ -107,7 +107,7 @@ devDependencies:
   karma-jasmine: 4.0.1_karma@6.3.11
   karma-jasmine-html-reporter: 1.7.0_ab839bfc87228f8b005163a0882ce916
   protractor: 7.0.0
-  ts-node: 10.5.0_f935f7d98540e83caea8f97b7c89c008
+  ts-node: 10.6.0_f935f7d98540e83caea8f97b7c89c008
   tslint: 6.1.3_typescript@4.4.4
 
 packages:
@@ -3931,8 +3931,8 @@ packages:
     resolution: {integrity: sha1-XQKkaFCt8bSjF5RqOSj8y1v9BCU=}
     dev: true
 
-  /cypress/9.5.0:
-    resolution: {integrity: sha512-rC5QPolKsVjJ8QJZ7IeZ6HlKM4gswBGZc0XvoAJNL8urQCSL8zTX0A/ai/h35WfF47NQ0iSZnwIXBlHX3MOUIQ==}
+  /cypress/9.5.1:
+    resolution: {integrity: sha512-H7lUWB3Svr44gz1rNnj941xmdsCljXoJa2cDneAltjI9leKLMQLm30x6jLlpQ730tiVtIbW5HdUmBzPzwzfUQg==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     requiresBuild: true
@@ -8521,8 +8521,8 @@ packages:
     hasBin: true
     dev: true
 
-  /ts-node/10.5.0_f935f7d98540e83caea8f97b7c89c008:
-    resolution: {integrity: sha512-6kEJKwVxAJ35W4akuiysfKwKmjkbYxwQMTBaAxo9KKAx/Yd26mPUyhGz3ji+EsJoAgrLqVsYHNuuYwQe22lbtw==}
+  /ts-node/10.6.0_f935f7d98540e83caea8f97b7c89c008:
+    resolution: {integrity: sha512-CJen6+dfOXolxudBQXnVjRVvYTmTWbyz7cn+xq2XTsvnaXbHqr4gXSCNbS2Jj8yTZMuGwUoBESLaOkLascVVvg==}
     hasBin: true
     peerDependencies:
       '@swc/core': '>=1.2.50'
