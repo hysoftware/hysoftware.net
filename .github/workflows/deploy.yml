@@ -6,7 +6,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 17
@@ -18,7 +18,7 @@ jobs:
       - name: Build
         run: pnpm run build -- --configuration production --no-progress
       - name: Store built files
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: hysoftware-dist
           path: dist
@@ -27,10 +27,10 @@ jobs:
     needs: build
     steps:
       - name: "Download built files"
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: hysoftware-dist
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v3
       - name: Install AWS Client
         run: pip install awscli
       - name: Upload
