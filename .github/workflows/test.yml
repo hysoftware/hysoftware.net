@@ -20,7 +20,7 @@ jobs:
           check-latest: true
           cache: pnpm
           cache-dependency-path: pnpm-lock.yaml
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         with:
           key: ${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
           path: |
