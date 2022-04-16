@@ -38,7 +38,7 @@ specifiers:
   core-js: ^3.6.5
   cypress: latest
   eslint: ^7.0.0
-  jasmine-core: ~4.0.0
+  jasmine-core: ~4.1.0
   jasmine-spec-reporter: ~7.0.0
   karma: ^6.0.1
   karma-chrome-launcher: ^3.1.0
@@ -99,13 +99,13 @@ devDependencies:
   codelyzer: 6.0.2_tslint@6.1.3
   cypress: 9.5.4
   eslint: 7.32.0
-  jasmine-core: 4.0.0
+  jasmine-core: 4.1.0
   jasmine-spec-reporter: 7.0.0
   karma: 6.3.11
   karma-chrome-launcher: 3.1.0
   karma-coverage: 2.1.0
   karma-jasmine: 4.0.1_karma@6.3.11
-  karma-jasmine-html-reporter: 1.7.0_ab839bfc87228f8b005163a0882ce916
+  karma-jasmine-html-reporter: 1.7.0_b5a621848ed76fcfe9b9f756efa05ac0
   protractor: 7.0.0
   ts-node: 10.7.0_f935f7d98540e83caea8f97b7c89c008
   tslint: 6.1.3_typescript@4.4.4
@@ -6039,8 +6039,8 @@ packages:
     resolution: {integrity: sha512-+ZDaJlEfRopINQqgE+hvzRyDIQDeKfqqTvF8RzXsvU1yE3pBDRud2+Qfh9WvGgRpuzqxyQJVI6Amy5XQ11r/3w==}
     dev: true
 
-  /jasmine-core/4.0.0:
-    resolution: {integrity: sha512-tq24OCqHElgU9KDpb/8O21r1IfotgjIzalfW9eCmRR40LZpvwXT68iariIyayMwi0m98RDt16aljdbwK0sBMmQ==}
+  /jasmine-core/4.1.0:
+    resolution: {integrity: sha512-8E8BiffCL8sBwK1zU9cbavLe8xpJAgOduSJ6N8PJVv8VosQ/nxVTuXj2kUeHxTlZBVvh24G19ga7xdiaxlceKg==}
     dev: true
 
   /jasmine-spec-reporter/7.0.0:
@@ -6208,14 +6208,14 @@ packages:
       - supports-color
     dev: true
 
-  /karma-jasmine-html-reporter/1.7.0_ab839bfc87228f8b005163a0882ce916:
+  /karma-jasmine-html-reporter/1.7.0_b5a621848ed76fcfe9b9f756efa05ac0:
     resolution: {integrity: sha512-pzum1TL7j90DTE86eFt48/s12hqwQuiD+e5aXx2Dc9wDEn2LfGq6RoAxEZZjFiN0RDSCOnosEKRZWxbQ+iMpQQ==}
     peerDependencies:
       jasmine-core: '>=3.8'
       karma: '>=0.9'
       karma-jasmine: '>=1.1'
     dependencies:
-      jasmine-core: 4.0.0
+      jasmine-core: 4.1.0
       karma: 6.3.11
       karma-jasmine: 4.0.1_karma@6.3.11
     dev: true
