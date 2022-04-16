@@ -3,11 +3,11 @@ lockfileVersion: 5.3
 specifiers:
   '@angular-devkit/build-angular': ^13.3.0
   '@angular-devkit/core': ^13.3.0
-  '@angular-eslint/builder': 13.2.0
-  '@angular-eslint/eslint-plugin': 13.2.0
-  '@angular-eslint/eslint-plugin-template': 13.2.0
+  '@angular-eslint/builder': 13.2.1
+  '@angular-eslint/eslint-plugin': 13.2.1
+  '@angular-eslint/eslint-plugin-template': 13.2.1
   '@angular-eslint/schematics': ^13.1.0
-  '@angular-eslint/template-parser': 13.2.0
+  '@angular-eslint/template-parser': 13.2.1
   '@angular/animations': ~13.3.0
   '@angular/cdk': ^13.3.0
   '@angular/cli': ^13.3.0
@@ -81,11 +81,11 @@ dependencies:
 devDependencies:
   '@angular-devkit/build-angular': 13.3.0_ad522f2ccc24398ec5834bf60389e85f
   '@angular-devkit/core': 13.3.0
-  '@angular-eslint/builder': 13.2.0_eslint@7.32.0+typescript@4.4.4
-  '@angular-eslint/eslint-plugin': 13.2.0_eslint@7.32.0+typescript@4.4.4
-  '@angular-eslint/eslint-plugin-template': 13.2.0_eslint@7.32.0+typescript@4.4.4
+  '@angular-eslint/builder': 13.2.1_eslint@7.32.0+typescript@4.4.4
+  '@angular-eslint/eslint-plugin': 13.2.1_eslint@7.32.0+typescript@4.4.4
+  '@angular-eslint/eslint-plugin-template': 13.2.1_eslint@7.32.0+typescript@4.4.4
   '@angular-eslint/schematics': 13.1.0_58fb30f51da43b9ed02440c7282d3ce9
-  '@angular-eslint/template-parser': 13.2.0_eslint@7.32.0+typescript@4.4.4
+  '@angular-eslint/template-parser': 13.2.1_eslint@7.32.0+typescript@4.4.4
   '@angular/cli': 13.3.0
   '@angular/compiler-cli': 13.3.0_f8899344b0c18ae928f58cf1c40fef08
   '@angular/language-service': 13.3.0
@@ -97,7 +97,7 @@ devDependencies:
   '@typescript-eslint/parser': 5.18.0_eslint@7.32.0+typescript@4.4.4
   apply-loader: 2.0.0
   codelyzer: 6.0.2_tslint@6.1.3
-  cypress: 9.5.3
+  cypress: 9.5.4
   eslint: 7.32.0
   jasmine-core: 4.0.0
   jasmine-spec-reporter: 7.0.0
@@ -321,8 +321,8 @@ packages:
       - chokidar
     dev: true
 
-  /@angular-eslint/builder/13.2.0_eslint@7.32.0+typescript@4.4.4:
-    resolution: {integrity: sha512-7V/bJwkMX+1OzxNUMxiOGdfdksjBmzCdPfxNEHXrT4la+vQQxg1oaIsgx74OkDqFTBv6NJO4PK8Flm9/QE4CDw==}
+  /@angular-eslint/builder/13.2.1_eslint@7.32.0+typescript@4.4.4:
+    resolution: {integrity: sha512-79378DhlZ+hUlsTYvFs/BauiCQPN0RGlN5IuvzZs62yWquPecwK0nHcSasUe5OtiknuwIy7SwFq/AXyJVI+Ouw==}
     peerDependencies:
       eslint: ^7.0.0 || ^8.0.0
       typescript: '*'
@@ -336,8 +336,8 @@ packages:
     resolution: {integrity: sha512-0VSAZ3zrHkKdbvogQ4GLSf+lKojtPL3LXLlvXU9xNgNsqw68+gSNwaWd595tXoQCmpwWpTerKUbyIsGnPA7EYA==}
     dev: true
 
-  /@angular-eslint/bundled-angular-compiler/13.2.0:
-    resolution: {integrity: sha512-ZA9JPERpeSo+G/bmp8GS/WjBbYkPDVzN6IINHz9SVdv//LWE58yymFFjRabHJx46iAEOe8P0CoKduuJWtEvNrQ==}
+  /@angular-eslint/bundled-angular-compiler/13.2.1:
+    resolution: {integrity: sha512-v/O9s6yvg7MJTQ9iNdXpZJOAjunY4ATk/dE3+xTsLwWTZXTXLXZE1FtKD/reijoItZtGiLUJ+F1pK5nwq/iI6w==}
     dev: true
 
   /@angular-eslint/eslint-plugin-template/13.1.0_eslint@7.32.0+typescript@4.4.4:
@@ -356,13 +356,13 @@ packages:
       - supports-color
     dev: true
 
-  /@angular-eslint/eslint-plugin-template/13.2.0_eslint@7.32.0+typescript@4.4.4:
-    resolution: {integrity: sha512-Ej9bNGbpf8oaQGglPVWAQkBSIHhQv0FeJ/vVnB2fhHUoK9BbkGUYpjAFSSRlnMhl6ktPWKCX3yJiW+F4uIUTIw==}
+  /@angular-eslint/eslint-plugin-template/13.2.1_eslint@7.32.0+typescript@4.4.4:
+    resolution: {integrity: sha512-fA11IGfnWzJePFVS04JKigQY33/Twp5Gv3sj6o8NLRi25NbZDFMc6YjRv8FuKfJ0DXrZh0nLgP2L/01qnXDgZQ==}
     peerDependencies:
       eslint: ^7.0.0 || ^8.0.0
       typescript: '*'
     dependencies:
-      '@angular-eslint/bundled-angular-compiler': 13.2.0
+      '@angular-eslint/bundled-angular-compiler': 13.2.1
       '@typescript-eslint/experimental-utils': 5.17.0_eslint@7.32.0+typescript@4.4.4
       aria-query: 4.2.2
       axobject-query: 2.2.0
@@ -386,13 +386,13 @@ packages:
       - supports-color
     dev: true
 
-  /@angular-eslint/eslint-plugin/13.2.0_eslint@7.32.0+typescript@4.4.4:
-    resolution: {integrity: sha512-8qscIBc4montFQ52+XfBk7qR675oXV8mvRpjDh3cTfIZCzV6CSbbbH2iLp/9egnn0Pgy2ZUIsWgcsbK4W3+4bw==}
+  /@angular-eslint/eslint-plugin/13.2.1_eslint@7.32.0+typescript@4.4.4:
+    resolution: {integrity: sha512-hlHzbe7MIBbZ4IUKvJh5pjN5nKw0YZBwPyIB1+IBOJAdjWuS274uUGTZxKeyJiyJi0FOUu5+Z6vbM9ZJ2uzjcw==}
     peerDependencies:
       eslint: ^7.0.0 || ^8.0.0
       typescript: '*'
     dependencies:
-      '@angular-eslint/utils': 13.2.0_eslint@7.32.0+typescript@4.4.4
+      '@angular-eslint/utils': 13.2.1_eslint@7.32.0+typescript@4.4.4
       '@typescript-eslint/experimental-utils': 5.17.0_eslint@7.32.0+typescript@4.4.4
       eslint: 7.32.0
       typescript: 4.4.4
@@ -417,13 +417,13 @@ packages:
       - typescript
     dev: true
 
-  /@angular-eslint/template-parser/13.2.0_eslint@7.32.0+typescript@4.4.4:
-    resolution: {integrity: sha512-dv+bBFzvA4q/KiEDpO7BDUmB1EpVW0P0sX6OSs2eRzViEuXztkatQ4XOmgzuxP0+E1+zl/mK3F7uBDNXiaah9g==}
+  /@angular-eslint/template-parser/13.2.1_eslint@7.32.0+typescript@4.4.4:
+    resolution: {integrity: sha512-aSZjKYTUXjJ3sehm90CfZey/ed333IxP0TpnaG7Lue9rSEa3BkKOv8Kffy+EhDkpdTpjdwdmGfopxxsbm9sPHw==}
     peerDependencies:
       eslint: ^7.0.0 || ^8.0.0
       typescript: '*'
     dependencies:
-      '@angular-eslint/bundled-angular-compiler': 13.2.0
+      '@angular-eslint/bundled-angular-compiler': 13.2.1
       eslint: 7.32.0
       eslint-scope: 5.1.1
       typescript: 4.4.4
@@ -443,13 +443,13 @@ packages:
       - supports-color
     dev: true
 
-  /@angular-eslint/utils/13.2.0_eslint@7.32.0+typescript@4.4.4:
-    resolution: {integrity: sha512-ywkk+pVLaDLwzNKUcc/xWtJC4Bkm+qRrMOR8ZX3q84E5RTvIvc8IcPFBE4ey3lnGe+nE44OEGuLedCo9vn1Meg==}
+  /@angular-eslint/utils/13.2.1_eslint@7.32.0+typescript@4.4.4:
+    resolution: {integrity: sha512-TCw56jQDPe/FDg3IC0QTQVn4mv5Pzb8K4YpO2hiBdU4XwmOTGWjbwZO++Wr1Gekw1OJYVWSIwNfz2MrGIDsu7A==}
     peerDependencies:
       eslint: ^7.0.0 || ^8.0.0
       typescript: '*'
     dependencies:
-      '@angular-eslint/bundled-angular-compiler': 13.2.0
+      '@angular-eslint/bundled-angular-compiler': 13.2.1
       '@typescript-eslint/experimental-utils': 5.17.0_eslint@7.32.0+typescript@4.4.4
       eslint: 7.32.0
       typescript: 4.4.4
@@ -4140,8 +4140,8 @@ packages:
     resolution: {integrity: sha1-XQKkaFCt8bSjF5RqOSj8y1v9BCU=}
     dev: true
 
-  /cypress/9.5.3:
-    resolution: {integrity: sha512-ItelIVmqMTnKYbo1JrErhsGgQGjWOxCpHT1TfMvwnIXKXN/OSlPjEK7rbCLYDZhejQL99PmUqul7XORI24Ik0A==}
+  /cypress/9.5.4:
+    resolution: {integrity: sha512-6AyJAD8phe7IMvOL4oBsI9puRNOWxZjl8z1lgixJMcgJ85JJmyKeP6uqNA0dI1z14lmJ7Qklf2MOgP/xdAqJ/Q==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     requiresBuild: true
@@ -6464,6 +6464,7 @@ packages:
   /lru-cache/7.7.1:
     resolution: {integrity: sha512-cRffBiTW8s73eH4aTXqBcTLU0xQnwGV3/imttRHGWCrbergmnK4D6JXQd8qin5z43HnDwRI+o7mVW0LEB+tpAw==}
     engines: {node: '>=12'}
+    deprecated: Please update to latest patch version to fix memory leak https://github.com/isaacs/node-lru-cache/issues/227
     dev: true
 
   /magic-string/0.25.7:
