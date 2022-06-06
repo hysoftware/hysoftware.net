@@ -24,10 +24,10 @@ specifiers:
   '@angular/router': ~14.0.0
   '@cypress/schematic': 2.0.0
   '@fortawesome/angular-fontawesome': ^0.11.0
-  '@fortawesome/fontawesome-svg-core': ^1.2.32
-  '@fortawesome/free-brands-svg-icons': ^5.15.1
-  '@fortawesome/free-regular-svg-icons': ^5.15.1
-  '@fortawesome/free-solid-svg-icons': ^5.15.1
+  '@fortawesome/fontawesome-svg-core': ^6.0.0
+  '@fortawesome/free-brands-svg-icons': ^6.0.0
+  '@fortawesome/free-regular-svg-icons': ^6.0.0
+  '@fortawesome/free-solid-svg-icons': ^6.0.0
   '@types/jasmine': ~4.0.0
   '@types/jasminewd2': ~2.0.8
   '@types/node': ^16.0.0
@@ -63,11 +63,11 @@ dependencies:
   '@angular/platform-browser': 14.0.0_0a8e4c025f1db1dc0c15a306650a0f32
   '@angular/platform-browser-dynamic': 14.0.0_dc9ad3cd0f88954e18ec094432d984cf
   '@angular/router': 14.0.0_a5a8175dd8e19bc7185761247afc553c
-  '@fortawesome/angular-fontawesome': 0.11.0_e6ddecce7e87e8c100be6749b6963e80
-  '@fortawesome/fontawesome-svg-core': 1.2.36
-  '@fortawesome/free-brands-svg-icons': 5.15.4
-  '@fortawesome/free-regular-svg-icons': 5.15.4
-  '@fortawesome/free-solid-svg-icons': 5.15.4
+  '@fortawesome/angular-fontawesome': 0.11.0_a5458a1e5d8b15bcc56756b2b2007d0a
+  '@fortawesome/fontawesome-svg-core': 6.1.1
+  '@fortawesome/free-brands-svg-icons': 6.1.1
+  '@fortawesome/free-regular-svg-icons': 6.1.1
+  '@fortawesome/free-solid-svg-icons': 6.1.1
   core-js: 3.20.3
   rxjs: 7.5.2
   tslib: 2.3.1
@@ -227,6 +227,7 @@ packages:
       esbuild: 0.14.38
     transitivePeerDependencies:
       - '@swc/core'
+      - bluebird
       - bufferutil
       - chokidar
       - debug
@@ -504,6 +505,7 @@ packages:
       uuid: 8.3.2
       yargs: 17.4.1
     transitivePeerDependencies:
+      - bluebird
       - chokidar
       - supports-color
     dev: true
@@ -555,7 +557,6 @@ packages:
     dependencies:
       '@angular/core': 14.0.0_rxjs@7.5.2+zone.js@0.11.4
       tslib: 2.4.0
-    dev: false
 
   /@angular/compiler/9.0.0_tslib@1.14.1:
     resolution: {integrity: sha512-ctjwuntPfZZT2mNj2NDIVu51t9cvbhl/16epc5xEwyzyDt76pX9UgwvY+MbXrf/C/FWwdtmNtfP698BKI+9leQ==}
@@ -575,7 +576,6 @@ packages:
       rxjs: 7.5.2
       tslib: 2.4.0
       zone.js: 0.11.4
-    dev: false
 
   /@angular/core/9.0.0_ed6f97b6c42afc3b298adb4ba822fb67:
     resolution: {integrity: sha512-6Pxgsrf0qF9iFFqmIcWmjJGkkCaCm6V5QNnxMy2KloO3SDq6QuMVRbN9RtC8Urmo25LP+eZ6ZgYqFYpdD8Hd9w==}
@@ -2145,11 +2145,13 @@ packages:
       rxjs: 6.6.7
     dev: true
 
-  /@cypress/xvfb/1.2.4:
+  /@cypress/xvfb/1.2.4_supports-color@8.1.1:
     resolution: {integrity: sha512-skbBzPggOVYCbnGgV+0dmBdW/s77ZkAOXIC1knS8NagwDjBrNC1LuXtQJeiN6l+m7lzmHtaoUw/ctJKdqkG57Q==}
     dependencies:
-      debug: 3.2.7
+      debug: 3.2.7_supports-color@8.1.1
       lodash.once: 4.1.1
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /@discoveryjs/json-ext/0.5.7:
@@ -2174,51 +2176,51 @@ packages:
       - supports-color
     dev: true
 
-  /@fortawesome/angular-fontawesome/0.11.0_e6ddecce7e87e8c100be6749b6963e80:
+  /@fortawesome/angular-fontawesome/0.11.0_a5458a1e5d8b15bcc56756b2b2007d0a:
     resolution: {integrity: sha512-/WbG9s83dmZn2FBkCN6IjlhODmMUbkzkMxPjFokKKprlB7QXR047avG3xDTfxPJEcLDGNQmdX/vbsEhoT36/bA==}
     peerDependencies:
       '@fortawesome/fontawesome-svg-core': ~1.2.27 || ~1.3.0-beta2 || ^6.1.0
     dependencies:
-      '@fortawesome/fontawesome-svg-core': 1.2.36
+      '@fortawesome/fontawesome-svg-core': 6.1.1
       tslib: 2.4.0
     dev: false
 
-  /@fortawesome/fontawesome-common-types/0.2.36:
-    resolution: {integrity: sha512-a/7BiSgobHAgBWeN7N0w+lAhInrGxksn13uK7231n2m8EDPE3BMCl9NZLTGrj9ZXfCmC6LM0QLqXidIizVQ6yg==}
+  /@fortawesome/fontawesome-common-types/6.1.1:
+    resolution: {integrity: sha512-wVn5WJPirFTnzN6tR95abCx+ocH+3IFLXAgyavnf9hUmN0CfWoDjPT/BAWsUVwSlYYVBeCLJxaqi7ZGe4uSjBA==}
     engines: {node: '>=6'}
     requiresBuild: true
     dev: false
 
-  /@fortawesome/fontawesome-svg-core/1.2.36:
-    resolution: {integrity: sha512-YUcsLQKYb6DmaJjIHdDWpBIGCcyE/W+p/LMGvjQem55Mm2XWVAP5kWTMKWLv9lwpCVjpLxPyOMOyUocP1GxrtA==}
+  /@fortawesome/fontawesome-svg-core/6.1.1:
+    resolution: {integrity: sha512-NCg0w2YIp81f4V6cMGD9iomfsIj7GWrqmsa0ZsPh59G7PKiGN1KymZNxmF00ssuAlo/VZmpK6xazsGOwzKYUMg==}
     engines: {node: '>=6'}
     requiresBuild: true
     dependencies:
-      '@fortawesome/fontawesome-common-types': 0.2.36
+      '@fortawesome/fontawesome-common-types': 6.1.1
     dev: false
 
-  /@fortawesome/free-brands-svg-icons/5.15.4:
-    resolution: {integrity: sha512-f1witbwycL9cTENJegcmcZRYyawAFbm8+c6IirLmwbbpqz46wyjbQYLuxOc7weXFXfB7QR8/Vd2u5R3q6JYD9g==}
+  /@fortawesome/free-brands-svg-icons/6.1.1:
+    resolution: {integrity: sha512-mFbI/czjBZ+paUtw5NPr2IXjun5KAC8eFqh1hnxowjA4mMZxWz4GCIksq6j9ZSa6Uxj9JhjjDVEd77p2LN2Blg==}
     engines: {node: '>=6'}
     requiresBuild: true
     dependencies:
-      '@fortawesome/fontawesome-common-types': 0.2.36
+      '@fortawesome/fontawesome-common-types': 6.1.1
     dev: false
 
-  /@fortawesome/free-regular-svg-icons/5.15.4:
-    resolution: {integrity: sha512-9VNNnU3CXHy9XednJ3wzQp6SwNwT3XaM26oS4Rp391GsxVYA+0oDR2J194YCIWf7jNRCYKjUCOduxdceLrx+xw==}
+  /@fortawesome/free-regular-svg-icons/6.1.1:
+    resolution: {integrity: sha512-xXiW7hcpgwmWtndKPOzG+43fPH7ZjxOaoeyooptSztGmJxCAflHZxXNK0GcT0uEsR4jTGQAfGklDZE5NHoBhKg==}
     engines: {node: '>=6'}
     requiresBuild: true
     dependencies:
-      '@fortawesome/fontawesome-common-types': 0.2.36
+      '@fortawesome/fontawesome-common-types': 6.1.1
     dev: false
 
-  /@fortawesome/free-solid-svg-icons/5.15.4:
-    resolution: {integrity: sha512-JLmQfz6tdtwxoihXLg6lT78BorrFyCf59SAwBM6qV/0zXyVeDygJVb3fk+j5Qat+Yvcxp1buLTY5iDh1ZSAQ8w==}
+  /@fortawesome/free-solid-svg-icons/6.1.1:
+    resolution: {integrity: sha512-0/5exxavOhI/D4Ovm2r3vxNojGZioPwmFrKg0ZUH69Q68uFhFPs6+dhAToh6VEQBntxPRYPuT5Cg1tpNa9JUPg==}
     engines: {node: '>=6'}
     requiresBuild: true
     dependencies:
-      '@fortawesome/fontawesome-common-types': 0.2.36
+      '@fortawesome/fontawesome-common-types': 6.1.1
     dev: false
 
   /@gar/promisify/1.1.3:
@@ -2362,6 +2364,8 @@ packages:
       promise-retry: 2.0.1
       semver: 7.3.7
       which: 2.0.2
+    transitivePeerDependencies:
+      - bluebird
     dev: true
 
   /@npmcli/installed-package-contents/1.0.7:
@@ -2410,6 +2414,7 @@ packages:
       node-gyp: 8.4.1
       read-package-json-fast: 2.0.3
     transitivePeerDependencies:
+      - bluebird
       - supports-color
     dev: true
 
@@ -3553,6 +3558,8 @@ packages:
       qs: 6.9.6
       raw-body: 2.4.2
       type-is: 1.6.18
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /body-parser/1.20.0:
@@ -3571,6 +3578,8 @@ packages:
       raw-body: 2.5.1
       type-is: 1.6.18
       unpipe: 1.0.0
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /bonjour-service/1.0.12:
@@ -3688,6 +3697,8 @@ packages:
       ssri: 8.0.1
       tar: 6.1.11
       unique-filename: 1.1.1
+    transitivePeerDependencies:
+      - bluebird
     dev: true
 
   /cacache/16.0.7:
@@ -3712,6 +3723,8 @@ packages:
       ssri: 9.0.1
       tar: 6.1.11
       unique-filename: 1.1.1
+    transitivePeerDependencies:
+      - bluebird
     dev: true
 
   /cachedir/2.3.0:
@@ -3975,6 +3988,8 @@ packages:
       on-headers: 1.0.2
       safe-buffer: 5.1.2
       vary: 1.1.2
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /concat-map/0.0.1:
@@ -3994,6 +4009,8 @@ packages:
       finalhandler: 1.1.2
       parseurl: 1.3.3
       utils-merge: 1.0.1
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /console-control-strings/1.1.0:
@@ -4227,7 +4244,7 @@ packages:
     requiresBuild: true
     dependencies:
       '@cypress/request': 2.88.10
-      '@cypress/xvfb': 1.2.4
+      '@cypress/xvfb': 1.2.4_supports-color@8.1.1
       '@types/node': 14.18.10
       '@types/sinonjs__fake-timers': 8.1.1
       '@types/sizzle': 2.3.3
@@ -4292,14 +4309,37 @@ packages:
 
   /debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
     dependencies:
       ms: 2.0.0
     dev: true
 
   /debug/3.2.7:
     resolution: {integrity: sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ==}
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
     dependencies:
       ms: 2.1.3
+    dev: true
+    optional: true
+
+  /debug/3.2.7_supports-color@8.1.1:
+    resolution: {integrity: sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ==}
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
+    dependencies:
+      ms: 2.1.3
+      supports-color: 8.1.1
     dev: true
 
   /debug/4.3.3:
@@ -4822,7 +4862,6 @@ packages:
       esbuild-windows-64: 0.14.38
       esbuild-windows-arm64: 0.14.38
     dev: true
-    optional: true
 
   /escalade/3.1.1:
     resolution: {integrity: sha512-k0er2gUkLf8O0zKJiAhmkTnJlTvINGv7ygDNPbeIsX/TJjGJZHuh9B2UxbsaEkmlEo9MfhrSzmhIlhRlI2GXnw==}
@@ -5070,6 +5109,8 @@ packages:
       type-is: 1.6.18
       utils-merge: 1.0.1
       vary: 1.1.2
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /extend/3.0.2:
@@ -5199,6 +5240,8 @@ packages:
       parseurl: 1.3.3
       statuses: 1.5.0
       unpipe: 1.0.0
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /finalhandler/1.2.0:
@@ -5212,6 +5255,8 @@ packages:
       parseurl: 1.3.3
       statuses: 2.0.1
       unpipe: 1.0.0
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /find-cache-dir/3.3.2:
@@ -6252,6 +6297,8 @@ packages:
       mime: 1.6.0
       needle: 2.9.1
       source-map: 0.6.1
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /levn/0.4.1:
@@ -6458,6 +6505,7 @@ packages:
       socks-proxy-agent: 6.1.1
       ssri: 8.0.1
     transitivePeerDependencies:
+      - bluebird
       - supports-color
     dev: true
 
@@ -6482,6 +6530,7 @@ packages:
       socks-proxy-agent: 6.1.1
       ssri: 8.0.1
     transitivePeerDependencies:
+      - bluebird
       - supports-color
     dev: true
 
@@ -6704,6 +6753,8 @@ packages:
       debug: 3.2.7
       iconv-lite: 0.4.24
       sax: 1.2.4
+    transitivePeerDependencies:
+      - supports-color
     dev: true
     optional: true
 
@@ -6763,6 +6814,7 @@ packages:
       tar: 6.1.11
       which: 2.0.2
     transitivePeerDependencies:
+      - bluebird
       - supports-color
     dev: true
 
@@ -6861,6 +6913,7 @@ packages:
       npm-package-arg: 9.0.2
       proc-log: 2.0.1
     transitivePeerDependencies:
+      - bluebird
       - supports-color
     dev: true
 
@@ -7067,6 +7120,7 @@ packages:
       ssri: 9.0.1
       tar: 6.1.11
     transitivePeerDependencies:
+      - bluebird
       - supports-color
     dev: true
 
@@ -7642,6 +7696,11 @@ packages:
 
   /promise-inflight/1.0.1:
     resolution: {integrity: sha512-6zWPyEOFaQBJYcGMHBKTKJ3u6TBsnMFOIZSa6ce1e/ZrrsOlnHRHbabMjLiBYKp+n44X9eUI6VUPaukCXHuG4g==}
+    peerDependencies:
+      bluebird: '*'
+    peerDependenciesMeta:
+      bluebird:
+        optional: true
     dev: true
 
   /promise-retry/2.0.1:
@@ -7995,7 +8054,6 @@ packages:
     resolution: {integrity: sha512-PwDt186XaL3QN5qXj/H9DGyHhP3/RYYgZZwqBv9Tv8rsAaiwFH1IsJJlcgD37J7UW5a6O67qX0KWKS3/pu0m4w==}
     dependencies:
       tslib: 2.3.1
-    dev: false
 
   /rxjs/7.5.5:
     resolution: {integrity: sha512-sy+H0pQofO95VDmFLzyaw9xNJU4KTRSwQIGM6+iG3SypAtCiLDzpeG8sJrNCWn2Up9km+KhkvTdbkrdy+yzZdw==}
@@ -8155,6 +8213,8 @@ packages:
       on-finished: 2.4.1
       range-parser: 1.2.1
       statuses: 2.0.1
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /serialize-javascript/6.0.0:
@@ -8174,6 +8234,8 @@ packages:
       http-errors: 1.6.3
       mime-types: 2.1.34
       parseurl: 1.3.3
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /serve-static/1.15.0:
@@ -8184,6 +8246,8 @@ packages:
       escape-html: 1.0.3
       parseurl: 1.3.3
       send: 0.18.0
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /set-blocking/2.0.0:
@@ -8815,7 +8879,6 @@ packages:
     resolution: {integrity: sha512-WOkT3XYvrpXx4vMMqlD+8R8R37fZkjyLGlxavMc4iB8lrl8L0DeTcHbYgw/v0N/z9wAFsgBhcsF0ruoySS22mA==}
     engines: {node: '>=4.2.0'}
     hasBin: true
-    dev: false
 
   /ua-parser-js/0.7.31:
     resolution: {integrity: sha512-qLK/Xe9E2uzmYI3qLeOmI0tEOt+TBBQyUIAh4aAgU05FVYzeZrKUdkAZfBNVGRaHVgV0TDkdEngJSw/SyQchkQ==}
@@ -9272,4 +9335,3 @@ packages:
     resolution: {integrity: sha512-DDh2Ab+A/B+9mJyajPjHFPWfYU1H+pdun4wnnk0OcQTNjem1XQSZ2CDW+rfZEUDjv5M19SBqAkjZi0x5wuB5Qw==}
     dependencies:
       tslib: 2.3.1
-    dev: false
