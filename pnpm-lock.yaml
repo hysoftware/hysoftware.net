@@ -9,7 +9,7 @@ specifiers:
   '@angular-eslint/schematics': ^13.1.0
   '@angular-eslint/template-parser': 13.2.1
   '@angular/animations': ~13.3.0
-  '@angular/cdk': ^13.3.0
+  '@angular/cdk': ^14.0.0
   '@angular/cli': ^13.3.0
   '@angular/common': ~13.3.0
   '@angular/compiler': ~13.3.0
@@ -18,7 +18,7 @@ specifiers:
   '@angular/flex-layout': ^12.0.0-beta.34
   '@angular/forms': ~13.3.0
   '@angular/language-service': ~13.3.0
-  '@angular/material': ^13.3.0
+  '@angular/material': ^14.0.0
   '@angular/platform-browser': ~13.3.0
   '@angular/platform-browser-dynamic': ~13.3.0
   '@angular/router': ~13.3.0
@@ -56,13 +56,13 @@ specifiers:
 
 dependencies:
   '@angular/animations': 13.3.0_@angular+core@13.3.0
-  '@angular/cdk': 13.3.0_759aa30b368f352e2a08cf09a427a632
+  '@angular/cdk': 14.0.0_759aa30b368f352e2a08cf09a427a632
   '@angular/common': 13.3.0_@angular+core@13.3.0+rxjs@7.5.2
   '@angular/compiler': 13.3.0
   '@angular/core': 13.3.0_rxjs@7.5.2+zone.js@0.11.4
-  '@angular/flex-layout': 12.0.0-beta.35_1f21a55d787d3ae376498bffee4e708f
+  '@angular/flex-layout': 12.0.0-beta.35_3f2a8859145eb2abbeec96bd3aefb481
   '@angular/forms': 13.3.0_d26e210931119058b2e86b598bc880c4
-  '@angular/material': 13.3.0_818af16ff57c765555f130ecfe1ef144
+  '@angular/material': 14.0.0_03c0b0e33a72097072d4da0669f731c8
   '@angular/platform-browser': 13.3.0_8ec06fc754f66949568270178091a62a
   '@angular/platform-browser-dynamic': 13.3.0_522f35f06a6bd1631064e8f0c1b49642
   '@angular/router': 13.3.0_d26e210931119058b2e86b598bc880c4
@@ -480,11 +480,11 @@ packages:
       tslib: 2.3.1
     dev: false
 
-  /@angular/cdk/13.3.0_759aa30b368f352e2a08cf09a427a632:
-    resolution: {integrity: sha512-TyTcs9/Vd0TyQIjRf40xCDrTBK2GGCUrrHCVuHTXIqL8yvaGRnz815fL9X3hSZySCcbRV4NeK1yWeiZ9jf4Vxw==}
+  /@angular/cdk/14.0.0_759aa30b368f352e2a08cf09a427a632:
+    resolution: {integrity: sha512-9RnDlvskjXt1il9uWUidfHE98J9eYaVn+MCqhg0VLH1uHFcpt/dzoJ1nv71mC0anZHrClax29YMiEBnPFZaeFQ==}
     peerDependencies:
-      '@angular/common': ^13.0.0 || ^14.0.0-0
-      '@angular/core': ^13.0.0 || ^14.0.0-0
+      '@angular/common': ^14.0.0 || ^15.0.0
+      '@angular/core': ^14.0.0 || ^15.0.0
       rxjs: ^6.5.3 || ^7.4.0
     dependencies:
       '@angular/common': 13.3.0_@angular+core@13.3.0+rxjs@7.5.2
@@ -599,7 +599,7 @@ packages:
       zone.js: 0.10.3
     dev: true
 
-  /@angular/flex-layout/12.0.0-beta.35_1f21a55d787d3ae376498bffee4e708f:
+  /@angular/flex-layout/12.0.0-beta.35_3f2a8859145eb2abbeec96bd3aefb481:
     resolution: {integrity: sha512-nPi2MGDFuCacwWHqxF/G7lUJd2X99HbLjjUvKXnyLwyCIVgH1sfS52su2wYbVYWJRqAVAB2/VMlrtW8Khr8hDA==}
     peerDependencies:
       '@angular/cdk': ^12.0.0
@@ -608,7 +608,7 @@ packages:
       '@angular/platform-browser': '>=12.0.0'
       rxjs: ^6.0.0 || ^7.0.0
     dependencies:
-      '@angular/cdk': 13.3.0_759aa30b368f352e2a08cf09a427a632
+      '@angular/cdk': 14.0.0_759aa30b368f352e2a08cf09a427a632
       '@angular/common': 13.3.0_@angular+core@13.3.0+rxjs@7.5.2
       '@angular/core': 13.3.0_rxjs@7.5.2+zone.js@0.11.4
       '@angular/platform-browser': 13.3.0_8ec06fc754f66949568270178091a62a
@@ -637,19 +637,19 @@ packages:
     engines: {node: ^12.20.0 || ^14.15.0 || >=16.10.0}
     dev: true
 
-  /@angular/material/13.3.0_818af16ff57c765555f130ecfe1ef144:
-    resolution: {integrity: sha512-g9WRuzUo0HPeEZKQi3uRZU3lfFwcdVqdXL8F9vxpR6fg0u9jNF+Wm+sIlsADS93h/zS0IZXYecge0NU8T7Kd0g==}
+  /@angular/material/14.0.0_03c0b0e33a72097072d4da0669f731c8:
+    resolution: {integrity: sha512-RNV1g7DbnlSI9rjsuqH+fO2e+IQCJEJmjBRGvx6dBYugiag4iR9ZnpHNued26UTJ+BPTemTA7a4cDzseKKB6NQ==}
     peerDependencies:
-      '@angular/animations': ^13.0.0 || ^14.0.0-0
-      '@angular/cdk': 13.3.0
-      '@angular/common': ^13.0.0 || ^14.0.0-0
-      '@angular/core': ^13.0.0 || ^14.0.0-0
-      '@angular/forms': ^13.0.0 || ^14.0.0-0
-      '@angular/platform-browser': ^13.0.0 || ^14.0.0-0
+      '@angular/animations': ^14.0.0 || ^15.0.0
+      '@angular/cdk': 14.0.0
+      '@angular/common': ^14.0.0 || ^15.0.0
+      '@angular/core': ^14.0.0 || ^15.0.0
+      '@angular/forms': ^14.0.0 || ^15.0.0
+      '@angular/platform-browser': ^14.0.0 || ^15.0.0
       rxjs: ^6.5.3 || ^7.4.0
     dependencies:
       '@angular/animations': 13.3.0_@angular+core@13.3.0
-      '@angular/cdk': 13.3.0_759aa30b368f352e2a08cf09a427a632
+      '@angular/cdk': 14.0.0_759aa30b368f352e2a08cf09a427a632
       '@angular/common': 13.3.0_@angular+core@13.3.0+rxjs@7.5.2
       '@angular/core': 13.3.0_rxjs@7.5.2+zone.js@0.11.4
       '@angular/forms': 13.3.0_d26e210931119058b2e86b598bc880c4
