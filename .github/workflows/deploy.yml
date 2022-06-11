@@ -30,7 +30,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: hysoftware-dist
-      - uses: actions/setup-python@v3
+      - uses: actions/setup-python@v4
       - name: Install AWS Client
         run: pip install awscli
       - name: Upload
