@@ -46,7 +46,7 @@ specifiers:
   karma-jasmine: ^5.0.0
   karma-jasmine-html-reporter: ^2.0.0
   rxjs: ^7.4.0
-  ts-node: ~10.8.0
+  ts-node: ~10.9.0
   tslib: ^2.0.3
   typescript: ^4.7.0
   zone.js: ^0.11.4
@@ -102,7 +102,7 @@ devDependencies:
   karma-coverage: 2.1.0
   karma-jasmine: 5.0.0_karma@6.3.11
   karma-jasmine-html-reporter: 2.0.0_42e8fe0338bae369031406930b7b1678
-  ts-node: 10.8.0_b47c43b5086e7d18dcf6711355f8c864
+  ts-node: 10.9.1_b47c43b5086e7d18dcf6711355f8c864
 
 packages:
 
@@ -8744,8 +8744,8 @@ packages:
     hasBin: true
     dev: true
 
-  /ts-node/10.8.0_b47c43b5086e7d18dcf6711355f8c864:
-    resolution: {integrity: sha512-/fNd5Qh+zTt8Vt1KbYZjRHCE9sI5i7nqfD/dzBBRDeVXZXS6kToW6R7tTU6Nd4XavFs0mAVCg29Q//ML7WsZYA==}
+  /ts-node/10.9.1_b47c43b5086e7d18dcf6711355f8c864:
+    resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
     hasBin: true
     peerDependencies:
       '@swc/core': '>=1.2.50'
