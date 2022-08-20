@@ -22,7 +22,7 @@ specifiers:
   '@angular/platform-browser': ~14.1.0
   '@angular/platform-browser-dynamic': ~14.1.0
   '@angular/router': ~14.1.0
-  '@cypress/schematic': 2.0.2
+  '@cypress/schematic': 2.0.3
   '@fortawesome/angular-fontawesome': ^0.11.1
   '@fortawesome/fontawesome-svg-core': ^6.1.1
   '@fortawesome/free-brands-svg-icons': ^6.1.1
@@ -83,13 +83,13 @@ devDependencies:
   '@angular/cli': 14.1.0
   '@angular/compiler-cli': 14.1.0_bsntb4b45ycw7mpv6nax2z6oyu
   '@angular/language-service': 14.1.0
-  '@cypress/schematic': 2.0.2_l2mxjpgahlhmll3zilci6mzxzi
+  '@cypress/schematic': 2.0.3_l2mxjpgahlhmll3zilci6mzxzi
   '@types/jasmine': 4.0.3
   '@types/jasminewd2': 2.0.10
   '@types/node': 18.0.6
   '@typescript-eslint/eslint-plugin': 5.33.0_3nc2idgq2w6e7a7j4k5cjoskdy
   '@typescript-eslint/parser': 5.33.0_he2ccbldppg44uulnyq4rwocfa
-  cypress: 10.4.0
+  cypress: 10.6.0
   eslint: 8.20.0
   jasmine-core: 4.3.0
   jasmine-spec-reporter: 7.0.0
@@ -2100,8 +2100,8 @@ packages:
       uuid: 8.3.2
     dev: true
 
-  /@cypress/schematic/2.0.2_l2mxjpgahlhmll3zilci6mzxzi:
-    resolution: {integrity: sha512-YW8vipiU4sfmSdhCf6++UQZlz0cBMN2ZSTbPcsa29NW89cVtteF068/w/Ocb6jR4aMLiHUE5MdEDhFDkNOfOJw==}
+  /@cypress/schematic/2.0.3_l2mxjpgahlhmll3zilci6mzxzi:
+    resolution: {integrity: sha512-/ArJlqIHFDchNHSUd51IPhdn98tc16foSDzqhkA4649rvJ4AuAd4Uv6E4FYWBozjRGYjiaYrKbn2CPzCERhfpA==}
     peerDependencies:
       '@angular/cli': '>=14.1.0'
       '@angular/core': '>=14.1.0'
@@ -3966,8 +3966,8 @@ packages:
     resolution: {integrity: sha512-GAj5FOq0Hd+RsCGVJxZuKaIDXDf3h6GQoNEjFgbLLI/trgtavwUbSnZ5pVfg27DVCaWjIohryS0JFwIJyT2cMg==}
     dev: true
 
-  /cypress/10.4.0:
-    resolution: {integrity: sha512-OM7F8MRE01SHQRVVzunid1ZK1m90XTxYnl+7uZfIrB4CYqUDCrZEeSyCXzIbsS6qcaijVCAhqDL60SxG8N6hew==}
+  /cypress/10.6.0:
+    resolution: {integrity: sha512-6sOpHjostp8gcLO34p6r/Ci342lBs8S5z9/eb3ZCQ22w2cIhMWGUoGKkosabPBfKcvRS9BE4UxybBtlIs8gTQA==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     requiresBuild: true
