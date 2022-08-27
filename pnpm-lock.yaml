@@ -3,11 +3,11 @@ lockfileVersion: 5.4
 specifiers:
   '@angular-devkit/build-angular': ^14.1.0
   '@angular-devkit/core': ^14.1.0
-  '@angular-eslint/builder': 14.0.2
-  '@angular-eslint/eslint-plugin': 14.0.2
-  '@angular-eslint/eslint-plugin-template': 14.0.2
+  '@angular-eslint/builder': 14.0.3
+  '@angular-eslint/eslint-plugin': 14.0.3
+  '@angular-eslint/eslint-plugin-template': 14.0.3
   '@angular-eslint/schematics': ^14.0.2
-  '@angular-eslint/template-parser': 14.0.2
+  '@angular-eslint/template-parser': 14.0.3
   '@angular/animations': ~14.1.0
   '@angular/cdk': ^14.1.0
   '@angular/cli': ^14.1.0
@@ -75,11 +75,11 @@ dependencies:
 devDependencies:
   '@angular-devkit/build-angular': 14.1.0_4rv6hppocdodvd4q6royrauq4y
   '@angular-devkit/core': 14.1.0
-  '@angular-eslint/builder': 14.0.2_he2ccbldppg44uulnyq4rwocfa
-  '@angular-eslint/eslint-plugin': 14.0.2_he2ccbldppg44uulnyq4rwocfa
-  '@angular-eslint/eslint-plugin-template': 14.0.2_he2ccbldppg44uulnyq4rwocfa
+  '@angular-eslint/builder': 14.0.3_he2ccbldppg44uulnyq4rwocfa
+  '@angular-eslint/eslint-plugin': 14.0.3_he2ccbldppg44uulnyq4rwocfa
+  '@angular-eslint/eslint-plugin-template': 14.0.3_he2ccbldppg44uulnyq4rwocfa
   '@angular-eslint/schematics': 14.0.2_yn5gvajdpu6kh6hzqjbjggx7oq
-  '@angular-eslint/template-parser': 14.0.2_he2ccbldppg44uulnyq4rwocfa
+  '@angular-eslint/template-parser': 14.0.3_he2ccbldppg44uulnyq4rwocfa
   '@angular/cli': 14.1.0
   '@angular/compiler-cli': 14.1.0_bsntb4b45ycw7mpv6nax2z6oyu
   '@angular/language-service': 14.1.0
@@ -273,15 +273,15 @@ packages:
       - chokidar
     dev: true
 
-  /@angular-eslint/builder/14.0.2_he2ccbldppg44uulnyq4rwocfa:
-    resolution: {integrity: sha512-RY/1fKNewm3Wt3ILe9Ue5jTiQRtPR8q+eAmV89EYl07jEQ4RA7oND+vYD0UT9IJDVVHZYs6nlEnb0JmwCQI8kA==}
+  /@angular-eslint/builder/14.0.3_he2ccbldppg44uulnyq4rwocfa:
+    resolution: {integrity: sha512-Pmyy5LuUNIgfQuEjVlz86Ndk+S/900a77gIOQFAqAC7xYWMZEvQkIRKtxe/iIVyyhJ0OKKl3u/f11Bw0nHmJ6Q==}
     peerDependencies:
       eslint: ^7.0.0 || ^8.0.0
       typescript: '*'
     dependencies:
-      '@nrwl/devkit': 14.4.2_nx@14.4.2
+      '@nrwl/devkit': 14.5.10_friigstnlhuirqu4wr7dfbyroa
       eslint: 8.20.0
-      nx: 14.4.2
+      nx: 14.5.10
       typescript: 4.7.4
     transitivePeerDependencies:
       - '@swc-node/register'
@@ -290,6 +290,10 @@ packages:
 
   /@angular-eslint/bundled-angular-compiler/14.0.2:
     resolution: {integrity: sha512-Ev001tGwBfy6lFd1IDrAHfW87VUqDmMQY5KWY+LM3dn0PY2XZv1RsBM16tBFbi7EaDeaxeFZg/G8PN5x+anNbg==}
+    dev: true
+
+  /@angular-eslint/bundled-angular-compiler/14.0.3:
+    resolution: {integrity: sha512-1JMdb5IrgFH+bxY8ZYXyNyu31+BELbahGKOi+jX0ZyZgGA8nbukzjL+QVNwwaw1RNuyiCxZzCwA/tRSGJMqSYA==}
     dev: true
 
   /@angular-eslint/eslint-plugin-template/14.0.2_he2ccbldppg44uulnyq4rwocfa:
@@ -308,6 +312,22 @@ packages:
       - supports-color
     dev: true
 
+  /@angular-eslint/eslint-plugin-template/14.0.3_he2ccbldppg44uulnyq4rwocfa:
+    resolution: {integrity: sha512-0m1dShhn6NVReBABecBn8UnMRidc61s3SGQIJWCkDBIeLOD+qVVaxZo04uNDNrXZhHWHqHAVIEBjG+qK2Xq6Nw==}
+    peerDependencies:
+      eslint: ^7.0.0 || ^8.0.0
+      typescript: '*'
+    dependencies:
+      '@angular-eslint/bundled-angular-compiler': 14.0.3
+      '@typescript-eslint/utils': 5.29.0_he2ccbldppg44uulnyq4rwocfa
+      aria-query: 5.0.0
+      axobject-query: 3.0.1
+      eslint: 8.20.0
+      typescript: 4.7.4
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
   /@angular-eslint/eslint-plugin/14.0.2_he2ccbldppg44uulnyq4rwocfa:
     resolution: {integrity: sha512-TfiXWqaWGysnPB6JstZouvA9tNwIsCLvSIGqniE1U90kX6p5nL8Z09JOiv/9jlYfgAIEgUD48BGMZzDi86voGA==}
     peerDependencies:
@@ -315,6 +335,20 @@ packages:
       typescript: '*'
     dependencies:
       '@angular-eslint/utils': 14.0.2_he2ccbldppg44uulnyq4rwocfa
+      '@typescript-eslint/utils': 5.29.0_he2ccbldppg44uulnyq4rwocfa
+      eslint: 8.20.0
+      typescript: 4.7.4
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
+  /@angular-eslint/eslint-plugin/14.0.3_he2ccbldppg44uulnyq4rwocfa:
+    resolution: {integrity: sha512-s3rgibA+sFcDswpKUXbdykOBT7KoSk205bIBARJrIZr0zR7zsPLS/XQQGk83VICeAgcGHSPlNBmspOBrLfihEQ==}
+    peerDependencies:
+      eslint: ^7.0.0 || ^8.0.0
+      typescript: '*'
+    dependencies:
+      '@angular-eslint/utils': 14.0.3_he2ccbldppg44uulnyq4rwocfa
       '@typescript-eslint/utils': 5.29.0_he2ccbldppg44uulnyq4rwocfa
       eslint: 8.20.0
       typescript: 4.7.4
@@ -339,13 +373,13 @@ packages:
       - typescript
     dev: true
 
-  /@angular-eslint/template-parser/14.0.2_he2ccbldppg44uulnyq4rwocfa:
-    resolution: {integrity: sha512-NTXSfL97WVs4GTKPtPcRZfWtvNbhgcIZUvKUTk5ieYiVLqsHF9Y+NlAKBh44AGldM5oCNO4HUfnvOedtqkQ+MA==}
+  /@angular-eslint/template-parser/14.0.3_he2ccbldppg44uulnyq4rwocfa:
+    resolution: {integrity: sha512-agUhRSkiB4n7CunB+jL1+1Wsvia1xnI3XhZTBKoGs4Q+DjEgZmd4xryy8snw31cQgqJMtlvyP4QTr2+cqrxAdQ==}
     peerDependencies:
       eslint: ^7.0.0 || ^8.0.0
       typescript: '*'
     dependencies:
-      '@angular-eslint/bundled-angular-compiler': 14.0.2
+      '@angular-eslint/bundled-angular-compiler': 14.0.3
       eslint: 8.20.0
       eslint-scope: 5.1.1
       typescript: 4.7.4
@@ -358,6 +392,20 @@ packages:
       typescript: '*'
     dependencies:
       '@angular-eslint/bundled-angular-compiler': 14.0.2
+      '@typescript-eslint/utils': 5.29.0_he2ccbldppg44uulnyq4rwocfa
+      eslint: 8.20.0
+      typescript: 4.7.4
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
+  /@angular-eslint/utils/14.0.3_he2ccbldppg44uulnyq4rwocfa:
+    resolution: {integrity: sha512-horyyq6shximqacDhHm6GhEJI71dvGfr2iiqP/PtT944dhY+Ml6fj85H9ywKQxd5ENYPBKrzOGCBxpLyQU07Ow==}
+    peerDependencies:
+      eslint: ^7.0.0 || ^8.0.0
+      typescript: '*'
+    dependencies:
+      '@angular-eslint/bundled-angular-compiler': 14.0.3
       '@typescript-eslint/utils': 5.29.0_he2ccbldppg44uulnyq4rwocfa
       eslint: 8.20.0
       typescript: 4.7.4
@@ -2384,33 +2432,35 @@ packages:
       - supports-color
     dev: true
 
-  /@nrwl/cli/14.4.2:
-    resolution: {integrity: sha512-JNV4kP9goZD4BlTQGKdKhCRc1bhiWYp1TaDJHdk4ZfhiLt1NzXNxxgc/eX2obFZ3Hw+KdM/gM5F7KfWBbtSGSw==}
+  /@nrwl/cli/14.5.10:
+    resolution: {integrity: sha512-GpnnKGO3+HwlMmZSStbq1MOyoDJg2I0HN4nBqM3ltaQkfxGZv3erwRMOAT+8mba2MWbJJ2QQgASAYvTscNYjOQ==}
     dependencies:
-      nx: 14.4.2
+      nx: 14.5.10
     transitivePeerDependencies:
       - '@swc-node/register'
       - '@swc/core'
     dev: true
 
-  /@nrwl/devkit/14.4.2_nx@14.4.2:
-    resolution: {integrity: sha512-CJCczAbnZ7w6XZeOMHhb4aTQeDzU0pJOAAJvNU1EAzbj/nkP+QILn/sX+WQR6z94UT2Y9SMamnE4TjQC2F48vQ==}
+  /@nrwl/devkit/14.5.10_friigstnlhuirqu4wr7dfbyroa:
+    resolution: {integrity: sha512-YVT0MRvyXwe0uczUZK4XUi1f2iLAqklFMfAoqwfgcgWToH8xN06NSlyUphD4eLHFgem3Sd0kimAJVsnse/PTlA==}
     peerDependencies:
       nx: '>= 13.10 <= 15'
     dependencies:
+      '@phenomnomnominal/tsquery': 4.1.1_typescript@4.7.4
       ejs: 3.1.8
       ignore: 5.2.0
-      nx: 14.4.2
-      rxjs: 6.6.7
+      nx: 14.5.10
       semver: 7.3.4
       tslib: 2.4.0
+    transitivePeerDependencies:
+      - typescript
     dev: true
 
-  /@nrwl/tao/14.4.2:
-    resolution: {integrity: sha512-Ygw3skKZfFhi4MBHZKQ8A67pDQxeyDdY78tFWViMN0SEn9ExL41Q8V9aSMfir8VZYGca6ZOXX5MRhbeHdcgMLQ==}
+  /@nrwl/tao/14.5.10:
+    resolution: {integrity: sha512-eWORRba0HlTNmOQFUxHqki0Z5yiRIq1Hl0taprmZpz2lgDXuzPIjGfAi5/ETy5+G5gkEyxFnCq7+SiMilPokwA==}
     hasBin: true
     dependencies:
-      nx: 14.4.2
+      nx: 14.5.10
     transitivePeerDependencies:
       - '@swc-node/register'
       - '@swc/core'
@@ -2423,6 +2473,15 @@ packages:
     dependencies:
       node-addon-api: 3.2.1
       node-gyp-build: 4.3.0
+    dev: true
+
+  /@phenomnomnominal/tsquery/4.1.1_typescript@4.7.4:
+    resolution: {integrity: sha512-jjMmK1tnZbm1Jq5a7fBliM4gQwjxMU7TFoRNwIyzwlO+eHPRCFv/Nv+H/Gi1jc3WR7QURG8D5d0Tn12YGrUqBQ==}
+    peerDependencies:
+      typescript: ^3 || ^4
+    dependencies:
+      esquery: 1.4.0
+      typescript: 4.7.4
     dev: true
 
   /@schematics/angular/14.1.0:
@@ -6600,8 +6659,8 @@ packages:
       boolbase: 1.0.0
     dev: true
 
-  /nx/14.4.2:
-    resolution: {integrity: sha512-bYO//HuwQL4X8y+2BjUPtkPLDiYI1zMejQo6+uJl3+VdYPcsjwW/ca581tBPHiPH95XnHiBartnMrMJtn11grw==}
+  /nx/14.5.10:
+    resolution: {integrity: sha512-dqiV+zY32k98mfKFTgiQyYd9HYZmB1zoJj6gYniEuqzs6CKp8ZSpeRDaVQRxR6wEMvW9MSTA9kBg8sJ78W/NZg==}
     hasBin: true
     requiresBuild: true
     peerDependencies:
@@ -6613,8 +6672,8 @@ packages:
       '@swc/core':
         optional: true
     dependencies:
-      '@nrwl/cli': 14.4.2
-      '@nrwl/tao': 14.4.2
+      '@nrwl/cli': 14.5.10
+      '@nrwl/tao': 14.5.10
       '@parcel/watcher': 2.0.4
       chalk: 4.1.0
       chokidar: 3.5.3
@@ -6641,7 +6700,7 @@ packages:
       tsconfig-paths: 3.14.1
       tslib: 2.4.0
       v8-compile-cache: 2.3.0
-      yargs: 17.4.1
+      yargs: 17.5.1
       yargs-parser: 21.0.1
     dev: true
 
@@ -8886,19 +8945,6 @@ packages:
       string-width: 4.2.3
       y18n: 5.0.8
       yargs-parser: 20.2.9
-    dev: true
-
-  /yargs/17.4.1:
-    resolution: {integrity: sha512-WSZD9jgobAg3ZKuCQZSa3g9QOJeCCqLoLAykiWgmXnDo9EPnn4RPf5qVTtzgOx66o6/oqhcA5tHtJXpG8pMt3g==}
-    engines: {node: '>=12'}
-    dependencies:
-      cliui: 7.0.4
-      escalade: 3.1.1
-      get-caller-file: 2.0.5
-      require-directory: 2.1.1
-      string-width: 4.2.3
-      y18n: 5.0.8
-      yargs-parser: 21.0.1
     dev: true
 
   /yargs/17.5.1:
