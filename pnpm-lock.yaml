@@ -28,7 +28,7 @@ specifiers:
   '@fortawesome/free-brands-svg-icons': ^6.1.1
   '@fortawesome/free-regular-svg-icons': ^6.1.1
   '@fortawesome/free-solid-svg-icons': ^6.1.1
-  '@types/jasmine': ~4.0.3
+  '@types/jasmine': ~4.3.0
   '@types/jasminewd2': ~2.0.10
   '@types/node': ^18.0.6
   '@typescript-eslint/eslint-plugin': 5.33.1
@@ -84,7 +84,7 @@ devDependencies:
   '@angular/compiler-cli': 14.1.0_bsntb4b45ycw7mpv6nax2z6oyu
   '@angular/language-service': 14.1.0
   '@cypress/schematic': 2.0.3_l2mxjpgahlhmll3zilci6mzxzi
-  '@types/jasmine': 4.0.3
+  '@types/jasmine': 4.3.0
   '@types/jasminewd2': 2.0.10
   '@types/node': 18.0.6
   '@typescript-eslint/eslint-plugin': 5.33.1_3t463ove4q6h64lictnwmkiis4
@@ -2600,14 +2600,14 @@ packages:
       '@types/node': 18.0.6
     dev: true
 
-  /@types/jasmine/4.0.3:
-    resolution: {integrity: sha512-Opp1LvvEuZdk8fSSvchK2mZwhVrsNT0JgJE9Di6MjnaIpmEXM8TLCPPrVtNTYh8+5MPdY8j9bAHMu2SSfwpZJg==}
+  /@types/jasmine/4.3.0:
+    resolution: {integrity: sha512-u1jWakf8CWvLfSEZyxmzkgBzOEvXH/szpT0e6G8BTkx5Eu0BhDn7sbc5dz0JBN/6Wwm9rBe+JAsk9tJRyH9ZkA==}
     dev: true
 
   /@types/jasminewd2/2.0.10:
     resolution: {integrity: sha512-J7mDz7ovjwjc+Y9rR9rY53hFWKATcIkrr9DwQWmOas4/pnIPJTXawnzjwpHm3RSxz/e3ZVUvQ7cRbd5UQLo10g==}
     dependencies:
-      '@types/jasmine': 4.0.3
+      '@types/jasmine': 4.3.0
     dev: true
 
   /@types/json-schema/7.0.9:
