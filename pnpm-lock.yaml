@@ -22,7 +22,7 @@ specifiers:
   '@angular/platform-browser': ~14.2.0
   '@angular/platform-browser-dynamic': ~14.2.0
   '@angular/router': ~14.2.0
-  '@cypress/schematic': 2.2.0
+  '@cypress/schematic': 2.3.0
   '@fortawesome/angular-fontawesome': ^0.11.1
   '@fortawesome/fontawesome-svg-core': ^6.1.1
   '@fortawesome/free-brands-svg-icons': ^6.1.1
@@ -83,7 +83,7 @@ devDependencies:
   '@angular/cli': 14.2.4
   '@angular/compiler-cli': 14.2.4_2prlqh4bpjzvn5c2w35c2it62e
   '@angular/language-service': 14.2.4
-  '@cypress/schematic': 2.2.0_aae2f6lyi74bsq6xzr4imx5tdm
+  '@cypress/schematic': 2.3.0_aae2f6lyi74bsq6xzr4imx5tdm
   '@types/jasmine': 4.3.0
   '@types/jasminewd2': 2.0.10
   '@types/node': 18.0.6
@@ -2093,8 +2093,8 @@ packages:
       uuid: 8.3.2
     dev: true
 
-  /@cypress/schematic/2.2.0_aae2f6lyi74bsq6xzr4imx5tdm:
-    resolution: {integrity: sha512-CK26TiXohnvx/Vs5QMlFsaHDU6xPsqHBppWOrPFuwcvw83sTAE0e3FjNgGrajZhAWNPCswhiLiV+oJtMgVcAFg==}
+  /@cypress/schematic/2.3.0_aae2f6lyi74bsq6xzr4imx5tdm:
+    resolution: {integrity: sha512-LBKX20MUUYF2Xu+1+KpVbLCoMvt2Osa80yQfonduVsLJ/p8JxtLHqufuf/ryJp9Gm9R5sDfk/YhHL+rB7a+gsg==}
     peerDependencies:
       '@angular/cli': '>=12'
       '@angular/core': '>=12'
