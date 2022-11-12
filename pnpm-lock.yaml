@@ -47,14 +47,14 @@ specifiers:
   ts-node: ~10.9.1
   tslib: ^2.4.0
   typescript: ^4.7.4
-  zone.js: ^0.11.7
+  zone.js: ^0.12.0
 
 dependencies:
   '@angular/animations': 14.2.4_@angular+core@14.2.4
   '@angular/cdk': 14.2.3_gzn7mengj7zvpersj3c5touyka
   '@angular/common': 14.2.4_d3gph7yjvfqjptuvvnbpmq5d3m
   '@angular/compiler': 14.2.4_@angular+core@14.2.4
-  '@angular/core': 14.2.4_rxjs@7.5.6+zone.js@0.11.7
+  '@angular/core': 14.2.4_rxjs@7.5.6+zone.js@0.12.0
   '@angular/flex-layout': 14.0.0-beta.40_z6kcyhketaneafy5gpszoa3sgi
   '@angular/forms': 14.2.4_gv5ofqq6tp54zl4fnez66sqb7m
   '@angular/material': 14.2.3_wyu6axinlxynsiaqftvropxe6e
@@ -70,7 +70,7 @@ dependencies:
   rxjs: 7.5.6
   tslib: 2.4.0
   typescript: 4.7.4
-  zone.js: 0.11.7
+  zone.js: 0.12.0
 
 devDependencies:
   '@angular-devkit/build-angular': 14.2.4_qrh4abr7qtnjijfrfviu3jcmii
@@ -371,7 +371,7 @@ packages:
     peerDependencies:
       '@angular/core': 14.2.4
     dependencies:
-      '@angular/core': 14.2.4_rxjs@7.5.6+zone.js@0.11.7
+      '@angular/core': 14.2.4_rxjs@7.5.6+zone.js@0.12.0
       tslib: 2.4.0
     dev: false
 
@@ -383,7 +383,7 @@ packages:
       rxjs: ^6.5.3 || ^7.4.0
     dependencies:
       '@angular/common': 14.2.4_d3gph7yjvfqjptuvvnbpmq5d3m
-      '@angular/core': 14.2.4_rxjs@7.5.6+zone.js@0.11.7
+      '@angular/core': 14.2.4_rxjs@7.5.6+zone.js@0.12.0
       rxjs: 7.5.6
       tslib: 2.4.0
     optionalDependencies:
@@ -428,7 +428,7 @@ packages:
       '@angular/core': 14.2.4
       rxjs: ^6.5.3 || ^7.4.0
     dependencies:
-      '@angular/core': 14.2.4_rxjs@7.5.6+zone.js@0.11.7
+      '@angular/core': 14.2.4_rxjs@7.5.6+zone.js@0.12.0
       rxjs: 7.5.6
       tslib: 2.4.0
     dev: false
@@ -466,10 +466,10 @@ packages:
       '@angular/core':
         optional: true
     dependencies:
-      '@angular/core': 14.2.4_rxjs@7.5.6+zone.js@0.11.7
+      '@angular/core': 14.2.4_rxjs@7.5.6+zone.js@0.12.0
       tslib: 2.4.0
 
-  /@angular/core/14.2.4_rxjs@7.5.6+zone.js@0.11.7:
+  /@angular/core/14.2.4_rxjs@7.5.6+zone.js@0.12.0:
     resolution: {integrity: sha512-wB19wKmZE+X07mLbxYyqeg3v1JXy8m0+ShZD2oY3dmgk1mXOf5XVQxRZohGTrbPw83EdSWwx3vz+jjylGunVZQ==}
     engines: {node: ^14.15.0 || >=16.10.0}
     peerDependencies:
@@ -478,7 +478,7 @@ packages:
     dependencies:
       rxjs: 7.5.6
       tslib: 2.4.0
-      zone.js: 0.11.7
+      zone.js: 0.12.0
 
   /@angular/flex-layout/14.0.0-beta.40_z6kcyhketaneafy5gpszoa3sgi:
     resolution: {integrity: sha512-lYi2BKovNk5u2wmj/AMIMqfUzCBEt99Wu/Gfa+1mUIlw3voKCmIsV2XYBhX4adRdD+dRagY3Opger43JR7PXEw==}
@@ -491,7 +491,7 @@ packages:
     dependencies:
       '@angular/cdk': 14.2.3_gzn7mengj7zvpersj3c5touyka
       '@angular/common': 14.2.4_d3gph7yjvfqjptuvvnbpmq5d3m
-      '@angular/core': 14.2.4_rxjs@7.5.6+zone.js@0.11.7
+      '@angular/core': 14.2.4_rxjs@7.5.6+zone.js@0.12.0
       '@angular/platform-browser': 14.2.4_nkf2vx5k6yribxpkpcpvyqevui
       rxjs: 7.5.6
       tslib: 2.4.0
@@ -507,7 +507,7 @@ packages:
       rxjs: ^6.5.3 || ^7.4.0
     dependencies:
       '@angular/common': 14.2.4_d3gph7yjvfqjptuvvnbpmq5d3m
-      '@angular/core': 14.2.4_rxjs@7.5.6+zone.js@0.11.7
+      '@angular/core': 14.2.4_rxjs@7.5.6+zone.js@0.12.0
       '@angular/platform-browser': 14.2.4_nkf2vx5k6yribxpkpcpvyqevui
       rxjs: 7.5.6
       tslib: 2.4.0
@@ -532,7 +532,7 @@ packages:
       '@angular/animations': 14.2.4_@angular+core@14.2.4
       '@angular/cdk': 14.2.3_gzn7mengj7zvpersj3c5touyka
       '@angular/common': 14.2.4_d3gph7yjvfqjptuvvnbpmq5d3m
-      '@angular/core': 14.2.4_rxjs@7.5.6+zone.js@0.11.7
+      '@angular/core': 14.2.4_rxjs@7.5.6+zone.js@0.12.0
       '@angular/forms': 14.2.4_gv5ofqq6tp54zl4fnez66sqb7m
       '@angular/platform-browser': 14.2.4_nkf2vx5k6yribxpkpcpvyqevui
       rxjs: 7.5.6
@@ -550,7 +550,7 @@ packages:
     dependencies:
       '@angular/common': 14.2.4_d3gph7yjvfqjptuvvnbpmq5d3m
       '@angular/compiler': 14.2.4_@angular+core@14.2.4
-      '@angular/core': 14.2.4_rxjs@7.5.6+zone.js@0.11.7
+      '@angular/core': 14.2.4_rxjs@7.5.6+zone.js@0.12.0
       '@angular/platform-browser': 14.2.4_nkf2vx5k6yribxpkpcpvyqevui
       tslib: 2.4.0
     dev: false
@@ -568,7 +568,7 @@ packages:
     dependencies:
       '@angular/animations': 14.2.4_@angular+core@14.2.4
       '@angular/common': 14.2.4_d3gph7yjvfqjptuvvnbpmq5d3m
-      '@angular/core': 14.2.4_rxjs@7.5.6+zone.js@0.11.7
+      '@angular/core': 14.2.4_rxjs@7.5.6+zone.js@0.12.0
       tslib: 2.4.0
     dev: false
 
@@ -582,7 +582,7 @@ packages:
       rxjs: ^6.5.3 || ^7.4.0
     dependencies:
       '@angular/common': 14.2.4_d3gph7yjvfqjptuvvnbpmq5d3m
-      '@angular/core': 14.2.4_rxjs@7.5.6+zone.js@0.11.7
+      '@angular/core': 14.2.4_rxjs@7.5.6+zone.js@0.12.0
       '@angular/platform-browser': 14.2.4_nkf2vx5k6yribxpkpcpvyqevui
       rxjs: 7.5.6
       tslib: 2.4.0
@@ -2103,7 +2103,7 @@ packages:
       '@angular-devkit/core': 14.2.4
       '@angular-devkit/schematics': 14.2.4
       '@angular/cli': 14.2.4
-      '@angular/core': 14.2.4_rxjs@7.5.6+zone.js@0.11.7
+      '@angular/core': 14.2.4_rxjs@7.5.6+zone.js@0.12.0
       '@schematics/angular': 14.2.4
       jsonc-parser: 3.1.0
       rxjs: 6.6.7
@@ -2157,7 +2157,7 @@ packages:
       '@angular/core': ^14.0.0
       '@fortawesome/fontawesome-svg-core': ~1.2.27 || ~1.3.0-beta2 || ^6.1.0
     dependencies:
-      '@angular/core': 14.2.4_rxjs@7.5.6+zone.js@0.11.7
+      '@angular/core': 14.2.4_rxjs@7.5.6+zone.js@0.12.0
       '@fortawesome/fontawesome-svg-core': 6.1.1
       tslib: 2.4.0
     dev: false
@@ -8719,7 +8719,7 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /zone.js/0.11.7:
-    resolution: {integrity: sha512-e39K2EdK5JfA3FDuUTVRvPlYV4aBfnOOcGuILhQAT7nzeV12uSrLBzImUM9CDVoncDSX4brR/gwqu0heQ3BQ0g==}
+  /zone.js/0.12.0:
+    resolution: {integrity: sha512-XtC+I5dXU14HrzidAKBNMqneIVUykLEAA1x+v4KVrd6AUPWlwYORF8KgsVqvgdHiKZ4BkxxjvYi/ksEixTPR0Q==}
     dependencies:
       tslib: 2.4.0
