@@ -23,7 +23,7 @@ specifiers:
   '@angular/platform-browser-dynamic': ~14.2.0
   '@angular/router': ~14.2.0
   '@cypress/schematic': 2.3.0
-  '@fortawesome/angular-fontawesome': ^0.11.1
+  '@fortawesome/angular-fontawesome': ^0.12.0
   '@fortawesome/fontawesome-svg-core': ^6.1.1
   '@fortawesome/free-brands-svg-icons': ^6.1.1
   '@fortawesome/free-regular-svg-icons': ^6.1.1
@@ -61,7 +61,7 @@ dependencies:
   '@angular/platform-browser': 14.2.4_nkf2vx5k6yribxpkpcpvyqevui
   '@angular/platform-browser-dynamic': 14.2.4_utakpv4yy4yulu3zbqkiu5no6i
   '@angular/router': 14.2.4_gv5ofqq6tp54zl4fnez66sqb7m
-  '@fortawesome/angular-fontawesome': 0.11.1_or6qxr4qmehwh3w3nizcqdmivq
+  '@fortawesome/angular-fontawesome': 0.12.0_or6qxr4qmehwh3w3nizcqdmivq
   '@fortawesome/fontawesome-svg-core': 6.1.1
   '@fortawesome/free-brands-svg-icons': 6.1.1
   '@fortawesome/free-regular-svg-icons': 6.1.1
@@ -89,7 +89,7 @@ devDependencies:
   '@types/node': 18.0.6
   '@typescript-eslint/eslint-plugin': 5.43.0_6mvr3wvpyjtqqr5hcm4yddtljm
   '@typescript-eslint/parser': 5.43.0_he2ccbldppg44uulnyq4rwocfa
-  cypress: 11.1.0
+  cypress: 11.2.0
   eslint: 8.20.0
   jasmine-core: 4.5.0
   jasmine-spec-reporter: 7.0.0
@@ -2158,15 +2158,15 @@ packages:
       - supports-color
     dev: true
 
-  /@fortawesome/angular-fontawesome/0.11.1_or6qxr4qmehwh3w3nizcqdmivq:
-    resolution: {integrity: sha512-Ngzm5MVxk76ZhYpPTNOI/mpYNz9bzwfBXC5L9mktLgOONjBuYBPVt+bH8lny8hNtDk0ppZzXsMN6CO7hckdfnw==}
+  /@fortawesome/angular-fontawesome/0.12.0_or6qxr4qmehwh3w3nizcqdmivq:
+    resolution: {integrity: sha512-5d0Kei7mDcaoeik4mqBXa0bP0RnVwVic80vjV3Z4LOHgIKfc6n3p3YJi6aAEUd7ZDIErhH+y4zAjbY+t1pCwSQ==}
     peerDependencies:
-      '@angular/core': ^14.0.0
+      '@angular/core': ^15.0.0
       '@fortawesome/fontawesome-svg-core': ~1.2.27 || ~1.3.0-beta2 || ^6.1.0
     dependencies:
       '@angular/core': 14.2.4_rxjs@7.5.6+zone.js@0.12.0
       '@fortawesome/fontawesome-svg-core': 6.1.1
-      tslib: 2.4.0
+      tslib: 2.4.1
     dev: false
 
   /@fortawesome/fontawesome-common-types/6.1.1:
@@ -3914,8 +3914,8 @@ packages:
     resolution: {integrity: sha512-GAj5FOq0Hd+RsCGVJxZuKaIDXDf3h6GQoNEjFgbLLI/trgtavwUbSnZ5pVfg27DVCaWjIohryS0JFwIJyT2cMg==}
     dev: true
 
-  /cypress/11.1.0:
-    resolution: {integrity: sha512-kzizbG9s3p3ahWqxUwG/21NqLWEGtScMevMyUPeYlcmMX9RzVxWM18MkA3B4Cb3jKx72hSyIE2mHgHymfCM1bg==}
+  /cypress/11.2.0:
+    resolution: {integrity: sha512-u61UGwtu7lpsNWLUma/FKNOsrjcI6wleNmda/TyKHe0dOBcVjbCPlp1N6uwFZ0doXev7f/91YDpU9bqDCFeBLA==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     requiresBuild: true
@@ -8098,7 +8098,6 @@ packages:
 
   /tslib/2.4.1:
     resolution: {integrity: sha512-tGyy4dAjRIEwI7BzsB0lynWgOpfqjUdq91XXAlIWD2OwKBH7oCl/GZG/HT4BOHrTlPMOASlMQ7veyTqpmRcrNA==}
-    dev: true
 
   /tsutils/3.21.0_typescript@4.7.4:
     resolution: {integrity: sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==}
