@@ -1,13 +1,18 @@
-a.withIcon {
-  padding: 0.5rem;
-  margin: 0.5rem;
-  line-height: 2rem;
-}
-
 .button-content {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+
+.button-content-container {
+  position: relative;
+  padding: 1rem;
+}
+
+a.withIcon {
+  display: inline-flex;
+  margin: 0.5rem;
+  padding: 1rem;
+  line-height: 1rem;
 }

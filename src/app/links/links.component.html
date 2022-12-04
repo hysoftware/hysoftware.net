@@ -1,15 +1,15 @@
 <section>
   <header><h2>SNS</h2></header>
-  <a class="snsLinks withIcon"
-    mat-raised-button
-    [href]="item.link"
-    target="_blank"
-    *ngFor="let item of snsList">
-    <div class="button-content">
-      <fa-icon [icon]=item.icon size="2x" [fixedWidth]="true"></fa-icon>
-      {{ item.name }}
-    </div>
-  </a>
+    <a class="snsLinks withIcon"
+      mat-fab extended color="primary"
+      [href]="item.link"
+      target="_blank"
+      *ngFor="let item of snsList">
+      <div class="button-content">
+        <fa-icon [icon]=item.icon size="2x" [fixedWidth]="true"></fa-icon>
+        {{ item.name }}
+      </div>
+    </a>
 </section>
 
 <section>
@@ -21,9 +21,9 @@
     [href]="item.link"
     target="_blank"
     *ngFor="let item of misc">
-      <div class="button-content">
-        <fa-icon [icon]=item.icon size="2x" [fixedWidth]="true"></fa-icon>
-        {{ item.name }}
-      </div>
+    <div class="button-content">
+      <fa-icon [icon]=item.icon size="2x" [fixedWidth]="true"></fa-icon>
+      {{ item.name }}
+    </div>
   </a>
 </section>
