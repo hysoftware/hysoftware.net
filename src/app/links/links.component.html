@@ -5,7 +5,7 @@
     [href]="item.link"
     target="_blank"
     *ngFor="let item of snsList">
-    <div fxLayout="column" fxLayoutAlign="center center">
+    <div class="button-content">
       <fa-icon [icon]=item.icon size="2x" [fixedWidth]="true"></fa-icon>
       {{ item.name }}
     </div>
@@ -21,7 +21,7 @@
     [href]="item.link"
     target="_blank"
     *ngFor="let item of misc">
-      <div fxLayout="column" fxLayoutAlign="center center">
+      <div class="button-content">
         <fa-icon [icon]=item.icon size="2x" [fixedWidth]="true"></fa-icon>
         {{ item.name }}
       </div>

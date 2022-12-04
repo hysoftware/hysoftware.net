@@ -3,3 +3,11 @@ a.withIcon {
   margin: 0.5rem;
   line-height: 2rem;
 }
+
+.button-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}

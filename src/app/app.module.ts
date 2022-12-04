@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MatButtonModule } from '@angular/material/button';
 
@@ -24,7 +23,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     BrowserModule,
     VulModule,
     BrowserAnimationsModule,
-    FlexLayoutModule,
     MatButtonModule,
     FontAwesomeModule,
   ],
