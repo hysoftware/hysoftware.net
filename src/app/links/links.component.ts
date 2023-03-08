@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import { faFileCode } from '@fortawesome/free-solid-svg-icons';
-import { faGithub, faGitlab, faLinkedin, faAngellist, faKeybase } from '@fortawesome/free-brands-svg-icons';
+import { faFileCode, faFilePdf } from '@fortawesome/free-solid-svg-icons';
+import { faGithub, faGitlab, faKeybase } from '@fortawesome/free-brands-svg-icons';
 
 interface Link {
   icon: IconDefinition;
@@ -21,6 +21,11 @@ export class LinksComponent {
       icon: faFileCode,
       link: 'https://github.com/hysoftware/hysoftware.net',
       name: 'Code of This Page'
+    },
+    {
+      icon: faFilePdf,
+      link: 'https://www.canva.com/design/DADks8eRENo/4npkcNMd5b5OSyFNTXXMvw/view',
+      name: 'Resume about me'
     }
   ];
   public snsList: Link[] = [
