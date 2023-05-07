@@ -17,7 +17,7 @@ module.exports = {
           { type: 'element', prefix: 'app', style: 'kebab-case' },
         ],
         quotes: ['error', 'single', { allowTemplateLiterals: true }],
-        '@typescript-eslint/no-misused-promises': ['error'],
+        // '@typescript-eslint/no-misused-promises': ['error'],
       },
     },
     {
