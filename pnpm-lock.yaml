@@ -6,35 +6,35 @@ settings:
 
 dependencies:
   '@angular/animations':
-    specifier: ~16.0.0
-    version: 16.0.0(@angular/core@16.0.0)
+    specifier: ~16.1.0
+    version: 16.1.0(@angular/core@16.0.0)
   '@angular/cdk':
     specifier: ^16.0.0
-    version: 16.0.0(@angular/common@16.0.0)(@angular/core@16.0.0)(rxjs@7.8.1)
+    version: 16.0.0(@angular/common@16.1.0)(@angular/core@16.0.0)(rxjs@7.8.1)
   '@angular/common':
-    specifier: ~16.0.0
-    version: 16.0.0(@angular/core@16.0.0)(rxjs@7.8.1)
+    specifier: ~16.1.0
+    version: 16.1.0(@angular/core@16.0.0)(rxjs@7.8.1)
   '@angular/compiler':
-    specifier: ~16.0.0
-    version: 16.0.0(@angular/core@16.0.0)
+    specifier: ~16.1.0
+    version: 16.1.0(@angular/core@16.0.0)
   '@angular/core':
     specifier: ^16.0.0
     version: 16.0.0(rxjs@7.8.1)(zone.js@0.13.0)
   '@angular/forms':
-    specifier: ~16.0.0
-    version: 16.0.0(@angular/common@16.0.0)(@angular/core@16.0.0)(@angular/platform-browser@16.0.0)(rxjs@7.8.1)
+    specifier: ~16.1.0
+    version: 16.1.0(@angular/common@16.1.0)(@angular/core@16.0.0)(@angular/platform-browser@16.1.0)(rxjs@7.8.1)
   '@angular/material':
     specifier: ^16.0.0
-    version: 16.0.0(@angular/animations@16.0.0)(@angular/cdk@16.0.0)(@angular/common@16.0.0)(@angular/core@16.0.0)(@angular/forms@16.0.0)(@angular/platform-browser@16.0.0)(rxjs@7.8.1)
+    version: 16.0.0(@angular/animations@16.1.0)(@angular/cdk@16.0.0)(@angular/common@16.1.0)(@angular/core@16.0.0)(@angular/forms@16.1.0)(@angular/platform-browser@16.1.0)(rxjs@7.8.1)
   '@angular/platform-browser':
-    specifier: ~16.0.0
-    version: 16.0.0(@angular/animations@16.0.0)(@angular/common@16.0.0)(@angular/core@16.0.0)
+    specifier: ~16.1.0
+    version: 16.1.0(@angular/animations@16.1.0)(@angular/common@16.1.0)(@angular/core@16.0.0)
   '@angular/platform-browser-dynamic':
-    specifier: ~16.0.0
-    version: 16.0.0(@angular/common@16.0.0)(@angular/compiler@16.0.0)(@angular/core@16.0.0)(@angular/platform-browser@16.0.0)
+    specifier: ~16.1.0
+    version: 16.1.0(@angular/common@16.1.0)(@angular/compiler@16.1.0)(@angular/core@16.0.0)(@angular/platform-browser@16.1.0)
   '@angular/router':
-    specifier: ~16.0.0
-    version: 16.0.0(@angular/common@16.0.0)(@angular/core@16.0.0)(@angular/platform-browser@16.0.0)(rxjs@7.8.1)
+    specifier: ~16.1.0
+    version: 16.1.0(@angular/common@16.1.0)(@angular/core@16.0.0)(@angular/platform-browser@16.1.0)(rxjs@7.8.1)
   '@fortawesome/angular-fontawesome':
     specifier: ^0.13.0
     version: 0.13.0(@angular/core@16.0.0)(@fortawesome/fontawesome-svg-core@6.4.0)
@@ -93,10 +93,10 @@ devDependencies:
     version: 16.0.0
   '@angular/compiler-cli':
     specifier: ^16.0.0
-    version: 16.0.0(@angular/compiler@16.0.0)(typescript@5.0.4)
+    version: 16.0.0(@angular/compiler@16.1.0)(typescript@5.0.4)
   '@angular/language-service':
-    specifier: ~16.0.0
-    version: 16.0.0
+    specifier: ~16.1.0
+    version: 16.1.0
   '@cypress/schematic':
     specifier: 2.5.0
     version: 2.5.0(@angular/cli@16.0.0)(@angular/core@16.0.0)
@@ -205,7 +205,7 @@ packages:
       '@angular-devkit/architect': 0.1600.0(chokidar@3.5.3)
       '@angular-devkit/build-webpack': 0.1600.0(chokidar@3.5.3)(webpack-dev-server@4.13.2)(webpack@5.80.0)
       '@angular-devkit/core': 16.0.0(chokidar@3.5.3)
-      '@angular/compiler-cli': 16.0.0(@angular/compiler@16.0.0)(typescript@5.0.4)
+      '@angular/compiler-cli': 16.0.0(@angular/compiler@16.1.0)(typescript@5.0.4)
       '@babel/core': 7.21.4
       '@babel/generator': 7.21.4
       '@babel/helper-annotate-as-pure': 7.18.6
@@ -483,24 +483,24 @@ packages:
       - supports-color
     dev: true
 
-  /@angular/animations@16.0.0(@angular/core@16.0.0):
-    resolution: {integrity: sha512-Xx4Ffdo3sweg24MDVAXbDfxqkNPEuRgqOC1+f9171kf+w7cBEr4Bmy37DP7YkJceaU0xJH9imcx4708KeIjqkQ==}
+  /@angular/animations@16.1.0(@angular/core@16.0.0):
+    resolution: {integrity: sha512-bLu5tgvurOwYbSLtc6eZicanG+saqoVuyUc4JUXc7/l7eWvvuHN9Cfhdl3fR7FFNhaMvlWo5/wRddBEKUWhwOQ==}
     engines: {node: ^16.14.0 || >=18.10.0}
     peerDependencies:
-      '@angular/core': 16.0.0
+      '@angular/core': 16.1.0
     dependencies:
       '@angular/core': 16.0.0(rxjs@7.8.1)(zone.js@0.13.0)
       tslib: 2.5.0
     dev: false
 
-  /@angular/cdk@16.0.0(@angular/common@16.0.0)(@angular/core@16.0.0)(rxjs@7.8.1):
+  /@angular/cdk@16.0.0(@angular/common@16.1.0)(@angular/core@16.0.0)(rxjs@7.8.1):
     resolution: {integrity: sha512-3hiNRB5kBOYv+MJRlpLX++KzY96mTivE7BXM/pNoR4Hiq7aBnoCtp0zbTc9J7gPn8POX6t/4WfAogslbkvQXSg==}
     peerDependencies:
       '@angular/common': ^16.0.0 || ^17.0.0
       '@angular/core': ^16.0.0 || ^17.0.0
       rxjs: ^6.5.3 || ^7.4.0
     dependencies:
-      '@angular/common': 16.0.0(@angular/core@16.0.0)(rxjs@7.8.1)
+      '@angular/common': 16.1.0(@angular/core@16.0.0)(rxjs@7.8.1)
       '@angular/core': 16.0.0(rxjs@7.8.1)(zone.js@0.13.0)
       rxjs: 7.8.1
       tslib: 2.5.0
@@ -537,11 +537,11 @@ packages:
       - supports-color
     dev: true
 
-  /@angular/common@16.0.0(@angular/core@16.0.0)(rxjs@7.8.1):
-    resolution: {integrity: sha512-at3/xCevf2t9swX2P7K7gaSBuQPy7ZJsf37qQkYIuczzfij69r7s9NjYeA74/q3EWG9Yl2DCrhYoCW7ViXQINQ==}
+  /@angular/common@16.1.0(@angular/core@16.0.0)(rxjs@7.8.1):
+    resolution: {integrity: sha512-DLcp1Y3HkLyK5G00XhMlvdT47fp3HRbSd5o8i5Nkh+B7UojllfpeERr1XVSuUQ5M6LuF0du1NIg6y/lVHDFBUg==}
     engines: {node: ^16.14.0 || >=18.10.0}
     peerDependencies:
-      '@angular/core': 16.0.0
+      '@angular/core': 16.1.0
       rxjs: ^6.5.3 || ^7.4.0
     dependencies:
       '@angular/core': 16.0.0(rxjs@7.8.1)(zone.js@0.13.0)
@@ -549,7 +549,7 @@ packages:
       tslib: 2.5.0
     dev: false
 
-  /@angular/compiler-cli@16.0.0(@angular/compiler@16.0.0)(typescript@5.0.4):
+  /@angular/compiler-cli@16.0.0(@angular/compiler@16.1.0)(typescript@5.0.4):
     resolution: {integrity: sha512-oyJzxiTHxziv7mD0QuA7K6tpDoL6YNGPkquKjeJjNVZvUrodGsvJ8xHO4ydmjK3nMu2ET1YarsdI8bRp4vp/7w==}
     engines: {node: ^16.14.0 || >=18.10.0}
     hasBin: true
@@ -557,7 +557,7 @@ packages:
       '@angular/compiler': 16.0.0
       typescript: '>=4.9.3 <5.1'
     dependencies:
-      '@angular/compiler': 16.0.0(@angular/core@16.0.0)
+      '@angular/compiler': 16.1.0(@angular/core@16.0.0)
       '@babel/core': 7.19.3
       '@jridgewell/sourcemap-codec': 1.4.15
       chokidar: 3.5.3
@@ -571,11 +571,11 @@ packages:
       - supports-color
     dev: true
 
-  /@angular/compiler@16.0.0(@angular/core@16.0.0):
-    resolution: {integrity: sha512-xtg+KRvSeB9DUzMDtvlaRGKv+Y0MERsz+JOoqV9H4606ThNz5h8ih6fEhVKYqG100o7GhdJaVFO+vlr2/edUHA==}
+  /@angular/compiler@16.1.0(@angular/core@16.0.0):
+    resolution: {integrity: sha512-lQ8pZmfQpAevUbd1BO7snkS8LX4D8HADcdNMnFY/JmSDnb2Kt9VG56uX2HMq8mjyWdqy8E7ggwRi0wFWT5G23Q==}
     engines: {node: ^16.14.0 || >=18.10.0}
     peerDependencies:
-      '@angular/core': 16.0.0
+      '@angular/core': 16.1.0
     peerDependenciesMeta:
       '@angular/core':
         optional: true
@@ -594,28 +594,28 @@ packages:
       tslib: 2.5.0
       zone.js: 0.13.0
 
-  /@angular/forms@16.0.0(@angular/common@16.0.0)(@angular/core@16.0.0)(@angular/platform-browser@16.0.0)(rxjs@7.8.1):
-    resolution: {integrity: sha512-avpreXyDYWf44RNM5hfi5cTXXiNwcajBURP5rLap8RPMSUi2ePlJsmi0O+3+GduNZFbtnRXIpKTj3W+GeNa0PA==}
+  /@angular/forms@16.1.0(@angular/common@16.1.0)(@angular/core@16.0.0)(@angular/platform-browser@16.1.0)(rxjs@7.8.1):
+    resolution: {integrity: sha512-B3mg4lQTogQgWdR+zZeTMIBfBbK2XuG8MRZ5iQbipIXkyLyxOtUZCH87eZYpoTzr127rF0rLTDwdTy1cCHHyQg==}
     engines: {node: ^16.14.0 || >=18.10.0}
     peerDependencies:
-      '@angular/common': 16.0.0
-      '@angular/core': 16.0.0
-      '@angular/platform-browser': 16.0.0
+      '@angular/common': 16.1.0
+      '@angular/core': 16.1.0
+      '@angular/platform-browser': 16.1.0
       rxjs: ^6.5.3 || ^7.4.0
     dependencies:
-      '@angular/common': 16.0.0(@angular/core@16.0.0)(rxjs@7.8.1)
+      '@angular/common': 16.1.0(@angular/core@16.0.0)(rxjs@7.8.1)
       '@angular/core': 16.0.0(rxjs@7.8.1)(zone.js@0.13.0)
-      '@angular/platform-browser': 16.0.0(@angular/animations@16.0.0)(@angular/common@16.0.0)(@angular/core@16.0.0)
+      '@angular/platform-browser': 16.1.0(@angular/animations@16.1.0)(@angular/common@16.1.0)(@angular/core@16.0.0)
       rxjs: 7.8.1
       tslib: 2.5.0
     dev: false
 
-  /@angular/language-service@16.0.0:
-    resolution: {integrity: sha512-jySin8NdZIfcvwyemh2kRVveOvL1SPvywmIrv/6+MbKebG9Oc+casxruoRai8gh8bhahdpUAOG0t8wbedUWcxw==}
+  /@angular/language-service@16.1.0:
+    resolution: {integrity: sha512-ea34nE+eVjB43IquKx1T/HNQLVAN2FF9QsXZ86UypC2qfrgPtGFE4K4kCSzIG0r+L/zUE5ib4GF4E+84UsqQcA==}
     engines: {node: ^16.14.0 || >=18.10.0}
     dev: true
 
-  /@angular/material@16.0.0(@angular/animations@16.0.0)(@angular/cdk@16.0.0)(@angular/common@16.0.0)(@angular/core@16.0.0)(@angular/forms@16.0.0)(@angular/platform-browser@16.0.0)(rxjs@7.8.1):
+  /@angular/material@16.0.0(@angular/animations@16.1.0)(@angular/cdk@16.0.0)(@angular/common@16.1.0)(@angular/core@16.0.0)(@angular/forms@16.1.0)(@angular/platform-browser@16.1.0)(rxjs@7.8.1):
     resolution: {integrity: sha512-FIkBjcygdgN0vDnO+e3dWrjw/+U805zGC9dh7lwSkpbgQp89ZYVk4Wygk5+I6oSKn1oR9GJpIe/j8+kP6CMA4w==}
     peerDependencies:
       '@angular/animations': ^16.0.0 || ^17.0.0
@@ -626,12 +626,12 @@ packages:
       '@angular/platform-browser': ^16.0.0 || ^17.0.0
       rxjs: ^6.5.3 || ^7.4.0
     dependencies:
-      '@angular/animations': 16.0.0(@angular/core@16.0.0)
-      '@angular/cdk': 16.0.0(@angular/common@16.0.0)(@angular/core@16.0.0)(rxjs@7.8.1)
-      '@angular/common': 16.0.0(@angular/core@16.0.0)(rxjs@7.8.1)
+      '@angular/animations': 16.1.0(@angular/core@16.0.0)
+      '@angular/cdk': 16.0.0(@angular/common@16.1.0)(@angular/core@16.0.0)(rxjs@7.8.1)
+      '@angular/common': 16.1.0(@angular/core@16.0.0)(rxjs@7.8.1)
       '@angular/core': 16.0.0(rxjs@7.8.1)(zone.js@0.13.0)
-      '@angular/forms': 16.0.0(@angular/common@16.0.0)(@angular/core@16.0.0)(@angular/platform-browser@16.0.0)(rxjs@7.8.1)
-      '@angular/platform-browser': 16.0.0(@angular/animations@16.0.0)(@angular/common@16.0.0)(@angular/core@16.0.0)
+      '@angular/forms': 16.1.0(@angular/common@16.1.0)(@angular/core@16.0.0)(@angular/platform-browser@16.1.0)(rxjs@7.8.1)
+      '@angular/platform-browser': 16.1.0(@angular/animations@16.1.0)(@angular/common@16.1.0)(@angular/core@16.0.0)
       '@material/animation': 15.0.0-canary.51f9c0c28.0
       '@material/auto-init': 15.0.0-canary.51f9c0c28.0
       '@material/banner': 15.0.0-canary.51f9c0c28.0
@@ -683,51 +683,51 @@ packages:
       tslib: 2.5.0
     dev: false
 
-  /@angular/platform-browser-dynamic@16.0.0(@angular/common@16.0.0)(@angular/compiler@16.0.0)(@angular/core@16.0.0)(@angular/platform-browser@16.0.0):
-    resolution: {integrity: sha512-xUR36r+7hFQjAb0RA0VFfWrCLj2VnWg0xJgPe4FQmwaEWjKMc011tkJXs0PApaiTxvE0W08nadSDTu5jfsBrFw==}
+  /@angular/platform-browser-dynamic@16.1.0(@angular/common@16.1.0)(@angular/compiler@16.1.0)(@angular/core@16.0.0)(@angular/platform-browser@16.1.0):
+    resolution: {integrity: sha512-gdiTZwtuBXZMD5P7m36XU7EsX2FnMAfvs78PriHUdyp507cT3ZSWri1SdiaaEt6xXoJLaBSL9UpQfjaRm+a02g==}
     engines: {node: ^16.14.0 || >=18.10.0}
     peerDependencies:
-      '@angular/common': 16.0.0
-      '@angular/compiler': 16.0.0
-      '@angular/core': 16.0.0
-      '@angular/platform-browser': 16.0.0
+      '@angular/common': 16.1.0
+      '@angular/compiler': 16.1.0
+      '@angular/core': 16.1.0
+      '@angular/platform-browser': 16.1.0
     dependencies:
-      '@angular/common': 16.0.0(@angular/core@16.0.0)(rxjs@7.8.1)
-      '@angular/compiler': 16.0.0(@angular/core@16.0.0)
+      '@angular/common': 16.1.0(@angular/core@16.0.0)(rxjs@7.8.1)
+      '@angular/compiler': 16.1.0(@angular/core@16.0.0)
       '@angular/core': 16.0.0(rxjs@7.8.1)(zone.js@0.13.0)
-      '@angular/platform-browser': 16.0.0(@angular/animations@16.0.0)(@angular/common@16.0.0)(@angular/core@16.0.0)
+      '@angular/platform-browser': 16.1.0(@angular/animations@16.1.0)(@angular/common@16.1.0)(@angular/core@16.0.0)
       tslib: 2.5.0
     dev: false
 
-  /@angular/platform-browser@16.0.0(@angular/animations@16.0.0)(@angular/common@16.0.0)(@angular/core@16.0.0):
-    resolution: {integrity: sha512-6LpgLfEnumKMKM/S9joWrVSm4MdFuIjddFmlSG7zGcRqwM0N8doH/YkuwTK8/t9q8wI/yztp6qM2pg25Pgv1XA==}
+  /@angular/platform-browser@16.1.0(@angular/animations@16.1.0)(@angular/common@16.1.0)(@angular/core@16.0.0):
+    resolution: {integrity: sha512-jI9yvHAaAZS78sg92l9A4n6pLz6tufXdf8Q5UHcvxuzIcuQ7FWZlnYmKWZMaFD3mcwpWmGohnBlAkV8hLEmv7w==}
     engines: {node: ^16.14.0 || >=18.10.0}
     peerDependencies:
-      '@angular/animations': 16.0.0
-      '@angular/common': 16.0.0
-      '@angular/core': 16.0.0
+      '@angular/animations': 16.1.0
+      '@angular/common': 16.1.0
+      '@angular/core': 16.1.0
     peerDependenciesMeta:
       '@angular/animations':
         optional: true
     dependencies:
-      '@angular/animations': 16.0.0(@angular/core@16.0.0)
-      '@angular/common': 16.0.0(@angular/core@16.0.0)(rxjs@7.8.1)
+      '@angular/animations': 16.1.0(@angular/core@16.0.0)
+      '@angular/common': 16.1.0(@angular/core@16.0.0)(rxjs@7.8.1)
       '@angular/core': 16.0.0(rxjs@7.8.1)(zone.js@0.13.0)
       tslib: 2.5.0
     dev: false
 
-  /@angular/router@16.0.0(@angular/common@16.0.0)(@angular/core@16.0.0)(@angular/platform-browser@16.0.0)(rxjs@7.8.1):
-    resolution: {integrity: sha512-+5gjJwFx3AFGv7OnY53pfUzaPbWe5gOVQWXAnlUuk6tsQmWJBMehuCQ5ZO5cxViQDZkyvNALzoUeU6aKWmNqmg==}
+  /@angular/router@16.1.0(@angular/common@16.1.0)(@angular/core@16.0.0)(@angular/platform-browser@16.1.0)(rxjs@7.8.1):
+    resolution: {integrity: sha512-Iz6hf2hDgjxxzkRSnxmEic1zygeeSdAn0EJ1n4tXsM8++ozF2qPYh0Q1gBKk0KllvhK8VDOg34aRV4jrhd4jDQ==}
     engines: {node: ^16.14.0 || >=18.10.0}
     peerDependencies:
-      '@angular/common': 16.0.0
-      '@angular/core': 16.0.0
-      '@angular/platform-browser': 16.0.0
+      '@angular/common': 16.1.0
+      '@angular/core': 16.1.0
+      '@angular/platform-browser': 16.1.0
       rxjs: ^6.5.3 || ^7.4.0
     dependencies:
-      '@angular/common': 16.0.0(@angular/core@16.0.0)(rxjs@7.8.1)
+      '@angular/common': 16.1.0(@angular/core@16.0.0)(rxjs@7.8.1)
       '@angular/core': 16.0.0(rxjs@7.8.1)(zone.js@0.13.0)
-      '@angular/platform-browser': 16.0.0(@angular/animations@16.0.0)(@angular/common@16.0.0)(@angular/core@16.0.0)
+      '@angular/platform-browser': 16.1.0(@angular/animations@16.1.0)(@angular/common@16.1.0)(@angular/core@16.0.0)
       rxjs: 7.8.1
       tslib: 2.5.0
     dev: false
@@ -3092,7 +3092,7 @@ packages:
       typescript: '>=4.9.3 <5.1'
       webpack: ^5.54.0
     dependencies:
-      '@angular/compiler-cli': 16.0.0(@angular/compiler@16.0.0)(typescript@5.0.4)
+      '@angular/compiler-cli': 16.0.0(@angular/compiler@16.1.0)(typescript@5.0.4)
       typescript: 5.0.4
       webpack: 5.80.0(esbuild@0.17.18)
     dev: true
