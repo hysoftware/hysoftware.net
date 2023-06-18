@@ -22,7 +22,7 @@ jobs:
           cache-dependency-path: pnpm-lock.yaml
       - uses: actions/cache@v3
         with:
-          key: ${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
+          key: ${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
           path: |
             ./node_modules
             ~/.cache/Cypress
@@ -33,16 +33,18 @@ jobs:
               -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
           chmod u+x ../cc-test-reporter
       - name: Install Dependencies
-        run: pnpm i -s
+        run: npm i
+        # run: pnpm i -s
       - name: Lint
-        run: pnpm run lint
+        run: npm run lint
+        # run: pnpm run lint
       - name: Test
         run: |
           export GIT_COMMITTED_AT=$(date +%s)
           export GIT_BRANCH=${{ github.ref_name }}
           export CHROME_BIN=${RUNNER_TOOL_CACHE}/chromium/latest/x64/chrome
           ../cc-test-reporter before-build
-          `pnpm bin`/ng test --no-progress --browsers ChromeHeadlessNoSandbox
+          `npm bin`/ng test --no-progress --browsers ChromeHeadlessNoSandbox
           ../cc-test-reporter after-build -t lcov --exit-code ${?} ./coverage/lconv.info
         env:
           GIT_COMMIT_SHA: ${{ github.sha }}
@@ -53,4 +55,4 @@ jobs:
       - name: e2e
         run: |
           export CHROME_BIN=${RUNNER_TOOL_CACHE}/chromium/latest/x64/chrome
-          pnpm run e2e
+          `npm bin`/ng e2e
