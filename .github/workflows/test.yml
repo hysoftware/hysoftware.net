@@ -18,11 +18,13 @@ jobs:
         with:
           node-version: 17
           check-latest: true
-          cache: pnpm
-          cache-dependency-path: pnpm-lock.yaml
+          cache: npm
+          cache-dependency-path: package-lock.json
+          # cache: pnpm
+          # cache-dependency-path: pnpm-lock.yaml
       - uses: actions/cache@v3
         with:
-          key: ${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          key: ${{ runner.os }}-${{ hashFiles('package-lock.json') }}
           path: |
             ./node_modules
             ~/.cache/Cypress
