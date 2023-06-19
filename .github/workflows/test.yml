@@ -45,7 +45,7 @@ jobs:
           export GIT_BRANCH=${{ github.ref_name }}
           export CHROME_BIN=${RUNNER_TOOL_CACHE}/chromium/latest/x64/chrome
           ../cc-test-reporter before-build
-          `npm bin`/ng test --no-progress --browsers ChromeHeadlessNoSandbox
+          npm run test -- --no-progress --browsers ChromeHeadlessNoSandbox
           ../cc-test-reporter after-build -t lcov --exit-code ${?} ./coverage/lconv.info
         env:
           GIT_COMMIT_SHA: ${{ github.sha }}
@@ -56,4 +56,4 @@ jobs:
       - name: e2e
         run: |
           export CHROME_BIN=${RUNNER_TOOL_CACHE}/chromium/latest/x64/chrome
-          `npm bin`/ng e2e
+          npm run e2e
