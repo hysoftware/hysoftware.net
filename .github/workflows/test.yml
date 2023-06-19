@@ -16,8 +16,7 @@ jobs:
           version: latest
       - uses: actions/setup-node@v3
         with:
-          node-version: 17
-          check-latest: true
+          node-version: latest
           cache: npm
           cache-dependency-path: package-lock.json
           # cache: pnpm
