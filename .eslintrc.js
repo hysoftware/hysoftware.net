@@ -1,7 +1,7 @@
 module.exports = {
   overrides: [
     {
-      files: ['*.ts'],
+      files: ['*.ts',],
       parserOptions: {
         project: ['tsconfig.*?.json'],
         createDefaultProgram: true
