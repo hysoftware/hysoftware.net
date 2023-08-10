@@ -1,6 +1,5 @@
 {
   extends: ["config:base", "schedule:weekends", ":disableDependencyDashboard"],
-  disable
   rangeStrategy: "replace",
   lockFileMaintenance: {"enabled": false},
   vulnerabilityAlerts: {"enabled": true, "schedule": "every weekend"},
