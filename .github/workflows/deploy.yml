@@ -10,10 +10,8 @@ jobs:
         with:
           node-version: 17
           check-latest: true
-      - name: "Enable pnpm"
-        run: corepack enable
       - name: Install Dependencies
-        run: pnpm i -s
+        run: npm i
       - name: Build
         run: pnpm run build -- --configuration production --no-progress
       - name: Store built files
