@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import { faFileCode, faFilePdf } from '@fortawesome/free-solid-svg-icons';
+import { faFileCode, faFile } from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faGitlab, faKeybase } from '@fortawesome/free-brands-svg-icons';
 
 interface Link {
@@ -23,7 +23,7 @@ export class LinksComponent {
       name: 'Code of This Page'
     },
     {
-      icon: faFilePdf,
+      icon: faFile,
       link: 'https://www.canva.com/design/DADks8eRENo/4npkcNMd5b5OSyFNTXXMvw/view',
       name: 'Resume about me'
     }

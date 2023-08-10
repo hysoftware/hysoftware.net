@@ -1,21 +1,31 @@
 import { TestBed, async } from '@angular/core/testing';
+
+import { MatButtonModule } from '@angular/material/button';
+import { MatTabsModule } from '@angular/material/tabs'
+import { MatTableModule } from '@angular/material/table';
+
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { DeadComponent } from './dead/dead.component';
 import { NormalComponent } from './normal/normal.component';
 import { LinksComponent } from './links/links.component';
+import { JPASCTComponent } from './jpasct/jpasct.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        MatButtonModule,
+        MatTabsModule,
+        MatTableModule,
       ],
       declarations: [
         AppComponent,
         DeadComponent,
         LinksComponent,
-        NormalComponent
+        NormalComponent,
+        JPASCTComponent,
       ],
     }).compileComponents();
   }));

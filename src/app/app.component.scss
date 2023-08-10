@@ -5,6 +5,18 @@ div.page {
   padding: 1rem;
 }
 
+@media (min-width: 0) {
+  div.page {
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 960px) {
+  div.page {
+    flex-direction: row;
+  }
+}
+
 .page-content {
   width: 85vw;
 }

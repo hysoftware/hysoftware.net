@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LinksComponent } from './links.component';
-import { faFileCode, faFilePdf } from '@fortawesome/free-solid-svg-icons';
+import { faFileCode, faFile } from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faGitlab, faKeybase } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -35,7 +35,7 @@ describe('LinksComponent', () => {
         name: 'Code of This Page'
       },
       {
-        icon: faFilePdf,
+        icon: faFile,
         link: 'https://www.canva.com/design/DADks8eRENo/4npkcNMd5b5OSyFNTXXMvw/view',
         name: 'Resume about me'
       }
