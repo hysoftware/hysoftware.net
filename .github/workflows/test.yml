@@ -17,10 +17,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: latest
-          cache: npm
-          cache-dependency-path: package-lock.json
-          # cache: pnpm
-          # cache-dependency-path: pnpm-lock.yaml
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
       - uses: actions/cache@v3
         with:
           key: ${{ runner.os }}-${{ hashFiles('package-lock.json') }}
@@ -33,12 +31,13 @@ jobs:
           curl -o ../cc-test-reporter \
               -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
           chmod u+x ../cc-test-reporter
+          npm i -g pnpm
       - name: Install Dependencies
-        run: npm i
-        # run: pnpm i -s
+        # run: npm i
+        run: pnpm i -s
       - name: Lint
-        run: npm run lint
-        # run: pnpm run lint
+        # run: npm run lint
+        run: pnpm run lint
       - name: Test
         run: |
           export GIT_COMMITTED_AT=$(date +%s)
