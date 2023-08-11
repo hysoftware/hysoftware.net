@@ -21,7 +21,7 @@ jobs:
           cache-dependency-path: pnpm-lock.yaml
       - uses: actions/cache@v3
         with:
-          key: ${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          key: ${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
           path: |
             ./node_modules
             ~/.cache/Cypress
