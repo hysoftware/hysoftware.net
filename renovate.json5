@@ -17,18 +17,5 @@
     //   matchPackageNames: ["typescript"],
     //   allowedVersions: "<4.6.0"
     // },
-    // {
-    //   matchPackageNames: ["eslint"],
-    //   allowedVersions: "<8.0.0"
-    // },
-    // {
-    //   matchLanguages: ['javascript'],
-    //   matchPackageNames: [
-    //     "@fortawesome/free-brands-svg-icons",
-    //     "@fortawesome/free-regular-svg-icons",
-    //     "@fortawesome/free-solid-svg-icons",
-    //   ],
-    //   allowedVersions: "<6.0"
-    // }
   ]
 }
