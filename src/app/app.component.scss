@@ -1,22 +1,13 @@
-div.page {
+.page {
+  max-width: 85vw;
+  display: flex;
+  justify-content: center;
+}
+
+.content {
   display: flex;
   justify-content: center;
   min-height: 100vh;
   padding: 1rem;
-}
-
-@media (min-width: 0) {
-  div.page {
-    flex-direction: column;
-  }
-}
-
-@media (min-width: 960px) {
-  div.page {
-    flex-direction: row;
-  }
-}
-
-.page-content {
-  width: 85vw;
+  flex-direction: column;
 }

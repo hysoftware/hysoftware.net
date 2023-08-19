@@ -1,17 +1,19 @@
 <div class="page">
-  <app-normal-mode *ngIf="!dead" class="page-content"></app-normal-mode>
-  <app-dead *ngIf='dead' [rip]='dead' class="page-content"></app-dead>
-  <section class="page-content">
-    <header>
-      <h2>Boring Legal Zone</h2>
-    </header>
-    <p>
-      Here's the information that is mandatory to obey the government law.
-    </p>
-    <mat-tab-group>
-      <mat-tab label="特定商取引法に基づく表記 (Japan)">
-        <app-jpasct></app-jpasct>
-      </mat-tab>
-    </mat-tab-group>
-  </section>
+  <div class="content">
+    <app-normal-mode *ngIf="!dead" class=></app-normal-mode>
+    <app-dead *ngIf='dead' [rip]='dead'></app-dead>
+    <section>
+      <header>
+        <h2>Boring Legal Zone</h2>
+      </header>
+      <p>
+        Here's the information that is mandatory to obey the government law.
+      </p>
+      <mat-tab-group>
+        <mat-tab label="特定商取引法に基づく表記 (Japan)">
+          <app-jpasct></app-jpasct>
+        </mat-tab>
+      </mat-tab-group>
+    </section>
+  </div>
 </div>
