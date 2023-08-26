@@ -17,7 +17,7 @@ jobs:
       - name: Install Dependencies
         run: pnpm i
       - name: Build
-        run: pnpm run build -- --configuration production --no-progress
+        run: pnpm run build --configuration production --no-progress
       - name: Store built files
         uses: actions/upload-artifact@v3
         with:
