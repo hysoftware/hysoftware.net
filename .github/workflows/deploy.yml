@@ -6,13 +6,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - uses: pnpm/setup-node@v2
+        with:
+          version: latest
       - uses: actions/setup-node@v3
         with:
           node-version: latest
           cache: pnpm
           cache-dependency-path: pnpm-lock.yaml
       - name: Install Dependencies
-        run: npm i -g pnpm && pnpm i
+        run: pnpm i
       - name: Build
         run: pnpm run build -- --configuration production --no-progress
       - name: Store built files

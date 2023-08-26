@@ -31,7 +31,6 @@ jobs:
           curl -o ../cc-test-reporter \
               -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
           chmod u+x ../cc-test-reporter
-          npm i -g pnpm
       - name: Install Dependencies
         run: pnpm i -s
       - name: Lint
