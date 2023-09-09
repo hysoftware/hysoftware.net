@@ -46,7 +46,7 @@
     "@angular/cli": "^16.2.0",
     "@angular/compiler-cli": "^16.2.0",
     "@angular/language-service": "~16.2.0",
-    "@cypress/schematic": "2.5.0",
+    "@cypress/schematic": "2.5.1",
     "@types/jasmine": "~4.3.5",
     "@types/jasminewd2": "~2.0.10",
     "@types/node": "^20.4.9",
