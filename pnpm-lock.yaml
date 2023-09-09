@@ -98,8 +98,8 @@ devDependencies:
     specifier: ~16.2.0
     version: 16.2.0
   '@cypress/schematic':
-    specifier: 2.5.0
-    version: 2.5.0(@angular/cli@16.2.0)(@angular/core@16.2.0)
+    specifier: 2.5.1
+    version: 2.5.1(@angular/cli@16.2.0)(@angular/core@16.2.0)
   '@types/jasmine':
     specifier: ~4.3.5
     version: 4.3.5
@@ -2059,8 +2059,8 @@ packages:
       uuid: 8.3.2
     dev: true
 
-  /@cypress/schematic@2.5.0(@angular/cli@16.2.0)(@angular/core@16.2.0):
-    resolution: {integrity: sha512-Yt/fQxYIHl9lU8LSoJL92nIwTVyYG5uP4VqW4taTn3viVWvssjK7sRtTI/LRxOoeMYX2RRlXQyUbFEikByn0cQ==}
+  /@cypress/schematic@2.5.1(@angular/cli@16.2.0)(@angular/core@16.2.0):
+    resolution: {integrity: sha512-tO2lUnr5C0udB4xpewndlTMkEHHdgyvSNLI9+bTdYbxCby8MlxrFpewxmqPIfH21ZmOQP8XghD5uMd3l732ESA==}
     peerDependencies:
       '@angular/cli': '>=14'
       '@angular/core': '>=14'
