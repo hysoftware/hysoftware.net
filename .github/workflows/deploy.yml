@@ -5,8 +5,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+<<<<<<< HEAD
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2
+=======
+      - uses: actions/checkout@v4
+      - uses: pnpm/setup-node@v2
+>>>>>>> 957e405f1e2147972e45430483f168134fc7f5bd
         with:
           version: latest
       - uses: actions/setup-node@v3
