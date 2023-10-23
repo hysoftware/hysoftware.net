@@ -19,12 +19,12 @@ jobs:
           node-version: latest
           cache: pnpm
           cache-dependency-path: pnpm-lock.yaml
-      - uses: actions/cache@v3
-        with:
-          key: ${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
-          path: |
-            ./node_modules
-            ~/.cache/Cypress
+      # - uses: actions/cache@v3
+      #   with:
+      #     key: ${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
+      #     path: |
+      #       ./node_modules
+      #       ~/.cache/Cypress
       - uses: browser-actions/setup-chrome@latest
       - name: Install essential tools
         run: |
