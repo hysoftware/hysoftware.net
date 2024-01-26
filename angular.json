@@ -71,15 +71,12 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "hysoftware:build"
-          },
           "configurations": {
             "production": {
-              "browserTarget": "hysoftware:build:production"
+              "buildTarget": "hysoftware:build:production"
             },
             "development": {
-              "browserTarget": "hysoftware:build:development"
+              "buildTarget": "hysoftware:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -87,7 +84,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "hysoftware:build"
+            "buildTarget": "hysoftware:build"
           }
         },
         "test": {
