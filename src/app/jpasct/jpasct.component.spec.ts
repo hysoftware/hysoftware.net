@@ -6,7 +6,7 @@ import { JPASCTComponent } from './jpasct.component';
 describe('JPASCTComponent', () => {
   let component: JPASCTComponent;
   let fixture: ComponentFixture<JPASCTComponent>;
-  let columns: string[] = [
+  const columns: string[] = [
     '名前', '所在地、電話番号、及びメールアドレス',
     '運営統括責任者', '追加手数料等の追加料金',
     '交換および返品（返金ポリシー）',
