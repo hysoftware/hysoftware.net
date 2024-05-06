@@ -1,5 +1,8 @@
 {
   "yaml.schemas": {
     "https://json.schemastore.org/github-workflow.json": "file:///home/hyamamoto/Documents/Workspace/hysoftware/.github/workflows/deploy.yml"
-  }
+  },
+  "circleci.persistedProjectSelection": [
+    "gh/hysoftware/hysoftware.net"
+  ]
 }
