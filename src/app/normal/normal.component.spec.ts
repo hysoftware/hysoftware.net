@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NormalComponent } from './normal.component';
 import { LinksComponent } from '../links/links.component';
@@ -8,13 +8,13 @@ describe('NormalComponent', () => {
   let component: NormalComponent;
   let fixture: ComponentFixture<NormalComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
-      declarations: [ LinksComponent, NormalComponent ],
+      declarations: [LinksComponent, NormalComponent],
       imports: [FontAwesomeModule]
     })
-    .compileComponents();
-  }));
+      .compileComponents();
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NormalComponent);

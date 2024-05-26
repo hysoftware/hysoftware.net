@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DeadComponent } from './dead.component';
 import { LinksComponent } from '../links/links.component';
@@ -8,13 +8,13 @@ describe('DeadComponent', () => {
   let component: DeadComponent;
   let fixture: ComponentFixture<DeadComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
-      declarations: [DeadComponent, LinksComponent ],
+      declarations: [DeadComponent, LinksComponent],
       imports: [FontAwesomeModule],
     })
-    .compileComponents();
-  }));
+      .compileComponents();
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DeadComponent);
