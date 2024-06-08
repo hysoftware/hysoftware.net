@@ -100,8 +100,8 @@ importers:
         specifier: ~18.0.0
         version: 18.0.0
       '@cypress/schematic':
-        specifier: 2.5.1
-        version: 2.5.1(@angular/cli@18.0.1(chokidar@3.6.0))(@angular/core@18.0.0(rxjs@7.8.1)(zone.js@0.14.4))
+        specifier: 2.5.2
+        version: 2.5.2(@angular/cli@18.0.1(chokidar@3.6.0))(@angular/core@18.0.0(rxjs@7.8.1)(zone.js@0.14.4))
       '@types/jasmine':
         specifier: ~5.1.4
         version: 5.1.4
@@ -119,7 +119,7 @@ importers:
         version: 7.11.0(eslint@9.4.0)(typescript@5.4.4)
       cypress:
         specifier: latest
-        version: 13.10.0
+        version: 13.11.0
       eslint:
         specifier: ^9.0.0
         version: 9.4.0
@@ -1084,8 +1084,8 @@ packages:
     resolution: {integrity: sha512-TWivJlJi8ZDx2wGOw1dbLuHJKUYX7bWySw377nlnGOW3hP9/MUKIsEdXT/YngWxVdgNCHRBmFlBipE+5/2ZZlQ==}
     engines: {node: '>= 6'}
 
-  '@cypress/schematic@2.5.1':
-    resolution: {integrity: sha512-tO2lUnr5C0udB4xpewndlTMkEHHdgyvSNLI9+bTdYbxCby8MlxrFpewxmqPIfH21ZmOQP8XghD5uMd3l732ESA==}
+  '@cypress/schematic@2.5.2':
+    resolution: {integrity: sha512-H+V3ZP3KQVOs6b49N66jioXa+rkLzszVi+Bl3jiroVTURUNMOpSa4BOrt10Pn8F57TO0Bamhch2WOk/e9cq98w==}
     peerDependencies:
       '@angular/cli': '>=14'
       '@angular/core': '>=14'
@@ -2748,8 +2748,8 @@ packages:
   custom-event@1.0.1:
     resolution: {integrity: sha512-GAj5FOq0Hd+RsCGVJxZuKaIDXDf3h6GQoNEjFgbLLI/trgtavwUbSnZ5pVfg27DVCaWjIohryS0JFwIJyT2cMg==}
 
-  cypress@13.10.0:
-    resolution: {integrity: sha512-tOhwRlurVOQbMduX+KonoMeQILs2cwR3yHGGENoFvvSoLUBHmJ8b9/n21gFSDqjlOJ+SRVcwuh+fG/JDsHsT6Q==}
+  cypress@13.11.0:
+    resolution: {integrity: sha512-NXXogbAxVlVje4XHX+Cx5eMFZv4Dho/2rIcdBHg9CNPFUGZdM4cRdgIgM7USmNYsC12XY0bZENEQ+KBk72fl+A==}
     engines: {node: ^16.0.0 || ^18.0.0 || >=20.0.0}
     hasBin: true
 
@@ -6687,11 +6687,11 @@ snapshots:
       tunnel-agent: 0.6.0
       uuid: 8.3.2
 
-  '@cypress/schematic@2.5.1(@angular/cli@18.0.1(chokidar@3.6.0))(@angular/core@18.0.0(rxjs@7.8.1)(zone.js@0.14.4))':
+  '@cypress/schematic@2.5.2(@angular/cli@18.0.1(chokidar@3.6.0))(@angular/core@18.0.0(rxjs@7.8.1)(zone.js@0.14.4))':
     dependencies:
       '@angular/cli': 18.0.1(chokidar@3.6.0)
       '@angular/core': 18.0.0(rxjs@7.8.1)(zone.js@0.14.4)
-      jsonc-parser: 3.2.0
+      jsonc-parser: 3.2.1
       rxjs: 6.6.7
 
   '@cypress/xvfb@1.2.4(supports-color@8.1.1)':
@@ -8685,7 +8685,7 @@ snapshots:
 
   custom-event@1.0.1: {}
 
-  cypress@13.10.0:
+  cypress@13.11.0:
     dependencies:
       '@cypress/request': 3.0.1
       '@cypress/xvfb': 1.2.4(supports-color@8.1.1)
