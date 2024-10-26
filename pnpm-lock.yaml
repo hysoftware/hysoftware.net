@@ -76,20 +76,20 @@ importers:
         specifier: ^18.1.0
         version: 18.1.0(chokidar@3.6.0)
       '@angular-eslint/builder':
-        specifier: 18.3.1
-        version: 18.3.1(eslint@9.7.0)(typescript@5.5.3)
+        specifier: 18.4.0
+        version: 18.4.0(eslint@9.7.0)(typescript@5.5.3)
       '@angular-eslint/eslint-plugin':
-        specifier: 18.3.1
-        version: 18.3.1(@typescript-eslint/utils@8.10.0(eslint@9.7.0)(typescript@5.5.3))(eslint@9.7.0)(typescript@5.5.3)
+        specifier: 18.4.0
+        version: 18.4.0(@typescript-eslint/utils@8.10.0(eslint@9.7.0)(typescript@5.5.3))(eslint@9.7.0)(typescript@5.5.3)
       '@angular-eslint/eslint-plugin-template':
-        specifier: 18.3.1
-        version: 18.3.1(@typescript-eslint/utils@8.10.0(eslint@9.7.0)(typescript@5.5.3))(eslint@9.7.0)(typescript@5.5.3)
+        specifier: 18.4.0
+        version: 18.4.0(@typescript-eslint/types@8.10.0)(@typescript-eslint/utils@8.10.0(eslint@9.7.0)(typescript@5.5.3))(eslint@9.7.0)(typescript@5.5.3)
       '@angular-eslint/schematics':
         specifier: ^18.1.0
         version: 18.1.0(@angular-devkit/core@18.1.0(chokidar@3.6.0))(@angular-devkit/schematics@18.1.0(chokidar@3.6.0))(@typescript-eslint/utils@8.10.0(eslint@9.7.0)(typescript@5.5.3))(eslint@9.7.0)(typescript@5.5.3)
       '@angular-eslint/template-parser':
-        specifier: 18.3.1
-        version: 18.3.1(eslint@9.7.0)(typescript@5.5.3)
+        specifier: 18.4.0
+        version: 18.4.0(eslint@9.7.0)(typescript@5.5.3)
       '@angular/cli':
         specifier: ^18.1.0
         version: 18.1.0(chokidar@3.6.0)
@@ -119,7 +119,7 @@ importers:
         version: 8.10.0(eslint@9.7.0)(typescript@5.5.3)
       cypress:
         specifier: latest
-        version: 13.15.0
+        version: 13.15.1
       eslint:
         specifier: ^9.7.0
         version: 9.7.0
@@ -223,8 +223,8 @@ packages:
     resolution: {integrity: sha512-BjrYutLfYFiPOSEcLBWCj3ENkwDn8gMfBSJesaBz7OrZBZGK5j0dVgBLIsGTP96TKo4o4vszJQOvS4AtV6xMGg==}
     engines: {node: ^18.19.1 || ^20.11.1 || >=22.0.0, npm: ^6.11.0 || ^7.5.6 || >=8.0.0, yarn: '>= 1.13.0'}
 
-  '@angular-eslint/builder@18.3.1':
-    resolution: {integrity: sha512-cPc7Ye9zDs5M4i+feL6vob+mh7yX5vxvOS5KQIhneUrp5e9D+IGuNFMmBLlOPpmklSc9XJBtuvI5Zjuh4z1ETw==}
+  '@angular-eslint/builder@18.4.0':
+    resolution: {integrity: sha512-FOzGHX/nHSV1wSduSsabsx3aqC1nfde0opEpEDSOJhxExDxKCwoS1XPy1aERGyKip4ZVA6phC3dLtoBH3QMkVQ==}
     peerDependencies:
       eslint: ^8.57.0 || ^9.0.0
       typescript: '*'
@@ -232,8 +232,8 @@ packages:
   '@angular-eslint/bundled-angular-compiler@18.1.0':
     resolution: {integrity: sha512-2JNlMEnCvLz8q1Qa4sWR9BddtpDWMKYguMzHJKm5zUDwH90CgWHolQlXumtpqbL8r78xd57t35IkbEFLF3UsQw==}
 
-  '@angular-eslint/bundled-angular-compiler@18.3.1':
-    resolution: {integrity: sha512-sikmkjfsXPpPTku1aQkQ1MNNEKGBgGGRvUN/WeNS9dhCJ4dxU3O7dZctt1aQWj+W3nbuUtDiimAWF5fZHGFE2Q==}
+  '@angular-eslint/bundled-angular-compiler@18.4.0':
+    resolution: {integrity: sha512-HlFHt2qgdd+jqyVIkCXmrjHauXo/XY3Rp0UNabk83ejGi/raM/6lEFI7iFWzHxLyiAKk4OgGI5W26giSQw991A==}
 
   '@angular-eslint/eslint-plugin-template@18.1.0':
     resolution: {integrity: sha512-k7Zq2JRd4jjg6PB0M24UnnmdhCeRFQ7Q4GlMGmeJLQGan+HFKDBu973yN2/Vmk4RYi+rTVuin0gy4HBeiGiiaw==}
@@ -242,9 +242,10 @@ packages:
       eslint: ^8.57.0 || ^9.0.0
       typescript: '*'
 
-  '@angular-eslint/eslint-plugin-template@18.3.1':
-    resolution: {integrity: sha512-hBJ3+f7VSidvrtYaXH7Vp0sWvblA9jLK2c6uQzhYGWdEDUcTg7g7VI9ThW39WvMbHqkyzNE4PPOynK69cBEDGg==}
+  '@angular-eslint/eslint-plugin-template@18.4.0':
+    resolution: {integrity: sha512-n3uZFCy76DnggPqjSVFV3gYD1ik7jCG28o2/HO4kobcMNKnwW8XAlFUagQ4TipNQh7fQiAefsEqvv2quMsYDVw==}
     peerDependencies:
+      '@typescript-eslint/types': ^7.11.0 || ^8.0.0
       '@typescript-eslint/utils': ^7.11.0 || ^8.0.0
       eslint: ^8.57.0 || ^9.0.0
       typescript: '*'
@@ -256,8 +257,8 @@ packages:
       eslint: ^8.57.0 || ^9.0.0
       typescript: '*'
 
-  '@angular-eslint/eslint-plugin@18.3.1':
-    resolution: {integrity: sha512-MP4Nm+SHboF8KdnN0KpPEGAaTTzDLPm3+S/4W3Mg8onqWCyadyd4mActh9mK/pvCj8TVlb/SW1zeTtdMYhwonw==}
+  '@angular-eslint/eslint-plugin@18.4.0':
+    resolution: {integrity: sha512-Saz9lkWPN3da7ZKW17UsOSN7DeY+TPh+wz/6GCNZCh67Uw2wvMC9agb+4hgpZNXYCP5+u7erqzxQmBoWnS/A+A==}
     peerDependencies:
       '@typescript-eslint/utils': ^7.11.0 || ^8.0.0
       eslint: ^8.57.0 || ^9.0.0
@@ -269,8 +270,8 @@ packages:
       '@angular-devkit/core': '>= 18.0.0 < 19.0.0'
       '@angular-devkit/schematics': '>= 18.0.0 < 19.0.0'
 
-  '@angular-eslint/template-parser@18.3.1':
-    resolution: {integrity: sha512-JUUkfWH1G+u/Uk85ZYvJSt/qwN/Ko+jlXFtzBEcknJZsTWTwBcp36v77gPZe5FmKSziJZpyPUd+7Kiy6tuSCTw==}
+  '@angular-eslint/template-parser@18.4.0':
+    resolution: {integrity: sha512-VTep3Xd3IOaRIPL+JN/TV4/2DqUPbjtF3TNY15diD/llnrEhqFnmsvMihexbQyTqzOG+zU554oK44YfvAtHOrw==}
     peerDependencies:
       eslint: ^8.57.0 || ^9.0.0
       typescript: '*'
@@ -282,8 +283,8 @@ packages:
       eslint: ^8.57.0 || ^9.0.0
       typescript: '*'
 
-  '@angular-eslint/utils@18.3.1':
-    resolution: {integrity: sha512-sd9niZI7h9H2FQ7OLiQsLFBhjhRQTASh+Q0+4+hyjv9idbSHBJli8Gsi2fqj9zhtMKpAZFTrWzuLUpubJ9UYbA==}
+  '@angular-eslint/utils@18.4.0':
+    resolution: {integrity: sha512-At1yS8GRviGBoaupiQwEOL4/IcZJCE/+2vpXdItMWPGB1HWetxlKAUZTMmIBX/r5Z7CoXxl+LbqpGhrhyzIQAg==}
     peerDependencies:
       '@typescript-eslint/utils': ^7.11.0 || ^8.0.0
       eslint: ^8.57.0 || ^9.0.0
@@ -2311,6 +2312,10 @@ packages:
   aria-query@5.3.0:
     resolution: {integrity: sha512-b0P0sZPKtyu8HkeRAfCq0IfURZK+SuwMjY1UXGBU27wpAiTwQAIlq56IbIO+ytk/JjS1fMR14ee5WBBfKi5J6A==}
 
+  aria-query@5.3.2:
+    resolution: {integrity: sha512-COROpnaoap1E2F000S62r6A60uHZnmlvomhfyT2DlTcrY1OrBKn2UhH7qn5wTC9zMvD0AY7csdPSNwKP+7WiQw==}
+    engines: {node: '>= 0.4'}
+
   array-flatten@1.1.1:
     resolution: {integrity: sha512-PCVAQswWemu6UdxsDFFX/+gVeYqKAod3D3UVm91jHwynguOwAvYPhx8nNlM++NqRcK6CxxpUafjmhIdKiHibqg==}
 
@@ -2738,8 +2743,8 @@ packages:
   custom-event@1.0.1:
     resolution: {integrity: sha512-GAj5FOq0Hd+RsCGVJxZuKaIDXDf3h6GQoNEjFgbLLI/trgtavwUbSnZ5pVfg27DVCaWjIohryS0JFwIJyT2cMg==}
 
-  cypress@13.15.0:
-    resolution: {integrity: sha512-53aO7PwOfi604qzOkCSzNlWquCynLlKE/rmmpSPcziRH6LNfaDUAklQT6WJIsD8ywxlIy+uVZsnTMCCQVd2kTw==}
+  cypress@13.15.1:
+    resolution: {integrity: sha512-DwUFiKXo4lef9kA0M4iEhixFqoqp2hw8igr0lTqafRb9qtU3X0XGxKbkSYsUFdkrAkphc7MPDxoNPhk5pj9PVg==}
     engines: {node: ^16.0.0 || ^18.0.0 || >=20.0.0}
     hasBin: true
 
@@ -5560,14 +5565,14 @@ snapshots:
     transitivePeerDependencies:
       - chokidar
 
-  '@angular-eslint/builder@18.3.1(eslint@9.7.0)(typescript@5.5.3)':
+  '@angular-eslint/builder@18.4.0(eslint@9.7.0)(typescript@5.5.3)':
     dependencies:
       eslint: 9.7.0
       typescript: 5.5.3
 
   '@angular-eslint/bundled-angular-compiler@18.1.0': {}
 
-  '@angular-eslint/bundled-angular-compiler@18.3.1': {}
+  '@angular-eslint/bundled-angular-compiler@18.4.0': {}
 
   '@angular-eslint/eslint-plugin-template@18.1.0(@typescript-eslint/utils@8.10.0(eslint@9.7.0)(typescript@5.5.3))(eslint@9.7.0)(typescript@5.5.3)':
     dependencies:
@@ -5579,12 +5584,13 @@ snapshots:
       eslint: 9.7.0
       typescript: 5.5.3
 
-  '@angular-eslint/eslint-plugin-template@18.3.1(@typescript-eslint/utils@8.10.0(eslint@9.7.0)(typescript@5.5.3))(eslint@9.7.0)(typescript@5.5.3)':
+  '@angular-eslint/eslint-plugin-template@18.4.0(@typescript-eslint/types@8.10.0)(@typescript-eslint/utils@8.10.0(eslint@9.7.0)(typescript@5.5.3))(eslint@9.7.0)(typescript@5.5.3)':
     dependencies:
-      '@angular-eslint/bundled-angular-compiler': 18.3.1
-      '@angular-eslint/utils': 18.3.1(@typescript-eslint/utils@8.10.0(eslint@9.7.0)(typescript@5.5.3))(eslint@9.7.0)(typescript@5.5.3)
+      '@angular-eslint/bundled-angular-compiler': 18.4.0
+      '@angular-eslint/utils': 18.4.0(@typescript-eslint/utils@8.10.0(eslint@9.7.0)(typescript@5.5.3))(eslint@9.7.0)(typescript@5.5.3)
+      '@typescript-eslint/types': 8.10.0
       '@typescript-eslint/utils': 8.10.0(eslint@9.7.0)(typescript@5.5.3)
-      aria-query: 5.3.0
+      aria-query: 5.3.2
       axobject-query: 4.1.0
       eslint: 9.7.0
       typescript: 5.5.3
@@ -5597,10 +5603,10 @@ snapshots:
       eslint: 9.7.0
       typescript: 5.5.3
 
-  '@angular-eslint/eslint-plugin@18.3.1(@typescript-eslint/utils@8.10.0(eslint@9.7.0)(typescript@5.5.3))(eslint@9.7.0)(typescript@5.5.3)':
+  '@angular-eslint/eslint-plugin@18.4.0(@typescript-eslint/utils@8.10.0(eslint@9.7.0)(typescript@5.5.3))(eslint@9.7.0)(typescript@5.5.3)':
     dependencies:
-      '@angular-eslint/bundled-angular-compiler': 18.3.1
-      '@angular-eslint/utils': 18.3.1(@typescript-eslint/utils@8.10.0(eslint@9.7.0)(typescript@5.5.3))(eslint@9.7.0)(typescript@5.5.3)
+      '@angular-eslint/bundled-angular-compiler': 18.4.0
+      '@angular-eslint/utils': 18.4.0(@typescript-eslint/utils@8.10.0(eslint@9.7.0)(typescript@5.5.3))(eslint@9.7.0)(typescript@5.5.3)
       '@typescript-eslint/utils': 8.10.0(eslint@9.7.0)(typescript@5.5.3)
       eslint: 9.7.0
       typescript: 5.5.3
@@ -5624,9 +5630,9 @@ snapshots:
       - eslint
       - typescript
 
-  '@angular-eslint/template-parser@18.3.1(eslint@9.7.0)(typescript@5.5.3)':
+  '@angular-eslint/template-parser@18.4.0(eslint@9.7.0)(typescript@5.5.3)':
     dependencies:
-      '@angular-eslint/bundled-angular-compiler': 18.3.1
+      '@angular-eslint/bundled-angular-compiler': 18.4.0
       eslint: 9.7.0
       eslint-scope: 8.0.2
       typescript: 5.5.3
@@ -5638,9 +5644,9 @@ snapshots:
       eslint: 9.7.0
       typescript: 5.5.3
 
-  '@angular-eslint/utils@18.3.1(@typescript-eslint/utils@8.10.0(eslint@9.7.0)(typescript@5.5.3))(eslint@9.7.0)(typescript@5.5.3)':
+  '@angular-eslint/utils@18.4.0(@typescript-eslint/utils@8.10.0(eslint@9.7.0)(typescript@5.5.3))(eslint@9.7.0)(typescript@5.5.3)':
     dependencies:
-      '@angular-eslint/bundled-angular-compiler': 18.3.1
+      '@angular-eslint/bundled-angular-compiler': 18.4.0
       '@typescript-eslint/utils': 8.10.0(eslint@9.7.0)(typescript@5.5.3)
       eslint: 9.7.0
       typescript: 5.5.3
@@ -8398,6 +8404,8 @@ snapshots:
     dependencies:
       dequal: 2.0.3
 
+  aria-query@5.3.2: {}
+
   array-flatten@1.1.1: {}
 
   asn1@0.2.6:
@@ -8876,7 +8884,7 @@ snapshots:
 
   custom-event@1.0.1: {}
 
-  cypress@13.15.0:
+  cypress@13.15.1:
     dependencies:
       '@cypress/request': 3.0.5
       '@cypress/xvfb': 1.2.4(supports-color@8.1.1)
@@ -8918,6 +8926,7 @@ snapshots:
       semver: 7.5.4
       supports-color: 8.1.1
       tmp: 0.2.3
+      tree-kill: 1.2.2
       untildify: 4.0.0
       yauzl: 2.10.0
 
