@@ -10,6 +10,7 @@ interface Link {
 }
 
 @Component({
+  standalone: false,
   selector: 'app-links',
   styleUrls: ['./links.component.scss'],
   templateUrl: './links.component.html',

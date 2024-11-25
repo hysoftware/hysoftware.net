@@ -6,6 +6,7 @@ interface Source {
 }
 
 @Component({
+  standalone: false,
   selector: 'app-jpasct',
   templateUrl: './jpasct.component.html',
   styleUrls: ['./jpasct.component.scss']
