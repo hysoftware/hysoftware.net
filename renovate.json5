@@ -13,9 +13,9 @@
     schedule: "every weekend"
   },
   packageRules: [
-    // {
-    //   matchPackageNames: ["typescript"],
-    //   allowedVersions: "<4.6.0"
-    // },
+    {
+      matchPackageNames: ["typescript"],
+      allowedVersions: "<5.7.0"
+    },
   ]
 }
