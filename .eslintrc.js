@@ -19,6 +19,7 @@ module.exports = {
           'error',
           { type: 'element', prefix: 'app', style: 'kebab-case' },
         ],
+        '@angular-eslint/prefer-standalone': 0,
         quotes: ['error', 'single', { allowTemplateLiterals: true }],
         '@typescript-eslint/no-misused-promises': ['error'],
       },
