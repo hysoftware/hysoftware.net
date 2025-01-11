@@ -100,8 +100,8 @@ importers:
         specifier: ~19.0.0
         version: 19.0.0
       '@cypress/schematic':
-        specifier: 2.5.2
-        version: 2.5.2(@angular/cli@19.0.1(@types/node@22.9.3)(chokidar@4.0.1))(@angular/core@19.0.0(rxjs@7.8.1)(zone.js@0.15.0))
+        specifier: 3.0.0
+        version: 3.0.0(@angular/cli@19.0.1(@types/node@22.9.3)(chokidar@4.0.1))(@angular/core@19.0.0(rxjs@7.8.1)(zone.js@0.15.0))
       '@types/jasmine':
         specifier: ~5.1.4
         version: 5.1.4
@@ -1050,11 +1050,11 @@ packages:
     resolution: {integrity: sha512-fi0eVdCOtKu5Ed6+E8mYxUF6ZTFJDZvHogCBelM0xVXmrDEkyM22gRArQzq1YcHPm1V47Vf/iAD+WgVdUlJCGg==}
     engines: {node: '>= 6'}
 
-  '@cypress/schematic@2.5.2':
-    resolution: {integrity: sha512-H+V3ZP3KQVOs6b49N66jioXa+rkLzszVi+Bl3jiroVTURUNMOpSa4BOrt10Pn8F57TO0Bamhch2WOk/e9cq98w==}
+  '@cypress/schematic@3.0.0':
+    resolution: {integrity: sha512-LFT0sl4HOykGWwrDfvHnQxucSvT2P/VA+GOk89dbSRMkXLG8u8h9GfbqK+9keoJBGTnfJFU8MWTtwjyYwPZW6w==}
     peerDependencies:
-      '@angular/cli': '>=14'
-      '@angular/core': '>=14'
+      '@angular/cli': '>=17.2'
+      '@angular/core': '>=17.2'
 
   '@cypress/xvfb@1.2.4':
     resolution: {integrity: sha512-skbBzPggOVYCbnGgV+0dmBdW/s77ZkAOXIC1knS8NagwDjBrNC1LuXtQJeiN6l+m7lzmHtaoUw/ctJKdqkG57Q==}
@@ -3723,9 +3723,6 @@ packages:
     engines: {node: '>=6'}
     hasBin: true
 
-  jsonc-parser@3.2.1:
-    resolution: {integrity: sha512-AilxAyFOAcK5wA1+LeaySVBrHsGQvUFCDWXKpZjzaL0PqW+xfBOttn8GNtWKFWqneyMZj41MWF9Kl6iPWLwgOA==}
-
   jsonc-parser@3.3.1:
     resolution: {integrity: sha512-HUgH65KyejrUFPvHFPbqOY0rsFip3Bo5wb4ngvdi1EpCYWUQDC5V+Y7mZws+DLkr4M//zQJoanu1SP+87Dv1oQ==}
 
@@ -4615,10 +4612,6 @@ packages:
   run-parallel@1.2.0:
     resolution: {integrity: sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==}
 
-  rxjs@6.6.7:
-    resolution: {integrity: sha512-hTdwr+7yYNIT5n4AMYp85KA6yw2Va0FLa3Rguvbpa4W3I5xynaBZo41cM3XM+4Q6fRMj3sBYIR1VAmZMXYJvRQ==}
-    engines: {npm: '>=2.0.0'}
-
   rxjs@7.8.1:
     resolution: {integrity: sha512-AA3TVj+0A2iuIoQkWEK/tqFjBq2j+6PO6Y0zJcvzLAFhEFIO3HL0vls9hWLncZbAAbK0mar7oZ4V079I/qPMxg==}
 
@@ -5035,9 +5028,6 @@ packages:
         optional: true
       '@swc/wasm':
         optional: true
-
-  tslib@1.14.1:
-    resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
 
   tslib@2.8.1:
     resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
@@ -6628,12 +6618,12 @@ snapshots:
       tunnel-agent: 0.6.0
       uuid: 8.3.2
 
-  '@cypress/schematic@2.5.2(@angular/cli@19.0.1(@types/node@22.9.3)(chokidar@4.0.1))(@angular/core@19.0.0(rxjs@7.8.1)(zone.js@0.15.0))':
+  '@cypress/schematic@3.0.0(@angular/cli@19.0.1(@types/node@22.9.3)(chokidar@4.0.1))(@angular/core@19.0.0(rxjs@7.8.1)(zone.js@0.15.0))':
     dependencies:
       '@angular/cli': 19.0.1(@types/node@22.9.3)(chokidar@4.0.1)
       '@angular/core': 19.0.0(rxjs@7.8.1)(zone.js@0.15.0)
-      jsonc-parser: 3.2.1
-      rxjs: 6.6.7
+      jsonc-parser: 3.3.1
+      rxjs: 7.8.1
 
   '@cypress/xvfb@1.2.4(supports-color@8.1.1)':
     dependencies:
@@ -9284,8 +9274,6 @@ snapshots:
 
   json5@2.2.3: {}
 
-  jsonc-parser@3.2.1: {}
-
   jsonc-parser@3.3.1: {}
 
   jsonfile@4.0.0:
@@ -10273,10 +10261,6 @@ snapshots:
     dependencies:
       queue-microtask: 1.2.3
 
-  rxjs@6.6.7:
-    dependencies:
-      tslib: 1.14.1
-
   rxjs@7.8.1:
     dependencies:
       tslib: 2.8.1
@@ -10745,8 +10729,6 @@ snapshots:
       typescript: 5.6.3
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
-
-  tslib@1.14.1: {}
 
   tslib@2.8.1: {}
 
