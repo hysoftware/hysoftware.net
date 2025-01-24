@@ -13,7 +13,7 @@ enum Route {
 const BOOTSTRAP_CSS: Asset =
   asset!("/node/node_modules/bootstrap/dist/css/bootstrap.css");
 const BOOTSTRAP_JS: Asset =
-  asset!("/node/node_modules/bootstrap/dist/js/bootstrap.js");
+  asset!("/node/node_modules/bootstrap/dist/js/bootstrap.esm.js");
 
 const FONTAWESOME_CSS: Asset =
   asset!("/node/node_modules/@fortawesome/fontawesome-svg-core/styles.css");
@@ -35,8 +35,8 @@ fn App() -> Element {
       document::Link { rel: "stylesheet", href: MAIN_CSS }
       document::Link { rel: "stylesheet", href: FONTAWESOME_CSS }
       document::Link { rel: "stylesheet", href: "https://fonts.googleapis.com/css?family=Roboto:300,400,500" }
-      document::Script { src: BOOTSTRAP_JS, defer: true, async: true }
-      document::Script { src: FONTAWESOME_JS, defer: true, async: true }
+      document::Script { src: BOOTSTRAP_JS, defer: true}
+      document::Script { src: FONTAWESOME_JS, defer: true }
       Router::<Route> {}
   }
 }
