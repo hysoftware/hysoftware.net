@@ -9,3 +9,17 @@ body {
   background-color: #282C34;
   color: #eeeef0;
 }
+
+.page {
+  max-width: 85vw;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 1rem;
+  flex-direction: column;
+}
