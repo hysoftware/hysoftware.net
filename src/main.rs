@@ -16,7 +16,7 @@ enum Route {
 const BOOTSTRAP_CSS: Asset =
   asset!("/node/node_modules/bootstrap/dist/css/bootstrap.css");
 const BOOTSTRAP_JS: Asset =
-  asset!("/node/node_modules/bootstrap/dist/js/bootstrap.esm.js");
+  asset!("/node/node_modules/bootstrap/dist/js/bootstrap.bundle.js");
 
 const FONTAWESOME_CSS: Asset =
   asset!("/node/node_modules/@fortawesome/fontawesome-svg-core/styles.css");
