@@ -22,12 +22,6 @@ const FONTAWESOME_CSS: Asset =
   asset!("/node/node_modules/@fortawesome/fontawesome-svg-core/styles.css");
 const FONTAWESOME_JS: Asset =
   asset!("/node/node_modules/@fortawesome/fontawesome-svg-core/index.js");
-const FONTAWESOME_GITHUB: Asset =
-  asset!("/node/node_modules/@fortawesome/free-brands-svg-icons/faGithub.js");
-const FONTAWESOME_GITLAB: Asset =
-  asset!("/node/node_modules/@fortawesome/free-brands-svg-icons/faGitlab.js");
-const FONTAWESOME_KEYBASE: Asset =
-  asset!("/node/node_modules/@fortawesome/free-brands-svg-icons/faKeybase.js");
 
 const FAVICON: Asset = asset!("/assets/favicon.ico");
 const MAIN_CSS: Asset = asset!("/assets/main.css");
@@ -47,9 +41,6 @@ fn App() -> Element {
 
       document::Script { src: BOOTSTRAP_JS, defer: true}
       document::Script { src: FONTAWESOME_JS}
-      document::Script { src: FONTAWESOME_GITHUB }
-      document::Script { src: FONTAWESOME_GITLAB }
-      document::Script { src: FONTAWESOME_KEYBASE }
       Router::<Route> {}
   }
 }
