@@ -27,6 +27,11 @@ body {
 .icon {
   max-width: 1.2em;
   max-height: 1.2em;
+  margin: auto 0.2em;
+}
+
+.sns-link {
+  margin: auto 0.5rem;
 }
 
 .link-label {
