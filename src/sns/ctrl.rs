@@ -1,3 +1,6 @@
+use ::dioxus::prelude::*;
+
+use crate::fontawesome::{GITHUB, GITLAB, KEYBASE};
 use crate::links::Link;
 
 #[derive(Debug)]
@@ -10,17 +13,17 @@ impl Ctrl {
     Self {
       links: vec![
         Link::new(
-          "fa-brands fa-github".into(),
+          Some(GITHUB.to_string()),
           "https://github.com/hiroaki-yamamoto",
           "Github",
         ),
         Link::new(
-          "fa-brands fa-github".into(),
+          Some(GITLAB.to_string()),
           "https://gitlab.com/hiroaki-yamamoto",
           "Gitlab",
         ),
         Link::new(
-          "fa-brands fa-keybase".into(),
+          Some(KEYBASE.to_string()),
           "https://keybase.io/hyamamoto",
           "Keybase",
         ),

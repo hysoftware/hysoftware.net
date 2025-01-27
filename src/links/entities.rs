@@ -1,19 +1,24 @@
+use ::std::string::ToString;
+
 #[derive(Debug)]
 pub struct Link {
-  icon: String,
+  icon: Option<String>,
   href: String,
   text: String,
 }
 
 impl Link {
-  pub fn new(icon: Option<&str>, href: &str, text: &str) -> Self {
+  pub fn new<T>(icon: Option<T>, href: &str, text: &str) -> Self
+  where
+    T: ToString,
+  {
     return Self {
-      icon: icon.unwrap_or("").to_string(),
+      icon: icon.map(|icon| icon.to_string()),
       href: href.into(),
       text: text.into(),
     };
   }
-  pub fn icon(&self) -> &str {
+  pub fn icon(&self) -> &Option<String> {
     return &self.icon;
   }
   pub fn href(&self) -> &str {

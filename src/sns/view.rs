@@ -18,9 +18,9 @@ pub fn SNS() -> Element {
             href: link.href(),
             target: "_blank",
             class: "sns-link btn btn-light",
-            i {
-              "class": link.icon(),
-            }
+            img {
+              src: link.icon().as_ref().map(|icon| icon.as_str()),
+            },
             "{link.text()}"
           }
         }
