@@ -17,11 +17,15 @@ pub fn SNS() -> Element {
           a {
             href: link.href(),
             target: "_blank",
-            class: "sns-link btn btn-light",
-            img {
-              src: link.icon().as_ref().map(|icon| icon.as_str()),
-            },
-            "{link.text()}"
+            class: "sns-link btn btn-light btn-lg",
+            div {
+              class: "link-label",
+              img {
+                class: "icon",
+                src: link.icon().as_ref().map(|icon| icon.as_str()),
+              },
+              "{link.text()}"
+            }
           }
         }
       })

@@ -23,3 +23,15 @@ body {
   padding: 1rem;
   flex-direction: column;
 }
+
+.icon {
+  max-width: 1.2em;
+  max-height: 1.2em;
+}
+
+.link-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
