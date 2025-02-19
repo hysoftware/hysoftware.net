@@ -1,24 +1,21 @@
-use ::std::string::ToString;
+use crate::icon::Icons;
 
 #[derive(Debug)]
 pub struct Link {
-  icon: Option<String>,
+  icon: Option<Icons>,
   href: String,
   text: String,
 }
 
 impl Link {
-  pub fn new<T>(icon: Option<T>, href: &str, text: &str) -> Self
-  where
-    T: ToString,
-  {
+  pub fn new(icon: Option<Icons>, href: &str, text: &str) -> Self {
     return Self {
-      icon: icon.map(|icon| icon.to_string()),
+      icon,
       href: href.into(),
       text: text.into(),
     };
   }
-  pub fn icon(&self) -> &Option<String> {
+  pub fn icon(&self) -> &Option<Icons> {
     return &self.icon;
   }
   pub fn href(&self) -> &str {

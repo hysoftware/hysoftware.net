@@ -1,6 +1,7 @@
 use ::dioxus::prelude::*;
 
 use super::ctrl::Ctrl;
+use crate::icon::Icon;
 
 #[component]
 pub fn SNS() -> Element {
@@ -20,10 +21,9 @@ pub fn SNS() -> Element {
             class: "sns-link btn btn-light btn-lg",
             div {
               class: "link-label",
-              img {
-                class: "icon",
-                src: link.icon().as_ref().map(|icon| icon.as_str()),
-              },
+              if let Some(icon) = link.icon() {
+                Icon { icon: icon.clone() }
+              }
               "{link.text()}"
             }
           }

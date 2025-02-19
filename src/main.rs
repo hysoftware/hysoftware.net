@@ -1,4 +1,4 @@
-mod fontawesome;
+mod icon;
 mod links;
 mod normal;
 mod sns;

@@ -25,9 +25,9 @@ body {
 }
 
 .icon {
-  max-width: 1.2em;
-  max-height: 1.2em;
-  margin: auto 0.2em;
+  min-width: 1.5rem;
+  min-height: 1.5rem;
+  margin: 0.2em;
 }
 
 .sns-link {
