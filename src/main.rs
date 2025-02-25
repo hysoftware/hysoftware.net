@@ -19,11 +19,6 @@ const BOOTSTRAP_CSS: Asset =
 const BOOTSTRAP_JS: Asset =
   asset!("/node/node_modules/bootstrap/dist/js/bootstrap.bundle.js");
 
-const FONTAWESOME_CSS: Asset =
-  asset!("/node/node_modules/@fortawesome/fontawesome-svg-core/styles.css");
-const FONTAWESOME_JS: Asset =
-  asset!("/node/node_modules/@fortawesome/fontawesome-svg-core/index.js");
-
 const FAVICON: Asset = asset!("/assets/favicon.ico");
 const MAIN_CSS: Asset = asset!("/assets/main.css");
 
@@ -36,12 +31,10 @@ fn App() -> Element {
   rsx! {
       document::Link { rel: "icon", href: FAVICON }
       document::Link { rel: "stylesheet", href: BOOTSTRAP_CSS }
-      document::Link { rel: "stylesheet", href: FONTAWESOME_CSS }
       document::Link { rel: "stylesheet", href: "https://fonts.googleapis.com/css?family=Roboto:300,400,500" }
       document::Link { rel: "stylesheet", href: MAIN_CSS }
 
       document::Script { src: BOOTSTRAP_JS, defer: true}
-      document::Script { src: FONTAWESOME_JS}
       Router::<Route> {}
   }
 }
