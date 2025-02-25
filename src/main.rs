@@ -1,5 +1,6 @@
 mod icon;
 mod links;
+mod misc;
 mod normal;
 mod sns;
 
