@@ -4,5 +4,6 @@
   },
   "circleci.persistedProjectSelection": [
     "gh/hysoftware/hysoftware.net"
-  ]
+  ],
+  "git.ignoreLimitWarning": true
 }
