@@ -47,3 +47,7 @@ Thumbs.db
 
 # logs
 *.log
+
+# Compiled output from feat/rust
+node/node_modules
+target
