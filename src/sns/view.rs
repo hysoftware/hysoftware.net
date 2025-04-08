@@ -1,7 +1,7 @@
 use ::dioxus::prelude::*;
 
 use super::ctrl::Ctrl;
-use crate::icon::Icon;
+use crate::links::ButtonLink;
 
 #[component]
 pub fn SNS() -> Element {
@@ -15,17 +15,9 @@ pub fn SNS() -> Element {
     {
       ctrl.read().links().iter().map(|link| {
         rsx!{
-          a {
-            href: link.href(),
-            target: "_blank",
-            class: "sns-link btn btn-light btn-lg",
-            div {
-              class: "link-label",
-              if let Some(icon) = link.icon() {
-                Icon { icon: icon.clone() }
-              }
-              "{link.text()}"
-            }
+          ButtonLink {
+            a_class: "btn btn-light btn-lg",
+            link: link.clone(),
           }
         }
       })
