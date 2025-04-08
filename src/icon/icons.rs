@@ -3,4 +3,6 @@ pub enum Icons {
   FaGithub,
   FaGitlab,
   FaKeybase,
+  FaFileCode,
+  FaFile,
 }

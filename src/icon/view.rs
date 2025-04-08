@@ -1,6 +1,6 @@
 use dioxus::prelude::*;
 
-use super::fontawesome::{GITHUB, GITLAB, KEYBASE};
+use super::fontawesome::{FILE, FILE_CODE, GITHUB, GITLAB, KEYBASE};
 use super::icons::Icons;
 
 #[component]
@@ -13,6 +13,8 @@ pub fn Icon(icon: Icons) -> Element {
             Icons::FaGithub => GITHUB,
             Icons::FaGitlab => GITLAB,
             Icons::FaKeybase => KEYBASE,
+            Icons::FaFileCode => FILE_CODE,
+            Icons::FaFile => FILE,
         }
       }
     }
@@ -22,7 +24,7 @@ pub fn Icon(icon: Icons) -> Element {
 #[cfg(test)]
 mod tests {
   use super::{Icon, IconProps};
-  use crate::icon::fontawesome::{GITHUB, GITLAB, KEYBASE};
+  use crate::icon::fontawesome::{FILE, FILE_CODE, GITHUB, GITLAB, KEYBASE};
   use crate::icon::icons::Icons;
   use dioxus::prelude::*;
   use pretty_assertions::assert_eq;
@@ -64,6 +66,33 @@ mod tests {
       div {
         class: "icon",
         dangerous_inner_html: KEYBASE,
+      }
+    });
+    assert_eq!(icon, correct);
+  }
+  #[test]
+  fn test_icon_file_code() {
+    let icon = dioxus_ssr::render_element(Icon(IconProps {
+      icon: Icons::FaFileCode,
+    }));
+    let correct = dioxus_ssr::render_element(rsx! {
+      div {
+        class: "icon",
+        dangerous_inner_html: FILE_CODE,
+      }
+    });
+    assert_eq!(icon, correct);
+  }
+
+  #[test]
+  fn test_icon_file() {
+    let icon = dioxus_ssr::render_element(Icon(IconProps {
+      icon: Icons::FaFile,
+    }));
+    let correct = dioxus_ssr::render_element(rsx! {
+      div {
+        class: "icon",
+        dangerous_inner_html: FILE,
       }
     });
     assert_eq!(icon, correct);
