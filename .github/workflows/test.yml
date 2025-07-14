@@ -43,7 +43,7 @@ jobs:
       - uses: qltysh/qlty-action/coverage@v1
         with:
           oidc: true
-          files: ./coverage/lconv.info
+          files: ./coverage/lcov.info
       - name: Check cypress binary
         run: |
           if [ ! -d ~/.cache/Cypress ]; then
