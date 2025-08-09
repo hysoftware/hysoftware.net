@@ -108,8 +108,8 @@ importers:
         specifier: ~20.1.0
         version: 20.1.0
       '@cypress/schematic':
-        specifier: 3.0.0
-        version: 3.0.0(@angular/cli@20.1.0(@types/node@24.0.13)(chokidar@4.0.1))(@angular/core@20.1.0(@angular/compiler@20.1.0)(rxjs@7.8.2)(zone.js@0.15.1))
+        specifier: 4.0.0
+        version: 4.0.0(@angular/cli@20.1.0(@types/node@24.0.13)(chokidar@4.0.1))(@angular/core@20.1.0(@angular/compiler@20.1.0)(rxjs@7.8.2)(zone.js@0.15.1))
       '@types/jasmine':
         specifier: ~5.1.8
         version: 5.1.8
@@ -1119,11 +1119,11 @@ packages:
     resolution: {integrity: sha512-h0NFgh1mJmm1nr4jCwkGHwKneVYKghUyWe6TMNrk0B9zsjAJxpg8C4/+BAcmLgCPa1vj1V8rNUaILl+zYRUWBQ==}
     engines: {node: '>= 6'}
 
-  '@cypress/schematic@3.0.0':
-    resolution: {integrity: sha512-LFT0sl4HOykGWwrDfvHnQxucSvT2P/VA+GOk89dbSRMkXLG8u8h9GfbqK+9keoJBGTnfJFU8MWTtwjyYwPZW6w==}
+  '@cypress/schematic@4.0.0':
+    resolution: {integrity: sha512-pVHh6yqnx+EneFrYC3u7u4bktMb8RtNejp/rTnP2IbqAcV+4miXx1rvJ7Dk+Gfxqnh3J+b69XhgseJm45bdyAw==}
     peerDependencies:
-      '@angular/cli': '>=17.2'
-      '@angular/core': '>=17.2'
+      '@angular/cli': '>=18.0.0'
+      '@angular/core': '>=18.0.0'
 
   '@cypress/xvfb@1.2.4':
     resolution: {integrity: sha512-skbBzPggOVYCbnGgV+0dmBdW/s77ZkAOXIC1knS8NagwDjBrNC1LuXtQJeiN6l+m7lzmHtaoUw/ctJKdqkG57Q==}
@@ -6816,7 +6816,7 @@ snapshots:
       tunnel-agent: 0.6.0
       uuid: 8.3.2
 
-  '@cypress/schematic@3.0.0(@angular/cli@20.1.0(@types/node@24.0.13)(chokidar@4.0.1))(@angular/core@20.1.0(@angular/compiler@20.1.0)(rxjs@7.8.2)(zone.js@0.15.1))':
+  '@cypress/schematic@4.0.0(@angular/cli@20.1.0(@types/node@24.0.13)(chokidar@4.0.1))(@angular/core@20.1.0(@angular/compiler@20.1.0)(rxjs@7.8.2)(zone.js@0.15.1))':
     dependencies:
       '@angular/cli': 20.1.0(@types/node@24.0.13)(chokidar@4.0.1)
       '@angular/core': 20.1.0(@angular/compiler@20.1.0)(rxjs@7.8.2)(zone.js@0.15.1)
