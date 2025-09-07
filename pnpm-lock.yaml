@@ -108,8 +108,8 @@ importers:
         specifier: ~20.2.1
         version: 20.2.1
       '@cypress/schematic':
-        specifier: 4.1.1
-        version: 4.1.1(@angular/cli@20.2.0(@types/node@24.3.0)(chokidar@4.0.1))(@angular/core@20.2.1(@angular/compiler@20.2.1)(rxjs@7.8.2)(zone.js@0.15.1))
+        specifier: 4.1.2
+        version: 4.1.2(@angular/cli@20.2.0(@types/node@24.3.0)(chokidar@4.0.1))(@angular/core@20.2.1(@angular/compiler@20.2.1)(rxjs@7.8.2)(zone.js@0.15.1))
       '@types/jasmine':
         specifier: ~5.1.9
         version: 5.1.9
@@ -1189,8 +1189,8 @@ packages:
     resolution: {integrity: sha512-I3l7FdGRXluAS44/0NguwWlO83J18p0vlr2FYHrJkWdNYhgVoiYo61IXPqaOsL+vNxU1ZqMACzItGK3/KKDsdw==}
     engines: {node: '>= 6'}
 
-  '@cypress/schematic@4.1.1':
-    resolution: {integrity: sha512-zma2Hld/wKMzDsFD3ue029cuw2v91MIz/OQGYTEg58lG1H0YgsChbga0IKuHO0X7lGCnJGWS65jDmo5cdsxucw==}
+  '@cypress/schematic@4.1.2':
+    resolution: {integrity: sha512-sp7LaT4nNjfLnL/DB3+zJzrxDU0H9A57/DlwnZyZZLiyjwYODZi+eGaQZKXpmTx72VBORrhdm8471xF7xLD6qg==}
     peerDependencies:
       '@angular/cli': '>=18.0.0'
       '@angular/core': '>=18.0.0'
@@ -7122,7 +7122,7 @@ snapshots:
       tunnel-agent: 0.6.0
       uuid: 8.3.2
 
-  '@cypress/schematic@4.1.1(@angular/cli@20.2.0(@types/node@24.3.0)(chokidar@4.0.1))(@angular/core@20.2.1(@angular/compiler@20.2.1)(rxjs@7.8.2)(zone.js@0.15.1))':
+  '@cypress/schematic@4.1.2(@angular/cli@20.2.0(@types/node@24.3.0)(chokidar@4.0.1))(@angular/core@20.2.1(@angular/compiler@20.2.1)(rxjs@7.8.2)(zone.js@0.15.1))':
     dependencies:
       '@angular/cli': 20.2.0(@types/node@24.3.0)(chokidar@4.0.1)
       '@angular/core': 20.2.1(@angular/compiler@20.2.1)(rxjs@7.8.2)(zone.js@0.15.1)
