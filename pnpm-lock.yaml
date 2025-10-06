@@ -132,8 +132,8 @@ importers:
         specifier: ^9.34.0
         version: 9.34.0(jiti@1.21.0)
       jasmine-core:
-        specifier: ~5.11.0
-        version: 5.11.0
+        specifier: ~5.12.0
+        version: 5.12.0
       jasmine-spec-reporter:
         specifier: ~7.0.0
         version: 7.0.0
@@ -151,7 +151,7 @@ importers:
         version: 5.1.0(karma@6.4.4)
       karma-jasmine-html-reporter:
         specifier: ^2.1.0
-        version: 2.1.0(jasmine-core@5.11.0)(karma-jasmine@5.1.0(karma@6.4.4))(karma@6.4.4)
+        version: 2.1.0(jasmine-core@5.12.0)(karma-jasmine@5.1.0(karma@6.4.4))(karma@6.4.4)
       ts-node:
         specifier: ~10.9.2
         version: 10.9.2(@types/node@24.3.0)(typescript@5.9.2)
@@ -3980,8 +3980,8 @@ packages:
   jasmine-core@4.6.0:
     resolution: {integrity: sha512-O236+gd0ZXS8YAjFx8xKaJ94/erqUliEkJTDedyE7iHvv4ZVqi+q+8acJxu05/WJDKm512EUNn809In37nWlAQ==}
 
-  jasmine-core@5.11.0:
-    resolution: {integrity: sha512-MPJ8L5yyNul0F2SuEsLASwESXQjJvBXnKu31JWFyRZSvuv2B79K4GDWN3pSqvLheUNh7Fyb6dXwd4rsz95O2Kg==}
+  jasmine-core@5.12.0:
+    resolution: {integrity: sha512-QqO4pX33GEML5JoGQU6BM5NHKPgEsg+TXp3jCIDek9MbfEp2JUYEFBo9EF1+hegWy/bCHS1m5nP0BOp18G6rVA==}
 
   jasmine-spec-reporter@7.0.0:
     resolution: {integrity: sha512-OtC7JRasiTcjsaCBPtMO0Tl8glCejM4J4/dNuOJdA8lBjz4PmWjYQ6pzb0uzpBNAWJMDudYuj9OdXJWqM2QTJg==}
@@ -9977,7 +9977,7 @@ snapshots:
 
   jasmine-core@4.6.0: {}
 
-  jasmine-core@5.11.0: {}
+  jasmine-core@5.12.0: {}
 
   jasmine-spec-reporter@7.0.0:
     dependencies:
@@ -10059,9 +10059,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  karma-jasmine-html-reporter@2.1.0(jasmine-core@5.11.0)(karma-jasmine@5.1.0(karma@6.4.4))(karma@6.4.4):
+  karma-jasmine-html-reporter@2.1.0(jasmine-core@5.12.0)(karma-jasmine@5.1.0(karma@6.4.4))(karma@6.4.4):
     dependencies:
-      jasmine-core: 5.11.0
+      jasmine-core: 5.12.0
       karma: 6.4.4
       karma-jasmine: 5.1.0(karma@6.4.4)
 
