@@ -23,8 +23,8 @@
       }
     ]
   },
-  "private": true,
-  "packageManager": "pnpm@10.23.0",
+  "private": false,
+  "license": "MIT",
   "dependencies": {
     "@angular/cdk": "21.0.0",
     "@angular/common": "^21.0.0",
