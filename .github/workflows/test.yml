@@ -39,7 +39,7 @@ jobs:
           export GIT_COMMITTED_AT=$(date +%s)
           export GIT_BRANCH=${{ github.ref_name }}
           export CHROME_BIN=${{ steps.setup-chrome.outputs.chrome-path }}
-          pnpm run test --no-progress --browsers ChromeHeadlessNoSandbox
+          pnpm run test --no-progress
         env:
           GIT_COMMIT_SHA: ${{ github.sha }}
           CI_NAME: "Github Action"
