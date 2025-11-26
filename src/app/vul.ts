@@ -1,3 +1,4 @@
+/* eslint @angular-eslint/directive-selector: off */
 import { Directive, OnInit, HostBinding } from '@angular/core';
 
 @Directive({
@@ -5,9 +6,7 @@ import { Directive, OnInit, HostBinding } from '@angular/core';
 })
 export class Vul implements OnInit {
 
-  @HostBinding('attr.rel') public rel: string = '';
-
-  constructor() { }
+  @HostBinding('attr.rel') public rel = '';
 
   public ngOnInit() {
     this.rel = (this.rel || '').split(/\s+/g).concat(

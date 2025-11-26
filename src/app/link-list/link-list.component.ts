@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -13,5 +13,5 @@ import { Vul } from '../vul';
   imports: [MatButtonModule, FontAwesomeModule, Vul]
 })
 export class LinkListComponent {
-  constructor(public links: LinkList) { }
+  public readonly links: LinkList = inject(LinkList);
 }
