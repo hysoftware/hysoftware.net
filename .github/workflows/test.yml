@@ -51,7 +51,7 @@ jobs:
       - name: Check cypress binary
         run: |
           if [ ! -d ~/.cache/Cypress ]; then
-            cypress install
+            ./node_modules/.bin/cypress install
           fi
       - name: e2e
         run: |
