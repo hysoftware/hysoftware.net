@@ -79,6 +79,7 @@
         "cypress-run": {
           "builder": "@cypress/schematic:cypress",
           "options": {
+            "coverage": true,
             "devServerTarget": "hysoftware:serve"
           },
           "configurations": {

@@ -58,4 +58,4 @@ Cypress.Commands.add('getMiscLinks', () => {
 });
 Cypress.Commands.add('getTargetBlankLinks', () => {
   return cy.get('[target="_blank"]');
-});}
+});
