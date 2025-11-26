@@ -48,11 +48,6 @@ jobs:
         with:
           oidc: true
           files: ./coverage/lcov.info
-      - name: Check cypress binary
-        run: |
-          if [ ! -d ~/.cache/Cypress ]; then
-            pnpm run cypress:install
-          fi
       - name: e2e
         run: |
           export CHROME_BIN=${{ steps.setup-chrome.outputs.chrome-path }}
