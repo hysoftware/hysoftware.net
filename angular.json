@@ -74,12 +74,17 @@
           "defaultConfiguration": "development"
         },
         "test": {
-          "builder": "@angular/build:unit-test"
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "coverage": true,
+            "coverageReporters": [
+              "lcov"
+            ]
+          }
         },
         "cypress-run": {
           "builder": "@cypress/schematic:cypress",
           "options": {
-            "coverage": true,
             "devServerTarget": "hysoftware:serve"
           },
           "configurations": {
