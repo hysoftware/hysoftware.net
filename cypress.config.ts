@@ -1,12 +1,21 @@
 import { defineConfig } from 'cypress'
 
 export default defineConfig({
+
   e2e: {
-    specPattern: 'cypress/integration/**/*.ts',
-    supportFile: 'cypress/support/index.ts',
-    baseUrl: 'http://localhost:4200',
+    'baseUrl': 'http://localhost:4200',
+    // supportFolder: './cypress/support',
+    supportFile: './cypress/support/commands.ts',
   },
-  videosFolder: 'cypress/videos',
-  screenshotsFolder: 'cypress/screenshots',
-  fixturesFolder: 'cypress/fixtures',
-});
+
+
+  component: {
+    devServer: {
+      framework: 'angular',
+      bundler: 'webpack',
+    },
+    specPattern: '**/*.cy.ts',
+    supportFile: './cypress/support/component.ts',
+  }
+
+})

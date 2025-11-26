@@ -20,7 +20,7 @@ jobs:
           version: latest
       - uses: actions/setup-node@v6
         with:
-          node-version: '23'
+          node-version: "25"
           cache: pnpm
           cache-dependency-path: pnpm-lock.yaml
       - uses: actions/cache@v4
@@ -39,7 +39,7 @@ jobs:
           export GIT_COMMITTED_AT=$(date +%s)
           export GIT_BRANCH=${{ github.ref_name }}
           export CHROME_BIN=${{ steps.setup-chrome.outputs.chrome-path }}
-          pnpm run test --no-progress --browsers ChromeHeadlessNoSandbox
+          pnpm run test --no-progress
         env:
           GIT_COMMIT_SHA: ${{ github.sha }}
           CI_NAME: "Github Action"
@@ -47,11 +47,11 @@ jobs:
       - uses: qltysh/qlty-action/coverage@v2
         with:
           oidc: true
-          files: ./coverage/lcov.info
+          files: ./coverage/hysoftware/lcov.info
       - name: Check cypress binary
         run: |
           if [ ! -d ~/.cache/Cypress ]; then
-            pnpm run cypress:install
+            ./node_modules/.bin/cypress install
           fi
       - name: e2e
         run: |

@@ -1,0 +1,27 @@
+<section>
+  <header>
+    <h2>SNS</h2>
+  </header>
+  @for (item of links.snsList; track $index) {
+    <a class="snsLinks withIcon" matFab extended color="primary" [href]="item.link" target="_blank">
+      <div class="button-content">
+        <fa-icon [icon]=item.icon size="2x" [fixedWidth]="true"></fa-icon>
+        {{ item.name }}
+      </div>
+    </a>
+  }
+</section>
+
+<section>
+  <header>
+    <h2>Misc</h2>
+  </header>
+  @for (item of links.miscList; track $index) {
+    <a class="miscLinks withIcon" matButton="elevated" [href]="item.link" target="_blank">
+      <div class="button-content">
+        <fa-icon [icon]=item.icon size="2x" [fixedWidth]="true"></fa-icon>
+        {{ item.name }}
+      </div>
+    </a>
+  }
+</section>
