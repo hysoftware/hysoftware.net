@@ -3,15 +3,11 @@ import { TestBed } from '@angular/core/testing';
 import { LinkList } from './link-list';
 import { faFileCode, faFile } from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faGitlab, faKeybase } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 describe('LinkList', () => {
   let service: LinkList;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [FontAwesomeModule],
-    });
     service = TestBed.inject(LinkList);
   });
 
