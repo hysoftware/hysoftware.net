@@ -64,8 +64,8 @@ importers:
         specifier: ^21.0.1
         version: 21.0.1(@angular/compiler@21.0.2)(typescript@5.9.3)
       '@cypress/schematic':
-        specifier: 4.3.0
-        version: 4.3.0(@angular/cli@21.0.0(@types/node@24.10.1)(chokidar@4.0.3))(@angular/core@21.0.1(@angular/compiler@21.0.2)(rxjs@7.8.2))
+        specifier: 5.0.0
+        version: 5.0.0(@angular/cli@21.0.0(@types/node@24.10.1)(chokidar@4.0.3))(@angular/core@21.0.1(@angular/compiler@21.0.2)(rxjs@7.8.2))(cypress@15.7.1)
       '@eslint/js':
         specifier: ^9.39.1
         version: 9.39.1
@@ -477,11 +477,12 @@ packages:
     resolution: {integrity: sha512-I3l7FdGRXluAS44/0NguwWlO83J18p0vlr2FYHrJkWdNYhgVoiYo61IXPqaOsL+vNxU1ZqMACzItGK3/KKDsdw==}
     engines: {node: '>= 6'}
 
-  '@cypress/schematic@4.3.0':
-    resolution: {integrity: sha512-GEPMQM2xC5HcE191g87QMgrfsDacB0KDmeZzQ4dwKNLL4/22fmBeRs9YX4p6kX3T6VGJGvvJU4gXkAxXCkUuZQ==}
+  '@cypress/schematic@5.0.0':
+    resolution: {integrity: sha512-z8+myDqT4SONCBvNI+cFzhADFCOOsSOcfp6mxMx4FxMMpyeaYbUNUCZlt886UnjnSsL5BWSX7WNJLhPptewKVw==}
     peerDependencies:
-      '@angular/cli': '>=18.0.0'
-      '@angular/core': '>=18.0.0'
+      '@angular/cli': '>=20.0.0'
+      '@angular/core': '>=20.0.0'
+      cypress: ^15.8.0
 
   '@cypress/xvfb@1.2.4':
     resolution: {integrity: sha512-skbBzPggOVYCbnGgV+0dmBdW/s77ZkAOXIC1knS8NagwDjBrNC1LuXtQJeiN6l+m7lzmHtaoUw/ctJKdqkG57Q==}
@@ -4431,12 +4432,14 @@ snapshots:
       tunnel-agent: 0.6.0
       uuid: 8.3.2
 
-  '@cypress/schematic@4.3.0(@angular/cli@21.0.0(@types/node@24.10.1)(chokidar@4.0.3))(@angular/core@21.0.1(@angular/compiler@21.0.2)(rxjs@7.8.2))':
+  '@cypress/schematic@5.0.0(@angular/cli@21.0.0(@types/node@24.10.1)(chokidar@4.0.3))(@angular/core@21.0.1(@angular/compiler@21.0.2)(rxjs@7.8.2))(cypress@15.7.1)':
     dependencies:
       '@angular/cli': 21.0.0(@types/node@24.10.1)(chokidar@4.0.3)
       '@angular/core': 21.0.1(@angular/compiler@21.0.2)(rxjs@7.8.2)
+      cypress: 15.7.1
       jsonc-parser: 3.3.1
       rxjs: 7.8.2
+      semver: 7.7.3
 
   '@cypress/xvfb@1.2.4(supports-color@8.1.1)':
     dependencies:
