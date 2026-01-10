@@ -65,7 +65,7 @@ importers:
         version: 21.0.1(@angular/compiler@21.0.2)(typescript@5.9.3)
       '@cypress/schematic':
         specifier: 5.0.0
-        version: 5.0.0(@angular/cli@21.0.0(@types/node@24.10.1)(chokidar@4.0.3))(@angular/core@21.0.7(@angular/compiler@21.0.2)(rxjs@7.8.2))(cypress@15.8.1)
+        version: 5.0.0(@angular/cli@21.0.0(@types/node@24.10.1)(chokidar@4.0.3))(@angular/core@21.0.7(@angular/compiler@21.0.2)(rxjs@7.8.2))(cypress@15.8.2)
       '@eslint/js':
         specifier: ^9.39.1
         version: 9.39.1
@@ -76,8 +76,8 @@ importers:
         specifier: 21.1.0
         version: 21.1.0(@angular/cli@21.0.0(@types/node@24.10.1)(chokidar@4.0.3))(chokidar@4.0.3)(eslint@9.39.1)(typescript-eslint@8.51.0(eslint@9.39.1)(typescript@5.9.3))(typescript@5.9.3)
       cypress:
-        specifier: 15.8.1
-        version: 15.8.1
+        specifier: 15.8.2
+        version: 15.8.2
       eslint:
         specifier: ^9.39.1
         version: 9.39.1
@@ -473,8 +473,8 @@ packages:
     resolution: {integrity: sha512-Vd/9EVDiu6PPJt9yAh6roZP6El1xHrdvIVGjyBsHR0RYwNHgL7FJPyIIW4fANJNG6FtyZfvlRPpFI4ZM/lubvw==}
     engines: {node: '>=18'}
 
-  '@cypress/request@3.0.9':
-    resolution: {integrity: sha512-I3l7FdGRXluAS44/0NguwWlO83J18p0vlr2FYHrJkWdNYhgVoiYo61IXPqaOsL+vNxU1ZqMACzItGK3/KKDsdw==}
+  '@cypress/request@3.0.10':
+    resolution: {integrity: sha512-hauBrOdvu08vOsagkZ/Aju5XuiZx6ldsLfByg1htFeldhex+PeMrYauANzFsMJeAA0+dyPLbDoX2OYuvVoLDkQ==}
     engines: {node: '>= 6'}
 
   '@cypress/schematic@5.0.0':
@@ -2143,8 +2143,8 @@ packages:
     resolution: {integrity: sha512-OytmFH+13/QXONJcC75QNdMtKpceNk3u8ThBjyyYjkEcy/ekBwR1mMAuNvi3gdBPW3N5TlCzQ0WZw8H0lN/bDw==}
     engines: {node: '>=20'}
 
-  cypress@15.8.1:
-    resolution: {integrity: sha512-ogc62stTQGh1395ipKxfCE5hQuSApTzeH5e0d9U6m7wYO9HQeCpgnkYtBtd0MbkN2Fnch5Od2mX9u4hoTlrH4Q==}
+  cypress@15.8.2:
+    resolution: {integrity: sha512-KGpuiE8o9l9eyVLPkig574t8zOXkEDKzI0a+RQwy4cfXzpaLipvTOv0t+QEEkLiw/8HbgMNZ0fbPKakJAB3USA==}
     engines: {node: ^20.1.0 || ^22.0.0 || >=24.0.0}
     hasBin: true
 
@@ -3256,6 +3256,10 @@ packages:
 
   qs@6.14.0:
     resolution: {integrity: sha512-YWWTjgABSKcvs/nWBi9PycY/JiPJqOD4JA6o9Sej2AtvSGarXxKC3OQSk4pAarbdQlKAh5D4FCQkJNkW+GAn3w==}
+    engines: {node: '>=0.6'}
+
+  qs@6.14.1:
+    resolution: {integrity: sha512-4EK3+xJl8Ts67nLYNwqw/dsFVnCf+qR7RgXSK9jEEm9unao3njwMDdmsdvoKBKHzxd7tCYz5e5M+SnMjdtXGQQ==}
     engines: {node: '>=0.6'}
 
   range-parser@1.2.1:
@@ -4428,7 +4432,7 @@ snapshots:
 
   '@csstools/css-tokenizer@3.0.4': {}
 
-  '@cypress/request@3.0.9':
+  '@cypress/request@3.0.10':
     dependencies:
       aws-sign2: 0.7.0
       aws4: 1.13.2
@@ -4443,17 +4447,17 @@ snapshots:
       json-stringify-safe: 5.0.1
       mime-types: 2.1.35
       performance-now: 2.1.0
-      qs: 6.14.0
+      qs: 6.14.1
       safe-buffer: 5.2.1
       tough-cookie: 5.1.2
       tunnel-agent: 0.6.0
       uuid: 8.3.2
 
-  '@cypress/schematic@5.0.0(@angular/cli@21.0.0(@types/node@24.10.1)(chokidar@4.0.3))(@angular/core@21.0.7(@angular/compiler@21.0.2)(rxjs@7.8.2))(cypress@15.8.1)':
+  '@cypress/schematic@5.0.0(@angular/cli@21.0.0(@types/node@24.10.1)(chokidar@4.0.3))(@angular/core@21.0.7(@angular/compiler@21.0.2)(rxjs@7.8.2))(cypress@15.8.2)':
     dependencies:
       '@angular/cli': 21.0.0(@types/node@24.10.1)(chokidar@4.0.3)
       '@angular/core': 21.0.7(@angular/compiler@21.0.2)(rxjs@7.8.2)
-      cypress: 15.8.1
+      cypress: 15.8.2
       jsonc-parser: 3.3.1
       rxjs: 7.8.2
       semver: 7.7.3
@@ -5911,9 +5915,9 @@ snapshots:
       '@csstools/css-syntax-patches-for-csstree': 1.0.17
       css-tree: 3.1.0
 
-  cypress@15.8.1:
+  cypress@15.8.2:
     dependencies:
-      '@cypress/request': 3.0.9
+      '@cypress/request': 3.0.10
       '@cypress/xvfb': 1.2.4(supports-color@8.1.1)
       '@types/sinonjs__fake-timers': 8.1.1
       '@types/sizzle': 2.3.10
@@ -7180,6 +7184,10 @@ snapshots:
   punycode@2.3.1: {}
 
   qs@6.14.0:
+    dependencies:
+      side-channel: 1.1.0
+
+  qs@6.14.1:
     dependencies:
       side-channel: 1.1.0
 
