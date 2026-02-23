@@ -1,6 +1,15 @@
 import tslint from 'typescript-eslint';
 import ngLint from 'angular-eslint';
 
+const esLintConfig = {
+  files: ['eslint.config.js', 'src/**/*.js'],
+  rules: {
+    'max-len': ['error', { code: 79 }],
+    quotes: ['error', 'single', { allowTemplateLiterals: true }],
+    semi: ['error', 'always'],
+  },
+};
+
 const tsLintConfig = {
   files: ['src/**/*.ts'],
   languageOptions: {
@@ -11,8 +20,8 @@ const tsLintConfig = {
     parser: tslint.parser,
   },
   plugins: {
-    'tslint': tslint.plugin,
-    'ngLint': ngLint.tsPlugin,
+    tslint: tslint.plugin,
+    ngLint: ngLint.tsPlugin,
   },
   processor: ngLint.processInlineTemplates,
   rules: {
@@ -25,8 +34,10 @@ const tsLintConfig = {
       { type: 'element', prefix: 'app', style: 'kebab-case' },
     ],
     'ngLint/prefer-standalone': 0,
-    quotes: ['error', 'single', { allowTemplateLiterals: true }],
     'tslint/no-misused-promises': ['error'],
+    'max-len': ['error', { code: 79, ignoreUrls: true }],
+    quotes: ['error', 'single', { allowTemplateLiterals: true }],
+    semi: ['error', 'always'],
   },
 };
 

@@ -20,6 +20,6 @@ describe('Link List Component', () => {
   });
 
   it('The component field \'links\' should be same as LinkList.', () => {
-    expect(component.links).toStrictEqual(correct)
+    expect(component.links).toStrictEqual(correct);
   });
 });

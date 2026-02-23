@@ -28,6 +28,7 @@ describe('LegalZoneTable', () => {
     expect(component).toBeTruthy();
   });
   it('src has enough columns', () => {
-    expect(component.src.map((el) => { return el.key; })).toStrictEqual(columns);
+    expect(component.src.map((el) => { return el.key; }))
+      .toStrictEqual(columns);
   });
 });

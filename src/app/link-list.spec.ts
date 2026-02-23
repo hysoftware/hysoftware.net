@@ -2,7 +2,11 @@ import { TestBed } from '@angular/core/testing';
 
 import { LinkList } from './link-list';
 import { faFileCode, faFile } from '@fortawesome/free-solid-svg-icons';
-import { faGithub, faGitlab, faKeybase } from '@fortawesome/free-brands-svg-icons';
+import {
+  faGithub,
+  faGitlab,
+  faKeybase
+} from '@fortawesome/free-brands-svg-icons';
 
 describe('LinkList', () => {
   let service: LinkList;
@@ -34,17 +38,18 @@ describe('LinkList', () => {
     ]);
   });
   it('Should have misc with proper link order', () => {
-    expect(service.miscList).toStrictEqual([
-      {
-        icon: faFileCode,
-        link: 'https://github.com/hysoftware/hysoftware.net',
-        name: 'Code of This Page'
-      },
-      {
-        icon: faFile,
-        link: 'https://www.canva.com/design/DADks8eRENo/4npkcNMd5b5OSyFNTXXMvw/view',
-        name: 'Resume about me'
-      },
-    ]);
+    const canva =
+      expect(service.miscList).toStrictEqual([
+        {
+          icon: faFileCode,
+          link: 'https://github.com/hysoftware/hysoftware.net',
+          name: 'Code of This Page'
+        },
+        {
+          icon: faFile,
+          link: `https://www.canva.com/design/DADks8eRENo/4npkcNMd5b5OSyFNTXXMvw/view`,
+          name: 'Resume about me'
+        },
+      ]);
   });
 });

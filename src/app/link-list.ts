@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
 import { IconDefinition } from '@fortawesome/angular-fontawesome';
 import { faFileCode, faFile } from '@fortawesome/free-solid-svg-icons';
-import { faGithub, faGitlab, faKeybase } from '@fortawesome/free-brands-svg-icons';
+import {
+  faGithub,
+  faGitlab,
+  faKeybase
+} from '@fortawesome/free-brands-svg-icons';
 
 interface Link {
   icon: IconDefinition;
