@@ -1,6 +1,5 @@
 import tslint from 'typescript-eslint';
 import ngLint from 'angular-eslint';
-import { parser } from 'typescript-eslint';
 
 const tsLintConfig = {
   files: ['src/**/*.ts'],
