@@ -1,10 +1,13 @@
-import { defineConfig } from 'eslint/config';
 import tslintPlugin from 'typescript-eslint';
 import angularESLintPlugin from 'angular-eslint';
 
-export default defineConfig([
+export default [
+  ...tslintPlugin.configs.recommended,
+  ...angularESLintPlugin.configs.tsRecommended,
+  // ...angularESLintPlugin.configs.templateRecommended,
+  // ...angularESLintPlugin.configs.templateAccessibility,
   {
-    "ignores": [
+    ignores: [
       ".angular/",
       "coverage/",
       "dist/",
@@ -21,10 +24,6 @@ export default defineConfig([
         createDefaultProgram: true,
       },
     },
-    extends: [
-      ...tslintPlugin.configs.recommended,
-      ...angularESLintPlugin.configs.tsRecommended,
-    ],
     processor: angularESLintPlugin.processInlineTemplates,
     rules: {
       '@angular-eslint/directive-selector': [
@@ -42,10 +41,6 @@ export default defineConfig([
   },
   // {
   //   files: ['src/**/*.html'],
-  //   extends: [
-  //     ...angularESLintPlugin.configs.templateRecommended,
-  //     ...angularESLintPlugin.configs.templateAccessibility,
-  //   ],
   //   rules: {
   //     'max-len': ['error', { code: 79 }],
   //   },
@@ -58,4 +53,4 @@ export default defineConfig([
   //     ...angularESLintPlugin.configs.templateAccessibility,
   //   ],
   // },
-]);
+];
