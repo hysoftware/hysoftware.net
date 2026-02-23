@@ -1,61 +1,57 @@
-import { defineConfig } from 'eslint/config';
-import tslintPlugin from 'typescript-eslint';
-import angularESLintPlugin from 'angular-eslint';
+import tslint from 'typescript-eslint';
+import ngLint from 'angular-eslint';
 
-export default defineConfig([
-  {
-    "ignores": [
-      ".angular/",
-      "coverage/",
-      "dist/",
-      "node_modules/",
-      "cypress/",
-      "cypress.config.ts",
-    ]
-  },
-  {
-    files: ['src/**/*.ts'],
-    languageOptions: {
-      parserOptions: {
-        project: ['tsconfig.*?.json'],
-        createDefaultProgram: true,
-      },
+const tsLintConfig = {
+  files: ['src/**/*.ts'],
+  languageOptions: {
+    parserOptions: {
+      project: ['tsconfig.*?.json'],
+      createDefaultProgram: true,
     },
-    extends: [
-      ...tslintPlugin.configs.recommended,
-      ...angularESLintPlugin.configs.tsRecommended,
+    parser: tslint.parser,
+  },
+  plugins: {
+    'tslint': tslint.plugin,
+    'ngLint': ngLint.tsPlugin,
+  },
+  processor: ngLint.processInlineTemplates,
+  rules: {
+    'ngLint/directive-selector': [
+      'error',
+      { type: 'attribute', style: 'camelCase' }
     ],
-    processor: angularESLintPlugin.processInlineTemplates,
-    rules: {
-      '@angular-eslint/directive-selector': [
-        'error',
-        { type: 'attribute', style: 'camelCase' }
-      ],
-      '@angular-eslint/component-selector': [
-        'error',
-        { type: 'element', prefix: 'app', style: 'kebab-case' },
-      ],
-      '@angular-eslint/prefer-standalone': 0,
-      quotes: ['error', 'single', { allowTemplateLiterals: true }],
-      '@typescript-eslint/no-misused-promises': ['error'],
-    },
+    'ngLint/component-selector': [
+      'error',
+      { type: 'element', prefix: 'app', style: 'kebab-case' },
+    ],
+    'ngLint/prefer-standalone': 0,
+    quotes: ['error', 'single', { allowTemplateLiterals: true }],
+    'tslint/no-misused-promises': ['error'],
   },
-  // {
-  //   files: ['src/**/*.html'],
-  //   extends: [
-  //     ...angularESLintPlugin.configs.templateRecommended,
-  //     ...angularESLintPlugin.configs.templateAccessibility,
-  //   ],
-  //   rules: {
-  //     'max-len': ['error', { code: 79 }],
-  //   },
-  // },
+};
 
-  // {
-  //   files: ['src/**/*.component.ts'],
-  //   extends: [
-  //     ...angularESLintPlugin.configs.templateRecommended,
-  //     ...angularESLintPlugin.configs.templateAccessibility,
-  //   ],
-  // },
-]);
+// const htmlConfig = {
+//   files: ['src/**/*.html'],
+//   plugins: ngLint.templatePlugin,
+//   languageOptions: {
+//     parser: ngLint.templateParser,
+//   },
+//   rules: {
+//     'max-len': ['error', { code: 79 }],
+//   },
+// };
+
+const exclude = {
+  ignores: [
+    ".angular/",
+    "coverage/",
+    "dist/",
+    "node_modules/",
+    "cypress/",
+    "cypress.config.ts",
+  ]
+};
+
+export default [
+  tsLintConfig, exclude,
+];
