@@ -45,12 +45,4 @@ export default [
   //     'max-len': ['error', { code: 79 }],
   //   },
   // },
-
-  // {
-  //   files: ['src/**/*.component.ts'],
-  //   extends: [
-  //     ...angularESLintPlugin.configs.templateRecommended,
-  //     ...angularESLintPlugin.configs.templateAccessibility,
-  //   ],
-  // },
 ];
