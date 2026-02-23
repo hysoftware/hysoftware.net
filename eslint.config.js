@@ -1,11 +1,12 @@
-import tslintPlugin from 'typescript-eslint';
-import angularESLintPlugin from 'angular-eslint';
+import { defineConfig } from 'eslint/config';
+import tslint from 'typescript-eslint';
+import ngLint from 'angular-eslint';
 
-export default [
-  ...tslintPlugin.configs.recommended,
-  ...angularESLintPlugin.configs.tsRecommended,
-  // ...angularESLintPlugin.configs.templateRecommended,
-  // ...angularESLintPlugin.configs.templateAccessibility,
+export default defineConfig(
+  tslint.configs.recommended,
+  ngLint.configs.tsRecommended,
+  // ...ngLint.configs.templateRecommended,
+  // ...ngLint.configs.templateAccessibility,
   {
     ignores: [
       ".angular/",
@@ -24,19 +25,23 @@ export default [
         createDefaultProgram: true,
       },
     },
-    processor: angularESLintPlugin.processInlineTemplates,
+    plugins: {
+      'tslint': tslint.plugin,
+      'ngLint': ngLint.tsPlugin,
+    },
+    processor: ngLint.processInlineTemplates,
     rules: {
-      '@angular-eslint/directive-selector': [
+      'ngLint/directive-selector': [
         'error',
         { type: 'attribute', style: 'camelCase' }
       ],
-      '@angular-eslint/component-selector': [
+      'ngLint/component-selector': [
         'error',
         { type: 'element', prefix: 'app', style: 'kebab-case' },
       ],
-      '@angular-eslint/prefer-standalone': 0,
+      'ngLint/prefer-standalone': 0,
       quotes: ['error', 'single', { allowTemplateLiterals: true }],
-      '@typescript-eslint/no-misused-promises': ['error'],
+      'tslint/no-misused-promises': ['error'],
     },
   },
   // {
@@ -45,4 +50,4 @@ export default [
   //     'max-len': ['error', { code: 79 }],
   //   },
   // },
-];
+);

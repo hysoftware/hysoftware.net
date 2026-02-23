@@ -1,4 +1,4 @@
-/* eslint @angular-eslint/directive-selector: off */
+/* eslint ngLint/directive-selector: off */
 import { Directive, OnInit, HostBinding } from '@angular/core';
 
 @Directive({
