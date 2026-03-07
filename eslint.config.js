@@ -22,6 +22,7 @@ const tsLintConfig = {
   plugins: {
     tslint: tslint.plugin,
     ngLint: ngLint.tsPlugin,
+    tmpLint: ngLint.templatePlugin,
   },
   processor: ngLint.processInlineTemplates,
   rules: {
@@ -41,16 +42,16 @@ const tsLintConfig = {
   },
 };
 
-// const htmlConfig = {
-//   files: ['src/**/*.html'],
-//   plugins: ngLint.templatePlugin,
-//   languageOptions: {
-//     parser: ngLint.templateParser,
-//   },
-//   rules: {
-//     'max-len': ['error', { code: 79 }],
-//   },
-// };
+const htmlConfig = {
+  files: ['src/app/**/*.html'],
+  plugins: ngLint.templatePlugin,
+  languageOptions: {
+    parser: ngLint.templateParser,
+  },
+  rules: {
+    'max-len': ['error', { code: 79 }],
+  },
+};
 
 const exclude = {
   ignores: [
@@ -64,5 +65,5 @@ const exclude = {
 };
 
 export default [
-  tsLintConfig, exclude,
+  tsLintConfig, htmlConfig, exclude,
 ];
