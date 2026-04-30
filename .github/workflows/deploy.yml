@@ -43,3 +43,11 @@ jobs:
         env:
           CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           FLARE_ZONE: ${{ secrets.FLARE_ZONE }}
+      - name: Create Github Release
+        run: |
+          gh release create ${{ github.ref_name }} \
+            --repo hysoftware/hysoftware.net \
+            --title "Release ${{ github.ref_name }}" \
+            --generate-notes
+        env:
+          GH_TOKEN: ${{ github.token }}
