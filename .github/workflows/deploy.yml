@@ -28,8 +28,18 @@ jobs:
         with:
           name: hysoftware-dist
           path: dist
-      - name: deploy
+      - name: Deploy
         run: npx wrangler deploy
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUD_FLARE_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.FLARE_ZONE }}
+      - name: Invalidate Cloudflare CDN
+        run: >
+          curl -X POST \
+            -H 'Content-Type:application/json' \
+            -H "Authorization: Bearer ${CF_TOKEN}" \
+            --data '{"purge_everything":true}' \
+            https://api.cloudflare.com/client/v4/zones/${FLARE_ZONE}/purge_cache
+        env:
+          CF_TOKEN: ${{ secrets.CLOUD_FLARE_TOKEN }}
+          FLARE_ZONE: ${{ secrets.FLARE_ZONE }}
