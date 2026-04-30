@@ -43,7 +43,10 @@ jobs:
       - name: Deploy
         uses: cloudflare/wrangler-action@v3
         with:
+          command: deploy
           apiToken: ${{ secrets.CLOUD_FLARE_TOKEN }}
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          packageManager: pnpm
       - name: Invalidate Cloudflare CDN
         run: >
           curl -X POST \
