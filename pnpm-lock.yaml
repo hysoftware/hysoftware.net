@@ -65,7 +65,7 @@ importers:
         version: 21.2.1(@angular/compiler@21.2.4)(typescript@6.0.3)
       '@cypress/schematic':
         specifier: 5.0.0
-        version: 5.0.0(@angular/cli@21.2.1(@types/node@25.3.0)(chokidar@5.0.0))(@angular/core@21.2.4(@angular/compiler@21.2.4)(rxjs@7.8.2))(cypress@15.14.2)
+        version: 5.0.0(@angular/cli@21.2.1(@types/node@25.3.0)(chokidar@5.0.0))(@angular/core@21.2.4(@angular/compiler@21.2.4)(rxjs@7.8.2))(cypress@15.15.0)
       '@eslint/js':
         specifier: ^10.0.1
         version: 10.0.1(eslint@10.0.3)
@@ -76,8 +76,8 @@ importers:
         specifier: 21.3.1
         version: 21.3.1(@angular/cli@21.2.1(@types/node@25.3.0)(chokidar@5.0.0))(chokidar@5.0.0)(eslint@10.0.3)(typescript-eslint@8.59.3(eslint@10.0.3)(typescript@6.0.3))(typescript@6.0.3)
       cypress:
-        specifier: 15.14.2
-        version: 15.14.2
+        specifier: 15.15.0
+        version: 15.15.0
       eslint:
         specifier: ^10.0.3
         version: 10.0.3
@@ -531,9 +531,9 @@ packages:
     resolution: {integrity: sha512-QxULHAm7cNu72w97JUNCBFODFaXpbDg+dP8b/oWFAZ2MTRppA3U00Y2L1HqaS4J6yBqxwa/Y3nMBaxVKbB/NsA==}
     engines: {node: '>=20.19.0'}
 
-  '@cypress/request@3.0.10':
-    resolution: {integrity: sha512-hauBrOdvu08vOsagkZ/Aju5XuiZx6ldsLfByg1htFeldhex+PeMrYauANzFsMJeAA0+dyPLbDoX2OYuvVoLDkQ==}
-    engines: {node: '>= 6'}
+  '@cypress/request@4.0.0':
+    resolution: {integrity: sha512-wGTQfwDMMMiz/muFw4YbCLwTh0uZsXKK+6zWBzftADpitSi6iM62C8GzEhNcng2srUiGPksOriQkA8zakW2R0g==}
+    engines: {node: '>= 14.17.0'}
 
   '@cypress/schematic@5.0.0':
     resolution: {integrity: sha512-z8+myDqT4SONCBvNI+cFzhADFCOOsSOcfp6mxMx4FxMMpyeaYbUNUCZlt886UnjnSsL5BWSX7WNJLhPptewKVw==}
@@ -2228,8 +2228,8 @@ packages:
     resolution: {integrity: sha512-wD5oz5xibMOPHzy13CyGmogB3phdvcDaB5t0W/Nr5Z2O/agcB8YwOz6e2Lsp10pNDzBoDO9nVa3RGs/2BttpHQ==}
     engines: {node: '>= 6'}
 
-  cypress@15.14.2:
-    resolution: {integrity: sha512-xMWg/iEImeIThRQZdnf3BFJT1a84apM/R91Feoa4vVWGuYWDphMT5jLhRVTBVlCgi+6axegF1zqhNyjhug2SsQ==}
+  cypress@15.15.0:
+    resolution: {integrity: sha512-N8qBv3AUYn6xfIG73O5O58kTClUBSZ7a3C08IQFkSGTUdEauJ3BqwTFb/f9KPZgadftoZjllC0XSwD7xNNolbA==}
     engines: {node: ^20.1.0 || ^22.0.0 || >=24.0.0}
     hasBin: true
 
@@ -3677,11 +3677,6 @@ packages:
   uri-js@4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
 
-  uuid@8.3.2:
-    resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
-    deprecated: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).
-    hasBin: true
-
   validate-npm-package-name@7.0.2:
     resolution: {integrity: sha512-hVDIBwsRruT73PbK7uP5ebUt+ezEtCmzZz3F59BSr2F6OVFnJ/6h8liuvdLrQ88Xmnk6/+xGGuq+pG9WwTuy3A==}
     engines: {node: ^20.17.0 || >=22.9.0}
@@ -4426,7 +4421,7 @@ snapshots:
 
   '@csstools/css-tokenizer@4.0.0': {}
 
-  '@cypress/request@3.0.10':
+  '@cypress/request@4.0.0':
     dependencies:
       aws-sign2: 0.7.0
       aws4: 1.13.2
@@ -4445,13 +4440,12 @@ snapshots:
       safe-buffer: 5.2.1
       tough-cookie: 5.1.2
       tunnel-agent: 0.6.0
-      uuid: 8.3.2
 
-  '@cypress/schematic@5.0.0(@angular/cli@21.2.1(@types/node@25.3.0)(chokidar@5.0.0))(@angular/core@21.2.4(@angular/compiler@21.2.4)(rxjs@7.8.2))(cypress@15.14.2)':
+  '@cypress/schematic@5.0.0(@angular/cli@21.2.1(@types/node@25.3.0)(chokidar@5.0.0))(@angular/core@21.2.4(@angular/compiler@21.2.4)(rxjs@7.8.2))(cypress@15.15.0)':
     dependencies:
       '@angular/cli': 21.2.1(@types/node@25.3.0)(chokidar@5.0.0)
       '@angular/core': 21.2.4(@angular/compiler@21.2.4)(rxjs@7.8.2)
-      cypress: 15.14.2
+      cypress: 15.15.0
       jsonc-parser: 3.3.1
       rxjs: 7.8.2
       semver: 7.7.4
@@ -5901,9 +5895,9 @@ snapshots:
 
   css-what@7.0.0: {}
 
-  cypress@15.14.2:
+  cypress@15.15.0:
     dependencies:
-      '@cypress/request': 3.0.10
+      '@cypress/request': 4.0.0
       '@cypress/xvfb': 1.2.4(supports-color@8.1.1)
       '@types/sinonjs__fake-timers': 8.1.1
       '@types/sizzle': 2.3.10
@@ -7540,8 +7534,6 @@ snapshots:
   uri-js@4.4.1:
     dependencies:
       punycode: 2.3.1
-
-  uuid@8.3.2: {}
 
   validate-npm-package-name@7.0.2: {}
 
