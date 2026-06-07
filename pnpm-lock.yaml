@@ -33,8 +33,8 @@ importers:
         specifier: ^22.0.0
         version: 22.0.0(@angular/common@22.0.0(@angular/core@22.0.0(@angular/compiler@22.0.0)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.0(@angular/compiler@22.0.0)(rxjs@7.8.2))(@angular/platform-browser@22.0.0(@angular/common@22.0.0(@angular/core@22.0.0(@angular/compiler@22.0.0)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.0(@angular/compiler@22.0.0)(rxjs@7.8.2)))(rxjs@7.8.2)
       '@fortawesome/angular-fontawesome':
-        specifier: 4.0.0
-        version: 4.0.0(@angular/core@22.0.0(@angular/compiler@22.0.0)(rxjs@7.8.2))
+        specifier: 5.0.0
+        version: 5.0.0(@angular/core@22.0.0(@angular/compiler@22.0.0)(rxjs@7.8.2))
       '@fortawesome/free-brands-svg-icons':
         specifier: ^7.2.0
         version: 7.2.0
@@ -911,10 +911,10 @@ packages:
       '@noble/hashes':
         optional: true
 
-  '@fortawesome/angular-fontawesome@4.0.0':
-    resolution: {integrity: sha512-TCqHqT5ovFY1A4RgMpoBUgS+RX3OVs39+CzHFgzDhbCPAopOa26J748TZJcuZwJAvGAk9tbWeVEmWuLByINAeg==}
+  '@fortawesome/angular-fontawesome@5.0.0':
+    resolution: {integrity: sha512-kxYOKI4DBz/Sl8xHVET1nJeAZYV8O+b6Gh6oY9JUBWIxlKWKyRlR9AqLl2QKpsW8n/NdRzUmz1UmKoIDuhhFAQ==}
     peerDependencies:
-      '@angular/core': ^21.0.0
+      '@angular/core': ^22.0.0
 
   '@fortawesome/fontawesome-common-types@7.2.0':
     resolution: {integrity: sha512-IpR0bER9FY25p+e7BmFH25MZKEwFHTfRAfhOyJubgiDnoJNsSvJ7nigLraHtp4VOG/cy8D7uiV0dLkHOne5Fhw==}
@@ -4858,7 +4858,7 @@ snapshots:
 
   '@exodus/bytes@1.15.0': {}
 
-  '@fortawesome/angular-fontawesome@4.0.0(@angular/core@22.0.0(@angular/compiler@22.0.0)(rxjs@7.8.2))':
+  '@fortawesome/angular-fontawesome@5.0.0(@angular/core@22.0.0(@angular/compiler@22.0.0)(rxjs@7.8.2))':
     dependencies:
       '@angular/core': 22.0.0(@angular/compiler@22.0.0)(rxjs@7.8.2)
       '@fortawesome/fontawesome-svg-core': 7.2.0
