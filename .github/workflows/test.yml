@@ -2,9 +2,9 @@ name: Test
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 permissions:
   contents: read
@@ -15,14 +15,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - uses: pnpm/action-setup@v6
-        with:
-          version: latest
       - uses: actions/setup-node@v6
         with:
           node-version: "current"
           cache: pnpm
           cache-dependency-path: pnpm-lock.yaml
+      - uses: pnpm/action-setup@v6
+        with:
+          version: latest
       - uses: actions/cache@v6
         with:
           key: ${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
