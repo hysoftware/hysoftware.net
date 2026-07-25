@@ -52,7 +52,7 @@
     "@eslint/js": "^10.0.1",
     "@vitest/coverage-v8": "^4.0.18",
     "angular-eslint": "22.1.0",
-    "cypress": "15.18.1",
+    "cypress": "15.19.0",
     "eslint": "^10.0.3",
     "jsdom": "^29.0.0",
     "typescript": "~6.0.0",
