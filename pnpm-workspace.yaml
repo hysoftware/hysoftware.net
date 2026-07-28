@@ -15,6 +15,7 @@ minimumReleaseAgeExclude:
   - '@angular-eslint/template-parser@22.0.0'
   - '@angular-eslint/utils@22.0.0'
   - angular-eslint@22.0.0
+  - jsdom@30.0.0
 onlyBuiltDependencies:
   - '@parcel/watcher'
   - cypress
