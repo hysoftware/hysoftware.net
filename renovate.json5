@@ -13,5 +13,9 @@
     schedule: "every weekend"
   },
   packageRules: [
+    {
+      matchPackagePatterns: ["typescript"],
+      allowedVersions: "<7.0.0",
+    }
   ]
 }
