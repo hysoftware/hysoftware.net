@@ -65,7 +65,7 @@ importers:
         version: 22.2.2(@angular/compiler@22.2.2)(typescript@6.0.3)
       '@cypress/schematic':
         specifier: 6.0.0
-        version: 6.0.0(@angular/cli@22.2.2(chokidar@5.0.0))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(cypress@16.2.1)
+        version: 6.0.0(@angular/cli@22.2.2(chokidar@5.0.0))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(cypress@16.3.0)
       '@eslint/js':
         specifier: ^10.0.1
         version: 10.0.1(eslint@10.12.0(supports-color@8.1.1))
@@ -76,8 +76,8 @@ importers:
         specifier: 22.6.0
         version: 22.6.0(chokidar@5.0.0)(eslint@10.12.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript-eslint@8.68.0(eslint@10.12.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3))(typescript@6.0.3)
       cypress:
-        specifier: 16.2.1
-        version: 16.2.1
+        specifier: 16.3.0
+        version: 16.3.0
       eslint:
         specifier: ^10.9.1
         version: 10.12.0(supports-color@8.1.1)
@@ -2117,8 +2117,8 @@ packages:
     resolution: {integrity: sha512-DH0Bqq3DNp5tdOReuNyAA+Ev4Y2GS5FMbZpeTLP6C4CDi0h5nL0BmUPChXw3o/qbHLDWHl49sbNqQVY7bMSDdw==}
     engines: {node: '>=20.19.0'}
 
-  cypress@16.2.1:
-    resolution: {integrity: sha512-3Vqf1Krr92hKww/Owob9JrDO7TgBCR2ct+OQrvBOFGSnoGsikL4YF5arqDrJb+SM8Fzi7xXIeVmCeaOqJKPhRA==}
+  cypress@16.3.0:
+    resolution: {integrity: sha512-h5qq6G9wgNEMWEUFejeBwj7fzwJljrO54n3wAa7yW2Q/8ORnkq4tQBqUhY4g9UM5uOazKmr4ay8YcKi+SJJ1ng==}
     engines: {node: ^22.0.0 || ^24.0.0 || >=26.0.0}
     hasBin: true
 
@@ -3295,8 +3295,8 @@ packages:
     resolution: {integrity: sha512-gAQ9qrUN/UCypHtGFbbe7Rc/f9bzO88IwrG8TDo/aMKAApKyD6E3W4Cm0EfhfBb6Z6SKt59tTCTfD+n1xmAvMg==}
     engines: {node: '>=16.0.0'}
 
-  systeminformation@5.33.15:
-    resolution: {integrity: sha512-s5RloL0F7xhN0ZjfHtLGnbf7EW74EI0N8NFL+1xR7Oxz9QA33obNZsl7lyfnJOhN04E/kGFPoJPlvY7TZ5fzmw==}
+  systeminformation@5.33.21:
+    resolution: {integrity: sha512-bkG5ftzjV7XahdI5tTHReUeJYSJLxJOGU3QDFhTvJDBKgEOCDehcsVXYPW/NY60QqQYGv5OI+izJ6uGTVCpK2w==}
     engines: {node: '>=10.0.0'}
     os: [darwin, linux, win32, freebsd, openbsd, netbsd, sunos, android]
     hasBin: true
@@ -4069,11 +4069,11 @@ snapshots:
       tough-cookie: 5.1.2
       tunnel-agent: 0.6.0
 
-  '@cypress/schematic@6.0.0(@angular/cli@22.2.2(chokidar@5.0.0))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(cypress@16.2.1)':
+  '@cypress/schematic@6.0.0(@angular/cli@22.2.2(chokidar@5.0.0))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(cypress@16.3.0)':
     dependencies:
       '@angular/cli': 22.2.2(chokidar@5.0.0)
       '@angular/core': 22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2)
-      cypress: 16.2.1
+      cypress: 16.3.0
       jsonc-parser: 3.3.1
       rxjs: 7.8.2
 
@@ -5316,7 +5316,7 @@ snapshots:
 
   css-what@8.0.0: {}
 
-  cypress@16.2.1:
+  cypress@16.3.0:
     dependencies:
       '@cypress/request': 4.0.1
       '@cypress/xvfb': 1.2.4(supports-color@8.1.1)
@@ -5352,7 +5352,7 @@ snapshots:
       proxy-from-env: 1.0.0
       request-progress: 3.0.0
       supports-color: 8.1.1
-      systeminformation: 5.33.15
+      systeminformation: 5.33.21
       tmp: 0.2.7
       tree-kill: 1.2.2
       untildify: 4.0.0
@@ -6586,7 +6586,7 @@ snapshots:
 
   sync-message-port@1.2.0: {}
 
-  systeminformation@5.33.15: {}
+  systeminformation@5.33.21: {}
 
   throttleit@1.0.1: {}
 
