@@ -44,7 +44,9 @@ const tsLintConfig = {
 
 const htmlConfig = {
   files: ['src/app/**/*.html'],
-  plugins: ngLint.templatePlugin,
+  plugins: {
+    tmpLint: ngLint.templatePlugin,
+  },
   languageOptions: {
     parser: ngLint.templateParser,
   },
